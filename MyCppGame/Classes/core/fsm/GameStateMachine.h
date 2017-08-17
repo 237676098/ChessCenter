@@ -1,8 +1,7 @@
 #pragma once
 #include "IGameState.h"
-#include "utils/Singleton.h"
-
-
+#include "utils/CommonMacros.h"
+NS_CORE_BEGIN
 class GameStateMachine
 {
 public:
@@ -20,3 +19,4 @@ private:
 
 	SINGLETON(GameStateMachine)
 };
+NS_CORE_END

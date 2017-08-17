@@ -1,5 +1,6 @@
 #pragma once
-
+#include "utils\CommonMacros.h"
+NS_CORE_BEGIN
 typedef enum _GAME_EVENT {
 	EVENT_LOGIN_SUCCESS,
 } GAME_EVENT;
@@ -34,3 +35,4 @@ public:
 private:
 	GAME_STATE m_type;
 };
+NS_CORE_END

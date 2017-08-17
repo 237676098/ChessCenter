@@ -63,8 +63,9 @@ bool HelloWorld::init()
 
     // add the sprite as a child to this layer
     this->addChild(sprite, 0);
-	GameStateMachine::getInstance();
-    return true;
+	//GameStateMachine::getInstance();
+	chess::core::GameStateMachine::getInstance();
+	return true;
 }
 
 

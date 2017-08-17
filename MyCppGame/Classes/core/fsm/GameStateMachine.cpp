@@ -1,9 +1,12 @@
 #include "GameStateMachine.h"
 #include "LoginState.h"
 
+NS_CORE_BEGIN
+
 void GameStateMachine::init()
 {
-
+	this->m_state = _createStateByType(STATE_LOGIN);
+	this->m_state->init();
 }
 
 void GameStateMachine::dispatchEvent(const GameEvent& event)
@@ -25,3 +28,5 @@ IGameState* GameStateMachine::_createStateByType(GAME_STATE type)
 		return new LoginState();
 	}
 }
+
+NS_CORE_END
