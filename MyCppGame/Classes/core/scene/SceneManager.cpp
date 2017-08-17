@@ -2,7 +2,7 @@
 
 USING_NS_CC;
 NS_CORE_BEGIN
-
+SINGLETON_C_D(SceneManager)
 void SceneManager::initAndRun()
 {
 	m_scene = Scene::create();

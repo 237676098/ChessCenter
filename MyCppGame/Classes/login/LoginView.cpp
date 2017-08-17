@@ -27,13 +27,13 @@ bool LoginView::initWithFile(const std::string fileName)
 	Button* loginBtn= dynamic_cast<Button*>(m_csb->getChildByName("center")->getChildByName("Button_1"));
 	loginBtn->addClickEventListener(std::bind(&LoginView::onLoginBtnClick,this,std::placeholders::_1));
 	loginBtn->setPressedActionEnabled(true);
-	loginBtn->setZoomScale(0.04);
+	loginBtn->setZoomScale(0.04f);
 	return true;
 }
 
 void LoginView::onLoginBtnClick(Ref* btn)
 {
-	core::SocketManager::getInstance()->connect("47.94.95.187", "1008");
+	core::SocketManager::getInstance()->Send(nullptr);
 }
 
 NS_LOGIN_END

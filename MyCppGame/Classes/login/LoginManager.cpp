@@ -4,7 +4,7 @@
 
 USING_NS_CHESS;
 NS_LOGIN_BEGIN
-
+SINGLETON_C_D(LoginManager)
 void LoginManager::init()
 {
 	if (!m_view) {

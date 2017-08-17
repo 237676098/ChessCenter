@@ -16,26 +16,31 @@ packets PacketBuffer::getPackets()
 	uint16 packetLen = 0;
 	uint16 dataLen = 0;
 
-	while( buf.m_nLen - buf.m_nCursor >= PACKET_HEAD_LEN)
-	{
-		packetLen = buf.readUint16();
 
-		if(packetLen > buf.m_nLen - buf.m_nCursor)
+	while (true)
+	{
+		if (buf.m_nLen - buf.m_nCursor < PACKET_HEAD_LEN)
 		{
-			buf.m_nCursor -= PACKET_HEAD_LEN;
-			return ps;
+			break;
+		}
+		uint32 msg_length = buf.readUint32();
+		if (buf.m_nLen - buf.m_nCursor - 4 < msg_length)
+		{
+			buf.m_nCursor += 4;
+			break;
 		}
 
-		buf.m_nCursor-=PACKET_HEAD_LEN;
-		dataLen = packetLen + PACKET_HEAD_LEN;
 
+		uint16 serial_number = buf.readUint16();
+		uint32 msg_id = buf.readUint32();
 		Packet* packet = new Packet();
-		packet->writeBytes(buf.m_body+buf.m_nCursor, dataLen);
-
-		buf.m_nCursor += dataLen;
-
+		packet->writeUint32(msg_length);
+		packet->writeUint16(serial_number);
+		packet->writeUint32(msg_id);
+		packet->writeBytes(buf.m_body + buf.m_nCursor, msg_length);
 		ps.push_back(packet);
 	}
+	
 	return ps;
 }
 

@@ -11,7 +11,7 @@ typedef unsigned long long 	uint64;
 
 #define  PACKET_MAX  		40960
 #define  PACKET_TYPE_LEN  	(0)
-#define  PACKET_HEAD_LEN  	(2)
+#define  PACKET_HEAD_LEN  	(10)
 
 class Packet: public cocos2d::Ref
 {

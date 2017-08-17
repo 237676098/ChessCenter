@@ -18,5 +18,8 @@ private:
 
 
 	SINGLETON(GameStateMachine)
+	
 };
+
+
 NS_CORE_END

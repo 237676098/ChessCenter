@@ -18,6 +18,7 @@ typedef enum _LayerType
 class SceneManager
 {
 	SINGLETON(SceneManager)
+	
 public:
 	void initAndRun();
 	void add(LayerType layerType, cocos2d::Node* node);

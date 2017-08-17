@@ -2,7 +2,7 @@
 #include "LoginState.h"
 
 NS_CORE_BEGIN
-
+SINGLETON_C_D(GameStateMachine)
 void GameStateMachine::init()
 {
 	this->m_state = _createStateByType(STATE_LOGIN);
