@@ -1,5 +1,6 @@
 #include "SocketManager.h"
 #include "core\network\protocol\test.pb.h"
+#include "protocol.h"
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 //For Windows
@@ -50,6 +51,11 @@ SocketManager::~SocketManager()
 
 }
 
+void SocketManager::registerHandler(uint16 msg_id, FuncMessageHandler handler)
+{
+
+}
+
 int SocketManager::Send(Packet* packet)
 {
 
@@ -60,7 +66,7 @@ int SocketManager::Send(Packet* packet)
 	}
 
 	proto3_proto::Ack* ack = new proto3_proto::Ack();
-	ack->set_status(1);
+	ack->set_status(1111);
 	std::string tmpStr;
 	ack->SerializeToString(&tmpStr);
 	uint32 b_size = tmpStr.size();
@@ -207,16 +213,31 @@ void SocketManager::dispatch()
 	
 	for (auto it = ps.begin(); it != ps.end(); it++) {
 
+		
 		Packet* p = *it;
 
 		uint32 msg_length = p->readUint32();
 		uint16 serial_number = p->readUint16();
 		uint32 msg_id = p->readUint32();
-		std::string msg_str = p->readString();
-		proto3_proto::Ack ack;
-		ack.ParseFromString(msg_str);
-		CCLOG("recieve ack---->serial_number:%d msgid:%d status:%d ", serial_number, msg_id, ack.status());
+		char *tmpBody = new char[1024];
 
+		p->readBytes(msg_length, tmpBody);
+		
+		if (message_getter_maps.find(msg_id) != message_getter_maps.end())
+		{
+			proto3_proto::Ack* ack = (proto3_proto::Ack*)message_getter_maps.at(msg_id)(tmpBody);
+			CCLOG("recieve ack---->serial_number:%d msgid:%d status:%d ", serial_number, msg_id, ack->status());
+		}
+
+		delete tmpBody;
+		
+
+		/*
+		std::string msg_str = p->readString();
+		proto3_proto::Ack* ack = new proto3_proto::Ack();
+		ack->ParseFromString(msg_str);
+		CCLOG("recieve ack---->serial_number:%d msgid:%d status:%d ", serial_number, msg_id, ack->status());
+		*/
 	}
 
 	ps.clear();

@@ -188,5 +188,3 @@ void Packet::readBytes(int len, char* data)
 	m_nCursor+=len;
 }
 
-
-

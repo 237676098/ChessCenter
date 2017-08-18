@@ -39,6 +39,7 @@ packets PacketBuffer::getPackets()
 		packet->writeUint32(msg_id);
 		packet->writeBytes(buf.m_body + buf.m_nCursor, msg_length);
 		ps.push_back(packet);
+		buf.m_nCursor += msg_length;
 	}
 	
 	return ps;

@@ -8,10 +8,12 @@
 
 NS_CORE_BEGIN
 
+typedef std::function<void(Packet*)> FuncMessageHandler;
 typedef std::function< void(void)> FuncSocketClose;
 typedef std::function< void(void)> FuncSocketConnected;
 typedef std::function< void(void)> FuncSocketError;
 
+typedef std::map<uint16, std::vector<FuncMessageHandler>> HandlerMap;
 
 class SocketManager:cocos2d::Ref
 {
@@ -23,6 +25,7 @@ public:
 	inline void setCloseFunc(FuncSocketClose func) { m_func_close = func; };
 	inline void setConnectedFunc(FuncSocketConnected func) { m_func_connected = func; };
 	inline void setErrorFunc(FuncSocketError func) { m_func_error = func; };
+	void registerHandler(uint16 msg_id, FuncMessageHandler handler);
 private:
 	void dispatch();
 	void update(float dt);
@@ -35,6 +38,8 @@ private:
 	FuncSocketClose m_func_close;
 	FuncSocketConnected m_func_connected;
 	FuncSocketError m_func_error;
+
+	HandlerMap m_handlers;
 };
 
 NS_CORE_END
