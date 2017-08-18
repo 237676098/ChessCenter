@@ -1,5 +1,6 @@
 #include "BaseUI.h"
 #include "cocostudio\CocoStudio.h"
+#include "ui\CocosGUI.h"
 NS_CORE_BEGIN
 
 IBaseUI * IBaseUI::create(const std::string fileName)
@@ -34,7 +35,15 @@ bool IBaseUI::initWithFile(const std::string fileName)
 	CCASSERT(m_csb, std::string("create base widget from ").append(fullPath.c_str()).append(" failed!").c_str());
 	this->setContentSize(m_csb->getContentSize());
 	this->addChild(m_csb);
+	
 	return true;
+}
+
+void IBaseUI::fullScreen()
+{
+	this->setContentSize(cocos2d::Director::getInstance()->getWinSize());
+	m_csb->setContentSize(cocos2d::Director::getInstance()->getWinSize());
+	cocos2d::ui::Helper::doLayout(m_csb);
 }
 
 NS_CORE_END

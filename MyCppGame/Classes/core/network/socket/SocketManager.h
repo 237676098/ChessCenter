@@ -8,12 +8,12 @@
 
 NS_CORE_BEGIN
 
-typedef std::function<void(Packet*)> FuncMessageHandler;
+typedef std::function<void(google::protobuf::Message*)> FuncMessageHandler;
 typedef std::function< void(void)> FuncSocketClose;
 typedef std::function< void(void)> FuncSocketConnected;
 typedef std::function< void(void)> FuncSocketError;
 
-typedef std::map<uint16, std::vector<FuncMessageHandler>> HandlerMap;
+typedef std::map<uint16, std::vector<FuncMessageHandler>*> HandlerMap;
 
 class SocketManager:cocos2d::Ref
 {

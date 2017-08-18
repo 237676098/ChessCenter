@@ -53,7 +53,12 @@ SocketManager::~SocketManager()
 
 void SocketManager::registerHandler(uint16 msg_id, FuncMessageHandler handler)
 {
+	if (m_handlers.find(msg_id) == m_handlers.end())
+	{
+		m_handlers[msg_id] = new std::vector<FuncMessageHandler>();
+	}
 
+	m_handlers[msg_id]->push_back(handler);
 }
 
 int SocketManager::Send(Packet* packet)
@@ -225,19 +230,21 @@ void SocketManager::dispatch()
 		
 		if (message_getter_maps.find(msg_id) != message_getter_maps.end())
 		{
-			proto3_proto::Ack* ack = (proto3_proto::Ack*)message_getter_maps.at(msg_id)(tmpBody);
-			CCLOG("recieve ack---->serial_number:%d msgid:%d status:%d ", serial_number, msg_id, ack->status());
+			proto3_proto::Message* ack = message_getter_maps.at(msg_id)(tmpBody);
+
+			if (m_handlers.find(msg_id) != m_handlers.end())
+			{
+				std::vector<FuncMessageHandler>* handlers = m_handlers[msg_id];
+				for (size_t i = 0; i < handlers->size(); i++)
+				{
+					(handlers->at(i))(ack);
+				}
+			}
+
+			//CCLOG("recieve ack---->serial_number:%d msgid:%d status:%d ", serial_number, msg_id, ack->status());
 		}
 
 		delete tmpBody;
-		
-
-		/*
-		std::string msg_str = p->readString();
-		proto3_proto::Ack* ack = new proto3_proto::Ack();
-		ack->ParseFromString(msg_str);
-		CCLOG("recieve ack---->serial_number:%d msgid:%d status:%d ", serial_number, msg_id, ack->status());
-		*/
 	}
 
 	ps.clear();

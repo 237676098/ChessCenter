@@ -11,12 +11,12 @@ public:
 	static IBaseUI* create(const std::string fileName = "");
 	IBaseUI():m_file_name(""),m_csb(nullptr) {};
 	bool init();
+	virtual void fullScreen();
 	virtual bool initWithFile(const std::string fileName);
 
 protected:
 	std::string m_file_name;
 	cocos2d::Node* m_csb;
 };
-
 
 NS_CORE_END
