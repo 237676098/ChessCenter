@@ -3,6 +3,7 @@
 #include "socket\SocketManager.h"
 #include "core\scene\scene.h"
 #include "AgreementTipsWindow.h"
+#include "core\fsm\game_machine.h"
 using namespace cocos2d::ui;
 NS_LOGIN_BEGIN
 
@@ -37,7 +38,10 @@ bool LoginView::initWithFile(const std::string fileName)
 void LoginView::onLoginBtnClick(Ref* btn)
 {
 	//core::SocketManager::getInstance()->Send(nullptr);
-	core::WindowManager::getInstance()->open_2<AgreementTipsWindow,std::string,int>("1231",1);
+	//core::WindowManager::getInstance()->open_2<AgreementTipsWindow,std::string,int>("1231",1);
+	//core::UserInfoInitedEvent event;
+	//core::GameStateMachine::getInstance()->dispatchEvent(event);
+	core::SocketManager::getInstance()->Connect("47.94.95.187", 1008);
 }
 
 NS_LOGIN_END

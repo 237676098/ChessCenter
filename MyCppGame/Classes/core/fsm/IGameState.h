@@ -2,23 +2,31 @@
 #include "utils\CommonMacros.h"
 NS_CORE_BEGIN
 typedef enum _GAME_EVENT {
-	EVENT_LOGIN_SUCCESS,
+	EVENT_USER_INFO_INITED_SUCCESS,
 } GAME_EVENT;
-
 
 typedef enum _GAME_STATE {
 	STATE_UNKOWN = -1,
 	STATE_LOGIN = 0,
+	STATE_LOBBY = 1,
 } GAME_STATE;
 
 class GameEvent
 {
 public:
 	GameEvent(GAME_EVENT event) :m_event(event) {};
-	GAME_EVENT getType() { return m_event; };
-
+	GAME_EVENT getType() const { return m_event; };
 private:
 	GAME_EVENT m_event;
+};
+
+class UserInfoInitedEvent:public GameEvent
+{
+public:
+	UserInfoInitedEvent() :GameEvent(EVENT_USER_INFO_INITED_SUCCESS) {};
+
+private:
+
 };
 
 

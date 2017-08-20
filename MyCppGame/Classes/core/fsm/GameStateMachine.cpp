@@ -1,5 +1,6 @@
 #include "GameStateMachine.h"
 #include "LoginState.h"
+#include "LobbyState.h"
 
 NS_CORE_BEGIN
 SINGLETON_C_D(GameStateMachine)
@@ -26,7 +27,12 @@ IGameState* GameStateMachine::_createStateByType(GAME_STATE type)
 	if (type == STATE_LOGIN)
 	{
 		return new LoginState();
+	}else if(type == STATE_LOBBY)
+	{
+		return new LobbyState();
 	}
+
+	return nullptr;
 }
 
 NS_CORE_END

@@ -1,8 +1,5 @@
 #pragma once
 #include <functional>
-#include "utils\CommonMacros.h"
-#include "google\protobuf\message.h"
-#include "Packet.h"
 #include "PacketBuffer.h"
 #include "cocos2d.h"
 
@@ -19,17 +16,24 @@ class SocketManager:cocos2d::Ref
 {
 	SINGLETON(SocketManager)
 public:
-	int Send(Packet* packet);
+	int sendMessage(MessageId msg_id,const google::protobuf::Message& message);
 	void Connect(std::string ip, unsigned short port);
 	void disconnect();
+	bool isConnected() const;
 	inline void setCloseFunc(FuncSocketClose func) { m_func_close = func; };
 	inline void setConnectedFunc(FuncSocketConnected func) { m_func_connected = func; };
 	inline void setErrorFunc(FuncSocketError func) { m_func_error = func; };
-	void registerHandler(uint16 msg_id, FuncMessageHandler handler);
+	void registerHandler(MessageId msg_id, FuncMessageHandler handler);
+	virtual void onClosed();
+	virtual void onConnected();
+	virtual void onConnectError();
 private:
+	uint16 generateId();
+	int sendPacket(const Packet& packet);
 	void dispatch();
 	void update(float dt);
 private:
+	static uint16 s_serial_number;
 	std::string m_ip;
 	unsigned short m_port;
 	bool m_bConnect;

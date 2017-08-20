@@ -1,12 +1,12 @@
 #pragma once
+#pragma once
 #include "IGameState.h"
 NS_CORE_BEGIN
-class LoginState :public IGameState
+class LobbyState :public IGameState
 {
 public:
-	LoginState() :IGameState(STATE_LOGIN) {};
+	LobbyState() :IGameState(STATE_LOBBY) {};
 	GAME_STATE handleEvent(const GameEvent& event) override;
-	void init() override;
 	void enter() override;
 	void exit() override;
 private:

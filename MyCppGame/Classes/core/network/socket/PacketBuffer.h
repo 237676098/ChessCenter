@@ -3,6 +3,7 @@
 
 #include "Packet.h"
 
+NS_CORE_BEGIN
 
 typedef std::vector<Packet*> packets;
 
@@ -19,5 +20,5 @@ public:
 	packets getPackets();
 
 };
-
+NS_CORE_END
 #endif

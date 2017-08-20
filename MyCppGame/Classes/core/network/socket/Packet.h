@@ -3,16 +3,12 @@
 
 #include <cstring>
 #include "cocos2d.h"
-
-typedef unsigned char 		uint8;
-typedef unsigned short 		uint16;
-typedef unsigned int 		uint32;
-typedef unsigned long long 	uint64;
+#include "protocol.h"
 
 #define  PACKET_MAX  		40960
 #define  PACKET_TYPE_LEN  	(0)
 #define  PACKET_HEAD_LEN  	(10)
-
+NS_CORE_BEGIN
 class Packet: public cocos2d::Ref
 {
 public:
@@ -58,4 +54,5 @@ public:
 
 	std::string readString();
 };
+NS_CORE_END
 #endif

@@ -9,7 +9,7 @@ class LoginView:public core::IBaseUI
 public:
 	static LoginView* create();
 	LoginView():IBaseUI() {};
-	bool initWithFile(const std::string fileName);
+	bool initWithFile(const std::string fileName) override;
 
 	
 

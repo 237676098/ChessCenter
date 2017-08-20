@@ -11,7 +11,7 @@
 #endif
 
 
-
+NS_CORE_BEGIN
 
 Packet::Packet()
 {
@@ -188,3 +188,4 @@ void Packet::readBytes(int len, char* data)
 	m_nCursor+=len;
 }
 
+NS_CORE_END

@@ -1,5 +1,5 @@
 #include "PacketBuffer.h"
-
+NS_CORE_BEGIN
 PacketBuffer::PacketBuffer()
 {
 	
@@ -50,3 +50,5 @@ void PacketBuffer::clear()
 	buf.m_nCursor = 0;
 	buf.m_nLen = 0;
 }
+
+NS_CORE_END

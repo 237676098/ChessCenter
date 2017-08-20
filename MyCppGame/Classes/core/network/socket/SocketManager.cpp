@@ -1,6 +1,5 @@
 #include "SocketManager.h"
 #include "core\network\protocol\test.pb.h"
-#include "protocol.h"
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 //For Windows
@@ -28,9 +27,15 @@ SOCKET	sClient;
 int sClient;
 #endif
 
-uint16 ser_id = 1;
+uint16 SocketManager::s_serial_number = 0;
 
-SocketManager::SocketManager() :m_ip(""),m_port(0), m_bConnect(false)
+SocketManager::SocketManager() 
+	:m_ip(""),
+	m_port(0), 
+	m_bConnect(false), 
+	m_func_close(nullptr),
+	m_func_connected(nullptr),
+	m_func_error(nullptr)
 {
 	m_bufTemp = new char[PACKET_MAX];
 	m_packetBuffer = new PacketBuffer();
@@ -38,20 +43,17 @@ SocketManager::SocketManager() :m_ip(""),m_port(0), m_bConnect(false)
 
 SocketManager::~SocketManager()
 {
-	if (m_bConnect == true)
+	if (isConnected())
 	{
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
-		closesocket(sClient);
-#else
-		close(sClient);
-#endif
-		delete m_packetBuffer;
-		delete m_bufTemp;
+		disconnect();
 	}
+
+	delete m_packetBuffer;
+	delete m_bufTemp;
 
 }
 
-void SocketManager::registerHandler(uint16 msg_id, FuncMessageHandler handler)
+void SocketManager::registerHandler(MessageId msg_id, FuncMessageHandler handler)
 {
 	if (m_handlers.find(msg_id) == m_handlers.end())
 	{
@@ -61,40 +63,75 @@ void SocketManager::registerHandler(uint16 msg_id, FuncMessageHandler handler)
 	m_handlers[msg_id]->push_back(handler);
 }
 
-int SocketManager::Send(Packet* packet)
+void SocketManager::onClosed()
 {
-
-	if (!m_bConnect)
+	//连接断开之前将接收到的消息清空
+	dispatch();
+	m_bConnect = false;
+	s_serial_number = 0;
+	if (m_func_close)
 	{
-		Connect("47.94.95.187", 1008);
-		return 0;
+		m_func_close();
 	}
+}
 
-	proto3_proto::Ack* ack = new proto3_proto::Ack();
-	ack->set_status(1111);
-	std::string tmpStr;
-	ack->SerializeToString(&tmpStr);
-	uint32 b_size = tmpStr.size();
+void SocketManager::onConnected()
+{
+	m_bConnect = true;
+	if (m_func_connected)
+	{
+		m_func_connected();
+	}
+}
 
-	packet = new Packet();
-	packet->writeUint32(b_size);
-	packet->writeUint16(ser_id);
-	packet->writeUint32(587154137);
-	packet->writeBytes(tmpStr.c_str(), b_size);
-	ser_id++;
+void SocketManager::onConnectError()
+{
+	m_bConnect = false;
+	s_serial_number = 0;
+	if (m_func_error)
+	{
+		m_func_error();
+	}
+}
 
-	if (m_bConnect == false)
+int SocketManager::sendMessage(MessageId msg_id, const google::protobuf::Message& message)
+{
+	if (!isConnected())
 	{
 		return -1;
 	}
-	int result = send(sClient, packet->m_body, packet->m_nLen, 0);
+
+	std::string tmpStr;
+	message.SerializeToString(&tmpStr);
+	uint32 b_size = tmpStr.size();
+
+	Packet packet;
+	packet.writeUint32(b_size);
+	packet.writeUint16(generateId());
+	packet.writeUint32(msg_id);
+	packet.writeBytes(tmpStr.c_str(), b_size);
+	int result = sendPacket(packet);
+	return result;
+}
+
+uint16 SocketManager::generateId()
+{
+	s_serial_number++;
+	return s_serial_number;
+}
+
+int SocketManager::sendPacket(const Packet& packet)
+{
+	if (!isConnected())
+	{
+		return -1;
+	}
+	int result = send(sClient, packet.m_body, packet.m_nLen, 0);
 	if (-1 == result)
 	{
-		m_bConnect = false;
 		result = -1;
+		onClosed();
 	}
-
-	delete packet;
 	return result;
 }
 void SocketManager::Connect(std::string ip, unsigned short port)
@@ -168,17 +205,26 @@ void SocketManager::Connect(std::string ip, unsigned short port)
 #endif
 	if (-1 == retVal)
 	{
-		m_bConnect = false;
+		onConnectError();
 		return;
 	}
-	m_bConnect = true;
+	onConnected();
 	Director::getInstance()->getScheduler()->schedule(schedule_selector(SocketManager::update), this, 0, false);
 	return;
 
 }
 void SocketManager::disconnect()
 {
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+	closesocket(sClient);
+#else
+	close(sClient);
+#endif
+}
 
+bool SocketManager::isConnected() const
+{
+	return m_bConnect;
 }
 
 void SocketManager::update(float dt)
