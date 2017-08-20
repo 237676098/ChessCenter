@@ -20,7 +20,7 @@ bool CommonMessageView::initWithFile(const std::string fileName)
 {
 	if (IBaseUI::initWithFile(fileName))
 	{
-		m_csb->setCascadeOpacityEnabled(true);
+		this->setCascadeOpacityEnabled(true);
 		cocos2d::ui::Text* text = dynamic_cast<cocos2d::ui::Text*> (m_csb->getChildByName("m_tf_msg"));
 		text->setString(m_msg);
 
@@ -37,13 +37,14 @@ bool CommonMessageView::initWithFile(const std::string fileName)
 void CommonMessageView::fly()
 {
 	this->setPosition(Point(g_win_size.width / 2, g_win_size.height / 2 - 50));
-	MoveTo* move = MoveTo::create(0.5f, Point(g_win_size.width / 2, g_win_size.height - 100));
+	MoveTo* move = MoveTo::create(0.3f, Point(g_win_size.width / 2, g_win_size.height - 100));
 	EaseSineOut* ease = EaseSineOut::create(move);
 	CallFunc* removeC = CallFunc::create([this]() {
 		this->removeFromParentAndCleanup(true);
 	});
-	DelayTime* delay = DelayTime::create(1);
-	Sequence* action = Sequence::create(ease, delay, removeC, NULL);
+	DelayTime* delay = DelayTime::create(0.5);
+	FadeOut* fade = FadeOut::create(1);
+	Sequence* action = Sequence::create(ease, delay, fade, removeC, NULL);
 	this->runAction(action);
 }
 

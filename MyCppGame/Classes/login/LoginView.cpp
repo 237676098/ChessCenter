@@ -11,6 +11,7 @@
 #include "json/stringbuffer.h"
 //for http end
 #include "user\user.h"
+#include "utils/LanguageManager.h"
 
 using namespace  rapidjson;
 using namespace cocos2d::ui;
@@ -51,6 +52,12 @@ void LoginView::onLoginBtnClick(Ref* btn)
 	//core::UserInfoInitedEvent event;
 	//core::GameStateMachine::getInstance()->dispatchEvent(event);
 	//core::SocketManager::getInstance()->Connect("47.94.95.187", 1008);
+
+	if (true)
+	{
+		core::SceneManager::getInstance()->showMsg(core::LanguageManager::getInstance()->get("app_name"));
+		return;
+	}
 
 	cocos2d::network::HttpRequest* request = new cocos2d::network::HttpRequest();
 	request->setUrl("http://47.94.95.187:1009/v1/user/signlogin");

@@ -1,5 +1,5 @@
 #include "LoginManager.h"
-#include "core\scene\scene.h"
+#include "core/scene/scene.h"
 #include "user\user.h"
 #include "core\network\socket\SocketManager.h"
 #include "user\UserManager.h"

@@ -1,7 +1,8 @@
 #include "AppDelegate.h"
 #include "HelloWorldScene.h"
-#include "core\scene\SceneManager.h"
-#include "core\fsm\GameStateMachine.h"
+#include "core/scene/SceneManager.h"
+#include "core/fsm/GameStateMachine.h"
+#include "utils/LanguageManager.h"
 
 // #define USE_AUDIO_ENGINE 1
 // #define USE_SIMPLE_AUDIO_ENGINE 1
@@ -56,12 +57,15 @@ static int register_all_packages()
 }
 
 bool AppDelegate::applicationDidFinishLaunching() {
+
+	chess::core::LanguageManager::getInstance()->init();
+
     // initialize director
     auto director = Director::getInstance();
     auto glview = director->getOpenGLView();
     if(!glview) {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
-        glview = GLViewImpl::createWithRect("ChessCenter", cocos2d::Rect(0, 0, designResolutionSize.width, 720));
+        glview = GLViewImpl::createWithRect(chess::core::LanguageManager::getInstance()->get("app_name"), cocos2d::Rect(0, 0, designResolutionSize.width, 720));
 #else
         glview = GLViewImpl::create("ChessCenter");
 #endif
