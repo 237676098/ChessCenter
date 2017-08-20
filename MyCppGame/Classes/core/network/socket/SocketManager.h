@@ -18,7 +18,7 @@ class SocketManager:cocos2d::Ref
 	SINGLETON(SocketManager)
 public:
 	int sendMessage(MessageId msg_id,const google::protobuf::Message& message);
-	void Connect(std::string ip, unsigned short port);
+	void Connect(std::string ip, uint16 port);
 	void disconnect();
 	bool isConnected() const;
 	inline void setCloseFunc(FuncSocketClose func) { m_func_close = func; };
@@ -36,7 +36,7 @@ private:
 private:
 	static uint16 s_serial_number;
 	std::string m_ip;
-	unsigned short m_port;
+	uint16 m_port;
 	bool m_bConnect;
 	char* m_bufTemp;
 	PacketBuffer* 	m_packetBuffer;

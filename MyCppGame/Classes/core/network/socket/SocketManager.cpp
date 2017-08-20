@@ -134,7 +134,7 @@ int SocketManager::sendPacket(const Packet& packet)
 	}
 	return result;
 }
-void SocketManager::Connect(std::string ip, unsigned short port)
+void SocketManager::Connect(std::string ip, uint16 port)
 {
 	if (m_bConnect)
 	{
@@ -276,7 +276,7 @@ void SocketManager::dispatch()
 		
 		if (message_getter_maps.find(msg_id) != message_getter_maps.end())
 		{
-			proto3_proto::Message* ack = message_getter_maps.at(msg_id)(tmpBody);
+			google::protobuf::Message* ack = message_getter_maps.at(msg_id)(tmpBody);
 
 			if (m_handlers.find(msg_id) != m_handlers.end())
 			{

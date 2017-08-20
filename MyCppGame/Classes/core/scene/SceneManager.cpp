@@ -1,4 +1,5 @@
-#include"SceneManager.h"
+#include"scene.h"
+#include "CommonMessageView.h"
 
 USING_NS_CC;
 NS_CORE_BEGIN
@@ -24,6 +25,13 @@ void SceneManager::add(LayerType layerType, Node* node)
 void SceneManager::remove(LayerType layerType,Node* node)
 {
 	m_scene->getChildByTag(layerType)->removeChild(node);
+}
+
+void SceneManager::showMsg(const std::string msg)
+{
+	CommonMessageView* view = CommonMessageView::create(msg);
+	add(LayerMessage,view);
+	view->fly();
 }
 
 

@@ -23,6 +23,7 @@ private:
 		void onSocketError();
 		void onUpdate(float dt);
 		void onRevAck(google::protobuf::Message* messgae);
+		void onRevS2C_Error(google::protobuf::Message* messgae);
 private:
 	static const int m_s_retry_num;
 	int m_i_retry_num;

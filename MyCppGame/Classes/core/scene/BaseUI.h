@@ -2,6 +2,8 @@
 #define __BASE_UI_H__
 #include "utils\CommonMacros.h"
 #include "ui\UIWidget.h"
+#include "ui\UIText.h"
+#include "ui\UIImageView.h"
 
 using namespace cocos2d::ui;
 NS_CORE_BEGIN

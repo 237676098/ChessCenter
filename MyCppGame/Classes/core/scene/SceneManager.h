@@ -24,6 +24,8 @@ public:
 	void initAndRun();
 	void add(LayerType layerType, cocos2d::Node* node);
 	void remove(LayerType layerType, cocos2d::Node* node);
+	void showMsg(const std::string msg);
+
 private:
 	cocos2d::Scene* m_scene;
 };

@@ -1,6 +1,9 @@
 #include "LoginManager.h"
 #include "core\scene\scene.h"
+#include "user\user.h"
 #include "core\network\socket\SocketManager.h"
+#include "user\UserManager.h"
+
 
 USING_NS_CHESS;
 NS_LOGIN_BEGIN
@@ -52,6 +55,14 @@ void LoginManager::exit()
 void LoginManager::onSocketConnected()
 {
 	CCLOG("socket connected!");
+	//Ä£¿é³õÊ¼»¯ ×¢²áÍøÂç¼àÌýÊÂ¼þ
+	user::UserManager::getInstance()->init();
+
+
+	proto3_proto::C2S_Login c2s_login;
+	c2s_login.set_uid(user::UserManager::getInstance()->getId());
+	c2s_login.set_sign(user::UserManager::getInstance()->getSign());
+	core::SocketManager::getInstance()->sendMessage(core::ID_C2S_Login, c2s_login);
 }
 
 void LoginManager::onSocketClose()
@@ -81,6 +92,12 @@ void LoginManager::onRevAck(google::protobuf::Message * messgae)
 	proto3_proto::Ack* ack = dynamic_cast<proto3_proto::Ack*>(messgae);
 
 	CCLOG("recive ack status is %d", ack->status());
+}
+
+void LoginManager::onRevS2C_Error(google::protobuf::Message * messgae)
+{
+	proto3_proto::S2C_Error* s2c_error = dynamic_cast<proto3_proto::S2C_Error*>(messgae);
+	core::SceneManager::getInstance()->showMsg(s2c_error->msg());
 }
 
 NS_LOGIN_END
