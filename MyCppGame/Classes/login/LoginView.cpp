@@ -39,9 +39,9 @@ void LoginView::onLoginBtnClick(Ref* btn)
 {
 	//core::SocketManager::getInstance()->Send(nullptr);
 	//core::WindowManager::getInstance()->open_2<AgreementTipsWindow,std::string,int>("1231",1);
-	//core::UserInfoInitedEvent event;
-	//core::GameStateMachine::getInstance()->dispatchEvent(event);
-	core::SocketManager::getInstance()->Connect("47.94.95.187", 1008);
+	core::UserInfoInitedEvent event;
+	core::GameStateMachine::getInstance()->dispatchEvent(event);
+	//core::SocketManager::getInstance()->Connect("47.94.95.187", 1008);
 }
 
 NS_LOGIN_END

@@ -23,7 +23,7 @@ void LoginManager::init()
 {
 	core::SocketManager::getInstance()->setConnectedFunc(std::bind(&LoginManager::onSocketConnected,this));
 	core::SocketManager::getInstance()->setErrorFunc(std::bind(&LoginManager::onSocketError, this));
-	core::SocketManager::getInstance()->setErrorFunc(std::bind(&LoginManager::onSocketClose, this));
+	core::SocketManager::getInstance()->setCloseFunc(std::bind(&LoginManager::onSocketClose, this));
 	cocos2d::Director::getInstance()->getScheduler()->schedule(schedule_selector(LoginManager::onUpdate), this, 5, false);
 	core::SocketManager::getInstance()->registerHandler(core::ID_Ack, std::bind(&LoginManager::onRevAck, this, std::placeholders::_1));
 	enter();

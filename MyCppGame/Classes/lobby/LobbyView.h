@@ -1,4 +1,6 @@
-#pragma once
+#ifndef __LOBBY_VIEW_H__
+#define __LOBBY_VIEW_H__
+
 #include "utils\CommonMacros.h"
 #include "core\scene\scene.h"
 
@@ -16,3 +18,5 @@ private:
 };
 
 NS_LOBBY_END
+
+#endif

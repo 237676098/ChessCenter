@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __SOCKET_MANAGER_H__
+#define __SOCKET_MANAGER_H__
 #include <functional>
 #include "PacketBuffer.h"
 #include "cocos2d.h"
@@ -47,3 +48,5 @@ private:
 };
 
 NS_CORE_END
+
+#endif

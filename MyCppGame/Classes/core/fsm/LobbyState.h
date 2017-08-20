@@ -1,5 +1,5 @@
-#pragma once
-#pragma once
+#ifndef __LOBBY_STATE_H__
+#define __LOBBY_STATE_H__
 #include "IGameState.h"
 NS_CORE_BEGIN
 class LobbyState :public IGameState
@@ -13,3 +13,4 @@ private:
 
 };
 NS_CORE_END
+#endif

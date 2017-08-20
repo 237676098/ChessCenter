@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __COMMON_MACROS_H__
+#define __COMMON_MACROS_H__
 
 //命名空间宏定义
 #ifdef __cplusplus
@@ -43,3 +44,4 @@ private:									\
 	_CLASS_::~_CLASS_(){}			
 
 
+#endif

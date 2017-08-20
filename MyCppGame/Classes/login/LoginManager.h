@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __LOGIN_MANAGER_H__
+#define __LOGIN_MANAGER_H__
 #include "LoginView.h"
 #include "cocos2d.h"
 #include "core\network\socket\protocol.h"
@@ -28,3 +29,5 @@ private:
 };
 
 NS_LOGIN_END
+
+#endif

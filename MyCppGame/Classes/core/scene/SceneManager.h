@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __SCENE_MANAGER_H__
+#define __SCENE_MANAGER_H__
 #include "utils\CommonMacros.h"
 #include "cocos2d.h"
 
@@ -28,3 +29,5 @@ private:
 };
 
 NS_CORE_END
+
+#endif

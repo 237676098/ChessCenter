@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __AGREEMENT_TIPS_WINDOW_H__
+#define __AGREEMENT_TIPS_WINDOW_H__
 #include "core\scene\scene.h"
 
 NS_LOGIN_BEGIN
@@ -18,5 +19,6 @@ private:
 
 };
 
-
 NS_LOGIN_END
+
+#endif

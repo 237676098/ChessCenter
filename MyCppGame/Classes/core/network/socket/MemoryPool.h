@@ -1,7 +1,9 @@
 #ifndef __MEMORY_POOL_H
 #define __MEMORY_POOL_H
-
+#include "utils\CommonMacros.h"
 #include <cstring>
+
+NS_CORE_BEGIN
 
 class MemoryNode
 {
@@ -39,6 +41,6 @@ public:
 	
 };
 
-
+NS_CORE_END
 
 #endif

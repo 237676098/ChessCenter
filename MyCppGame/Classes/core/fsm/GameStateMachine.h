@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __GAME_STATE_MACHINE_H__
+#define __GAME_STATE_MACHINE_H__
 #include "IGameState.h"
 #include "utils/CommonMacros.h"
 NS_CORE_BEGIN
@@ -23,3 +24,4 @@ private:
 
 
 NS_CORE_END
+#endif

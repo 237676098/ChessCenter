@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __WINDOW_MANAGER_H__
+#define __WINDOW_MANAGER_H__
 #include "utils\CommonMacros.h"
 #include "BaseUI.h"
 #include "BaseWindow.h"
@@ -115,3 +116,5 @@ void WindowManager::open_2(PARAM_TYPE1 param1, PARAM_TYPE2 param2)
 }
 
 NS_CORE_END
+
+#endif

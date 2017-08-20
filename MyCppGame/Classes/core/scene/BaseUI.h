@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __BASE_UI_H__
+#define __BASE_UI_H__
 #include "utils\CommonMacros.h"
 #include "ui\UIWidget.h"
 
@@ -20,3 +21,5 @@ protected:
 };
 
 NS_CORE_END
+
+#endif

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __USER_MANAGER_H__
+#define __USER_MANAGER_H__
 #include  <string>
 #include "utils\CommonMacros.h"
 #include "test.pb.h"
@@ -24,3 +25,4 @@ private:
 };
 
 NS_USER_END
+#endif

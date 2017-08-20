@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __IGAME_STATE_H__
+#define __IGAME_STATE_H__
 #include "utils\CommonMacros.h"
 NS_CORE_BEGIN
 typedef enum _GAME_EVENT {
@@ -44,3 +45,4 @@ private:
 	GAME_STATE m_type;
 };
 NS_CORE_END
+#endif

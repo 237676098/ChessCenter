@@ -3,7 +3,9 @@
 #define MEMORY_NODE_LEN 40960
 #define MEMORY_NODE_NUM 25
 
+using namespace std;
 
+NS_CORE_BEGIN
 MemoryNode::MemoryNode(int index)
 {
 	m_buffer = new char[MEMORY_NODE_LEN];
@@ -165,3 +167,5 @@ void MemoryPool::returnMemory(int index)
 	temp->resetBuffer();
 	//g_mylock->unlock();
 }
+
+NS_CORE_END
