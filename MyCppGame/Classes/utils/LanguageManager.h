@@ -3,16 +3,15 @@
 #include "CommonMacros.h"
 #include <string>
 #include <map>
-#include "cocos2d.h"
 NS_CORE_BEGIN
 
 class LanguageManager
 {
 public:
 	bool init();
-	const char* get(const std::string& key) const;
+	const std::string get(const std::string& key) const;
 private:
-	cocos2d::__Dictionary* m_values;
+	std::map<std::string,std::string> m_values;
 	SINGLETON(LanguageManager)
 };
 

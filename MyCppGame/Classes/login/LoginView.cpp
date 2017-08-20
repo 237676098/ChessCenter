@@ -55,7 +55,7 @@ void LoginView::onLoginBtnClick(Ref* btn)
 
 	if (true)
 	{
-		core::SceneManager::getInstance()->showMsg(core::LanguageManager::getInstance()->get("app_name"));
+		core::SceneManager::getInstance()->showMsg(core::LanguageManager::getInstance()->get("app_name1"));
 		return;
 	}
 
