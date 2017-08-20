@@ -14,7 +14,7 @@ private:
 	void initCSB();
 protected:
 	virtual void onLoadCompleted();
-	virtual void onClickBtn(Ref* btn);
+	virtual void onClickCloseBtn(Ref* btn);
 private:
 	std::string m_s_path;
 	bool m_b_is_black;

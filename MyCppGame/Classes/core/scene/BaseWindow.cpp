@@ -1,6 +1,7 @@
 #include "BaseWindow.h"
 #include "cocostudio\CocoStudio.h"
 #include "ui\CocosGUI.h"
+#include "WindowManager.h"
 USING_NS_CC;
 NS_CORE_BEGIN
 IBaseWindow::IBaseWindow(std::string path,bool is_black,bool is_full_screen)
@@ -43,7 +44,7 @@ void IBaseWindow::initCSB()
 		CCLOG("touch window bg");
 		return true;
 	};
-	listener->setSwallowTouches(true);
+	//listener->setSwallowTouches(true);
 	m_layer_bg->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, m_layer_bg);
 	addChild(m_layer_bg);
 
@@ -67,10 +68,11 @@ void IBaseWindow::onLoadCompleted()
 	Button* closeBtn = m_node_csb->getChildByName<Button*>("m_btn_close");
 	if (closeBtn)
 	{
-		closeBtn->addClickEventListener(std::bind(&IBaseWindow::onClickBtn, this, std::placeholders::_1));
+		closeBtn->addClickEventListener(std::bind(&IBaseWindow::onClickCloseBtn, this, std::placeholders::_1));
 	}
 }
-void IBaseWindow::onClickBtn(Ref* btn)
+void IBaseWindow::onClickCloseBtn(Ref* btn)
 {
+	//WindowManager::getInstance()->close();
 }
 NS_CORE_END

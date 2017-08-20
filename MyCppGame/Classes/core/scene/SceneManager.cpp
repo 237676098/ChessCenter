@@ -23,7 +23,7 @@ void SceneManager::add(LayerType layerType, Node* node)
 
 void SceneManager::remove(LayerType layerType,Node* node)
 {
-	m_scene->getChildByTag(layerType)->addChild(node);
+	m_scene->getChildByTag(layerType)->removeChild(node);
 }
 
 

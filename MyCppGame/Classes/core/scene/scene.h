@@ -5,6 +5,7 @@
 #include "BaseUI.h"
 #include "BaseWindow.h"
 #include "WindowManager.h"
+#include "window_ids.h"
 
 NS_CORE_BEGIN
 
