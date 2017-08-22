@@ -1,0 +1,266 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="win32">
+      <UniqueIdentifier>{84a8ebd7-7cf0-47f6-b75e-d441df67da40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="resource">
+      <UniqueIdentifier>{715254bc-d70b-4ec5-bf29-467dd3ace079}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{bb6c862e-70e9-49d9-81b7-3829a6f50471}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\core">
+      <UniqueIdentifier>{9d640738-9546-47f0-abf1-c01e66c1965a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\games">
+      <UniqueIdentifier>{59d566bd-dc22-47ca-938f-2e05b6d1b1b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\lobby">
+      <UniqueIdentifier>{56bc0320-5d0e-4dff-984b-9c2f828118fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\login">
+      <UniqueIdentifier>{9f8d3744-1b99-434e-b604-21f41c6b493b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\core\fsm">
+      <UniqueIdentifier>{93a264e6-a90e-40bd-aec4-b9d610214fa3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\core\network">
+      <UniqueIdentifier>{224b027c-e5bf-447c-9dcc-4f884a4411e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\utils">
+      <UniqueIdentifier>{c3da1574-04f7-4193-811c-12ed207af271}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\core\network\protocol">
+      <UniqueIdentifier>{cfef8c2b-2c01-4efc-9bdf-3ce076d3850b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\core\network\socket">
+      <UniqueIdentifier>{26c78666-3da4-4d1d-adad-2d509dcfce6a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\core\scene">
+      <UniqueIdentifier>{4a31e25b-7900-465a-8a6e-749a00905e6b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\core\network\http">
+      <UniqueIdentifier>{f7838207-5d45-45ea-b204-fe7650da37a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\user">
+      <UniqueIdentifier>{24eb7819-a4df-4e85-94c0-3c7360532268}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\lobby\modules">
+      <UniqueIdentifier>{5baff990-fe2f-41d0-953f-f65832df43f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\lobby\modules\room">
+      <UniqueIdentifier>{79b6b9b3-d088-4811-91c8-aad580ac791b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\games\paigow">
+      <UniqueIdentifier>{f4c07bb6-6feb-47de-a2f5-79c4093c5fbe}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\AppDelegate.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\core\fsm\LoginState.cpp">
+      <Filter>src\core\fsm</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\core\fsm\GameStateMachine.cpp">
+      <Filter>src\core\fsm</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\core\scene\SceneManager.cpp">
+      <Filter>src\core\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\core\scene\BaseUI.cpp">
+      <Filter>src\core\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\login\LoginManager.cpp">
+      <Filter>src\login</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\login\LoginView.cpp">
+      <Filter>src\login</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\core\network\socket\Packet.cpp">
+      <Filter>src\core\network\socket</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\core\network\socket\PacketBuffer.cpp">
+      <Filter>src\core\network\socket</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\core\network\socket\MemoryPool.cpp">
+      <Filter>src\core\network\socket</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\core\network\protocol\addressbook.pb.cc">
+      <Filter>src\core\network\protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\core\network\socket\SocketManager.cpp">
+      <Filter>src\core\network\socket</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\core\network\protocol\test.pb.cc">
+      <Filter>src\core\network\protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\core\scene\scene.cpp">
+      <Filter>src\core\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\core\scene\WindowManager.cpp">
+      <Filter>src\core\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\core\scene\BaseWindow.cpp">
+      <Filter>src\core\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\login\AgreementTipsWindow.cpp">
+      <Filter>src\login</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\core\network\http\HttpManager.cpp">
+      <Filter>src\core\network\http</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\user\UserManager.cpp">
+      <Filter>src\user</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\core\fsm\LobbyState.cpp">
+      <Filter>src\core\fsm</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\lobby\LobbyManager.cpp">
+      <Filter>src\lobby</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\lobby\LobbyView.cpp">
+      <Filter>src\lobby</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\core\network\socket\protocol.cpp">
+      <Filter>src\core\network\socket</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\core\scene\CommonMessageView.cpp">
+      <Filter>src\core\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\utils\LanguageManager.cpp">
+      <Filter>src\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\lobby\modules\room\RoomCreateWindow.cpp">
+      <Filter>src\lobby\modules\room</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\lobby\modules\room\RoomJoinWindow.cpp">
+      <Filter>src\lobby\modules\room</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\games\paigow\PaiGowLogic.cpp">
+      <Filter>src\games\paigow</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="main.h">
+      <Filter>win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\AppDelegate.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\fsm\IGameState.h">
+      <Filter>src\core\fsm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\fsm\LoginState.h">
+      <Filter>src\core\fsm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\fsm\GameStateMachine.h">
+      <Filter>src\core\fsm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\utils\CommonMacros.h">
+      <Filter>src\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\scene\SceneManager.h">
+      <Filter>src\core\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\scene\BaseUI.h">
+      <Filter>src\core\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\login\LoginManager.h">
+      <Filter>src\login</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\login\LoginView.h">
+      <Filter>src\login</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\scene\scene.h">
+      <Filter>src\core\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\login\login.h">
+      <Filter>src\login</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\network\socket\Packet.h">
+      <Filter>src\core\network\socket</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\network\socket\PacketBuffer.h">
+      <Filter>src\core\network\socket</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\network\socket\MemoryPool.h">
+      <Filter>src\core\network\socket</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\network\protocol\addressbook.pb.h">
+      <Filter>src\core\network\protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\network\socket\SocketManager.h">
+      <Filter>src\core\network\socket</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\network\protocol\test.pb.h">
+      <Filter>src\core\network\protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\network\socket\protocol.h">
+      <Filter>src\core\network\socket</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\scene\WindowManager.h">
+      <Filter>src\core\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\scene\BaseWindow.h">
+      <Filter>src\core\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\login\AgreementTipsWindow.h">
+      <Filter>src\login</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\scene\window_ids.h">
+      <Filter>src\core\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\network\http\HttpManager.h">
+      <Filter>src\core\network\http</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\user\UserManager.h">
+      <Filter>src\user</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\fsm\game_machine.h">
+      <Filter>src\core\fsm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\fsm\LobbyState.h">
+      <Filter>src\core\fsm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\lobby\lobby.h">
+      <Filter>src\lobby</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\lobby\LobbyManager.h">
+      <Filter>src\lobby</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\lobby\LobbyView.h">
+      <Filter>src\lobby</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\user\user.h">
+      <Filter>src\user</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\scene\CommonMessageView.h">
+      <Filter>src\core\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\utils\LanguageManager.h">
+      <Filter>src\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\lobby\modules\room\RoomCreateWindow.h">
+      <Filter>src\lobby\modules\room</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\lobby\modules\room\RoomJoinWindow.h">
+      <Filter>src\lobby\modules\room</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\games\game.h">
+      <Filter>src\games</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\games\paigow\PaiGowLogic.h">
+      <Filter>src\games\paigow</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="game.rc">
+      <Filter>resource</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>
