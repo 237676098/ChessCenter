@@ -64,12 +64,6 @@ void PaiGowLogic::parseGroup(const Card * card, CardGroup & group)
 	group.value = (value1 + value2) % 10;
 
 
-	const Card cards[21] = {
-		0x00fc,0x00e2,0x00d8,0x00c4,0x00ba,0x00a6,0x0094,0x008b,0x007a,0x0067,0x0056,				//文牌
-		0x1049,0x1049,0x1038,0x1038,0x1027,0x1027,0x1015,0x1015,									//杂牌
-		0x2003,0x2006																				//至尊牌
-	};
-
 	//解析牌组类型
 	if (type1 == 0x2000 && type2 == 0x2000)
 	{
@@ -83,27 +77,27 @@ void PaiGowLogic::parseGroup(const Card * card, CardGroup & group)
 	{
 		group.type = CGDoubleMix;
 	}
-	else if ((card1 == 0x000c || card2 == 0x000c) & (value1 + value2) == 21)
+	else if ((card1 == 0x00fc || card2 == 0x00fc) & (value1 + value2) == 21)
 	{
 		group.type = CGHeavenNine;
 	}
-	else if ((card1 == 0x0012 || card2 == 0x0012) & (value1 + value2) == 11)
+	else if ((card1 == 0x00e2 || card2 == 0x00e2) & (value1 + value2) == 11)
 	{
 		group.type = CGEarthNine;
 	}
-	else if ((card1 == 0x000c || card2 == 0x000c) & (value1 + value2) == 20)
+	else if ((card1 == 0x00fc || card2 == 0x00fc) & (value1 + value2) == 20)
 	{
 		group.type = CGHeavenEight;
 	}
-	else if ((card1 == 0x0012 || card2 == 0x0012) & (value1 + value2) == 10)
+	else if ((card1 == 0x00e2 || card2 == 0x00e2) & (value1 + value2) == 10)
 	{
 		group.type = CGEarthEight;
 	}
-	else if ((card1 == 0x000c || card2 == 0x000c) & (value1 + value2) == 19)
+	else if ((card1 == 0x00fc || card2 == 0x00fc) & (value1 + value2) == 19)
 	{
 		group.type = CGHeavenHighNine;
 	}
-	else if ((card1 == 0x0012 || card2 == 0x0012) & (value1 + value2) == 9)
+	else if ((card1 == 0x00e2 || card2 == 0x00e2) & (value1 + value2) == 9)
 	{
 		group.type = CGEarthHighNine;
 	}
