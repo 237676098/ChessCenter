@@ -23,7 +23,7 @@ const Card cards[21] = {
 
 //数值掩码
 #define	MASK_TYPE					0xF000								//类型掩码
-#define MASK_NUMBER					0x0FF0								//序号掩码
+#define MASK_NUMBER					0x00F0								//序号掩码
 #define	MASK_VALUE					0x000F								//数值掩码
 
 enum CardGroupType
