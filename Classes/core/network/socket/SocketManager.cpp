@@ -1,5 +1,5 @@
 #include "SocketManager.h"
-#include "core\network\protocol\test.pb.h"
+#include "protocol.h"
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 //For Windows
@@ -274,6 +274,8 @@ void SocketManager::dispatch()
 
 		p->readBytes(msg_length, tmpBody);
 		
+		CCLOG("recieve msg %d",msg_id);
+
 		if (message_getter_maps.find(msg_id) != message_getter_maps.end())
 		{
 			google::protobuf::Message* ack = message_getter_maps.at(msg_id)(tmpBody);
@@ -288,6 +290,10 @@ void SocketManager::dispatch()
 			}
 
 			//CCLOG("recieve ack---->serial_number:%d msgid:%d status:%d ", serial_number, msg_id, ack->status());
+		}
+		else
+		{
+			CCLOG("can not find msg : %d",msg_id);
 		}
 
 		delete tmpBody;

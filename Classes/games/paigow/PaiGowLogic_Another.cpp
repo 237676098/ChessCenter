@@ -2,18 +2,6 @@
 
 NS_PAIGOW_BEGIN
 
-inline bool PaiGowLogic::isWen(const Card & card)
-{
-	CardNumber number = getNumber(card);
-	return number >= 0x0100 && number <= 0x0b00;
-}
-
-inline bool PaiGowLogic::isWu(const Card & card)
-{
-	CardNumber number = getNumber(card);
-	return number >= 0x0c00 && number <= 0x1300;
-}
-
 int PaiGowLogic::compare(const Card * card1, const Card * card2)
 {
 	//先进行排序
@@ -37,38 +25,20 @@ int PaiGowLogic::compare(const Card * card1, const Card * card2)
 	}
 	else
 	{
-
-		//两张杂牌 先比value 再比number
-		//其他牌型 直接比number就好
-
 		CardNumber number1 = getNumber(sortedGroup1[0]);
 		CardNumber number2 = getNumber(sortedGroup2[0]);
 
-		if (group1.type == CGMix && group1.value != group2.value)
+		if (number1 > number2)
 		{
-			if (group1.value > group2.value)
-			{
-				return 1;
-			}
-			else if(group1.value < group2.value)
-			{
-				return -1;
-			}
+			return 1;
+		}
+		else if (number1 < number2)
+		{
+			return -1;
 		}
 		else
 		{
-			if (number1 > number2)
-			{
-				return 1;
-			}
-			else if (number1 < number2)
-			{
-				return -1;
-			}
-			else
-			{
-				return 0;
-			}
+			return 0;
 		}
 
 	}
@@ -80,6 +50,9 @@ void PaiGowLogic::parseGroup(const Card * card, CardGroup & group)
 
 	Card card1 = card[0];
 	Card card2 = card[1];
+	
+	CardType type1 = getType(card1);
+	CardType type2 = getType(card2);
 
 	CardNumber number1 = getNumber(card1);
 	CardNumber number2 = getNumber(card2);
@@ -92,7 +65,7 @@ void PaiGowLogic::parseGroup(const Card * card, CardGroup & group)
 
 
 	//解析牌组类型
-	if (number1 == number1 == 0x0000)
+	if (type1 == 0x2000 && type2 == 0x2000)
 	{
 		group.type = CGTypeZhiZunBao;
 	}
@@ -100,31 +73,31 @@ void PaiGowLogic::parseGroup(const Card * card, CardGroup & group)
 	{
 		group.type = CGDoublePen;
 	}
-	else if(isWu(card1) && isWu(card2) & value1 == value2)
+	else if(type1 == 0x1000 && type2 == 0x1000 & value1 == value2)
 	{
 		group.type = CGDoubleMix;
 	}
-	else if ((card1 == 0x010c || card2 == 0x010c) & (value1 + value2) == 21)
+	else if ((card1 == 0x00fc || card2 == 0x00fc) & (value1 + value2) == 21)
 	{
 		group.type = CGHeavenNine;
 	}
-	else if ((card1 == 0x0202 || card2 == 0x0202) & (value1 + value2) == 11)
+	else if ((card1 == 0x00e2 || card2 == 0x00e2) & (value1 + value2) == 11)
 	{
 		group.type = CGEarthNine;
 	}
-	else if ((card1 == 0x010c || card2 == 0x010c) & (value1 + value2) == 20)
+	else if ((card1 == 0x00fc || card2 == 0x00fc) & (value1 + value2) == 20)
 	{
 		group.type = CGHeavenEight;
 	}
-	else if ((card1 == 0x0202 || card2 == 0x0202) & (value1 + value2) == 10)
+	else if ((card1 == 0x00e2 || card2 == 0x00e2) & (value1 + value2) == 10)
 	{
 		group.type = CGEarthEight;
 	}
-	else if ((card1 == 0x010c || card2 == 0x010c) & (value1 + value2) == 19)
+	else if ((card1 == 0x00fc || card2 == 0x00fc) & (value1 + value2) == 19)
 	{
 		group.type = CGHeavenHighNine;
 	}
-	else if ((card1 == 0x0202 || card2 == 0x0202) & (value1 + value2) == 9)
+	else if ((card1 == 0x00e2 || card2 == 0x00e2) & (value1 + value2) == 9)
 	{
 		group.type = CGEarthHighNine;
 	}

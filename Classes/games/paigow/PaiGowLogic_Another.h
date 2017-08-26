@@ -8,22 +8,23 @@ NS_PAIGOW_BEGIN
 
 typedef uint16_t Card;
 typedef uint16_t CardValue;
+typedef uint16_t CardType;
 typedef uint16_t CardNumber;
 
-//0~8代表序号
-//9~16代表数值大小
+//0~3代表type 文牌 杂牌 至尊牌
+//4~7代表序号(和number加起来区分一张牌)
+//8~11代表number标识单张牌的大小(虽然单张牌无意义)
+//12~15代表点数
 const Card cards[21] = {
-	//至尊
-	0x0006, 0x0003,
-	//文牌
-	0x010c, 0x0202, 0x0308, 0x0404, 0x050a, 0x0606, 0x0704, 0x080b, 0x090a, 0x0a07, 0x0b06,
-	//武牌
-	0x0c09, 0x0d09, 0x0e08, 0x0f08, 0x1007, 0x1107, 0x1205, 0x1305,
+	0x00fc,0x00e2,0x00d8,0x00c4,0x00ba,0x00a6,0x0094,0x008b,0x007a,0x0067,0x0056,				//文牌
+	0x1049,0x1149,0x1038,0x1138,0x1027,0x1127,0x1015,0x1115,									//杂牌
+	0x2003,0x2006																				//至尊牌
 };
 
-
-#define MASK_NUMBER					0xFF00								//序号掩码
-#define	MASK_VALUE					0x00FF								//数值掩码
+//数值掩码
+#define	MASK_TYPE					0xF000								//类型掩码
+#define MASK_NUMBER					0x00F0								//序号掩码
+#define	MASK_VALUE					0x000F								//数值掩码
 
 enum CardGroupType
 {
@@ -48,14 +49,12 @@ typedef struct _CardGroup
 class PaiGowLogic
 {
 public:
-	inline static bool isWen(const Card& card);
-	inline static bool isWu(const Card& card);
 	static int compare(const Card* card1, const Card* card2);
 	static void parseGroup(const Card* card,CardGroup& group);
 	static void sortGroup(const Card* card, Card* sortedCard);
 	inline static CardValue getValue(const Card& card) { return card&MASK_VALUE; };
+	inline static CardType getType(const Card& card) { return card&MASK_TYPE; };
 	inline static CardNumber getNumber(const Card& card) { return card&MASK_NUMBER; };
-	
 private:
 
 };
