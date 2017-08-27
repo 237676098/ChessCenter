@@ -6,9 +6,9 @@ class TableState :public IGameState
 {
 public:
 	TableState() :IGameState(STATE_TABLE) {};
-	GAME_STATE handleEvent(const GameEvent& event) override;
-	void enter() override;
-	void exit() override;
+	GAME_STATE handleEvent(const GameEvent* event) override;
+	void enter(const GameEvent* event) override;
+	void exit(const GameEvent* event) override;
 private:
 
 };

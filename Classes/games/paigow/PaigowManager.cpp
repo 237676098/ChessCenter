@@ -1,16 +1,18 @@
 #include "PaigowManager.h"
 #include "core/scene/scene.h"
+#include "PaiGowProxy.h"
 
 NS_PAIGOW_BEGIN
 
 PaigowManager::PaigowManager() :m_view(nullptr)
 {
+	m_proxy = new PaiGowProxy(this);
 
 }
 
 PaigowManager::~PaigowManager()
 {
-
+	delete m_proxy;
 }
 
 void PaigowManager::init()

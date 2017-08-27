@@ -28,7 +28,7 @@ void UserManager::onRevS2C_InitUserInfo(google::protobuf::Message * messgae)
 	m_card = s2c_init_user_info->user().card();
 	m_is_inited = true;
 	core::UserInfoInitedEvent event;
-	core::GameStateMachine::getInstance()->dispatchEvent(event);
+	core::GameStateMachine::getInstance()->dispatchEvent(&event);
 }
 
 NS_USER_END

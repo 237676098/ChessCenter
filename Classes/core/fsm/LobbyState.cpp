@@ -4,9 +4,9 @@
 
 NS_CORE_BEGIN
 
-GAME_STATE LobbyState::handleEvent(const GameEvent & event)
+GAME_STATE LobbyState::handleEvent(const GameEvent * event)
 {
-	if (event.getType() == EVENT_TABLE_SNAPTSHOT)
+	if (event->getType() == EVENT_TABLE_SNAPTSHOT)
 	{
 		return STATE_TABLE;
 	}
@@ -16,12 +16,12 @@ GAME_STATE LobbyState::handleEvent(const GameEvent & event)
 	}
 }
 
-void LobbyState::enter()
+void LobbyState::enter(const GameEvent* event)
 {
 	lobby::LobbyManager::getInstance()->init();
 }
 
-void LobbyState::exit()
+void LobbyState::exit(const GameEvent* event)
 {
 	lobby::LobbyManager::getInstance()->dispose();
 }

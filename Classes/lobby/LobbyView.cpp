@@ -40,7 +40,7 @@ bool LobbyView::initWithFile(const std::string fileName)
 		//core::WindowManager::getInstance()->open<lobby::RoomCreateWindow>();
 		core::GameSnaptshotEvent event;
 		//core::UserInfoInitedEvent event;
-		core::GameStateMachine::getInstance()->dispatchEvent(event);
+		core::GameStateMachine::getInstance()->dispatchEvent(&event);
 	});
 
 	return true;

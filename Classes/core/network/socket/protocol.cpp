@@ -9,7 +9,7 @@ MESSAGE_GETTER(UserInfo);
 MESSAGE_GETTER(S2C_InitUserInfo);
 MESSAGE_GETTER(PlayerInfo);
 MESSAGE_GETTER(PaiGowConfig);
-MESSAGE_GETTER(PaiGowCards);
+//MESSAGE_GETTER(PaiGowCards);
 MESSAGE_GETTER(PaiGowPlayer);
 MESSAGE_GETTER(PaiGowResult);
 MESSAGE_GETTER(PaiGowSnapshot);
@@ -39,7 +39,7 @@ MsgGetterMap::value_type init_value[] =
     MsgGetterMap::value_type(ID_S2C_InitUserInfo,GetProtoS2C_InitUserInfo),
     MsgGetterMap::value_type(ID_PlayerInfo,GetProtoPlayerInfo),
     MsgGetterMap::value_type(ID_PaiGowConfig,GetProtoPaiGowConfig),
-    MsgGetterMap::value_type(ID_PaiGowCards,GetProtoPaiGowCards),
+   // MsgGetterMap::value_type(ID_PaiGowCards,GetProtoPaiGowCards),
     MsgGetterMap::value_type(ID_PaiGowPlayer,GetProtoPaiGowPlayer),
     MsgGetterMap::value_type(ID_PaiGowResult,GetProtoPaiGowResult),
     MsgGetterMap::value_type(ID_PaiGowSnapshot,GetProtoPaiGowSnapshot),

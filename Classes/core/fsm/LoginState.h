@@ -6,10 +6,10 @@ class LoginState :public IGameState
 {
 public:
 	LoginState() :IGameState(STATE_LOGIN) {};
-	GAME_STATE handleEvent(const GameEvent& event) override;
+	GAME_STATE handleEvent(const GameEvent* event) override;
 	void init() override;
-	void enter() override;
-	void exit() override;
+	void enter(const GameEvent* event) override;
+	void exit(const GameEvent* event) override;
 private:
 
 };

@@ -11,15 +11,15 @@ void GameStateMachine::init()
 	this->m_state->init();
 }
 
-void GameStateMachine::dispatchEvent(const GameEvent& event)
+void GameStateMachine::dispatchEvent(const GameEvent* event)
 {
 	GAME_STATE state_type = this->m_state->handleEvent(event);
 	if (state_type != this->m_state->getType())
 	{
-		this->m_state->exit();
+		this->m_state->exit(event);
 		delete this->m_state;
 		this->m_state = _createStateByType(state_type);
-		this->m_state->enter();
+		this->m_state->enter(event);
 	}
 }
 

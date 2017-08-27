@@ -56,7 +56,7 @@ const MessageId ID_S2C_MatchSnapshot = 1194346942;
 
 extern MsgGetterMap::value_type init_value[]; 
 
-const static MsgGetterMap message_getter_maps(init_value, init_value + 26);
+const static MsgGetterMap message_getter_maps(init_value, init_value + 25);
 
 
 NS_CORE_END

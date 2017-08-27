@@ -4,7 +4,7 @@
 
 NS_CORE_BEGIN
 
-GAME_STATE TableState::handleEvent(const GameEvent & event)
+GAME_STATE TableState::handleEvent(const GameEvent * event)
 {
 	if (false)
 	{
@@ -16,14 +16,19 @@ GAME_STATE TableState::handleEvent(const GameEvent & event)
 	}
 }
 
-void TableState::enter()
+void TableState::enter(const GameEvent* event)
 {
-	game::paigow::PaigowManager::getInstance()->init();
+	if (event->getType() == EVENT_TABLE_SNAPTSHOT)
+	{
+		GameSnaptshotEvent* ptr = dynamic_cast<GameSnaptshotEvent*>(const_cast<GameEvent*>(event));
+		game::GameManager::getInstance()->init(ptr->getSnaptShot());
+	}
+	
 }
 
-void TableState::exit()
+void TableState::exit(const GameEvent* event)
 {
-	game::paigow::PaigowManager::getInstance()->dispose();
+	game::GameManager::getInstance()->dispose();
 }
 
 

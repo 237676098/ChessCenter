@@ -191,7 +191,7 @@ void AddDescriptorsImpl() {
       "name\030\002 \001(\t\022\014\n\004head\030\003 \001(\t\022\014\n\004card\030\004 \001(\005\"8"
       "\n\020S2C_InitUserInfo\022$\n\004user\030\001 \001(\0132\026.proto"
       "3_proto.UserInfo\"V\n\nPlayerInfo\022\017\n\007seat_i"
-      "d\030\001 \001(\005\022\017\n\007user_id\030\002 \001(\003\022\014\n\004name\030\003 \001(\t\022\014"
+      "d\030\001 \001(\r\022\017\n\007user_id\030\002 \001(\003\022\014\n\004name\030\003 \001(\t\022\014"
       "\n\004head\030\004 \001(\t\022\n\n\002ip\030\005 \001(\tb\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
@@ -2018,13 +2018,13 @@ bool PlayerInfo::MergePartialFromCodedStream(
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // int32 seat_id = 1;
+      // uint32 seat_id = 1;
       case 1: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(8u)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
                  input, &seat_id_)));
         } else {
           goto handle_unusual;
@@ -2121,9 +2121,9 @@ void PlayerInfo::SerializeWithCachedSizes(
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // int32 seat_id = 1;
+  // uint32 seat_id = 1;
   if (this->seat_id() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->seat_id(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(1, this->seat_id(), output);
   }
 
   // int64 user_id = 2;
@@ -2170,9 +2170,9 @@ void PlayerInfo::SerializeWithCachedSizes(
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // int32 seat_id = 1;
+  // uint32 seat_id = 1;
   if (this->seat_id() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->seat_id(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(1, this->seat_id(), target);
   }
 
   // int64 user_id = 2;
@@ -2249,10 +2249,10 @@ size_t PlayerInfo::ByteSizeLong() const {
         this->user_id());
   }
 
-  // int32 seat_id = 1;
+  // uint32 seat_id = 1;
   if (this->seat_id() != 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
+      ::google::protobuf::internal::WireFormatLite::UInt32Size(
         this->seat_id());
   }
 
@@ -2344,15 +2344,15 @@ void PlayerInfo::InternalSwap(PlayerInfo* other) {
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
 // PlayerInfo
 
-// int32 seat_id = 1;
+// uint32 seat_id = 1;
 void PlayerInfo::clear_seat_id() {
-  seat_id_ = 0;
+  seat_id_ = 0u;
 }
-::google::protobuf::int32 PlayerInfo::seat_id() const {
+::google::protobuf::uint32 PlayerInfo::seat_id() const {
   // @@protoc_insertion_point(field_get:proto3_proto.PlayerInfo.seat_id)
   return seat_id_;
 }
-void PlayerInfo::set_seat_id(::google::protobuf::int32 value) {
+void PlayerInfo::set_seat_id(::google::protobuf::uint32 value) {
   
   seat_id_ = value;
   // @@protoc_insertion_point(field_set:proto3_proto.PlayerInfo.seat_id)

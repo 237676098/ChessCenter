@@ -651,11 +651,11 @@ class PlayerInfo : public ::google::protobuf::Message /* @@protoc_insertion_poin
   ::google::protobuf::int64 user_id() const;
   void set_user_id(::google::protobuf::int64 value);
 
-  // int32 seat_id = 1;
+  // uint32 seat_id = 1;
   void clear_seat_id();
   static const int kSeatIdFieldNumber = 1;
-  ::google::protobuf::int32 seat_id() const;
-  void set_seat_id(::google::protobuf::int32 value);
+  ::google::protobuf::uint32 seat_id() const;
+  void set_seat_id(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:proto3_proto.PlayerInfo)
  private:
@@ -665,7 +665,7 @@ class PlayerInfo : public ::google::protobuf::Message /* @@protoc_insertion_poin
   ::google::protobuf::internal::ArenaStringPtr head_;
   ::google::protobuf::internal::ArenaStringPtr ip_;
   ::google::protobuf::int64 user_id_;
-  ::google::protobuf::int32 seat_id_;
+  ::google::protobuf::uint32 seat_id_;
   mutable int _cached_size_;
   friend struct protobuf_common_2eproto::TableStruct;
 };
@@ -1018,15 +1018,15 @@ inline void S2C_InitUserInfo::set_allocated_user(::proto3_proto::UserInfo* user)
 
 // PlayerInfo
 
-// int32 seat_id = 1;
+// uint32 seat_id = 1;
 inline void PlayerInfo::clear_seat_id() {
-  seat_id_ = 0;
+  seat_id_ = 0u;
 }
-inline ::google::protobuf::int32 PlayerInfo::seat_id() const {
+inline ::google::protobuf::uint32 PlayerInfo::seat_id() const {
   // @@protoc_insertion_point(field_get:proto3_proto.PlayerInfo.seat_id)
   return seat_id_;
 }
-inline void PlayerInfo::set_seat_id(::google::protobuf::int32 value) {
+inline void PlayerInfo::set_seat_id(::google::protobuf::uint32 value) {
   
   seat_id_ = value;
   // @@protoc_insertion_point(field_set:proto3_proto.PlayerInfo.seat_id)

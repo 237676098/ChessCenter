@@ -60,9 +60,6 @@ extern C2S_PG_SureDefaultTypeInternal _C2S_PG_Sure_default_instance_;
 class Match;
 class MatchDefaultTypeInternal;
 extern MatchDefaultTypeInternal _Match_default_instance_;
-class PaiGowCards;
-class PaiGowCardsDefaultTypeInternal;
-extern PaiGowCardsDefaultTypeInternal _PaiGowCards_default_instance_;
 class PaiGowConfig;
 class PaiGowConfigDefaultTypeInternal;
 extern PaiGowConfigDefaultTypeInternal _PaiGowConfig_default_instance_;
@@ -195,10 +192,10 @@ class Match : public ::google::protobuf::Message /* @@protoc_insertion_point(cla
 
   // accessors -------------------------------------------------------
 
-  // repeated .proto3_proto.PlayerInfo players = 9;
+  // repeated .proto3_proto.PlayerInfo players = 10;
   int players_size() const;
   void clear_players();
-  static const int kPlayersFieldNumber = 9;
+  static const int kPlayersFieldNumber = 10;
   const ::proto3_proto::PlayerInfo& players(int index) const;
   ::proto3_proto::PlayerInfo* mutable_players(int index);
   ::proto3_proto::PlayerInfo* add_players();
@@ -207,10 +204,10 @@ class Match : public ::google::protobuf::Message /* @@protoc_insertion_point(cla
   const ::google::protobuf::RepeatedPtrField< ::proto3_proto::PlayerInfo >&
       players() const;
 
-  // .proto3_proto.PaiGowConfig paigow = 8;
+  // .proto3_proto.PaiGowConfig paigow = 9;
   bool has_paigow() const;
   void clear_paigow();
-  static const int kPaigowFieldNumber = 8;
+  static const int kPaigowFieldNumber = 9;
   const ::proto3_proto::PaiGowConfig& paigow() const;
   ::proto3_proto::PaiGowConfig* mutable_paigow();
   ::proto3_proto::PaiGowConfig* release_paigow();
@@ -228,33 +225,39 @@ class Match : public ::google::protobuf::Message /* @@protoc_insertion_point(cla
   ::google::protobuf::int32 type() const;
   void set_type(::google::protobuf::int32 value);
 
-  // int64 time = 3;
-  void clear_time();
-  static const int kTimeFieldNumber = 3;
-  ::google::protobuf::int64 time() const;
-  void set_time(::google::protobuf::int64 value);
+  // int64 createtime = 3;
+  void clear_createtime();
+  static const int kCreatetimeFieldNumber = 3;
+  ::google::protobuf::int64 createtime() const;
+  void set_createtime(::google::protobuf::int64 value);
 
-  // int32 number = 4;
+  // int64 begintime = 4;
+  void clear_begintime();
+  static const int kBegintimeFieldNumber = 4;
+  ::google::protobuf::int64 begintime() const;
+  void set_begintime(::google::protobuf::int64 value);
+
+  // int32 number = 5;
   void clear_number();
-  static const int kNumberFieldNumber = 4;
+  static const int kNumberFieldNumber = 5;
   ::google::protobuf::int32 number() const;
   void set_number(::google::protobuf::int32 value);
 
-  // int32 cost = 5;
+  // int32 cost = 6;
   void clear_cost();
-  static const int kCostFieldNumber = 5;
+  static const int kCostFieldNumber = 6;
   ::google::protobuf::int32 cost() const;
   void set_cost(::google::protobuf::int32 value);
 
-  // int32 state = 6;
+  // int32 state = 7;
   void clear_state();
-  static const int kStateFieldNumber = 6;
+  static const int kStateFieldNumber = 7;
   ::google::protobuf::int32 state() const;
   void set_state(::google::protobuf::int32 value);
 
-  // int32 round = 7;
+  // int32 round = 8;
   void clear_round();
-  static const int kRoundFieldNumber = 7;
+  static const int kRoundFieldNumber = 8;
   ::google::protobuf::int32 round() const;
   void set_round(::google::protobuf::int32 value);
 
@@ -266,7 +269,8 @@ class Match : public ::google::protobuf::Message /* @@protoc_insertion_point(cla
   ::proto3_proto::PaiGowConfig* paigow_;
   ::google::protobuf::int32 room_id_;
   ::google::protobuf::int32 type_;
-  ::google::protobuf::int64 time_;
+  ::google::protobuf::int64 createtime_;
+  ::google::protobuf::int64 begintime_;
   ::google::protobuf::int32 number_;
   ::google::protobuf::int32 cost_;
   ::google::protobuf::int32 state_;
@@ -361,18 +365,6 @@ class C2S_CreateMatch : public ::google::protobuf::Message /* @@protoc_insertion
   ::google::protobuf::int32 type() const;
   void set_type(::google::protobuf::int32 value);
 
-  // int32 number = 3;
-  void clear_number();
-  static const int kNumberFieldNumber = 3;
-  ::google::protobuf::int32 number() const;
-  void set_number(::google::protobuf::int32 value);
-
-  // int32 cost = 4;
-  void clear_cost();
-  static const int kCostFieldNumber = 4;
-  ::google::protobuf::int32 cost() const;
-  void set_cost(::google::protobuf::int32 value);
-
   // @@protoc_insertion_point(class_scope:proto3_proto.C2S_CreateMatch)
  private:
 
@@ -380,8 +372,6 @@ class C2S_CreateMatch : public ::google::protobuf::Message /* @@protoc_insertion
   ::proto3_proto::PaiGowConfig* paigow_;
   bool for_other_;
   ::google::protobuf::int32 type_;
-  ::google::protobuf::int32 number_;
-  ::google::protobuf::int32 cost_;
   mutable int _cached_size_;
   friend struct protobuf_game_2eproto::TableStruct;
 };
@@ -611,21 +601,35 @@ inline void Match::set_type(::google::protobuf::int32 value) {
   // @@protoc_insertion_point(field_set:proto3_proto.Match.type)
 }
 
-// int64 time = 3;
-inline void Match::clear_time() {
-  time_ = GOOGLE_LONGLONG(0);
+// int64 createtime = 3;
+inline void Match::clear_createtime() {
+  createtime_ = GOOGLE_LONGLONG(0);
 }
-inline ::google::protobuf::int64 Match::time() const {
-  // @@protoc_insertion_point(field_get:proto3_proto.Match.time)
-  return time_;
+inline ::google::protobuf::int64 Match::createtime() const {
+  // @@protoc_insertion_point(field_get:proto3_proto.Match.createtime)
+  return createtime_;
 }
-inline void Match::set_time(::google::protobuf::int64 value) {
+inline void Match::set_createtime(::google::protobuf::int64 value) {
   
-  time_ = value;
-  // @@protoc_insertion_point(field_set:proto3_proto.Match.time)
+  createtime_ = value;
+  // @@protoc_insertion_point(field_set:proto3_proto.Match.createtime)
 }
 
-// int32 number = 4;
+// int64 begintime = 4;
+inline void Match::clear_begintime() {
+  begintime_ = GOOGLE_LONGLONG(0);
+}
+inline ::google::protobuf::int64 Match::begintime() const {
+  // @@protoc_insertion_point(field_get:proto3_proto.Match.begintime)
+  return begintime_;
+}
+inline void Match::set_begintime(::google::protobuf::int64 value) {
+  
+  begintime_ = value;
+  // @@protoc_insertion_point(field_set:proto3_proto.Match.begintime)
+}
+
+// int32 number = 5;
 inline void Match::clear_number() {
   number_ = 0;
 }
@@ -639,7 +643,7 @@ inline void Match::set_number(::google::protobuf::int32 value) {
   // @@protoc_insertion_point(field_set:proto3_proto.Match.number)
 }
 
-// int32 cost = 5;
+// int32 cost = 6;
 inline void Match::clear_cost() {
   cost_ = 0;
 }
@@ -653,7 +657,7 @@ inline void Match::set_cost(::google::protobuf::int32 value) {
   // @@protoc_insertion_point(field_set:proto3_proto.Match.cost)
 }
 
-// int32 state = 6;
+// int32 state = 7;
 inline void Match::clear_state() {
   state_ = 0;
 }
@@ -667,7 +671,7 @@ inline void Match::set_state(::google::protobuf::int32 value) {
   // @@protoc_insertion_point(field_set:proto3_proto.Match.state)
 }
 
-// int32 round = 7;
+// int32 round = 8;
 inline void Match::clear_round() {
   round_ = 0;
 }
@@ -681,7 +685,7 @@ inline void Match::set_round(::google::protobuf::int32 value) {
   // @@protoc_insertion_point(field_set:proto3_proto.Match.round)
 }
 
-// .proto3_proto.PaiGowConfig paigow = 8;
+// .proto3_proto.PaiGowConfig paigow = 9;
 inline bool Match::has_paigow() const {
   return this != internal_default_instance() && paigow_ != NULL;
 }
@@ -720,7 +724,7 @@ inline void Match::set_allocated_paigow(::proto3_proto::PaiGowConfig* paigow) {
   // @@protoc_insertion_point(field_set_allocated:proto3_proto.Match.paigow)
 }
 
-// repeated .proto3_proto.PlayerInfo players = 9;
+// repeated .proto3_proto.PlayerInfo players = 10;
 inline int Match::players_size() const {
   return players_.size();
 }
@@ -780,34 +784,6 @@ inline void C2S_CreateMatch::set_type(::google::protobuf::int32 value) {
   
   type_ = value;
   // @@protoc_insertion_point(field_set:proto3_proto.C2S_CreateMatch.type)
-}
-
-// int32 number = 3;
-inline void C2S_CreateMatch::clear_number() {
-  number_ = 0;
-}
-inline ::google::protobuf::int32 C2S_CreateMatch::number() const {
-  // @@protoc_insertion_point(field_get:proto3_proto.C2S_CreateMatch.number)
-  return number_;
-}
-inline void C2S_CreateMatch::set_number(::google::protobuf::int32 value) {
-  
-  number_ = value;
-  // @@protoc_insertion_point(field_set:proto3_proto.C2S_CreateMatch.number)
-}
-
-// int32 cost = 4;
-inline void C2S_CreateMatch::clear_cost() {
-  cost_ = 0;
-}
-inline ::google::protobuf::int32 C2S_CreateMatch::cost() const {
-  // @@protoc_insertion_point(field_get:proto3_proto.C2S_CreateMatch.cost)
-  return cost_;
-}
-inline void C2S_CreateMatch::set_cost(::google::protobuf::int32 value) {
-  
-  cost_ = value;
-  // @@protoc_insertion_point(field_set:proto3_proto.C2S_CreateMatch.cost)
 }
 
 // .proto3_proto.PaiGowConfig paigow = 5;

@@ -3,9 +3,9 @@
 
 NS_CORE_BEGIN
 
-GAME_STATE LoginState::handleEvent(const GameEvent & event)
+GAME_STATE LoginState::handleEvent(const GameEvent * event)
 {
-	if ((event.getType() == EVENT_USER_INFO_INITED_SUCCESS))
+	if ((event->getType() == EVENT_USER_INFO_INITED_SUCCESS))
 	{
 		return STATE_LOBBY;
 	}
@@ -20,12 +20,12 @@ void LoginState::init()
 	login::LoginManager::getInstance()->init();
 }
 
-void LoginState::enter()
+void LoginState::enter(const GameEvent* event)
 {
 	login::LoginManager::getInstance()->enter();
 }
 
-void LoginState::exit()
+void LoginState::exit(const GameEvent* event)
 {
 	login::LoginManager::getInstance()->exit();
 }
