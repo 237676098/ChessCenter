@@ -1,6 +1,6 @@
 #include "UserManager.h"
-#include "core\fsm\game_machine.h"
-#include "core\network\socket\SocketManager.h"
+#include "core/fsm/game_machine.h"
+#include "core/network/socket/SocketManager.h"
 
 NS_USER_BEGIN
 

@@ -1,6 +1,6 @@
 #include "BaseUI.h"
-#include "cocostudio\CocoStudio.h"
-#include "ui\CocosGUI.h"
+#include "cocostudio/CocoStudio.h"
+#include "ui/CocosGUI.h"
 NS_CORE_BEGIN
 
 IBaseUI * IBaseUI::create(const std::string fileName)

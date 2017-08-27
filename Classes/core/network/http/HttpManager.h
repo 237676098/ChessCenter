@@ -1,6 +1,6 @@
 #ifndef __HTTP_MANAGER_H__
 #define __HTTP_MANAGER_H__
-#include "utils\CommonMacros.h"
+#include "utils/CommonMacros.h"
 #include "cocos2d.h"
 #include "network/HttpClient.h"
 USING_NS_CC;

@@ -1,7 +1,7 @@
 #ifndef __BASE_WINDOW_H__
 #define __BASE_WINDOW_H__
-#include "utils\CommonMacros.h"
-#include "ui\UIWidget.h"
+#include "utils/CommonMacros.h"
+#include "ui/UIWidget.h"
 #include "cocos2d.h"
 
 using namespace cocos2d::ui;

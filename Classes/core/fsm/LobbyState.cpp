@@ -1,13 +1,14 @@
 #include "LobbyState.h"
-#include "lobby\lobby.h"
+#include "lobby/lobby.h"
+
 
 NS_CORE_BEGIN
 
 GAME_STATE LobbyState::handleEvent(const GameEvent & event)
 {
-	if (false)
+	if (event.getType() == EVENT_TABLE_SNAPTSHOT)
 	{
-
+		return STATE_TABLE;
 	}
 	else
 	{

@@ -1,8 +1,8 @@
 #include "LoginManager.h"
 #include "core/scene/scene.h"
-#include "user\user.h"
-#include "core\network\socket\SocketManager.h"
-#include "user\UserManager.h"
+#include "user/user.h"
+#include "core/network/socket/SocketManager.h"
+#include "user/UserManager.h"
 
 
 USING_NS_CHESS;

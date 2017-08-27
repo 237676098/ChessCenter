@@ -13,6 +13,7 @@
 //for http end
 #include "user\user.h"
 #include "utils/LanguageManager.h"
+#include "games/paigow/views/PaiGowCardView.h"
 
 using namespace  rapidjson;
 using namespace cocos2d::ui;
@@ -53,6 +54,20 @@ void LoginView::onLoginBtnClick(Ref* btn)
 	//core::UserInfoInitedEvent event;
 	//core::GameStateMachine::getInstance()->dispatchEvent(event);
 	//core::SocketManager::getInstance()->Connect("47.94.95.187", 1008);
+
+	if (false)
+	{
+		for (size_t i = 0; i < 21; i++)
+		{
+			game::paigow::Card card = game::paigow::cards[i];
+			CCLOG("%04X %d",card,card);
+		};
+
+		game::paigow::PaiGowCardView* view = game::paigow::PaiGowCardView::create(0x010c);
+		view->setPosition(g_center);
+		core::SceneManager::getInstance()->add(core::LayerMessage, view);
+		return;
+	}
 
 	cocos2d::ui::CheckBox* cb_agree = m_csb->getChildByName<cocos2d::ui::CheckBox*>("m_cb_agree");
 

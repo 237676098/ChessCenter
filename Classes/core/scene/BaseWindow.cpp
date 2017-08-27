@@ -1,6 +1,6 @@
 #include "BaseWindow.h"
-#include "cocostudio\CocoStudio.h"
-#include "ui\CocosGUI.h"
+#include "cocostudio/CocoStudio.h"
+#include "ui/CocosGUI.h"
 #include "WindowManager.h"
 USING_NS_CC;
 NS_CORE_BEGIN

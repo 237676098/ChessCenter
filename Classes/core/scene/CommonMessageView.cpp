@@ -1,6 +1,6 @@
 #include "CommonMessageView.h"
 #include "scene.h"
-#include"2d\CCActionInterval.h"
+#include"2d/CCActionInterval.h"
 USING_NS_CC;
 NS_CORE_BEGIN
 CommonMessageView * CommonMessageView::create(const std::string msg)

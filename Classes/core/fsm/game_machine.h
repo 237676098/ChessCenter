@@ -4,4 +4,5 @@
 #include "IGameState.h"
 #include "LoginState.h"
 #include "LobbyState.h"
+#include "TableState.h"
 #endif

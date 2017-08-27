@@ -1,6 +1,6 @@
 #ifndef __WINDOW_MANAGER_H__
 #define __WINDOW_MANAGER_H__
-#include "utils\CommonMacros.h"
+#include "utils/CommonMacros.h"
 #include "BaseUI.h"
 #include "BaseWindow.h"
 #include "window_ids.h"

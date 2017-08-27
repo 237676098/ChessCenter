@@ -1,6 +1,6 @@
 #ifndef __AGREEMENT_TIPS_WINDOW_H__
 #define __AGREEMENT_TIPS_WINDOW_H__
-#include "core\scene\scene.h"
+#include "core/scene/scene.h"
 
 NS_LOGIN_BEGIN
 

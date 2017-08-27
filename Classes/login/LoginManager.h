@@ -2,7 +2,7 @@
 #define __LOGIN_MANAGER_H__
 #include "LoginView.h"
 #include "cocos2d.h"
-#include "core\network\socket\protocol.h"
+#include "core/network/socket/protocol.h"
 
 NS_LOGIN_BEGIN
 //登录管理类  为了网络模块代码的整洁 目前重连和心跳也写在这里了

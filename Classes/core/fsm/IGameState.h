@@ -1,15 +1,17 @@
 #ifndef __IGAME_STATE_H__
 #define __IGAME_STATE_H__
-#include "utils\CommonMacros.h"
+#include "utils/CommonMacros.h"
 NS_CORE_BEGIN
 typedef enum _GAME_EVENT {
 	EVENT_USER_INFO_INITED_SUCCESS,
+	EVENT_TABLE_SNAPTSHOT,
 } GAME_EVENT;
 
 typedef enum _GAME_STATE {
 	STATE_UNKOWN = -1,
 	STATE_LOGIN = 0,
 	STATE_LOBBY = 1,
+	STATE_TABLE = 2
 } GAME_STATE;
 
 class GameEvent
@@ -28,6 +30,12 @@ public:
 
 private:
 
+};
+
+class GameSnaptshotEvent :public GameEvent
+{
+public:
+	GameSnaptshotEvent() :GameEvent(EVENT_TABLE_SNAPTSHOT) {};
 };
 
 

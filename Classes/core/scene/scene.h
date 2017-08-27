@@ -1,6 +1,6 @@
 #ifndef __SCENE_H__
 #define __SCENE_H__
-#include "utils\CommonMacros.h"
+#include "utils/CommonMacros.h"
 #include "cocos2d.h"
 #include "SceneManager.h"
 #include "BaseUI.h"

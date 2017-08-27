@@ -1,7 +1,6 @@
 #ifndef __LOGIN_VIEW_H__
 #define __LOGIN_VIEW_H__
-#include "utils\CommonMacros.h"
-#include "core\scene\scene.h"
+#include "core/scene/scene.h"
 
 NS_LOGIN_BEGIN
 

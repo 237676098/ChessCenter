@@ -1,8 +1,9 @@
 #include "LobbyView.h"
-#include "socket\SocketManager.h"
-#include "core\scene\scene.h"
+#include "socket/SocketManager.h"
+#include "core/scene/scene.h"
 #include "modules/room/RoomCreateWindow.h"
 #include "modules/room/RoomJoinWindow.h"
+#include "core/fsm/game_machine.h"
 
 using namespace cocos2d::ui;
 NS_LOBBY_BEGIN
@@ -28,12 +29,6 @@ bool LobbyView::initWithFile(const std::string fileName)
 		return false;
 	}
 
-	/*
-	Button* loginBtn = dynamic_cast<Button*>(m_csb->getChildByName("center")->getChildByName("Button_1"));
-	loginBtn->addClickEventListener(std::bind(&LobbyView::onLoginBtnClick, this, std::placeholders::_1));
-	loginBtn->setPressedActionEnabled(true);
-	loginBtn->setZoomScale(0.04f);
-	*/
 
 	Button* joinRoomBtn = dynamic_cast<Button*>(m_csb->getChildByName("btn_join_room"));
 	joinRoomBtn->addClickEventListener([](Ref*)->void {
@@ -42,7 +37,10 @@ bool LobbyView::initWithFile(const std::string fileName)
 	
 	Button* createRoomBtn = dynamic_cast<Button*>(m_csb->getChildByName("btn_create_room"));
 	createRoomBtn->addClickEventListener([](Ref*)->void {
-		core::WindowManager::getInstance()->open<lobby::RoomCreateWindow>();
+		//core::WindowManager::getInstance()->open<lobby::RoomCreateWindow>();
+		core::GameSnaptshotEvent event;
+		//core::UserInfoInitedEvent event;
+		core::GameStateMachine::getInstance()->dispatchEvent(event);
 	});
 
 	return true;

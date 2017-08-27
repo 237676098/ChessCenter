@@ -100,31 +100,31 @@ void PaiGowLogic::parseGroup(const Card * card, CardGroup & group)
 	{
 		group.type = CGDoublePen;
 	}
-	else if(isWu(card1) && isWu(card2) & value1 == value2)
+	else if(isWu(card1) && isWu(card2) && value1 == value2)
 	{
 		group.type = CGDoubleMix;
 	}
-	else if ((card1 == 0x010c || card2 == 0x010c) & (value1 + value2) == 21)
+	else if ((card1 == 0x010c || card2 == 0x010c) && (value1 + value2) == 21)
 	{
 		group.type = CGHeavenNine;
 	}
-	else if ((card1 == 0x0202 || card2 == 0x0202) & (value1 + value2) == 11)
+	else if ((card1 == 0x0202 || card2 == 0x0202) && (value1 + value2) == 11)
 	{
 		group.type = CGEarthNine;
 	}
-	else if ((card1 == 0x010c || card2 == 0x010c) & (value1 + value2) == 20)
+	else if ((card1 == 0x010c || card2 == 0x010c) && (value1 + value2) == 20)
 	{
 		group.type = CGHeavenEight;
 	}
-	else if ((card1 == 0x0202 || card2 == 0x0202) & (value1 + value2) == 10)
+	else if ((card1 == 0x0202 || card2 == 0x0202) && (value1 + value2) == 10)
 	{
 		group.type = CGEarthEight;
 	}
-	else if ((card1 == 0x010c || card2 == 0x010c) & (value1 + value2) == 19)
+	else if ((card1 == 0x010c || card2 == 0x010c) && (value1 + value2) == 19)
 	{
 		group.type = CGHeavenHighNine;
 	}
-	else if ((card1 == 0x0202 || card2 == 0x0202) & (value1 + value2) == 9)
+	else if ((card1 == 0x0202 || card2 == 0x0202) && (value1 + value2) == 9)
 	{
 		group.type = CGEarthHighNine;
 	}

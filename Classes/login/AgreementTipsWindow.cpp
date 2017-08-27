@@ -1,5 +1,4 @@
 #include "AgreementTipsWindow.h"
-#include "AgreementTipsWindow.h"
 
 NS_LOGIN_BEGIN
 

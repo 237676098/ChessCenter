@@ -1,6 +1,6 @@
 #ifndef __SCENE_MANAGER_H__
 #define __SCENE_MANAGER_H__
-#include "utils\CommonMacros.h"
+#include "utils/CommonMacros.h"
 #include "cocos2d.h"
 
 NS_CORE_BEGIN
