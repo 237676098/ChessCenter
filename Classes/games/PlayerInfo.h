@@ -1,7 +1,7 @@
 #ifndef __PLAYER_INFO_H__
 #define __PLAYER_INFO_H__
 #include <stdint.h>
-#include "core/network/socket/protocol.h"
+#include "core/network/socket/SocketManager.h"
 
 NS_GAME_BEGIN
 

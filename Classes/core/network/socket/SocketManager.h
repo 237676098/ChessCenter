@@ -3,6 +3,8 @@
 #include <functional>
 #include "PacketBuffer.h"
 #include "cocos2d.h"
+#include "core/network/socket/protocol.h"
+
 
 NS_CORE_BEGIN
 

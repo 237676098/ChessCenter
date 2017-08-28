@@ -1,7 +1,7 @@
 #ifndef __USER_MANAGER_H__
 #define __USER_MANAGER_H__
 #include  <string>
-#include "socket/protocol.h"
+#include "core/network/socket/SocketManager.h"
 
 NS_USER_BEGIN
 

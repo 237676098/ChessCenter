@@ -1,7 +1,7 @@
 #ifndef __IGAME_STATE_H__
 #define __IGAME_STATE_H__
 #include "utils/CommonMacros.h"
-#include "core/network/socket/protocol.h"
+#include "core/network/socket/SocketManager.h"
 NS_CORE_BEGIN
 typedef enum _GAME_EVENT {
 	EVENT_USER_INFO_INITED_SUCCESS,

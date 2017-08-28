@@ -4,7 +4,9 @@
 #include <functional>
 #include "utils\CommonMacros.h"
 #include <map>
-#include "game.pb.h"
+#include "core/network/protocol/common.pb.h"
+#include "core/network/protocol/game.pb.h"
+#include "core/network/protocol/paigow.pb.h"
 NS_CORE_BEGIN
 
 typedef std::uint8_t 		uint8;

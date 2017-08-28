@@ -1,5 +1,5 @@
 #include "LobbyView.h"
-#include "socket/SocketManager.h"
+#include "core/network/socket/SocketManager.h"
 #include "core/scene/scene.h"
 #include "modules/room/RoomCreateWindow.h"
 #include "modules/room/RoomJoinWindow.h"
