@@ -55,6 +55,9 @@
     <Filter Include="src\games\paigow">
       <UniqueIdentifier>{f4c07bb6-6feb-47de-a2f5-79c4093c5fbe}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\games\paigow\views">
+      <UniqueIdentifier>{83daefb6-dceb-4d11-9e5b-929f7bb9e70a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -90,14 +93,8 @@
     <ClCompile Include="..\Classes\core\network\socket\MemoryPool.cpp">
       <Filter>src\core\network\socket</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\core\network\protocol\addressbook.pb.cc">
-      <Filter>src\core\network\protocol</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\core\network\socket\SocketManager.cpp">
       <Filter>src\core\network\socket</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\core\network\protocol\test.pb.cc">
-      <Filter>src\core\network\protocol</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\core\scene\scene.cpp">
       <Filter>src\core\scene</Filter>
@@ -143,6 +140,60 @@
     </ClCompile>
     <ClCompile Include="..\Classes\games\paigow\PaiGowLogic.cpp">
       <Filter>src\games\paigow</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\core\network\protocol\common.pb.cc">
+      <Filter>src\core\network\protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\core\network\protocol\game.pb.cc">
+      <Filter>src\core\network\protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\core\network\protocol\paigow.pb.cc">
+      <Filter>src\core\network\protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\games\paigow\views\PaiGowCardView.cpp">
+      <Filter>src\games\paigow\views</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\games\paigow\views\PaigowTableView.cpp">
+      <Filter>src\games\paigow\views</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\games\paigow\PaigowManager.cpp">
+      <Filter>src\games\paigow</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\core\fsm\TableState.cpp">
+      <Filter>src\core\fsm</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\core\fsm\IGameState.cpp">
+      <Filter>src\core\fsm</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\games\paigow\views\PaigowWaitOperateView.cpp">
+      <Filter>src\games\paigow\views</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\games\paigow\views\PaiGowSeatView.cpp">
+      <Filter>src\games\paigow\views</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\games\paigow\views\PaigowBetOperateView.cpp">
+      <Filter>src\games\paigow\views</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\games\paigow\PaiGowProxy.cpp">
+      <Filter>src\games\paigow</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\games\paigow\PaiGowData.cpp">
+      <Filter>src\games\paigow</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\games\game.cpp">
+      <Filter>src\games</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\games\GameManager.cpp">
+      <Filter>src\games</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\games\paigow\PaiGowPlayer.cpp">
+      <Filter>src\games\paigow</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\games\PlayerInfo.cpp">
+      <Filter>src\games</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\games\paigow\views\PaiGowCardGroupView.cpp">
+      <Filter>src\games\paigow\views</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -191,14 +242,8 @@
     <ClInclude Include="..\Classes\core\network\socket\MemoryPool.h">
       <Filter>src\core\network\socket</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\core\network\protocol\addressbook.pb.h">
-      <Filter>src\core\network\protocol</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\core\network\socket\SocketManager.h">
       <Filter>src\core\network\socket</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\core\network\protocol\test.pb.h">
-      <Filter>src\core\network\protocol</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\core\network\socket\protocol.h">
       <Filter>src\core\network\socket</Filter>
@@ -256,6 +301,54 @@
     </ClInclude>
     <ClInclude Include="..\Classes\games\paigow\PaiGowLogic.h">
       <Filter>src\games\paigow</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\network\protocol\common.pb.h">
+      <Filter>src\core\network\protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\network\protocol\game.pb.h">
+      <Filter>src\core\network\protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\network\protocol\paigow.pb.h">
+      <Filter>src\core\network\protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\games\paigow\views\PaiGowCardView.h">
+      <Filter>src\games\paigow\views</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\games\paigow\views\PaigowTableView.h">
+      <Filter>src\games\paigow\views</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\games\paigow\PaigowManager.h">
+      <Filter>src\games\paigow</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\fsm\TableState.h">
+      <Filter>src\core\fsm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\games\paigow\views\PaigowWaitOperateView.h">
+      <Filter>src\games\paigow\views</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\games\paigow\views\PaiGowSeatView.h">
+      <Filter>src\games\paigow\views</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\games\paigow\views\PaigowBetOperateView.h">
+      <Filter>src\games\paigow\views</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\games\paigow\PaiGowProxy.h">
+      <Filter>src\games\paigow</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\games\paigow\PaiGowData.h">
+      <Filter>src\games\paigow</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\games\GameManager.h">
+      <Filter>src\games</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\games\paigow\PaiGowPlayer.h">
+      <Filter>src\games\paigow</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\games\PlayerInfo.h">
+      <Filter>src\games</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\games\paigow\views\PaiGowCardGroupView.h">
+      <Filter>src\games\paigow\views</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
