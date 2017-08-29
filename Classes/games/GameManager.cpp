@@ -15,7 +15,7 @@ GameManager::~GameManager()
 
 void GameManager::init(proto3_proto::S2C_MatchSnapshot* shot)
 {
-	game::paigow::PaigowManager::getInstance()->init();
+	game::paigow::PaigowManager::getInstance()->init(*shot);
 }
 
 void GameManager::dispose()

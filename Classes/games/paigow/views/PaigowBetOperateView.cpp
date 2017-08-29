@@ -30,4 +30,9 @@ void PaigowBetOperateView::update()
 {
 }
 
+int PaigowBetOperateView::HandleEvent(core::Event * evt)
+{
+	return 0;
+}
+
 NS_PAIGOW_END

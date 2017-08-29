@@ -2,8 +2,8 @@
 
 NS_PAIGOW_BEGIN
 
-PaiGowProxy::PaiGowProxy(PaigowManager * mgr)
-	:m_mgr(mgr)
+PaiGowProxy::PaiGowProxy(PaiGowSnaptShot* data)
+	:m_data(data)
 {
 	//×¢²áÊÂ¼þ¼àÌý
 	MSG_FUNCTION_REGISTER(S2C_PG_StartGame, PaiGowProxy)

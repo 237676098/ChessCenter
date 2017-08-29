@@ -8,7 +8,7 @@ NS_PAIGOW_BEGIN
 class PaiGowProxy
 {
 public:
-	PaiGowProxy(PaigowManager* mgr);
+	PaiGowProxy(PaiGowSnaptShot* data);
 	~PaiGowProxy();
 
 private:
@@ -20,7 +20,7 @@ private:
 	MSG_FUNCTION_DEFINE(S2C_PG_Result)
 
 private:
-	PaigowManager* m_mgr;
+	PaiGowSnaptShot* m_data;
 };
 
 

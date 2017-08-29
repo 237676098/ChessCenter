@@ -2,15 +2,14 @@
 #define __PAIGOW_MANAGER_H__
 #include <functional>
 #include "PaiGowLogic.h"
-#include "views/PaigowTableView.h"
-#include "views/PaigowWaitOperateView.h"
-#include "views/PaiGowSeatView.h"
-#include "views/PaigowBetOperateView.h"
 #include "core/network/socket/SocketManager.h"
+#include "PaiGowSnapshot.h"
+#include "core/event/EventManager.h"
+#include "PaiGowViewController.h"
 
 NS_PAIGOW_BEGIN
 
-class  PaiGowProxy;
+//class  PaiGowProxy;
 
 typedef enum _PGTableState
 {
@@ -18,7 +17,8 @@ typedef enum _PGTableState
 	PGST_GrabBanker,
 	PGST_Bet,
 	PGST_Collocation,
-	PGST_Result
+	PGST_Result,
+	PGST_Unkown
 }PGTableState;
 
 
@@ -26,16 +26,14 @@ class PaigowManager
 {
 	SINGLETON(PaigowManager);
 public:
-	void init();
+	void init(const proto3_proto::S2C_MatchSnapshot& shot);
 	void dispose();
 
 private:
 	friend class PaiGowProxy;
 	PaiGowProxy* m_proxy;
-	PaigowTableView* m_view;
-	PaiGowWaitOperateView* m_wait_operate_view;
-	PaiGowSeatView* m_seat_view;
-	PaigowBetOperateView* m_bet_operate_view;
+	PaiGowSnaptShot* m_data;
+	PaiGowViewController* m_controller;
 };
 
 NS_PAIGOW_END

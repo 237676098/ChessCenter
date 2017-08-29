@@ -16,11 +16,11 @@ PlayerInfo::~PlayerInfo()
 
 void PlayerInfo::initByPlayerInfo(const proto3_proto::PlayerInfo& info)
 {
-	m_seat_id = info.seat_id();
-	m_uid = info.user_id();
-	m_name = info.name();
-	m_head = info.head();
-	m_ip = info.ip();
+	seat_id = info.seat_id();
+	uid = info.user_id();
+	name = info.name();
+	head = info.head();
+	ip = info.ip();
 }
 
 NS_GAME_END

@@ -5,7 +5,7 @@ NS_PAIGOW_BEGIN
 
 PaiGowData::PaiGowData()
 {
-
+	
 }
 
 PaiGowData::~PaiGowData()

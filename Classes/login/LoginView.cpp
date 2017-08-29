@@ -1,17 +1,17 @@
 #include "LoginView.h"
-#include "ui\UIButton.h"
-#include "socket\SocketManager.h"
-#include "core\scene\scene.h"
+#include "ui/UIButton.h"
+#include "core/network/socket/SocketManager.h"
+#include "core/scene/scene.h"
 #include "AgreementTipsWindow.h"
-#include "core\fsm\game_machine.h"
-#include "ui\UICheckBox.h"
+#include "core/fsm/game_machine.h"
+#include "ui/UICheckBox.h"
 //for http begin
 #include "network/HttpClient.h"
 #include "json/document.h"  
 #include "json/writer.h"  
 #include "json/stringbuffer.h"
 //for http end
-#include "user\user.h"
+#include "user/user.h"
 #include "utils/LanguageManager.h"
 #include "games/paigow/views/PaiGowCardView.h"
 

@@ -169,11 +169,14 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\core\scene\WindowManager.cpp" />
     <ClCompile Include="..\Classes\games\game.cpp" />
     <ClCompile Include="..\Classes\games\GameManager.cpp" />
+    <ClCompile Include="..\Classes\games\MatchSnapshot.cpp" />
     <ClCompile Include="..\Classes\games\paigow\PaiGowData.cpp" />
     <ClCompile Include="..\Classes\games\paigow\PaiGowLogic.cpp" />
     <ClCompile Include="..\Classes\games\paigow\PaigowManager.cpp" />
     <ClCompile Include="..\Classes\games\paigow\PaiGowPlayer.cpp" />
     <ClCompile Include="..\Classes\games\paigow\PaiGowProxy.cpp" />
+    <ClCompile Include="..\Classes\games\paigow\PaiGowSnapshot.cpp" />
+    <ClCompile Include="..\Classes\games\paigow\PaiGowViewController.cpp" />
     <ClCompile Include="..\Classes\games\paigow\views\PaigowBetOperateView.cpp" />
     <ClCompile Include="..\Classes\games\paigow\views\PaiGowCardGroupView.cpp" />
     <ClCompile Include="..\Classes\games\paigow\views\PaiGowCardView.cpp" />
@@ -194,6 +197,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h" />
+    <ClInclude Include="..\Classes\core\event\EventManager.h" />
     <ClInclude Include="..\Classes\core\fsm\TableState.h" />
     <ClInclude Include="..\Classes\core\fsm\GameStateMachine.h" />
     <ClInclude Include="..\Classes\core\fsm\game_machine.h" />
@@ -218,11 +222,14 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\core\scene\window_ids.h" />
     <ClInclude Include="..\Classes\games\game.h" />
     <ClInclude Include="..\Classes\games\GameManager.h" />
+    <ClInclude Include="..\Classes\games\MatchSnapshot.h" />
     <ClInclude Include="..\Classes\games\paigow\PaiGowData.h" />
     <ClInclude Include="..\Classes\games\paigow\PaiGowLogic.h" />
     <ClInclude Include="..\Classes\games\paigow\PaigowManager.h" />
     <ClInclude Include="..\Classes\games\paigow\PaiGowPlayer.h" />
     <ClInclude Include="..\Classes\games\paigow\PaiGowProxy.h" />
+    <ClInclude Include="..\Classes\games\paigow\PaiGowSnapshot.h" />
+    <ClInclude Include="..\Classes\games\paigow\PaiGowViewController.h" />
     <ClInclude Include="..\Classes\games\paigow\views\PaigowBetOperateView.h" />
     <ClInclude Include="..\Classes\games\paigow\views\PaiGowCardGroupView.h" />
     <ClInclude Include="..\Classes\games\paigow\views\PaiGowCardView.h" />
