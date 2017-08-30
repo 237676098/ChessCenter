@@ -65,6 +65,7 @@ void SocketManager::registerHandler(MessageId msg_id, FuncMessageHandler handler
 
 void SocketManager::onClosed()
 {
+	Director::getInstance()->getScheduler()->unschedule(schedule_selector(SocketManager::update), this);
 	//连接断开之前将接收到的消息清空
 	dispatch();
 	m_bConnect = false;

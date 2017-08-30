@@ -12,7 +12,7 @@ class GameManager
 public:
 	void init(proto3_proto::S2C_MatchSnapshot* shot);
 	void dispose();
-
+	void createMatch();
 private:
 	MSG_FUNCTION_DEFINE(S2C_MatchSnapshot)
 private:

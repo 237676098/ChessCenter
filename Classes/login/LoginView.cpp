@@ -63,9 +63,9 @@ void LoginView::onLoginBtnClick(Ref* btn)
 			CCLOG("%04X %d",card,card);
 		};
 
-		game::paigow::PaiGowCardView* view = game::paigow::PaiGowCardView::create(0x010c);
-		view->setPosition(g_center);
-		core::SceneManager::getInstance()->add(core::LayerMessage, view);
+		//game::paigow::PaiGowCardView* view = game::paigow::PaiGowCardView::create(0x010c);
+		//view->setPosition(g_center);
+		//core::SceneManager::getInstance()->add(core::LayerMessage, view);
 		return;
 	}
 
@@ -130,7 +130,7 @@ void LoginView::onLoginBtnClick(Ref* btn)
 			}
 		}
 	});
-	const char* postData = "sign=weinxindesign&platform=test&name=zhouxu&source=windows develop&os=windows&ver=v0.1";
+	const char* postData = "sign=zhouxuweinxindesign1&platform=test&name=zhouxu&source=windows develop&os=windows&ver=v0.1";
 	request->setRequestData(postData, strlen(postData));
 	cocos2d::network::HttpClient::getInstance()->send(request);
 	request->release();

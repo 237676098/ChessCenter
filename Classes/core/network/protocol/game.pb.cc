@@ -24,6 +24,8 @@ class C2S_CreateMatchDefaultTypeInternal : public ::google::protobuf::internal::
 } _C2S_CreateMatch_default_instance_;
 class S2C_CreateMatchDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<S2C_CreateMatch> {
 } _S2C_CreateMatch_default_instance_;
+class C2S_JoinMatchDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<C2S_JoinMatch> {
+} _C2S_JoinMatch_default_instance_;
 class S2C_MatchSnapshotDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<S2C_MatchSnapshot> {
 } _S2C_MatchSnapshot_default_instance_;
 
@@ -32,7 +34,7 @@ namespace protobuf_game_2eproto {
 
 namespace {
 
-::google::protobuf::Metadata file_level_metadata[4];
+::google::protobuf::Metadata file_level_metadata[5];
 
 }  // namespace
 
@@ -51,6 +53,7 @@ PROTOBUF_CONSTEXPR_VAR ::google::protobuf::internal::ParseTable const
   { NULL, NULL, 0, -1, -1, false },
   { NULL, NULL, 0, -1, -1, false },
   { NULL, NULL, 0, -1, -1, false },
+  { NULL, NULL, 0, -1, -1, false },
 };
 
 const ::google::protobuf::uint32 TableStruct::offsets[] = {
@@ -61,9 +64,9 @@ const ::google::protobuf::uint32 TableStruct::offsets[] = {
   ~0u,  // no _weak_field_map_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Match, room_id_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Match, type_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Match, createtime_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Match, begintime_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Match, number_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Match, create_time_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Match, begin_time_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Match, total_round_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Match, cost_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Match, state_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Match, round_),
@@ -86,25 +89,33 @@ const ::google::protobuf::uint32 TableStruct::offsets[] = {
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(S2C_CreateMatch, for_other_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(S2C_CreateMatch, match_),
   ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(C2S_JoinMatch, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(C2S_JoinMatch, room_id_),
+  ~0u,  // no _has_bits_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(S2C_MatchSnapshot, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(S2C_MatchSnapshot, match_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(S2C_MatchSnapshot, paigpow_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(S2C_MatchSnapshot, paigow_),
 };
 
 static const ::google::protobuf::internal::MigrationSchema schemas[] = {
   { 0, -1, sizeof(Match)},
   { 15, -1, sizeof(C2S_CreateMatch)},
   { 23, -1, sizeof(S2C_CreateMatch)},
-  { 31, -1, sizeof(S2C_MatchSnapshot)},
+  { 31, -1, sizeof(C2S_JoinMatch)},
+  { 37, -1, sizeof(S2C_MatchSnapshot)},
 };
 
 static ::google::protobuf::Message const * const file_default_instances[] = {
   reinterpret_cast<const ::google::protobuf::Message*>(&_Match_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&_C2S_CreateMatch_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&_S2C_CreateMatch_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&_C2S_JoinMatch_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&_S2C_MatchSnapshot_default_instance_),
 };
 
@@ -126,7 +137,7 @@ void protobuf_AssignDescriptorsOnce() {
 void protobuf_RegisterTypes(const ::std::string&) GOOGLE_ATTRIBUTE_COLD;
 void protobuf_RegisterTypes(const ::std::string&) {
   protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 4);
+  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 5);
 }
 
 }  // namespace
@@ -138,8 +149,10 @@ void TableStruct::Shutdown() {
   delete file_level_metadata[1].reflection;
   _S2C_CreateMatch_default_instance_.Shutdown();
   delete file_level_metadata[2].reflection;
-  _S2C_MatchSnapshot_default_instance_.Shutdown();
+  _C2S_JoinMatch_default_instance_.Shutdown();
   delete file_level_metadata[3].reflection;
+  _S2C_MatchSnapshot_default_instance_.Shutdown();
+  delete file_level_metadata[4].reflection;
 }
 
 void TableStruct::InitDefaultsImpl() {
@@ -151,6 +164,7 @@ void TableStruct::InitDefaultsImpl() {
   _Match_default_instance_.DefaultConstruct();
   _C2S_CreateMatch_default_instance_.DefaultConstruct();
   _S2C_CreateMatch_default_instance_.DefaultConstruct();
+  _C2S_JoinMatch_default_instance_.DefaultConstruct();
   _S2C_MatchSnapshot_default_instance_.DefaultConstruct();
   _Match_default_instance_.get_mutable()->paigow_ = const_cast< ::proto3_proto::PaiGowConfig*>(
       ::proto3_proto::PaiGowConfig::internal_default_instance());
@@ -160,7 +174,7 @@ void TableStruct::InitDefaultsImpl() {
       ::proto3_proto::Match::internal_default_instance());
   _S2C_MatchSnapshot_default_instance_.get_mutable()->match_ = const_cast< ::proto3_proto::Match*>(
       ::proto3_proto::Match::internal_default_instance());
-  _S2C_MatchSnapshot_default_instance_.get_mutable()->paigpow_ = const_cast< ::proto3_proto::PaiGowSnapshot*>(
+  _S2C_MatchSnapshot_default_instance_.get_mutable()->paigow_ = const_cast< ::proto3_proto::PaiGowSnapshot*>(
       ::proto3_proto::PaiGowSnapshot::internal_default_instance());
 }
 
@@ -172,23 +186,24 @@ void AddDescriptorsImpl() {
   InitDefaults();
   static const char descriptor[] = {
       "\n\ngame.proto\022\014proto3_proto\032\014paigow.proto"
-      "\032\014common.proto\"\340\001\n\005Match\022\017\n\007room_id\030\001 \001("
-      "\005\022\014\n\004type\030\002 \001(\005\022\022\n\ncreatetime\030\003 \001(\003\022\021\n\tb"
-      "egintime\030\004 \001(\003\022\016\n\006number\030\005 \001(\005\022\014\n\004cost\030\006"
-      " \001(\005\022\r\n\005state\030\007 \001(\005\022\r\n\005round\030\010 \001(\005\022*\n\006pa"
-      "igow\030\t \001(\0132\032.proto3_proto.PaiGowConfig\022)"
-      "\n\007players\030\n \003(\0132\030.proto3_proto.PlayerInf"
-      "o\"^\n\017C2S_CreateMatch\022\021\n\tfor_other\030\001 \001(\010\022"
-      "\014\n\004type\030\002 \001(\005\022*\n\006paigow\030\005 \001(\0132\032.proto3_p"
-      "roto.PaiGowConfig\"V\n\017S2C_CreateMatch\022\014\n\004"
-      "code\030\001 \001(\005\022\021\n\tfor_other\030\002 \001(\010\022\"\n\005match\030\003"
-      " \001(\0132\023.proto3_proto.Match\"f\n\021S2C_MatchSn"
-      "apshot\022\"\n\005match\030\001 \001(\0132\023.proto3_proto.Mat"
-      "ch\022-\n\007paigpow\030\002 \001(\0132\034.proto3_proto.PaiGo"
+      "\032\014common.proto\"\347\001\n\005Match\022\017\n\007room_id\030\001 \001("
+      "\005\022\014\n\004type\030\002 \001(\005\022\023\n\013create_time\030\003 \001(\003\022\022\n\n"
+      "begin_time\030\004 \001(\003\022\023\n\013total_round\030\005 \001(\005\022\014\n"
+      "\004cost\030\006 \001(\005\022\r\n\005state\030\007 \001(\005\022\r\n\005round\030\010 \001("
+      "\005\022*\n\006paigow\030\t \001(\0132\032.proto3_proto.PaiGowC"
+      "onfig\022)\n\007players\030\n \003(\0132\030.proto3_proto.Pl"
+      "ayerInfo\"^\n\017C2S_CreateMatch\022\021\n\tfor_other"
+      "\030\001 \001(\010\022\014\n\004type\030\002 \001(\005\022*\n\006paigow\030\005 \001(\0132\032.p"
+      "roto3_proto.PaiGowConfig\"V\n\017S2C_CreateMa"
+      "tch\022\014\n\004code\030\001 \001(\005\022\021\n\tfor_other\030\002 \001(\010\022\"\n\005"
+      "match\030\003 \001(\0132\023.proto3_proto.Match\" \n\rC2S_"
+      "JoinMatch\022\017\n\007room_id\030\001 \001(\005\"e\n\021S2C_MatchS"
+      "napshot\022\"\n\005match\030\001 \001(\0132\023.proto3_proto.Ma"
+      "tch\022,\n\006paigow\030\002 \001(\0132\034.proto3_proto.PaiGo"
       "wSnapshotb\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 577);
+      descriptor, 617);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "game.proto", &protobuf_RegisterTypes);
   ::proto3_proto::protobuf_paigow_2eproto::AddDescriptors();
@@ -215,9 +230,9 @@ struct StaticDescriptorInitializer {
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int Match::kRoomIdFieldNumber;
 const int Match::kTypeFieldNumber;
-const int Match::kCreatetimeFieldNumber;
-const int Match::kBegintimeFieldNumber;
-const int Match::kNumberFieldNumber;
+const int Match::kCreateTimeFieldNumber;
+const int Match::kBeginTimeFieldNumber;
+const int Match::kTotalRoundFieldNumber;
 const int Match::kCostFieldNumber;
 const int Match::kStateFieldNumber;
 const int Match::kRoundFieldNumber;
@@ -339,42 +354,42 @@ bool Match::MergePartialFromCodedStream(
         break;
       }
 
-      // int64 createtime = 3;
+      // int64 create_time = 3;
       case 3: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(24u)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
-                 input, &createtime_)));
+                 input, &create_time_)));
         } else {
           goto handle_unusual;
         }
         break;
       }
 
-      // int64 begintime = 4;
+      // int64 begin_time = 4;
       case 4: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(32u)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
-                 input, &begintime_)));
+                 input, &begin_time_)));
         } else {
           goto handle_unusual;
         }
         break;
       }
 
-      // int32 number = 5;
+      // int32 total_round = 5;
       case 5: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(40u)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
-                 input, &number_)));
+                 input, &total_round_)));
         } else {
           goto handle_unusual;
         }
@@ -484,19 +499,19 @@ void Match::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->type(), output);
   }
 
-  // int64 createtime = 3;
-  if (this->createtime() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt64(3, this->createtime(), output);
+  // int64 create_time = 3;
+  if (this->create_time() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt64(3, this->create_time(), output);
   }
 
-  // int64 begintime = 4;
-  if (this->begintime() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt64(4, this->begintime(), output);
+  // int64 begin_time = 4;
+  if (this->begin_time() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt64(4, this->begin_time(), output);
   }
 
-  // int32 number = 5;
-  if (this->number() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(5, this->number(), output);
+  // int32 total_round = 5;
+  if (this->total_round() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(5, this->total_round(), output);
   }
 
   // int32 cost = 6;
@@ -545,19 +560,19 @@ void Match::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->type(), target);
   }
 
-  // int64 createtime = 3;
-  if (this->createtime() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(3, this->createtime(), target);
+  // int64 create_time = 3;
+  if (this->create_time() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(3, this->create_time(), target);
   }
 
-  // int64 begintime = 4;
-  if (this->begintime() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(4, this->begintime(), target);
+  // int64 begin_time = 4;
+  if (this->begin_time() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(4, this->begin_time(), target);
   }
 
-  // int32 number = 5;
-  if (this->number() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(5, this->number(), target);
+  // int32 total_round = 5;
+  if (this->total_round() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(5, this->total_round(), target);
   }
 
   // int32 cost = 6;
@@ -629,25 +644,25 @@ size_t Match::ByteSizeLong() const {
         this->type());
   }
 
-  // int64 createtime = 3;
-  if (this->createtime() != 0) {
+  // int64 create_time = 3;
+  if (this->create_time() != 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::Int64Size(
-        this->createtime());
+        this->create_time());
   }
 
-  // int64 begintime = 4;
-  if (this->begintime() != 0) {
+  // int64 begin_time = 4;
+  if (this->begin_time() != 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::Int64Size(
-        this->begintime());
+        this->begin_time());
   }
 
-  // int32 number = 5;
-  if (this->number() != 0) {
+  // int32 total_round = 5;
+  if (this->total_round() != 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::Int32Size(
-        this->number());
+        this->total_round());
   }
 
   // int32 cost = 6;
@@ -710,14 +725,14 @@ void Match::MergeFrom(const Match& from) {
   if (from.type() != 0) {
     set_type(from.type());
   }
-  if (from.createtime() != 0) {
-    set_createtime(from.createtime());
+  if (from.create_time() != 0) {
+    set_create_time(from.create_time());
   }
-  if (from.begintime() != 0) {
-    set_begintime(from.begintime());
+  if (from.begin_time() != 0) {
+    set_begin_time(from.begin_time());
   }
-  if (from.number() != 0) {
-    set_number(from.number());
+  if (from.total_round() != 0) {
+    set_total_round(from.total_round());
   }
   if (from.cost() != 0) {
     set_cost(from.cost());
@@ -757,9 +772,9 @@ void Match::InternalSwap(Match* other) {
   std::swap(paigow_, other->paigow_);
   std::swap(room_id_, other->room_id_);
   std::swap(type_, other->type_);
-  std::swap(createtime_, other->createtime_);
-  std::swap(begintime_, other->begintime_);
-  std::swap(number_, other->number_);
+  std::swap(create_time_, other->create_time_);
+  std::swap(begin_time_, other->begin_time_);
+  std::swap(total_round_, other->total_round_);
   std::swap(cost_, other->cost_);
   std::swap(state_, other->state_);
   std::swap(round_, other->round_);
@@ -802,46 +817,46 @@ void Match::set_type(::google::protobuf::int32 value) {
   // @@protoc_insertion_point(field_set:proto3_proto.Match.type)
 }
 
-// int64 createtime = 3;
-void Match::clear_createtime() {
-  createtime_ = GOOGLE_LONGLONG(0);
+// int64 create_time = 3;
+void Match::clear_create_time() {
+  create_time_ = GOOGLE_LONGLONG(0);
 }
-::google::protobuf::int64 Match::createtime() const {
-  // @@protoc_insertion_point(field_get:proto3_proto.Match.createtime)
-  return createtime_;
+::google::protobuf::int64 Match::create_time() const {
+  // @@protoc_insertion_point(field_get:proto3_proto.Match.create_time)
+  return create_time_;
 }
-void Match::set_createtime(::google::protobuf::int64 value) {
+void Match::set_create_time(::google::protobuf::int64 value) {
   
-  createtime_ = value;
-  // @@protoc_insertion_point(field_set:proto3_proto.Match.createtime)
+  create_time_ = value;
+  // @@protoc_insertion_point(field_set:proto3_proto.Match.create_time)
 }
 
-// int64 begintime = 4;
-void Match::clear_begintime() {
-  begintime_ = GOOGLE_LONGLONG(0);
+// int64 begin_time = 4;
+void Match::clear_begin_time() {
+  begin_time_ = GOOGLE_LONGLONG(0);
 }
-::google::protobuf::int64 Match::begintime() const {
-  // @@protoc_insertion_point(field_get:proto3_proto.Match.begintime)
-  return begintime_;
+::google::protobuf::int64 Match::begin_time() const {
+  // @@protoc_insertion_point(field_get:proto3_proto.Match.begin_time)
+  return begin_time_;
 }
-void Match::set_begintime(::google::protobuf::int64 value) {
+void Match::set_begin_time(::google::protobuf::int64 value) {
   
-  begintime_ = value;
-  // @@protoc_insertion_point(field_set:proto3_proto.Match.begintime)
+  begin_time_ = value;
+  // @@protoc_insertion_point(field_set:proto3_proto.Match.begin_time)
 }
 
-// int32 number = 5;
-void Match::clear_number() {
-  number_ = 0;
+// int32 total_round = 5;
+void Match::clear_total_round() {
+  total_round_ = 0;
 }
-::google::protobuf::int32 Match::number() const {
-  // @@protoc_insertion_point(field_get:proto3_proto.Match.number)
-  return number_;
+::google::protobuf::int32 Match::total_round() const {
+  // @@protoc_insertion_point(field_get:proto3_proto.Match.total_round)
+  return total_round_;
 }
-void Match::set_number(::google::protobuf::int32 value) {
+void Match::set_total_round(::google::protobuf::int32 value) {
   
-  number_ = value;
-  // @@protoc_insertion_point(field_set:proto3_proto.Match.number)
+  total_round_ = value;
+  // @@protoc_insertion_point(field_set:proto3_proto.Match.total_round)
 }
 
 // int32 cost = 6;
@@ -1708,8 +1723,242 @@ void S2C_CreateMatch::set_allocated_match(::proto3_proto::Match* match) {
 // ===================================================================
 
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int C2S_JoinMatch::kRoomIdFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+C2S_JoinMatch::C2S_JoinMatch()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_game_2eproto::InitDefaults();
+  }
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:proto3_proto.C2S_JoinMatch)
+}
+C2S_JoinMatch::C2S_JoinMatch(const C2S_JoinMatch& from)
+  : ::google::protobuf::Message(),
+      _internal_metadata_(NULL),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  room_id_ = from.room_id_;
+  // @@protoc_insertion_point(copy_constructor:proto3_proto.C2S_JoinMatch)
+}
+
+void C2S_JoinMatch::SharedCtor() {
+  room_id_ = 0;
+  _cached_size_ = 0;
+}
+
+C2S_JoinMatch::~C2S_JoinMatch() {
+  // @@protoc_insertion_point(destructor:proto3_proto.C2S_JoinMatch)
+  SharedDtor();
+}
+
+void C2S_JoinMatch::SharedDtor() {
+}
+
+void C2S_JoinMatch::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* C2S_JoinMatch::descriptor() {
+  protobuf_game_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_game_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
+}
+
+const C2S_JoinMatch& C2S_JoinMatch::default_instance() {
+  protobuf_game_2eproto::InitDefaults();
+  return *internal_default_instance();
+}
+
+C2S_JoinMatch* C2S_JoinMatch::New(::google::protobuf::Arena* arena) const {
+  C2S_JoinMatch* n = new C2S_JoinMatch;
+  if (arena != NULL) {
+    arena->Own(n);
+  }
+  return n;
+}
+
+void C2S_JoinMatch::Clear() {
+// @@protoc_insertion_point(message_clear_start:proto3_proto.C2S_JoinMatch)
+  room_id_ = 0;
+}
+
+bool C2S_JoinMatch::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:proto3_proto.C2S_JoinMatch)
+  for (;;) {
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // int32 room_id = 1;
+      case 1: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(8u)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &room_id_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0 ||
+            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormatLite::SkipField(input, tag));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:proto3_proto.C2S_JoinMatch)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:proto3_proto.C2S_JoinMatch)
+  return false;
+#undef DO_
+}
+
+void C2S_JoinMatch::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:proto3_proto.C2S_JoinMatch)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // int32 room_id = 1;
+  if (this->room_id() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->room_id(), output);
+  }
+
+  // @@protoc_insertion_point(serialize_end:proto3_proto.C2S_JoinMatch)
+}
+
+::google::protobuf::uint8* C2S_JoinMatch::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  // @@protoc_insertion_point(serialize_to_array_start:proto3_proto.C2S_JoinMatch)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // int32 room_id = 1;
+  if (this->room_id() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->room_id(), target);
+  }
+
+  // @@protoc_insertion_point(serialize_to_array_end:proto3_proto.C2S_JoinMatch)
+  return target;
+}
+
+size_t C2S_JoinMatch::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:proto3_proto.C2S_JoinMatch)
+  size_t total_size = 0;
+
+  // int32 room_id = 1;
+  if (this->room_id() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int32Size(
+        this->room_id());
+  }
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = cached_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void C2S_JoinMatch::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:proto3_proto.C2S_JoinMatch)
+  GOOGLE_DCHECK_NE(&from, this);
+  const C2S_JoinMatch* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const C2S_JoinMatch>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:proto3_proto.C2S_JoinMatch)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:proto3_proto.C2S_JoinMatch)
+    MergeFrom(*source);
+  }
+}
+
+void C2S_JoinMatch::MergeFrom(const C2S_JoinMatch& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:proto3_proto.C2S_JoinMatch)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.room_id() != 0) {
+    set_room_id(from.room_id());
+  }
+}
+
+void C2S_JoinMatch::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:proto3_proto.C2S_JoinMatch)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void C2S_JoinMatch::CopyFrom(const C2S_JoinMatch& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:proto3_proto.C2S_JoinMatch)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool C2S_JoinMatch::IsInitialized() const {
+  return true;
+}
+
+void C2S_JoinMatch::Swap(C2S_JoinMatch* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void C2S_JoinMatch::InternalSwap(C2S_JoinMatch* other) {
+  std::swap(room_id_, other->room_id_);
+  std::swap(_cached_size_, other->_cached_size_);
+}
+
+::google::protobuf::Metadata C2S_JoinMatch::GetMetadata() const {
+  protobuf_game_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_game_2eproto::file_level_metadata[kIndexInFileMessages];
+}
+
+#if PROTOBUF_INLINE_NOT_IN_HEADERS
+// C2S_JoinMatch
+
+// int32 room_id = 1;
+void C2S_JoinMatch::clear_room_id() {
+  room_id_ = 0;
+}
+::google::protobuf::int32 C2S_JoinMatch::room_id() const {
+  // @@protoc_insertion_point(field_get:proto3_proto.C2S_JoinMatch.room_id)
+  return room_id_;
+}
+void C2S_JoinMatch::set_room_id(::google::protobuf::int32 value) {
+  
+  room_id_ = value;
+  // @@protoc_insertion_point(field_set:proto3_proto.C2S_JoinMatch.room_id)
+}
+
+#endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
+
+// ===================================================================
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int S2C_MatchSnapshot::kMatchFieldNumber;
-const int S2C_MatchSnapshot::kPaigpowFieldNumber;
+const int S2C_MatchSnapshot::kPaigowFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 S2C_MatchSnapshot::S2C_MatchSnapshot()
@@ -1730,17 +1979,17 @@ S2C_MatchSnapshot::S2C_MatchSnapshot(const S2C_MatchSnapshot& from)
   } else {
     match_ = NULL;
   }
-  if (from.has_paigpow()) {
-    paigpow_ = new ::proto3_proto::PaiGowSnapshot(*from.paigpow_);
+  if (from.has_paigow()) {
+    paigow_ = new ::proto3_proto::PaiGowSnapshot(*from.paigow_);
   } else {
-    paigpow_ = NULL;
+    paigow_ = NULL;
   }
   // @@protoc_insertion_point(copy_constructor:proto3_proto.S2C_MatchSnapshot)
 }
 
 void S2C_MatchSnapshot::SharedCtor() {
-  ::memset(&match_, 0, reinterpret_cast<char*>(&paigpow_) -
-    reinterpret_cast<char*>(&match_) + sizeof(paigpow_));
+  ::memset(&match_, 0, reinterpret_cast<char*>(&paigow_) -
+    reinterpret_cast<char*>(&match_) + sizeof(paigow_));
   _cached_size_ = 0;
 }
 
@@ -1754,7 +2003,7 @@ void S2C_MatchSnapshot::SharedDtor() {
     delete match_;
   }
   if (this != internal_default_instance()) {
-    delete paigpow_;
+    delete paigow_;
   }
 }
 
@@ -1787,10 +2036,10 @@ void S2C_MatchSnapshot::Clear() {
     delete match_;
   }
   match_ = NULL;
-  if (GetArenaNoVirtual() == NULL && paigpow_ != NULL) {
-    delete paigpow_;
+  if (GetArenaNoVirtual() == NULL && paigow_ != NULL) {
+    delete paigow_;
   }
-  paigpow_ = NULL;
+  paigow_ = NULL;
 }
 
 bool S2C_MatchSnapshot::MergePartialFromCodedStream(
@@ -1815,12 +2064,12 @@ bool S2C_MatchSnapshot::MergePartialFromCodedStream(
         break;
       }
 
-      // .proto3_proto.PaiGowSnapshot paigpow = 2;
+      // .proto3_proto.PaiGowSnapshot paigow = 2;
       case 2: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(18u)) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
-               input, mutable_paigpow()));
+               input, mutable_paigow()));
         } else {
           goto handle_unusual;
         }
@@ -1860,10 +2109,10 @@ void S2C_MatchSnapshot::SerializeWithCachedSizes(
       1, *this->match_, output);
   }
 
-  // .proto3_proto.PaiGowSnapshot paigpow = 2;
-  if (this->has_paigpow()) {
+  // .proto3_proto.PaiGowSnapshot paigow = 2;
+  if (this->has_paigow()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      2, *this->paigpow_, output);
+      2, *this->paigow_, output);
   }
 
   // @@protoc_insertion_point(serialize_end:proto3_proto.S2C_MatchSnapshot)
@@ -1882,11 +2131,11 @@ void S2C_MatchSnapshot::SerializeWithCachedSizes(
         1, *this->match_, deterministic, target);
   }
 
-  // .proto3_proto.PaiGowSnapshot paigpow = 2;
-  if (this->has_paigpow()) {
+  // .proto3_proto.PaiGowSnapshot paigow = 2;
+  if (this->has_paigow()) {
     target = ::google::protobuf::internal::WireFormatLite::
       InternalWriteMessageNoVirtualToArray(
-        2, *this->paigpow_, deterministic, target);
+        2, *this->paigow_, deterministic, target);
   }
 
   // @@protoc_insertion_point(serialize_to_array_end:proto3_proto.S2C_MatchSnapshot)
@@ -1904,11 +2153,11 @@ size_t S2C_MatchSnapshot::ByteSizeLong() const {
         *this->match_);
   }
 
-  // .proto3_proto.PaiGowSnapshot paigpow = 2;
-  if (this->has_paigpow()) {
+  // .proto3_proto.PaiGowSnapshot paigow = 2;
+  if (this->has_paigow()) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-        *this->paigpow_);
+        *this->paigow_);
   }
 
   int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
@@ -1943,8 +2192,8 @@ void S2C_MatchSnapshot::MergeFrom(const S2C_MatchSnapshot& from) {
   if (from.has_match()) {
     mutable_match()->::proto3_proto::Match::MergeFrom(from.match());
   }
-  if (from.has_paigpow()) {
-    mutable_paigpow()->::proto3_proto::PaiGowSnapshot::MergeFrom(from.paigpow());
+  if (from.has_paigow()) {
+    mutable_paigow()->::proto3_proto::PaiGowSnapshot::MergeFrom(from.paigow());
   }
 }
 
@@ -1972,7 +2221,7 @@ void S2C_MatchSnapshot::Swap(S2C_MatchSnapshot* other) {
 }
 void S2C_MatchSnapshot::InternalSwap(S2C_MatchSnapshot* other) {
   std::swap(match_, other->match_);
-  std::swap(paigpow_, other->paigpow_);
+  std::swap(paigow_, other->paigow_);
   std::swap(_cached_size_, other->_cached_size_);
 }
 
@@ -2023,43 +2272,43 @@ void S2C_MatchSnapshot::set_allocated_match(::proto3_proto::Match* match) {
   // @@protoc_insertion_point(field_set_allocated:proto3_proto.S2C_MatchSnapshot.match)
 }
 
-// .proto3_proto.PaiGowSnapshot paigpow = 2;
-bool S2C_MatchSnapshot::has_paigpow() const {
-  return this != internal_default_instance() && paigpow_ != NULL;
+// .proto3_proto.PaiGowSnapshot paigow = 2;
+bool S2C_MatchSnapshot::has_paigow() const {
+  return this != internal_default_instance() && paigow_ != NULL;
 }
-void S2C_MatchSnapshot::clear_paigpow() {
-  if (GetArenaNoVirtual() == NULL && paigpow_ != NULL) delete paigpow_;
-  paigpow_ = NULL;
+void S2C_MatchSnapshot::clear_paigow() {
+  if (GetArenaNoVirtual() == NULL && paigow_ != NULL) delete paigow_;
+  paigow_ = NULL;
 }
-const ::proto3_proto::PaiGowSnapshot& S2C_MatchSnapshot::paigpow() const {
-  // @@protoc_insertion_point(field_get:proto3_proto.S2C_MatchSnapshot.paigpow)
-  return paigpow_ != NULL ? *paigpow_
+const ::proto3_proto::PaiGowSnapshot& S2C_MatchSnapshot::paigow() const {
+  // @@protoc_insertion_point(field_get:proto3_proto.S2C_MatchSnapshot.paigow)
+  return paigow_ != NULL ? *paigow_
                          : *::proto3_proto::PaiGowSnapshot::internal_default_instance();
 }
-::proto3_proto::PaiGowSnapshot* S2C_MatchSnapshot::mutable_paigpow() {
+::proto3_proto::PaiGowSnapshot* S2C_MatchSnapshot::mutable_paigow() {
   
-  if (paigpow_ == NULL) {
-    paigpow_ = new ::proto3_proto::PaiGowSnapshot;
+  if (paigow_ == NULL) {
+    paigow_ = new ::proto3_proto::PaiGowSnapshot;
   }
-  // @@protoc_insertion_point(field_mutable:proto3_proto.S2C_MatchSnapshot.paigpow)
-  return paigpow_;
+  // @@protoc_insertion_point(field_mutable:proto3_proto.S2C_MatchSnapshot.paigow)
+  return paigow_;
 }
-::proto3_proto::PaiGowSnapshot* S2C_MatchSnapshot::release_paigpow() {
-  // @@protoc_insertion_point(field_release:proto3_proto.S2C_MatchSnapshot.paigpow)
+::proto3_proto::PaiGowSnapshot* S2C_MatchSnapshot::release_paigow() {
+  // @@protoc_insertion_point(field_release:proto3_proto.S2C_MatchSnapshot.paigow)
   
-  ::proto3_proto::PaiGowSnapshot* temp = paigpow_;
-  paigpow_ = NULL;
+  ::proto3_proto::PaiGowSnapshot* temp = paigow_;
+  paigow_ = NULL;
   return temp;
 }
-void S2C_MatchSnapshot::set_allocated_paigpow(::proto3_proto::PaiGowSnapshot* paigpow) {
-  delete paigpow_;
-  paigpow_ = paigpow;
-  if (paigpow) {
+void S2C_MatchSnapshot::set_allocated_paigow(::proto3_proto::PaiGowSnapshot* paigow) {
+  delete paigow_;
+  paigow_ = paigow;
+  if (paigow) {
     
   } else {
     
   }
-  // @@protoc_insertion_point(field_set_allocated:proto3_proto.S2C_MatchSnapshot.paigpow)
+  // @@protoc_insertion_point(field_set_allocated:proto3_proto.S2C_MatchSnapshot.paigow)
 }
 
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS

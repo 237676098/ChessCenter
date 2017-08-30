@@ -13,7 +13,7 @@ NS_PAIGOW_BEGIN
 class PaiGowViewController:public core::EventHandler
 {
 public:
-	PaiGowViewController(PaiGowSnaptShot* data): m_data(data) {};
+	PaiGowViewController(PaiGowSnaptShot* data);
 	~PaiGowViewController() {};
 
 	void init();

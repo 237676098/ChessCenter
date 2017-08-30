@@ -9,10 +9,10 @@ MESSAGE_GETTER(UserInfo);
 MESSAGE_GETTER(S2C_InitUserInfo);
 MESSAGE_GETTER(PlayerInfo);
 MESSAGE_GETTER(PaiGowConfig);
-//MESSAGE_GETTER(PaiGowCards);
 MESSAGE_GETTER(PaiGowPlayer);
 MESSAGE_GETTER(PaiGowResult);
 MESSAGE_GETTER(PaiGowSnapshot);
+MESSAGE_GETTER(S2C_PG_addPlayer);
 MESSAGE_GETTER(C2S_PG_StartGame);
 MESSAGE_GETTER(S2C_PG_StartGame);
 MESSAGE_GETTER(C2S_PG_GrabBanker);
@@ -27,6 +27,7 @@ MESSAGE_GETTER(C2S_PG_Sure);
 MESSAGE_GETTER(Match);
 MESSAGE_GETTER(C2S_CreateMatch);
 MESSAGE_GETTER(S2C_CreateMatch);
+MESSAGE_GETTER(C2S_JoinMatch);
 MESSAGE_GETTER(S2C_MatchSnapshot);
 
 
@@ -39,10 +40,10 @@ MsgGetterMap::value_type init_value[] =
     MsgGetterMap::value_type(ID_S2C_InitUserInfo,GetProtoS2C_InitUserInfo),
     MsgGetterMap::value_type(ID_PlayerInfo,GetProtoPlayerInfo),
     MsgGetterMap::value_type(ID_PaiGowConfig,GetProtoPaiGowConfig),
-   // MsgGetterMap::value_type(ID_PaiGowCards,GetProtoPaiGowCards),
     MsgGetterMap::value_type(ID_PaiGowPlayer,GetProtoPaiGowPlayer),
     MsgGetterMap::value_type(ID_PaiGowResult,GetProtoPaiGowResult),
     MsgGetterMap::value_type(ID_PaiGowSnapshot,GetProtoPaiGowSnapshot),
+    MsgGetterMap::value_type(ID_S2C_PG_addPlayer,GetProtoS2C_PG_addPlayer),
     MsgGetterMap::value_type(ID_C2S_PG_StartGame,GetProtoC2S_PG_StartGame),
     MsgGetterMap::value_type(ID_S2C_PG_StartGame,GetProtoS2C_PG_StartGame),
     MsgGetterMap::value_type(ID_C2S_PG_GrabBanker,GetProtoC2S_PG_GrabBanker),
@@ -57,6 +58,7 @@ MsgGetterMap::value_type init_value[] =
     MsgGetterMap::value_type(ID_Match,GetProtoMatch),
     MsgGetterMap::value_type(ID_C2S_CreateMatch,GetProtoC2S_CreateMatch),
     MsgGetterMap::value_type(ID_S2C_CreateMatch,GetProtoS2C_CreateMatch),
+    MsgGetterMap::value_type(ID_C2S_JoinMatch,GetProtoC2S_JoinMatch),
     MsgGetterMap::value_type(ID_S2C_MatchSnapshot,GetProtoS2C_MatchSnapshot),
 
 };

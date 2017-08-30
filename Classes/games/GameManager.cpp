@@ -24,6 +24,25 @@ void GameManager::dispose()
 }
 
 
+void GameManager::createMatch()
+{
+	proto3_proto::C2S_CreateMatch  cmc;
+	cmc.set_for_other(false);
+	cmc.set_type(1);
+
+
+	proto3_proto::PaiGowConfig* pconfig = cmc.mutable_paigow();
+	//proto3_proto::PaiGowConfig pconfig;
+	pconfig->set_pot(0);
+	pconfig->set_banker_type(1);
+	pconfig->set_is_bet_always(true);
+	pconfig->set_lock_bet_num(0);
+	pconfig->set_type(2);
+	pconfig->set_has_ghost(false);
+	pconfig->set_has_heaven_nine(false);
+
+	core::SocketManager::getInstance()->sendMessage(core::ID_C2S_CreateMatch, cmc);
+}
 
 void GameManager::onRevS2C_MatchSnapshot(google::protobuf::Message* msg)
 {

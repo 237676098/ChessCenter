@@ -8,10 +8,12 @@ NS_PAIGOW_BEGIN
 class PaiGowCardView:public core::IBaseUI
 {
 public:
-	static PaiGowCardView* create(const Card& card);
-	PaiGowCardView(const Card& card):m_card(card),IBaseUI() {};
+	static PaiGowCardView* create();
+	PaiGowCardView():IBaseUI() {};
 	bool initWithFile(const std::string fileName) override;
-	void setCard(const Card& card,bool isFalse = false);
+	void setCard(const Card& card);
+	void turnBack(bool isAnimation);
+	void turnFront(bool isAnimation);
 private:
 	Card m_card;
 };

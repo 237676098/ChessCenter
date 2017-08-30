@@ -39,6 +39,9 @@ extern AckDefaultTypeInternal _Ack_default_instance_;
 class C2S_CreateMatch;
 class C2S_CreateMatchDefaultTypeInternal;
 extern C2S_CreateMatchDefaultTypeInternal _C2S_CreateMatch_default_instance_;
+class C2S_JoinMatch;
+class C2S_JoinMatchDefaultTypeInternal;
+extern C2S_JoinMatchDefaultTypeInternal _C2S_JoinMatch_default_instance_;
 class C2S_Login;
 class C2S_LoginDefaultTypeInternal;
 extern C2S_LoginDefaultTypeInternal _C2S_Login_default_instance_;
@@ -105,6 +108,9 @@ extern S2C_PG_ResultDefaultTypeInternal _S2C_PG_Result_default_instance_;
 class S2C_PG_StartGame;
 class S2C_PG_StartGameDefaultTypeInternal;
 extern S2C_PG_StartGameDefaultTypeInternal _S2C_PG_StartGame_default_instance_;
+class S2C_PG_addPlayer;
+class S2C_PG_addPlayerDefaultTypeInternal;
+extern S2C_PG_addPlayerDefaultTypeInternal _S2C_PG_addPlayer_default_instance_;
 class UserInfo;
 class UserInfoDefaultTypeInternal;
 extern UserInfoDefaultTypeInternal _UserInfo_default_instance_;
@@ -225,23 +231,23 @@ class Match : public ::google::protobuf::Message /* @@protoc_insertion_point(cla
   ::google::protobuf::int32 type() const;
   void set_type(::google::protobuf::int32 value);
 
-  // int64 createtime = 3;
-  void clear_createtime();
-  static const int kCreatetimeFieldNumber = 3;
-  ::google::protobuf::int64 createtime() const;
-  void set_createtime(::google::protobuf::int64 value);
+  // int64 create_time = 3;
+  void clear_create_time();
+  static const int kCreateTimeFieldNumber = 3;
+  ::google::protobuf::int64 create_time() const;
+  void set_create_time(::google::protobuf::int64 value);
 
-  // int64 begintime = 4;
-  void clear_begintime();
-  static const int kBegintimeFieldNumber = 4;
-  ::google::protobuf::int64 begintime() const;
-  void set_begintime(::google::protobuf::int64 value);
+  // int64 begin_time = 4;
+  void clear_begin_time();
+  static const int kBeginTimeFieldNumber = 4;
+  ::google::protobuf::int64 begin_time() const;
+  void set_begin_time(::google::protobuf::int64 value);
 
-  // int32 number = 5;
-  void clear_number();
-  static const int kNumberFieldNumber = 5;
-  ::google::protobuf::int32 number() const;
-  void set_number(::google::protobuf::int32 value);
+  // int32 total_round = 5;
+  void clear_total_round();
+  static const int kTotalRoundFieldNumber = 5;
+  ::google::protobuf::int32 total_round() const;
+  void set_total_round(::google::protobuf::int32 value);
 
   // int32 cost = 6;
   void clear_cost();
@@ -269,9 +275,9 @@ class Match : public ::google::protobuf::Message /* @@protoc_insertion_point(cla
   ::proto3_proto::PaiGowConfig* paigow_;
   ::google::protobuf::int32 room_id_;
   ::google::protobuf::int32 type_;
-  ::google::protobuf::int64 createtime_;
-  ::google::protobuf::int64 begintime_;
-  ::google::protobuf::int32 number_;
+  ::google::protobuf::int64 create_time_;
+  ::google::protobuf::int64 begin_time_;
+  ::google::protobuf::int32 total_round_;
   ::google::protobuf::int32 cost_;
   ::google::protobuf::int32 state_;
   ::google::protobuf::int32 round_;
@@ -474,6 +480,86 @@ class S2C_CreateMatch : public ::google::protobuf::Message /* @@protoc_insertion
 };
 // -------------------------------------------------------------------
 
+class C2S_JoinMatch : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:proto3_proto.C2S_JoinMatch) */ {
+ public:
+  C2S_JoinMatch();
+  virtual ~C2S_JoinMatch();
+
+  C2S_JoinMatch(const C2S_JoinMatch& from);
+
+  inline C2S_JoinMatch& operator=(const C2S_JoinMatch& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const C2S_JoinMatch& default_instance();
+
+  static inline const C2S_JoinMatch* internal_default_instance() {
+    return reinterpret_cast<const C2S_JoinMatch*>(
+               &_C2S_JoinMatch_default_instance_);
+  }
+  static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
+    3;
+
+  void Swap(C2S_JoinMatch* other);
+
+  // implements Message ----------------------------------------------
+
+  inline C2S_JoinMatch* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  C2S_JoinMatch* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const C2S_JoinMatch& from);
+  void MergeFrom(const C2S_JoinMatch& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(C2S_JoinMatch* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // int32 room_id = 1;
+  void clear_room_id();
+  static const int kRoomIdFieldNumber = 1;
+  ::google::protobuf::int32 room_id() const;
+  void set_room_id(::google::protobuf::int32 value);
+
+  // @@protoc_insertion_point(class_scope:proto3_proto.C2S_JoinMatch)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::int32 room_id_;
+  mutable int _cached_size_;
+  friend struct protobuf_game_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
 class S2C_MatchSnapshot : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:proto3_proto.S2C_MatchSnapshot) */ {
  public:
   S2C_MatchSnapshot();
@@ -494,7 +580,7 @@ class S2C_MatchSnapshot : public ::google::protobuf::Message /* @@protoc_inserti
                &_S2C_MatchSnapshot_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    3;
+    4;
 
   void Swap(S2C_MatchSnapshot* other);
 
@@ -547,21 +633,21 @@ class S2C_MatchSnapshot : public ::google::protobuf::Message /* @@protoc_inserti
   ::proto3_proto::Match* release_match();
   void set_allocated_match(::proto3_proto::Match* match);
 
-  // .proto3_proto.PaiGowSnapshot paigpow = 2;
-  bool has_paigpow() const;
-  void clear_paigpow();
-  static const int kPaigpowFieldNumber = 2;
-  const ::proto3_proto::PaiGowSnapshot& paigpow() const;
-  ::proto3_proto::PaiGowSnapshot* mutable_paigpow();
-  ::proto3_proto::PaiGowSnapshot* release_paigpow();
-  void set_allocated_paigpow(::proto3_proto::PaiGowSnapshot* paigpow);
+  // .proto3_proto.PaiGowSnapshot paigow = 2;
+  bool has_paigow() const;
+  void clear_paigow();
+  static const int kPaigowFieldNumber = 2;
+  const ::proto3_proto::PaiGowSnapshot& paigow() const;
+  ::proto3_proto::PaiGowSnapshot* mutable_paigow();
+  ::proto3_proto::PaiGowSnapshot* release_paigow();
+  void set_allocated_paigow(::proto3_proto::PaiGowSnapshot* paigow);
 
   // @@protoc_insertion_point(class_scope:proto3_proto.S2C_MatchSnapshot)
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::proto3_proto::Match* match_;
-  ::proto3_proto::PaiGowSnapshot* paigpow_;
+  ::proto3_proto::PaiGowSnapshot* paigow_;
   mutable int _cached_size_;
   friend struct protobuf_game_2eproto::TableStruct;
 };
@@ -601,46 +687,46 @@ inline void Match::set_type(::google::protobuf::int32 value) {
   // @@protoc_insertion_point(field_set:proto3_proto.Match.type)
 }
 
-// int64 createtime = 3;
-inline void Match::clear_createtime() {
-  createtime_ = GOOGLE_LONGLONG(0);
+// int64 create_time = 3;
+inline void Match::clear_create_time() {
+  create_time_ = GOOGLE_LONGLONG(0);
 }
-inline ::google::protobuf::int64 Match::createtime() const {
-  // @@protoc_insertion_point(field_get:proto3_proto.Match.createtime)
-  return createtime_;
+inline ::google::protobuf::int64 Match::create_time() const {
+  // @@protoc_insertion_point(field_get:proto3_proto.Match.create_time)
+  return create_time_;
 }
-inline void Match::set_createtime(::google::protobuf::int64 value) {
+inline void Match::set_create_time(::google::protobuf::int64 value) {
   
-  createtime_ = value;
-  // @@protoc_insertion_point(field_set:proto3_proto.Match.createtime)
+  create_time_ = value;
+  // @@protoc_insertion_point(field_set:proto3_proto.Match.create_time)
 }
 
-// int64 begintime = 4;
-inline void Match::clear_begintime() {
-  begintime_ = GOOGLE_LONGLONG(0);
+// int64 begin_time = 4;
+inline void Match::clear_begin_time() {
+  begin_time_ = GOOGLE_LONGLONG(0);
 }
-inline ::google::protobuf::int64 Match::begintime() const {
-  // @@protoc_insertion_point(field_get:proto3_proto.Match.begintime)
-  return begintime_;
+inline ::google::protobuf::int64 Match::begin_time() const {
+  // @@protoc_insertion_point(field_get:proto3_proto.Match.begin_time)
+  return begin_time_;
 }
-inline void Match::set_begintime(::google::protobuf::int64 value) {
+inline void Match::set_begin_time(::google::protobuf::int64 value) {
   
-  begintime_ = value;
-  // @@protoc_insertion_point(field_set:proto3_proto.Match.begintime)
+  begin_time_ = value;
+  // @@protoc_insertion_point(field_set:proto3_proto.Match.begin_time)
 }
 
-// int32 number = 5;
-inline void Match::clear_number() {
-  number_ = 0;
+// int32 total_round = 5;
+inline void Match::clear_total_round() {
+  total_round_ = 0;
 }
-inline ::google::protobuf::int32 Match::number() const {
-  // @@protoc_insertion_point(field_get:proto3_proto.Match.number)
-  return number_;
+inline ::google::protobuf::int32 Match::total_round() const {
+  // @@protoc_insertion_point(field_get:proto3_proto.Match.total_round)
+  return total_round_;
 }
-inline void Match::set_number(::google::protobuf::int32 value) {
+inline void Match::set_total_round(::google::protobuf::int32 value) {
   
-  number_ = value;
-  // @@protoc_insertion_point(field_set:proto3_proto.Match.number)
+  total_round_ = value;
+  // @@protoc_insertion_point(field_set:proto3_proto.Match.total_round)
 }
 
 // int32 cost = 6;
@@ -898,6 +984,24 @@ inline void S2C_CreateMatch::set_allocated_match(::proto3_proto::Match* match) {
 
 // -------------------------------------------------------------------
 
+// C2S_JoinMatch
+
+// int32 room_id = 1;
+inline void C2S_JoinMatch::clear_room_id() {
+  room_id_ = 0;
+}
+inline ::google::protobuf::int32 C2S_JoinMatch::room_id() const {
+  // @@protoc_insertion_point(field_get:proto3_proto.C2S_JoinMatch.room_id)
+  return room_id_;
+}
+inline void C2S_JoinMatch::set_room_id(::google::protobuf::int32 value) {
+  
+  room_id_ = value;
+  // @@protoc_insertion_point(field_set:proto3_proto.C2S_JoinMatch.room_id)
+}
+
+// -------------------------------------------------------------------
+
 // S2C_MatchSnapshot
 
 // .proto3_proto.Match match = 1;
@@ -939,46 +1043,48 @@ inline void S2C_MatchSnapshot::set_allocated_match(::proto3_proto::Match* match)
   // @@protoc_insertion_point(field_set_allocated:proto3_proto.S2C_MatchSnapshot.match)
 }
 
-// .proto3_proto.PaiGowSnapshot paigpow = 2;
-inline bool S2C_MatchSnapshot::has_paigpow() const {
-  return this != internal_default_instance() && paigpow_ != NULL;
+// .proto3_proto.PaiGowSnapshot paigow = 2;
+inline bool S2C_MatchSnapshot::has_paigow() const {
+  return this != internal_default_instance() && paigow_ != NULL;
 }
-inline void S2C_MatchSnapshot::clear_paigpow() {
-  if (GetArenaNoVirtual() == NULL && paigpow_ != NULL) delete paigpow_;
-  paigpow_ = NULL;
+inline void S2C_MatchSnapshot::clear_paigow() {
+  if (GetArenaNoVirtual() == NULL && paigow_ != NULL) delete paigow_;
+  paigow_ = NULL;
 }
-inline const ::proto3_proto::PaiGowSnapshot& S2C_MatchSnapshot::paigpow() const {
-  // @@protoc_insertion_point(field_get:proto3_proto.S2C_MatchSnapshot.paigpow)
-  return paigpow_ != NULL ? *paigpow_
+inline const ::proto3_proto::PaiGowSnapshot& S2C_MatchSnapshot::paigow() const {
+  // @@protoc_insertion_point(field_get:proto3_proto.S2C_MatchSnapshot.paigow)
+  return paigow_ != NULL ? *paigow_
                          : *::proto3_proto::PaiGowSnapshot::internal_default_instance();
 }
-inline ::proto3_proto::PaiGowSnapshot* S2C_MatchSnapshot::mutable_paigpow() {
+inline ::proto3_proto::PaiGowSnapshot* S2C_MatchSnapshot::mutable_paigow() {
   
-  if (paigpow_ == NULL) {
-    paigpow_ = new ::proto3_proto::PaiGowSnapshot;
+  if (paigow_ == NULL) {
+    paigow_ = new ::proto3_proto::PaiGowSnapshot;
   }
-  // @@protoc_insertion_point(field_mutable:proto3_proto.S2C_MatchSnapshot.paigpow)
-  return paigpow_;
+  // @@protoc_insertion_point(field_mutable:proto3_proto.S2C_MatchSnapshot.paigow)
+  return paigow_;
 }
-inline ::proto3_proto::PaiGowSnapshot* S2C_MatchSnapshot::release_paigpow() {
-  // @@protoc_insertion_point(field_release:proto3_proto.S2C_MatchSnapshot.paigpow)
+inline ::proto3_proto::PaiGowSnapshot* S2C_MatchSnapshot::release_paigow() {
+  // @@protoc_insertion_point(field_release:proto3_proto.S2C_MatchSnapshot.paigow)
   
-  ::proto3_proto::PaiGowSnapshot* temp = paigpow_;
-  paigpow_ = NULL;
+  ::proto3_proto::PaiGowSnapshot* temp = paigow_;
+  paigow_ = NULL;
   return temp;
 }
-inline void S2C_MatchSnapshot::set_allocated_paigpow(::proto3_proto::PaiGowSnapshot* paigpow) {
-  delete paigpow_;
-  paigpow_ = paigpow;
-  if (paigpow) {
+inline void S2C_MatchSnapshot::set_allocated_paigow(::proto3_proto::PaiGowSnapshot* paigow) {
+  delete paigow_;
+  paigow_ = paigow;
+  if (paigow) {
     
   } else {
     
   }
-  // @@protoc_insertion_point(field_set_allocated:proto3_proto.S2C_MatchSnapshot.paigpow)
+  // @@protoc_insertion_point(field_set_allocated:proto3_proto.S2C_MatchSnapshot.paigow)
 }
 
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

@@ -207,6 +207,9 @@
     <ClCompile Include="..\Classes\games\paigow\PaiGowViewController.cpp">
       <Filter>src\games\paigow</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\games\paigow\views\PaIGowHandCardsPanel.cpp">
+      <Filter>src\games\paigow\views</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -373,6 +376,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\games\paigow\PaiGowViewController.h">
       <Filter>src\games\paigow</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\games\paigow\views\PaiGowHandCardsPanel.h">
+      <Filter>src\games\paigow\views</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

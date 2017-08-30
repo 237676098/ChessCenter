@@ -4,6 +4,18 @@
 
 NS_PAIGOW_BEGIN
 
+
+PaiGowViewController::PaiGowViewController(PaiGowSnaptShot* data)
+	:m_data(data),
+	m_view(nullptr),
+	m_wait_operate_view(nullptr),
+	m_seat_view(nullptr),
+	m_bet_operate_view(nullptr)
+{
+	
+
+}
+
 void PaiGowViewController::init()
 {
 	/*

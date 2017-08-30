@@ -18,7 +18,7 @@ public:
 	int type;
 	int64_t create_time;
 	int64_t begin_time;
-	int number;
+	int total_round;
 	int cost;
 	int state;
 	int round;
