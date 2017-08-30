@@ -1164,7 +1164,7 @@ bool CSLoader::bindCallback(const std::string &callbackName,
         }
     }
     
-    CCLOG("callBackName %s cannot be found", callbackName.c_str());
+   // CCLOG("callBackName %s cannot be found", callbackName.c_str());
     
     return false;
     
