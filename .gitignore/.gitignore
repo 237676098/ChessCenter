@@ -1,2 +1,3 @@
 *.o
 *.obj
+Debug.win32
