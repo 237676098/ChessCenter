@@ -13,7 +13,9 @@ public:
 	void init(proto3_proto::S2C_MatchSnapshot* shot);
 	void dispose();
 	void createMatch();
+	void joinMatch(int room_id);
 private:
+	MSG_FUNCTION_DEFINE(S2C_CreateMatch)
 	MSG_FUNCTION_DEFINE(S2C_MatchSnapshot)
 private:
 	

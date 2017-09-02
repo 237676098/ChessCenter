@@ -13,6 +13,14 @@ public:
 	~RoomJoinWindow() {};
 	virtual void onLoadCompleted() override;
 	void onClickCloseBtn(Ref* btn) override;
+
+public:
+	void onClickNumber(Ref* btn);
+	void onClearNumber(Ref* btn);
+	void onDeleteNumber(Ref* btn);
+
+private:
+	std::vector<int> m_numbers;
 };
 
 NS_LOBBY_END

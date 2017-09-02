@@ -11,15 +11,15 @@ NS_PAIGOW_BEGIN
 
 //class  PaiGowProxy;
 
-typedef enum _PGTableState
+enum class TableState
 {
-	PGST_Wait = 1,
-	PGST_GrabBanker,
-	PGST_Bet,
-	PGST_Collocation,
-	PGST_Result,
-	PGST_Unkown
-}PGTableState;
+	Wait = 1,
+	GrabBanker,
+	Bet,
+	Collocation,
+	Result,
+	Unkown
+};
 
 
 class PaigowManager

@@ -15,8 +15,9 @@ public:
 public:
 	bool is_banker;
 	bool status;
-	Card* hand_cards;
-	uint32_t* chips;
+	std::vector<Card> hand_cards;
+	std::vector<uint32_t> chips;
+	int score;
 };
 
 

@@ -74,6 +74,9 @@ extern S2C_ErrorDefaultTypeInternal _S2C_Error_default_instance_;
 class S2C_InitUserInfo;
 class S2C_InitUserInfoDefaultTypeInternal;
 extern S2C_InitUserInfoDefaultTypeInternal _S2C_InitUserInfo_default_instance_;
+class S2C_PG_AddPlayer;
+class S2C_PG_AddPlayerDefaultTypeInternal;
+extern S2C_PG_AddPlayerDefaultTypeInternal _S2C_PG_AddPlayer_default_instance_;
 class S2C_PG_Bet;
 class S2C_PG_BetDefaultTypeInternal;
 extern S2C_PG_BetDefaultTypeInternal _S2C_PG_Bet_default_instance_;
@@ -92,9 +95,6 @@ extern S2C_PG_ResultDefaultTypeInternal _S2C_PG_Result_default_instance_;
 class S2C_PG_StartGame;
 class S2C_PG_StartGameDefaultTypeInternal;
 extern S2C_PG_StartGameDefaultTypeInternal _S2C_PG_StartGame_default_instance_;
-class S2C_PG_addPlayer;
-class S2C_PG_addPlayerDefaultTypeInternal;
-extern S2C_PG_addPlayerDefaultTypeInternal _S2C_PG_addPlayer_default_instance_;
 class UserInfo;
 class UserInfoDefaultTypeInternal;
 extern UserInfoDefaultTypeInternal _UserInfo_default_instance_;
@@ -349,6 +349,12 @@ class PaiGowPlayer : public ::google::protobuf::Message /* @@protoc_insertion_po
   ::google::protobuf::uint32 status() const;
   void set_status(::google::protobuf::uint32 value);
 
+  // int32 score = 6;
+  void clear_score();
+  static const int kScoreFieldNumber = 6;
+  ::google::protobuf::int32 score() const;
+  void set_score(::google::protobuf::int32 value);
+
   // @@protoc_insertion_point(class_scope:proto3_proto.PaiGowPlayer)
  private:
 
@@ -360,6 +366,7 @@ class PaiGowPlayer : public ::google::protobuf::Message /* @@protoc_insertion_po
   ::proto3_proto::PlayerInfo* player_;
   bool is_banker_;
   ::google::protobuf::uint32 status_;
+  ::google::protobuf::int32 score_;
   mutable int _cached_size_;
   friend struct protobuf_paigow_2eproto::TableStruct;
 };
@@ -593,39 +600,39 @@ class PaiGowSnapshot : public ::google::protobuf::Message /* @@protoc_insertion_
 };
 // -------------------------------------------------------------------
 
-class S2C_PG_addPlayer : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:proto3_proto.S2C_PG_addPlayer) */ {
+class S2C_PG_AddPlayer : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:proto3_proto.S2C_PG_AddPlayer) */ {
  public:
-  S2C_PG_addPlayer();
-  virtual ~S2C_PG_addPlayer();
+  S2C_PG_AddPlayer();
+  virtual ~S2C_PG_AddPlayer();
 
-  S2C_PG_addPlayer(const S2C_PG_addPlayer& from);
+  S2C_PG_AddPlayer(const S2C_PG_AddPlayer& from);
 
-  inline S2C_PG_addPlayer& operator=(const S2C_PG_addPlayer& from) {
+  inline S2C_PG_AddPlayer& operator=(const S2C_PG_AddPlayer& from) {
     CopyFrom(from);
     return *this;
   }
 
   static const ::google::protobuf::Descriptor* descriptor();
-  static const S2C_PG_addPlayer& default_instance();
+  static const S2C_PG_AddPlayer& default_instance();
 
-  static inline const S2C_PG_addPlayer* internal_default_instance() {
-    return reinterpret_cast<const S2C_PG_addPlayer*>(
-               &_S2C_PG_addPlayer_default_instance_);
+  static inline const S2C_PG_AddPlayer* internal_default_instance() {
+    return reinterpret_cast<const S2C_PG_AddPlayer*>(
+               &_S2C_PG_AddPlayer_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
     4;
 
-  void Swap(S2C_PG_addPlayer* other);
+  void Swap(S2C_PG_AddPlayer* other);
 
   // implements Message ----------------------------------------------
 
-  inline S2C_PG_addPlayer* New() const PROTOBUF_FINAL { return New(NULL); }
+  inline S2C_PG_AddPlayer* New() const PROTOBUF_FINAL { return New(NULL); }
 
-  S2C_PG_addPlayer* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  S2C_PG_AddPlayer* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
   void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
   void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
-  void CopyFrom(const S2C_PG_addPlayer& from);
-  void MergeFrom(const S2C_PG_addPlayer& from);
+  void CopyFrom(const S2C_PG_AddPlayer& from);
+  void MergeFrom(const S2C_PG_AddPlayer& from);
   void Clear() PROTOBUF_FINAL;
   bool IsInitialized() const PROTOBUF_FINAL;
 
@@ -641,7 +648,7 @@ class S2C_PG_addPlayer : public ::google::protobuf::Message /* @@protoc_insertio
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const PROTOBUF_FINAL;
-  void InternalSwap(S2C_PG_addPlayer* other);
+  void InternalSwap(S2C_PG_AddPlayer* other);
   private:
   inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
     return NULL;
@@ -666,7 +673,7 @@ class S2C_PG_addPlayer : public ::google::protobuf::Message /* @@protoc_insertio
   ::proto3_proto::PaiGowPlayer* release_player();
   void set_allocated_player(::proto3_proto::PaiGowPlayer* player);
 
-  // @@protoc_insertion_point(class_scope:proto3_proto.S2C_PG_addPlayer)
+  // @@protoc_insertion_point(class_scope:proto3_proto.S2C_PG_AddPlayer)
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
@@ -1860,6 +1867,20 @@ PaiGowPlayer::mutable_chips() {
   return &chips_;
 }
 
+// int32 score = 6;
+inline void PaiGowPlayer::clear_score() {
+  score_ = 0;
+}
+inline ::google::protobuf::int32 PaiGowPlayer::score() const {
+  // @@protoc_insertion_point(field_get:proto3_proto.PaiGowPlayer.score)
+  return score_;
+}
+inline void PaiGowPlayer::set_score(::google::protobuf::int32 value) {
+  
+  score_ = value;
+  // @@protoc_insertion_point(field_set:proto3_proto.PaiGowPlayer.score)
+}
+
 // -------------------------------------------------------------------
 
 // PaiGowResult
@@ -2046,37 +2067,37 @@ PaiGowSnapshot::results() const {
 
 // -------------------------------------------------------------------
 
-// S2C_PG_addPlayer
+// S2C_PG_AddPlayer
 
 // .proto3_proto.PaiGowPlayer player = 1;
-inline bool S2C_PG_addPlayer::has_player() const {
+inline bool S2C_PG_AddPlayer::has_player() const {
   return this != internal_default_instance() && player_ != NULL;
 }
-inline void S2C_PG_addPlayer::clear_player() {
+inline void S2C_PG_AddPlayer::clear_player() {
   if (GetArenaNoVirtual() == NULL && player_ != NULL) delete player_;
   player_ = NULL;
 }
-inline const ::proto3_proto::PaiGowPlayer& S2C_PG_addPlayer::player() const {
-  // @@protoc_insertion_point(field_get:proto3_proto.S2C_PG_addPlayer.player)
+inline const ::proto3_proto::PaiGowPlayer& S2C_PG_AddPlayer::player() const {
+  // @@protoc_insertion_point(field_get:proto3_proto.S2C_PG_AddPlayer.player)
   return player_ != NULL ? *player_
                          : *::proto3_proto::PaiGowPlayer::internal_default_instance();
 }
-inline ::proto3_proto::PaiGowPlayer* S2C_PG_addPlayer::mutable_player() {
+inline ::proto3_proto::PaiGowPlayer* S2C_PG_AddPlayer::mutable_player() {
   
   if (player_ == NULL) {
     player_ = new ::proto3_proto::PaiGowPlayer;
   }
-  // @@protoc_insertion_point(field_mutable:proto3_proto.S2C_PG_addPlayer.player)
+  // @@protoc_insertion_point(field_mutable:proto3_proto.S2C_PG_AddPlayer.player)
   return player_;
 }
-inline ::proto3_proto::PaiGowPlayer* S2C_PG_addPlayer::release_player() {
-  // @@protoc_insertion_point(field_release:proto3_proto.S2C_PG_addPlayer.player)
+inline ::proto3_proto::PaiGowPlayer* S2C_PG_AddPlayer::release_player() {
+  // @@protoc_insertion_point(field_release:proto3_proto.S2C_PG_AddPlayer.player)
   
   ::proto3_proto::PaiGowPlayer* temp = player_;
   player_ = NULL;
   return temp;
 }
-inline void S2C_PG_addPlayer::set_allocated_player(::proto3_proto::PaiGowPlayer* player) {
+inline void S2C_PG_AddPlayer::set_allocated_player(::proto3_proto::PaiGowPlayer* player) {
   delete player_;
   player_ = player;
   if (player) {
@@ -2084,7 +2105,7 @@ inline void S2C_PG_addPlayer::set_allocated_player(::proto3_proto::PaiGowPlayer*
   } else {
     
   }
-  // @@protoc_insertion_point(field_set_allocated:proto3_proto.S2C_PG_addPlayer.player)
+  // @@protoc_insertion_point(field_set_allocated:proto3_proto.S2C_PG_AddPlayer.player)
 }
 
 // -------------------------------------------------------------------

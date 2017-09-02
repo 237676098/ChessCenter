@@ -6,6 +6,7 @@ NS_GAME_BEGIN
 GameManager::GameManager()
 {
 	MSG_FUNCTION_REGISTER(S2C_MatchSnapshot,GameManager)
+	MSG_FUNCTION_REGISTER(S2C_CreateMatch, GameManager)
 }
 
 GameManager::~GameManager()
@@ -44,6 +45,13 @@ void GameManager::createMatch()
 	core::SocketManager::getInstance()->sendMessage(core::ID_C2S_CreateMatch, cmc);
 }
 
+void GameManager::joinMatch(int room_id)
+{
+	proto3_proto::C2S_JoinMatch match;
+	match.set_room_id(room_id);
+	core::SocketManager::getInstance()->sendMessage(core::ID_C2S_JoinMatch, match);
+}
+
 void GameManager::onRevS2C_MatchSnapshot(google::protobuf::Message* msg)
 {
 	proto3_proto::S2C_MatchSnapshot* snaptshot = dynamic_cast<proto3_proto::S2C_MatchSnapshot*>(msg);
@@ -53,6 +61,11 @@ void GameManager::onRevS2C_MatchSnapshot(google::protobuf::Message* msg)
 
 	core::GameStateMachine::getInstance()->dispatchEvent(&event);
 
+}
+
+void GameManager::onRevS2C_CreateMatch(google::protobuf::Message* msg)
+{
+	CCLOG("WQEWQWEQWEQWE");
 }
 
 NS_GAME_END

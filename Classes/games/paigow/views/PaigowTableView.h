@@ -4,13 +4,13 @@
 
 NS_PAIGOW_BEGIN
 
-class PaigowTableView:public core::IBaseUI
+class PaigowTableView :public core::IBaseUI
 {
 public:
 	static PaigowTableView* create();
 	PaigowTableView():IBaseUI() {};
 	bool initWithFile(const std::string fileName) override;
-
+	void initView();
 private:
 
 };

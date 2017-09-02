@@ -25,4 +25,9 @@ bool PaigowTableView::initWithFile(const std::string fileName)
 	return true;
 }
 
+void PaigowTableView::initView()
+{
+	//TODO  ÅÆ×À³õÊ¼»¯
+}
+
 NS_PAIGOW_END

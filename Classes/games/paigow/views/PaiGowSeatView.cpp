@@ -30,4 +30,19 @@ void PaiGowSeatView::update()
 {
 }
 
+void PaiGowSeatView::initView(PaiGowPlayer * player)
+{
+	m_player = player;
+	
+	//player name
+	m_csb->getChildByName<Text*>("tf_name")->setString(player->name);
+	//player score
+	m_csb->getChildByName<Text*>("tf_score")->setString(std::to_string(player->score));
+
+	m_csb->getChildByName<Sprite*>("img_is_banker")->setVisible(false);
+	m_csb->getChildByName<Sprite*>("img_result")->setVisible(false);
+	m_csb->getChildByName<Sprite*>("img_is_ready")->setVisible(false);
+	//m_csb->getChildByName<Sprite*>("img_is_banker")->setVisible(false);
+}
+
 NS_PAIGOW_END

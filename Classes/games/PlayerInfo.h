@@ -12,7 +12,7 @@ public:
 	virtual  ~PlayerInfo();
 public:
 	void initByPlayerInfo(const proto3_proto::PlayerInfo& info);
-
+	bool isMainChar();
  
 public:
 	uint64_t uid;

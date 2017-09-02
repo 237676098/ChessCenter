@@ -5,16 +5,16 @@ NS_PAIGOW_BEGIN
 
 PaiGowPlayer::PaiGowPlayer():
 	is_banker(false), 
-	status(false)
+	status(false),
+	score(0)
 {
-	hand_cards = new Card[4];
-	chips = new uint32_t[4];
+
 }
+
 
 PaiGowPlayer::~PaiGowPlayer()
 {
-	delete hand_cards;
-	delete chips;
+	
 }
 
 void PaiGowPlayer::initByPaiGowPlayer(const proto3_proto::PaiGowPlayer & player)
@@ -36,6 +36,8 @@ void PaiGowPlayer::initByPaiGowPlayer(const proto3_proto::PaiGowPlayer & player)
 	{
 		chips[i] = player.chips(i);
 	}
+
+	score = player.score();
 }
 
 NS_PAIGOW_END

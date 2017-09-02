@@ -22,7 +22,7 @@ class SceneManager
 	
 public:
 	void initAndRun();
-	void add(LayerType layerType, cocos2d::Node* node);
+	void add(LayerType layerType, cocos2d::Node* node, int zorder = -1);
 	void remove(LayerType layerType, cocos2d::Node* node);
 	void showMsg(const std::string msg);
 

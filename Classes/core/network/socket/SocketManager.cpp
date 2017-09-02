@@ -112,6 +112,10 @@ int SocketManager::sendMessage(MessageId msg_id, const google::protobuf::Message
 	packet.writeUint32(msg_id);
 	packet.writeBytes(tmpStr.c_str(), b_size);
 	int result = sendPacket(packet);
+	if (result != -1)
+	{
+		CCLOG("send msg %u", msg_id);
+	}
 	return result;
 }
 
@@ -275,7 +279,7 @@ void SocketManager::dispatch()
 
 		p->readBytes(msg_length, tmpBody);
 		
-		CCLOG("recieve msg %d",msg_id);
+		CCLOG("recieve msg %u",msg_id);
 
 		if (message_getter_maps.find(msg_id) != message_getter_maps.end())
 		{

@@ -17,9 +17,13 @@ void SceneManager::initAndRun()
 	Director::getInstance()->runWithScene(m_scene);
 }
 
-void SceneManager::add(LayerType layerType, Node* node)
+void SceneManager::add(LayerType layerType, Node* node, int zorder)
 {
 	m_scene->getChildByTag(layerType)->addChild(node);
+	if (zorder != -1)
+	{
+		node->setZOrder(zorder);
+	}
 }
 
 void SceneManager::remove(LayerType layerType,Node* node)

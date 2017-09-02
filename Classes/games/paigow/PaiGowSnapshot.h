@@ -4,8 +4,10 @@
 #include "games/paigow/PaiGowLogic.h"
 #include "games/paigow/PaiGowPlayer.h"
 
-NS_PAIGOW_BEGIN
 
+
+NS_PAIGOW_BEGIN
+enum class TableState;
 class PaiGowSnaptShot:public game::MatchSnaptShot
 {
 public:
@@ -15,10 +17,11 @@ public:
 	void init(const proto3_proto::S2C_MatchSnapshot& mc_st);
 
 public:
-	uint32_t table_state;					//牌桌状态
+	TableState table_state;
+	//TableState table_state;					//牌桌状态
 	uint32_t room_owner; 					//牌桌拥有者
 	Card* public_cards;							//公牌
-	PaiGowPlayer* players;						//牌九玩家
+	std::vector<PaiGowPlayer*> players;						//牌九玩家
 	//repeated PaiGowResult results = 5; 			//本局当前比赛结果
 };
 

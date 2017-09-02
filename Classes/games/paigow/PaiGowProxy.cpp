@@ -12,9 +12,15 @@ PaiGowProxy::PaiGowProxy(PaiGowSnaptShot* data)
 	MSG_FUNCTION_REGISTER(S2C_PG_Deal, PaiGowProxy)
 	MSG_FUNCTION_REGISTER(S2C_PG_Collocation, PaiGowProxy)
 	MSG_FUNCTION_REGISTER(S2C_PG_Result, PaiGowProxy)
+	MSG_FUNCTION_REGISTER(S2C_PG_AddPlayer, PaiGowProxy)
 }
 
 PaiGowProxy::~PaiGowProxy()
+{
+
+}
+
+void PaiGowProxy::onRevS2C_PG_AddPlayer(google::protobuf::Message* msg)
 {
 
 }

@@ -1,5 +1,6 @@
 #include "PlayerInfo.h"
 #include "core/network/socket/protocol.h"
+#include "user/UserManager.h"
 
 NS_GAME_BEGIN
 
@@ -21,6 +22,11 @@ void PlayerInfo::initByPlayerInfo(const proto3_proto::PlayerInfo& info)
 	name = info.name();
 	head = info.head();
 	ip = info.ip();
+}
+
+bool PlayerInfo::isMainChar()
+{
+	return uid == user::UserManager::getInstance()->getId();
 }
 
 NS_GAME_END

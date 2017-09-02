@@ -85,7 +85,7 @@ void LoginManager::onUpdate(float dt)
 	//·¢ËÍÐÄÌø°ü
 	proto3_proto::Ack ack;
 	ack.set_status(1);
-	core::SocketManager::getInstance()->sendMessage(core::ID_Ack,ack);
+	//core::SocketManager::getInstance()->sendMessage(core::ID_Ack,ack);
 }
 
 void LoginManager::onRevAck(google::protobuf::Message * messgae)
