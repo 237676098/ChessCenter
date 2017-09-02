@@ -1,4 +1,6 @@
 #include "PaigowTableView.h"
+#include "utils/LanguageManager.h"
+#include "games/paigow/PaiGowSnapshot.h"
 
 NS_PAIGOW_BEGIN
 
@@ -25,9 +27,19 @@ bool PaigowTableView::initWithFile(const std::string fileName)
 	return true;
 }
 
-void PaigowTableView::initView()
+void PaigowTableView::initView(PaiGowSnaptShot* data)
 {
+	m_data = data;
 	//TODO  ÅÆ×À³õÊ¼»¯
+	updateDesc();
+}
+
+void PaigowTableView::updateDesc()
+{
+	std::string desc = "";
+	desc.append(core::LanguageManager::getInstance()->get("room_id"));
+	desc.append(std::to_string(m_data->room_id));
+	m_csb->getChildByName<Text*>("text_des")->setString(desc);
 }
 
 NS_PAIGOW_END

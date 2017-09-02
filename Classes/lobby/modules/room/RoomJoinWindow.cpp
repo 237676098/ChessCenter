@@ -77,6 +77,11 @@ void RoomJoinWindow::onClearNumber(Ref* ref)
 }
 void RoomJoinWindow::onDeleteNumber(Ref* ref)
 {
+	if (m_numbers.size() == 0)
+	{
+		return;
+	}
+
 	int number_index = m_numbers.size() - 1;
 	//int number = m_numbers[number_index];
 	auto parent_node = m_node_csb->getChildByName("center")->getChildByName("img_number");

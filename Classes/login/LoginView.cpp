@@ -5,6 +5,7 @@
 #include "AgreementTipsWindow.h"
 #include "core/fsm/game_machine.h"
 #include "ui/UICheckBox.h"
+#include "ui/UITextField.h"
 //for http begin
 #include "network/HttpClient.h"
 #include "json/document.h"  
@@ -78,12 +79,14 @@ void LoginView::onLoginBtnClick(Ref* btn)
 		return;
 	}
 	
-
+	std::string name = m_csb->getChildByName<cocos2d::ui::TextField*>("TextField_1")->getString();
+	std::string  postData = "platform=test&source=windows develop&os=windows&ver=v0.1";
+	postData.append("&name=" + name).append("&sign=" + name);
 	cocos2d::network::HttpRequest* request = new cocos2d::network::HttpRequest();
 	request->setUrl("http://47.94.95.187:1009/v1/user/signlogin");
 	request->setRequestType(cocos2d::network::HttpRequest::Type::POST);
 	request->setResponseCallback(
-		[](cocos2d::network::HttpClient* client, cocos2d::network::HttpResponse* response)->void {
+		[name](cocos2d::network::HttpClient* client, cocos2d::network::HttpResponse* response)->void {
 		//pTarget->pSelector(client,response);
 		//CCLOG(response->getResponseDataString());
 		std::vector<char> *data = response->getResponseData();
@@ -124,14 +127,15 @@ void LoginView::onLoginBtnClick(Ref* btn)
 
 				rapidjson::Value& _port = _data["port"];
 				core::uint16 port = _port.GetUint();
-				user::UserManager::getInstance()->setSign("weinxindesign");
+				user::UserManager::getInstance()->setSign(name);
 				user::UserManager::getInstance()->setId(uid);
 				core::SocketManager::getInstance()->Connect(host, port);
 			}
 		}
 	});
-	const char* postData = "sign=zhouxuweinxindesign1&platform=test&name=zhouxu&source=windows develop&os=windows&ver=v0.1";
-	request->setRequestData(postData, strlen(postData));
+
+	
+	request->setRequestData(postData.c_str(), strlen(postData.c_str()));
 	cocos2d::network::HttpClient::getInstance()->send(request);
 	request->release();
 

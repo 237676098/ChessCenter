@@ -7,7 +7,7 @@
 NS_CORE_BEGIN
 enum EventId
 {
-	EVT_TICK = 0,
+	EVT_PG_AddPlayer = 0,
 };
 
 struct Event

@@ -61,6 +61,9 @@
     <Filter Include="src\core\event">
       <UniqueIdentifier>{f8916f2f-2e29-4750-8807-1a3cbeb5025f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\games\paigow\events">
+      <UniqueIdentifier>{0027dab2-5caa-4b74-8ca3-d5e9d5d53dbf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -379,6 +382,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\games\paigow\views\PaiGowHandCardsPanel.h">
       <Filter>src\games\paigow\views</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\games\paigow\events\EventAddPlayer.h">
+      <Filter>src\games\paigow\events</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

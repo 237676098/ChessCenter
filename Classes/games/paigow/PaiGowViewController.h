@@ -34,7 +34,7 @@ private:
 	PaiGowSnaptShot* m_data;
 	PaigowTableView* m_view;
 	PaiGowWaitOperateView* m_wait_operate_view;
-	std::vector<PaiGowSeatView*> m_seat_views;
+	std::map<uint32_t,PaiGowSeatView*> m_seat_views;
 	PaigowBetOperateView* m_bet_operate_view;
 };
 

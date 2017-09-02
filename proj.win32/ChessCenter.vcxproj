@@ -224,6 +224,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\games\game.h" />
     <ClInclude Include="..\Classes\games\GameManager.h" />
     <ClInclude Include="..\Classes\games\MatchSnapshot.h" />
+    <ClInclude Include="..\Classes\games\paigow\events\EventAddPlayer.h" />
     <ClInclude Include="..\Classes\games\paigow\PaiGowData.h" />
     <ClInclude Include="..\Classes\games\paigow\PaiGowLogic.h" />
     <ClInclude Include="..\Classes\games\paigow\PaigowManager.h" />
