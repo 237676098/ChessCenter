@@ -4,7 +4,6 @@ NS_PAIGOW_BEGIN
 
 
 PaiGowPlayer::PaiGowPlayer():
-	is_banker(false), 
 	status(false),
 	score(0)
 {
@@ -28,7 +27,6 @@ void PaiGowPlayer::initByPaiGowPlayer(const proto3_proto::PaiGowPlayer & player)
 		hand_cards[i] = player.hand_cards(i);
 	}
 
-	is_banker = player.is_banker();
 	status = player.status();
 
 	length = player.chips_size();

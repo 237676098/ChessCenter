@@ -6,6 +6,7 @@ NS_CORE_BEGIN
 typedef enum _GAME_EVENT {
 	EVENT_USER_INFO_INITED_SUCCESS,
 	EVENT_TABLE_SNAPTSHOT,
+	EVENT_LEAVE_MATCH,
 } GAME_EVENT;
 
 typedef enum _GAME_STATE {
@@ -42,6 +43,15 @@ public:
 	inline proto3_proto::S2C_MatchSnapshot* getSnaptShot() { return m_snaptshot; };
 private:
 	proto3_proto::S2C_MatchSnapshot* m_snaptshot;
+};
+
+class LeaveMatchEvent :public GameEvent
+{
+public:
+	LeaveMatchEvent() :GameEvent(EVENT_LEAVE_MATCH) {};
+
+private:
+
 };
 
 

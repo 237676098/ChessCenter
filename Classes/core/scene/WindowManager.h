@@ -18,6 +18,7 @@ class WindowStruct
 public:
 	WindowStruct() {};
 	WindowStruct(WindowId winid) :window_id(winid), window(nullptr), state(WindowClose) {};
+
 	WindowId window_id;
 	IBaseWindow* window;
 	WindowState  state;
@@ -42,6 +43,7 @@ public:
 	void close(WindowId);
 	bool isOpen(WindowId windowId);
 	IBaseWindow* getWindow(WindowId windowId);
+	void clear();
 
 private:
 	void insertWindow(IBaseWindow* widnow, int id);

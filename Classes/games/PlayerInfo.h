@@ -16,7 +16,7 @@ public:
  
 public:
 	uint64_t uid;
-	int seat_id;
+	uint32_t seat_id;
 	std::string name;
 	std::string head;
 	std::string ip;

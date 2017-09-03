@@ -42,6 +42,9 @@ extern C2S_CreateMatchDefaultTypeInternal _C2S_CreateMatch_default_instance_;
 class C2S_JoinMatch;
 class C2S_JoinMatchDefaultTypeInternal;
 extern C2S_JoinMatchDefaultTypeInternal _C2S_JoinMatch_default_instance_;
+class C2S_LeaveMatch;
+class C2S_LeaveMatchDefaultTypeInternal;
+extern C2S_LeaveMatchDefaultTypeInternal _C2S_LeaveMatch_default_instance_;
 class C2S_Login;
 class C2S_LoginDefaultTypeInternal;
 extern C2S_LoginDefaultTypeInternal _C2S_Login_default_instance_;
@@ -87,12 +90,15 @@ extern S2C_ErrorDefaultTypeInternal _S2C_Error_default_instance_;
 class S2C_InitUserInfo;
 class S2C_InitUserInfoDefaultTypeInternal;
 extern S2C_InitUserInfoDefaultTypeInternal _S2C_InitUserInfo_default_instance_;
-class S2C_JoinMatch;
-class S2C_JoinMatchDefaultTypeInternal;
-extern S2C_JoinMatchDefaultTypeInternal _S2C_JoinMatch_default_instance_;
+class S2C_LeaveMatch;
+class S2C_LeaveMatchDefaultTypeInternal;
+extern S2C_LeaveMatchDefaultTypeInternal _S2C_LeaveMatch_default_instance_;
 class S2C_MatchSnapshot;
 class S2C_MatchSnapshotDefaultTypeInternal;
 extern S2C_MatchSnapshotDefaultTypeInternal _S2C_MatchSnapshot_default_instance_;
+class S2C_OffLine;
+class S2C_OffLineDefaultTypeInternal;
+extern S2C_OffLineDefaultTypeInternal _S2C_OffLine_default_instance_;
 class S2C_PG_AddPlayer;
 class S2C_PG_AddPlayerDefaultTypeInternal;
 extern S2C_PG_AddPlayerDefaultTypeInternal _S2C_PG_AddPlayer_default_instance_;
@@ -563,39 +569,39 @@ class C2S_JoinMatch : public ::google::protobuf::Message /* @@protoc_insertion_p
 };
 // -------------------------------------------------------------------
 
-class S2C_JoinMatch : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:proto3_proto.S2C_JoinMatch) */ {
+class C2S_LeaveMatch : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:proto3_proto.C2S_LeaveMatch) */ {
  public:
-  S2C_JoinMatch();
-  virtual ~S2C_JoinMatch();
+  C2S_LeaveMatch();
+  virtual ~C2S_LeaveMatch();
 
-  S2C_JoinMatch(const S2C_JoinMatch& from);
+  C2S_LeaveMatch(const C2S_LeaveMatch& from);
 
-  inline S2C_JoinMatch& operator=(const S2C_JoinMatch& from) {
+  inline C2S_LeaveMatch& operator=(const C2S_LeaveMatch& from) {
     CopyFrom(from);
     return *this;
   }
 
   static const ::google::protobuf::Descriptor* descriptor();
-  static const S2C_JoinMatch& default_instance();
+  static const C2S_LeaveMatch& default_instance();
 
-  static inline const S2C_JoinMatch* internal_default_instance() {
-    return reinterpret_cast<const S2C_JoinMatch*>(
-               &_S2C_JoinMatch_default_instance_);
+  static inline const C2S_LeaveMatch* internal_default_instance() {
+    return reinterpret_cast<const C2S_LeaveMatch*>(
+               &_C2S_LeaveMatch_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
     4;
 
-  void Swap(S2C_JoinMatch* other);
+  void Swap(C2S_LeaveMatch* other);
 
   // implements Message ----------------------------------------------
 
-  inline S2C_JoinMatch* New() const PROTOBUF_FINAL { return New(NULL); }
+  inline C2S_LeaveMatch* New() const PROTOBUF_FINAL { return New(NULL); }
 
-  S2C_JoinMatch* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  C2S_LeaveMatch* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
   void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
   void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
-  void CopyFrom(const S2C_JoinMatch& from);
-  void MergeFrom(const S2C_JoinMatch& from);
+  void CopyFrom(const C2S_LeaveMatch& from);
+  void MergeFrom(const C2S_LeaveMatch& from);
   void Clear() PROTOBUF_FINAL;
   bool IsInitialized() const PROTOBUF_FINAL;
 
@@ -611,7 +617,7 @@ class S2C_JoinMatch : public ::google::protobuf::Message /* @@protoc_insertion_p
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const PROTOBUF_FINAL;
-  void InternalSwap(S2C_JoinMatch* other);
+  void InternalSwap(C2S_LeaveMatch* other);
   private:
   inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
     return NULL;
@@ -627,17 +633,170 @@ class S2C_JoinMatch : public ::google::protobuf::Message /* @@protoc_insertion_p
 
   // accessors -------------------------------------------------------
 
-  // int64 user_id = 1;
-  void clear_user_id();
-  static const int kUserIdFieldNumber = 1;
-  ::google::protobuf::int64 user_id() const;
-  void set_user_id(::google::protobuf::int64 value);
-
-  // @@protoc_insertion_point(class_scope:proto3_proto.S2C_JoinMatch)
+  // @@protoc_insertion_point(class_scope:proto3_proto.C2S_LeaveMatch)
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
-  ::google::protobuf::int64 user_id_;
+  mutable int _cached_size_;
+  friend struct protobuf_game_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class S2C_LeaveMatch : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:proto3_proto.S2C_LeaveMatch) */ {
+ public:
+  S2C_LeaveMatch();
+  virtual ~S2C_LeaveMatch();
+
+  S2C_LeaveMatch(const S2C_LeaveMatch& from);
+
+  inline S2C_LeaveMatch& operator=(const S2C_LeaveMatch& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const S2C_LeaveMatch& default_instance();
+
+  static inline const S2C_LeaveMatch* internal_default_instance() {
+    return reinterpret_cast<const S2C_LeaveMatch*>(
+               &_S2C_LeaveMatch_default_instance_);
+  }
+  static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
+    5;
+
+  void Swap(S2C_LeaveMatch* other);
+
+  // implements Message ----------------------------------------------
+
+  inline S2C_LeaveMatch* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  S2C_LeaveMatch* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const S2C_LeaveMatch& from);
+  void MergeFrom(const S2C_LeaveMatch& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(S2C_LeaveMatch* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // uint32 seat_id = 1;
+  void clear_seat_id();
+  static const int kSeatIdFieldNumber = 1;
+  ::google::protobuf::uint32 seat_id() const;
+  void set_seat_id(::google::protobuf::uint32 value);
+
+  // @@protoc_insertion_point(class_scope:proto3_proto.S2C_LeaveMatch)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::uint32 seat_id_;
+  mutable int _cached_size_;
+  friend struct protobuf_game_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class S2C_OffLine : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:proto3_proto.S2C_OffLine) */ {
+ public:
+  S2C_OffLine();
+  virtual ~S2C_OffLine();
+
+  S2C_OffLine(const S2C_OffLine& from);
+
+  inline S2C_OffLine& operator=(const S2C_OffLine& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const S2C_OffLine& default_instance();
+
+  static inline const S2C_OffLine* internal_default_instance() {
+    return reinterpret_cast<const S2C_OffLine*>(
+               &_S2C_OffLine_default_instance_);
+  }
+  static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
+    6;
+
+  void Swap(S2C_OffLine* other);
+
+  // implements Message ----------------------------------------------
+
+  inline S2C_OffLine* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  S2C_OffLine* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const S2C_OffLine& from);
+  void MergeFrom(const S2C_OffLine& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(S2C_OffLine* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // uint32 seat_id = 1;
+  void clear_seat_id();
+  static const int kSeatIdFieldNumber = 1;
+  ::google::protobuf::uint32 seat_id() const;
+  void set_seat_id(::google::protobuf::uint32 value);
+
+  // @@protoc_insertion_point(class_scope:proto3_proto.S2C_OffLine)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::uint32 seat_id_;
   mutable int _cached_size_;
   friend struct protobuf_game_2eproto::TableStruct;
 };
@@ -663,7 +822,7 @@ class S2C_MatchSnapshot : public ::google::protobuf::Message /* @@protoc_inserti
                &_S2C_MatchSnapshot_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    5;
+    7;
 
   void Swap(S2C_MatchSnapshot* other);
 
@@ -1085,20 +1244,42 @@ inline void C2S_JoinMatch::set_room_id(::google::protobuf::int32 value) {
 
 // -------------------------------------------------------------------
 
-// S2C_JoinMatch
+// C2S_LeaveMatch
 
-// int64 user_id = 1;
-inline void S2C_JoinMatch::clear_user_id() {
-  user_id_ = GOOGLE_LONGLONG(0);
+// -------------------------------------------------------------------
+
+// S2C_LeaveMatch
+
+// uint32 seat_id = 1;
+inline void S2C_LeaveMatch::clear_seat_id() {
+  seat_id_ = 0u;
 }
-inline ::google::protobuf::int64 S2C_JoinMatch::user_id() const {
-  // @@protoc_insertion_point(field_get:proto3_proto.S2C_JoinMatch.user_id)
-  return user_id_;
+inline ::google::protobuf::uint32 S2C_LeaveMatch::seat_id() const {
+  // @@protoc_insertion_point(field_get:proto3_proto.S2C_LeaveMatch.seat_id)
+  return seat_id_;
 }
-inline void S2C_JoinMatch::set_user_id(::google::protobuf::int64 value) {
+inline void S2C_LeaveMatch::set_seat_id(::google::protobuf::uint32 value) {
   
-  user_id_ = value;
-  // @@protoc_insertion_point(field_set:proto3_proto.S2C_JoinMatch.user_id)
+  seat_id_ = value;
+  // @@protoc_insertion_point(field_set:proto3_proto.S2C_LeaveMatch.seat_id)
+}
+
+// -------------------------------------------------------------------
+
+// S2C_OffLine
+
+// uint32 seat_id = 1;
+inline void S2C_OffLine::clear_seat_id() {
+  seat_id_ = 0u;
+}
+inline ::google::protobuf::uint32 S2C_OffLine::seat_id() const {
+  // @@protoc_insertion_point(field_get:proto3_proto.S2C_OffLine.seat_id)
+  return seat_id_;
+}
+inline void S2C_OffLine::set_seat_id(::google::protobuf::uint32 value) {
+  
+  seat_id_ = value;
+  // @@protoc_insertion_point(field_set:proto3_proto.S2C_OffLine.seat_id)
 }
 
 // -------------------------------------------------------------------
@@ -1184,6 +1365,10 @@ inline void S2C_MatchSnapshot::set_allocated_paigow(::proto3_proto::PaiGowSnapsh
 }
 
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

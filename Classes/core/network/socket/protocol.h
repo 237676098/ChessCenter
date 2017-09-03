@@ -54,13 +54,15 @@ const MessageId ID_Match = 590988333;
 const MessageId ID_C2S_CreateMatch = 2795803258;
 const MessageId ID_S2C_CreateMatch = 3744486407;
 const MessageId ID_C2S_JoinMatch = 442153932;
-const MessageId ID_S2C_JoinMatch = 617524796;
+const MessageId ID_C2S_LeaveMatch = 1280777448;
+const MessageId ID_S2C_LeaveMatch = 3318838772;
+const MessageId ID_S2C_OffLine = 3401368023;
 const MessageId ID_S2C_MatchSnapshot = 1194346942;
 
 
 extern MsgGetterMap::value_type init_value[]; 
 
-const static MsgGetterMap message_getter_maps(init_value, init_value + 28);
+const static MsgGetterMap message_getter_maps(init_value, init_value + 30);
 
 
 NS_CORE_END

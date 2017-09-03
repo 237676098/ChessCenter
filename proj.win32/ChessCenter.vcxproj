@@ -180,6 +180,8 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\games\paigow\views\PaigowBetOperateView.cpp" />
     <ClCompile Include="..\Classes\games\paigow\views\PaiGowCardGroupView.cpp" />
     <ClCompile Include="..\Classes\games\paigow\views\PaiGowCardView.cpp" />
+    <ClCompile Include="..\Classes\games\paigow\views\PaigowCollocationOperateView.cpp" />
+    <ClCompile Include="..\Classes\games\paigow\views\PaigowGrabOperateView.cpp" />
     <ClCompile Include="..\Classes\games\paigow\views\PaIGowHandCardsPanel.cpp" />
     <ClCompile Include="..\Classes\games\paigow\views\PaiGowSeatView.cpp" />
     <ClCompile Include="..\Classes\games\paigow\views\PaigowTableView.cpp" />
@@ -225,6 +227,11 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\games\GameManager.h" />
     <ClInclude Include="..\Classes\games\MatchSnapshot.h" />
     <ClInclude Include="..\Classes\games\paigow\events\EventAddPlayer.h" />
+    <ClInclude Include="..\Classes\games\paigow\events\EventBankerConfirm.h" />
+    <ClInclude Include="..\Classes\games\paigow\events\EventBet.h" />
+    <ClInclude Include="..\Classes\games\paigow\events\EventDeletePlayer.h" />
+    <ClInclude Include="..\Classes\games\paigow\events\EventOffLine.h" />
+    <ClInclude Include="..\Classes\games\paigow\events\EventStartGame.h" />
     <ClInclude Include="..\Classes\games\paigow\PaiGowData.h" />
     <ClInclude Include="..\Classes\games\paigow\PaiGowLogic.h" />
     <ClInclude Include="..\Classes\games\paigow\PaigowManager.h" />
@@ -235,6 +242,8 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\games\paigow\views\PaigowBetOperateView.h" />
     <ClInclude Include="..\Classes\games\paigow\views\PaiGowCardGroupView.h" />
     <ClInclude Include="..\Classes\games\paigow\views\PaiGowCardView.h" />
+    <ClInclude Include="..\Classes\games\paigow\views\PaigowCollocationOperateView.h" />
+    <ClInclude Include="..\Classes\games\paigow\views\PaigowGrabOperateView.h" />
     <ClInclude Include="..\Classes\games\paigow\views\PaiGowHandCardsPanel.h" />
     <ClInclude Include="..\Classes\games\paigow\views\PaiGowSeatView.h" />
     <ClInclude Include="..\Classes\games\paigow\views\PaigowTableView.h" />

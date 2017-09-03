@@ -316,10 +316,10 @@ class PaiGowPlayer : public ::google::protobuf::Message /* @@protoc_insertion_po
   ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
       mutable_hand_cards();
 
-  // repeated uint32 chips = 5;
+  // repeated uint32 chips = 4;
   int chips_size() const;
   void clear_chips();
-  static const int kChipsFieldNumber = 5;
+  static const int kChipsFieldNumber = 4;
   ::google::protobuf::uint32 chips(int index) const;
   void set_chips(int index, ::google::protobuf::uint32 value);
   void add_chips(::google::protobuf::uint32 value);
@@ -337,21 +337,15 @@ class PaiGowPlayer : public ::google::protobuf::Message /* @@protoc_insertion_po
   ::proto3_proto::PlayerInfo* release_player();
   void set_allocated_player(::proto3_proto::PlayerInfo* player);
 
-  // bool is_banker = 3;
-  void clear_is_banker();
-  static const int kIsBankerFieldNumber = 3;
-  bool is_banker() const;
-  void set_is_banker(bool value);
-
-  // uint32 status = 4;
+  // uint32 status = 3;
   void clear_status();
-  static const int kStatusFieldNumber = 4;
+  static const int kStatusFieldNumber = 3;
   ::google::protobuf::uint32 status() const;
   void set_status(::google::protobuf::uint32 value);
 
-  // int32 score = 6;
+  // int32 score = 5;
   void clear_score();
-  static const int kScoreFieldNumber = 6;
+  static const int kScoreFieldNumber = 5;
   ::google::protobuf::int32 score() const;
   void set_score(::google::protobuf::int32 value);
 
@@ -364,7 +358,6 @@ class PaiGowPlayer : public ::google::protobuf::Message /* @@protoc_insertion_po
   ::google::protobuf::RepeatedField< ::google::protobuf::uint32 > chips_;
   mutable int _chips_cached_byte_size_;
   ::proto3_proto::PlayerInfo* player_;
-  bool is_banker_;
   ::google::protobuf::uint32 status_;
   ::google::protobuf::int32 score_;
   mutable int _cached_size_;
@@ -585,6 +578,12 @@ class PaiGowSnapshot : public ::google::protobuf::Message /* @@protoc_insertion_
   ::google::protobuf::uint32 state() const;
   void set_state(::google::protobuf::uint32 value);
 
+  // uint32 banker_seat_id = 6;
+  void clear_banker_seat_id();
+  static const int kBankerSeatIdFieldNumber = 6;
+  ::google::protobuf::uint32 banker_seat_id() const;
+  void set_banker_seat_id(::google::protobuf::uint32 value);
+
   // @@protoc_insertion_point(class_scope:proto3_proto.PaiGowSnapshot)
  private:
 
@@ -595,6 +594,7 @@ class PaiGowSnapshot : public ::google::protobuf::Message /* @@protoc_insertion_
   ::google::protobuf::RepeatedPtrField< ::proto3_proto::PaiGowResult > results_;
   ::google::protobuf::int64 room_owner_;
   ::google::protobuf::uint32 state_;
+  ::google::protobuf::uint32 banker_seat_id_;
   mutable int _cached_size_;
   friend struct protobuf_paigow_2eproto::TableStruct;
 };
@@ -980,17 +980,17 @@ class S2C_PG_GrabBanker : public ::google::protobuf::Message /* @@protoc_inserti
 
   // accessors -------------------------------------------------------
 
-  // bool is_grab = 1;
-  void clear_is_grab();
-  static const int kIsGrabFieldNumber = 1;
-  bool is_grab() const;
-  void set_is_grab(bool value);
+  // uint32 seat_id = 1;
+  void clear_seat_id();
+  static const int kSeatIdFieldNumber = 1;
+  ::google::protobuf::uint32 seat_id() const;
+  void set_seat_id(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:proto3_proto.S2C_PG_GrabBanker)
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
-  bool is_grab_;
+  ::google::protobuf::uint32 seat_id_;
   mutable int _cached_size_;
   friend struct protobuf_paigow_2eproto::TableStruct;
 };
@@ -1159,11 +1159,11 @@ class S2C_PG_Bet : public ::google::protobuf::Message /* @@protoc_insertion_poin
   ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
       mutable_chips();
 
-  // int64 user_id = 1;
-  void clear_user_id();
-  static const int kUserIdFieldNumber = 1;
-  ::google::protobuf::int64 user_id() const;
-  void set_user_id(::google::protobuf::int64 value);
+  // uint32 seat_id = 1;
+  void clear_seat_id();
+  static const int kSeatIdFieldNumber = 1;
+  ::google::protobuf::uint32 seat_id() const;
+  void set_seat_id(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:proto3_proto.S2C_PG_Bet)
  private:
@@ -1171,7 +1171,7 @@ class S2C_PG_Bet : public ::google::protobuf::Message /* @@protoc_insertion_poin
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::RepeatedField< ::google::protobuf::uint32 > chips_;
   mutable int _chips_cached_byte_size_;
-  ::google::protobuf::int64 user_id_;
+  ::google::protobuf::uint32 seat_id_;
   mutable int _cached_size_;
   friend struct protobuf_paigow_2eproto::TableStruct;
 };
@@ -1809,21 +1809,7 @@ PaiGowPlayer::mutable_hand_cards() {
   return &hand_cards_;
 }
 
-// bool is_banker = 3;
-inline void PaiGowPlayer::clear_is_banker() {
-  is_banker_ = false;
-}
-inline bool PaiGowPlayer::is_banker() const {
-  // @@protoc_insertion_point(field_get:proto3_proto.PaiGowPlayer.is_banker)
-  return is_banker_;
-}
-inline void PaiGowPlayer::set_is_banker(bool value) {
-  
-  is_banker_ = value;
-  // @@protoc_insertion_point(field_set:proto3_proto.PaiGowPlayer.is_banker)
-}
-
-// uint32 status = 4;
+// uint32 status = 3;
 inline void PaiGowPlayer::clear_status() {
   status_ = 0u;
 }
@@ -1837,7 +1823,7 @@ inline void PaiGowPlayer::set_status(::google::protobuf::uint32 value) {
   // @@protoc_insertion_point(field_set:proto3_proto.PaiGowPlayer.status)
 }
 
-// repeated uint32 chips = 5;
+// repeated uint32 chips = 4;
 inline int PaiGowPlayer::chips_size() const {
   return chips_.size();
 }
@@ -1867,7 +1853,7 @@ PaiGowPlayer::mutable_chips() {
   return &chips_;
 }
 
-// int32 score = 6;
+// int32 score = 5;
 inline void PaiGowPlayer::clear_score() {
   score_ = 0;
 }
@@ -2065,6 +2051,20 @@ PaiGowSnapshot::results() const {
   return results_;
 }
 
+// uint32 banker_seat_id = 6;
+inline void PaiGowSnapshot::clear_banker_seat_id() {
+  banker_seat_id_ = 0u;
+}
+inline ::google::protobuf::uint32 PaiGowSnapshot::banker_seat_id() const {
+  // @@protoc_insertion_point(field_get:proto3_proto.PaiGowSnapshot.banker_seat_id)
+  return banker_seat_id_;
+}
+inline void PaiGowSnapshot::set_banker_seat_id(::google::protobuf::uint32 value) {
+  
+  banker_seat_id_ = value;
+  // @@protoc_insertion_point(field_set:proto3_proto.PaiGowSnapshot.banker_seat_id)
+}
+
 // -------------------------------------------------------------------
 
 // S2C_PG_AddPlayer
@@ -2152,18 +2152,18 @@ inline void C2S_PG_GrabBanker::set_is_grab(bool value) {
 
 // S2C_PG_GrabBanker
 
-// bool is_grab = 1;
-inline void S2C_PG_GrabBanker::clear_is_grab() {
-  is_grab_ = false;
+// uint32 seat_id = 1;
+inline void S2C_PG_GrabBanker::clear_seat_id() {
+  seat_id_ = 0u;
 }
-inline bool S2C_PG_GrabBanker::is_grab() const {
-  // @@protoc_insertion_point(field_get:proto3_proto.S2C_PG_GrabBanker.is_grab)
-  return is_grab_;
+inline ::google::protobuf::uint32 S2C_PG_GrabBanker::seat_id() const {
+  // @@protoc_insertion_point(field_get:proto3_proto.S2C_PG_GrabBanker.seat_id)
+  return seat_id_;
 }
-inline void S2C_PG_GrabBanker::set_is_grab(bool value) {
+inline void S2C_PG_GrabBanker::set_seat_id(::google::protobuf::uint32 value) {
   
-  is_grab_ = value;
-  // @@protoc_insertion_point(field_set:proto3_proto.S2C_PG_GrabBanker.is_grab)
+  seat_id_ = value;
+  // @@protoc_insertion_point(field_set:proto3_proto.S2C_PG_GrabBanker.seat_id)
 }
 
 // -------------------------------------------------------------------
@@ -2204,18 +2204,18 @@ C2S_PG_Bet::mutable_chips() {
 
 // S2C_PG_Bet
 
-// int64 user_id = 1;
-inline void S2C_PG_Bet::clear_user_id() {
-  user_id_ = GOOGLE_LONGLONG(0);
+// uint32 seat_id = 1;
+inline void S2C_PG_Bet::clear_seat_id() {
+  seat_id_ = 0u;
 }
-inline ::google::protobuf::int64 S2C_PG_Bet::user_id() const {
-  // @@protoc_insertion_point(field_get:proto3_proto.S2C_PG_Bet.user_id)
-  return user_id_;
+inline ::google::protobuf::uint32 S2C_PG_Bet::seat_id() const {
+  // @@protoc_insertion_point(field_get:proto3_proto.S2C_PG_Bet.seat_id)
+  return seat_id_;
 }
-inline void S2C_PG_Bet::set_user_id(::google::protobuf::int64 value) {
+inline void S2C_PG_Bet::set_seat_id(::google::protobuf::uint32 value) {
   
-  user_id_ = value;
-  // @@protoc_insertion_point(field_set:proto3_proto.S2C_PG_Bet.user_id)
+  seat_id_ = value;
+  // @@protoc_insertion_point(field_set:proto3_proto.S2C_PG_Bet.seat_id)
 }
 
 // repeated uint32 chips = 2;

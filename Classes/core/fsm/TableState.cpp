@@ -6,13 +6,13 @@ NS_CORE_BEGIN
 
 GAME_STATE TableState::handleEvent(const GameEvent * event)
 {
-	if (false)
-	{
-
-	}
-	else
+	if (event->getType() == EVENT_LEAVE_MATCH )
 	{
 		return STATE_LOBBY;
+	}
+	else 
+	{
+		return STATE_TABLE;
 	}
 }
 

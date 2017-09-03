@@ -7,8 +7,6 @@ PaiGowSnaptShot::PaiGowSnaptShot()
 	:table_state(TableState::Unkown),
 	room_owner(0)
 {
-	public_cards = new Card[32];
-
 	for (size_t i = 0; i < 4; i++)
 	{
 		players.insert(std::make_pair(i,nullptr));
@@ -17,14 +15,7 @@ PaiGowSnaptShot::PaiGowSnaptShot()
 
 PaiGowSnaptShot::~PaiGowSnaptShot()
 {
-	delete public_cards;
-	for (size_t i = 0; i < players.size(); i++)
-	{
-		if (players[i])
-		{
-			delete players[i];
-		}
-	}
+	clear();
 }
 
 void PaiGowSnaptShot::init(const proto3_proto::S2C_MatchSnapshot & mc_st)
@@ -32,11 +23,11 @@ void PaiGowSnaptShot::init(const proto3_proto::S2C_MatchSnapshot & mc_st)
 	initByMatch(mc_st.match());
 	table_state = (TableState)mc_st.paigow().state();
 	room_owner = mc_st.paigow().room_owner();
-	
+	banker_seat_id = mc_st.paigow().banker_seat_id();
 	size_t length = mc_st.paigow().public_cards_size();
 	for (size_t i = 0; i < length; i++)
 	{
-		public_cards[i] = mc_st.paigow().public_cards(i);
+		public_cards.push_back(mc_st.paigow().public_cards(i));
 	}
 
 	length = mc_st.paigow().players_size();
@@ -48,6 +39,22 @@ void PaiGowSnaptShot::init(const proto3_proto::S2C_MatchSnapshot & mc_st)
 
 }
 
+void PaiGowSnaptShot::clear()
+{
+	MatchSnaptShot::clear();
+	table_state = TableState::Unkown;
+	room_owner = 0;
+	public_cards.clear();
+	for (size_t i = 0; i < players.size(); i++)
+	{
+		if (players[i])
+		{
+			delete players[i];
+			players[i] = nullptr;
+		}
+	}
+}
+
 void PaiGowSnaptShot::addPlayer(const proto3_proto::PaiGowPlayer& p)
 {
 	uint32_t seatid = p.player().seat_id();
@@ -56,16 +63,24 @@ void PaiGowSnaptShot::addPlayer(const proto3_proto::PaiGowPlayer& p)
 	players[seatid]->initByPaiGowPlayer(p);
 }
 
-int PaiGowSnaptShot::getSeatIndex(int seatid)
+void PaiGowSnaptShot::deletePlayer(int seatid)
+{
+	CCASSERT(players[seatid] != nullptr, "delete player failed");
+	delete players[seatid];
+	players[seatid] = nullptr;
+}
+
+int PaiGowSnaptShot::getSeatIndex(int seatid) const
 {
 	int my_seat_id = -1;
 
-	for (size_t i = 0; i < players.size(); i++)
+	std::map<uint32_t, PaiGowPlayer*>::const_iterator iter;
+
+	for (iter = players.begin(); iter != players.end(); iter++)
 	{
-		if (players[i] && players[i]->isMainChar())
+		if ((*iter).second && (*iter).second->isMainChar())
 		{
-			my_seat_id = players[i]->seat_id - 1;
-			break;
+			my_seat_id = (*iter).second->seat_id - 1;
 		}
 	}
 	seatid--;
@@ -86,6 +101,20 @@ PaiGowPlayer * PaiGowSnaptShot::getMainPlayer() const
 		}
 	}
 	return nullptr;
+}
+
+bool PaiGowSnaptShot::isMainPlayer(uint32_t seat_id) const
+{
+	std::map<uint32_t, PaiGowPlayer*>::const_iterator iter;
+	for (iter = players.begin(); iter != players.end(); iter++)
+	{
+		if (iter->first == seat_id && iter->second && iter->second->isMainChar())
+		{
+			return true;
+		}
+	}
+
+	return false;
 }
 
 NS_PAIGOW_END

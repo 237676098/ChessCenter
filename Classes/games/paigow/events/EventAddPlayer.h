@@ -1,3 +1,7 @@
+#ifndef __EVENT_ADD_PLAYER_H__
+#define __EVENT_ADD_PLAYER_H__
+
+
 #include "core/event/EventManager.h"
 #include "games/paigow/PaiGowPlayer.h"
 
@@ -14,3 +18,5 @@ public:
 
 
 NS_PAIGOW_END
+
+#endif

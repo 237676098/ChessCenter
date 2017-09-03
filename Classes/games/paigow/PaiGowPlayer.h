@@ -13,7 +13,6 @@ public:
 	virtual  ~PaiGowPlayer();
 	void initByPaiGowPlayer(const proto3_proto::PaiGowPlayer& player);
 public:
-	bool is_banker;
 	bool status;
 	std::vector<Card> hand_cards;
 	std::vector<uint32_t> chips;

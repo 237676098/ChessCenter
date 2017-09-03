@@ -2,6 +2,11 @@
 #include "PaigowManager.h"
 #include "core/scene/scene.h"
 #include "games/paigow/events/EventAddPlayer.h"
+#include "games/paigow/events/EventDeletePlayer.h"
+#include "games/paigow/events/EventStartGame.h"
+#include "games/paigow/events/EventBankerConfirm.h"
+#include "games/paigow/events/EventBet.h"
+#include "games/paigow/events/EventOffLine.h"
 
 USING_NS_CC;
 
@@ -76,11 +81,52 @@ void PaiGowViewController::init()
 
 
 	core::EventManager::Instance().AddEventHandler(core::EVT_PG_AddPlayer,this);
+	core::EventManager::Instance().AddEventHandler(core::EVT_PG_DeletePlayer, this);
+	core::EventManager::Instance().AddEventHandler(core::EVT_PG_StartGame, this);
+	core::EventManager::Instance().AddEventHandler(core::EVT_PG_BankerConfirm,this);
+	core::EventManager::Instance().AddEventHandler(core::EVT_PG_Bet, this);
+	core::EventManager::Instance().AddEventHandler(core::EVT_PG_OffLine, this);
 }
 
+void PaiGowViewController::dispose()
+{
+	if (m_view)
+	{
+		core::SceneManager::getInstance()->remove(core::LayerMainUI, m_view);
+		m_view = nullptr;
+	}
 
+	if (m_wait_operate_view)
+	{
+		core::SceneManager::getInstance()->remove(core::LayerMainUIUp, m_wait_operate_view);
+		m_wait_operate_view = nullptr;
+	}
 
+	if (m_grab_operate_view)
+	{
+		core::SceneManager::getInstance()->remove(core::LayerMainUIUp, m_grab_operate_view);
+		m_grab_operate_view = nullptr;
+	}
 
+	if (m_bet_operate_view)
+	{
+		core::SceneManager::getInstance()->remove(core::LayerMainUIUp, m_bet_operate_view);
+		m_bet_operate_view = nullptr;
+	}
+
+	
+	std::map<uint32_t, PaiGowSeatView*>::iterator iter;
+
+	for (iter = m_seat_views.begin(); iter != m_seat_views.end(); iter++)
+	{
+		if ((*iter).second != nullptr)
+		{
+			core::SceneManager::getInstance()->remove(core::LayerMainUI, (*iter).second);
+			(*iter).second = nullptr;
+		}
+	}
+
+}
 
 int PaiGowViewController::HandleEvent(core::Event * evt)
 {
@@ -89,6 +135,65 @@ int PaiGowViewController::HandleEvent(core::Event * evt)
 		EventAddPlayer* event = (EventAddPlayer*)(evt);
 		addSeat(event->player);
 	}
+	else if(evt->id_ == core::EVT_PG_DeletePlayer)
+	{
+		EventDeletePlayer* event = (EventDeletePlayer*)(evt);
+		deleteSeat(event->seat_id);
+	}
+	else if (evt->id_ == core::EVT_PG_StartGame)
+	{
+		EventStartGame* event = (EventStartGame*)(evt);
+		if (m_wait_operate_view)
+		{
+			core::SceneManager::getInstance()->remove(core::LayerMainUIUp, m_wait_operate_view);
+			m_wait_operate_view = nullptr;
+		}
+
+
+		m_grab_operate_view = PaigowGrabOperateView::create();
+		m_grab_operate_view->setPosition(Vec2(g_win_size.width / 2,100));
+		core::SceneManager::getInstance()->add(core::LayerMainUIUp, m_grab_operate_view);
+	}
+	else if(evt->id_ == core::EVT_PG_BankerConfirm)
+	{
+		EventBankerConfirm* event = (EventBankerConfirm*)(evt);
+		m_seat_views[event->seat_id]->showBanker();
+		
+
+		//销毁上一阶段的ui
+		if (m_grab_operate_view)
+		{
+			core::SceneManager::getInstance()->remove(core::LayerMainUIUp, m_grab_operate_view);
+			m_grab_operate_view = nullptr;
+		}
+
+		//我是庄
+		if (m_data->isMainPlayer(event->seat_id))
+		{
+
+		}
+		else
+		{
+			//我不是庄 显示下注面板
+			m_bet_operate_view = PaigowBetOperateView::create();
+			m_bet_operate_view->setPosition(Vec2(g_win_size.width / 2, 100));
+			core::SceneManager::getInstance()->add(core::LayerMainUIUp, m_bet_operate_view);
+		}
+	}
+	else if (evt->id_ == core::EVT_PG_Bet)
+	{
+		EventBet* event = (EventBet*)(evt);
+		m_seat_views[event->seat_id]->showBet(event->bet1, event->bet2, betPos(event->seat_id));
+
+
+	}
+	else if (evt->id_ == core::EVT_PG_OffLine)
+	{
+		EventOffline* event = (EventOffline*)(evt);
+		m_seat_views[event->seat_id]->showOffline(event->offline);
+
+	}
+
 	return 0;
 }
 
@@ -103,7 +208,7 @@ void PaiGowViewController::addSeat(PaiGowPlayer * player)
 	m_seat_views[player->seat_id] = view;
 }
 
-void PaiGowViewController::deleteSeat(int seat_id)
+void PaiGowViewController::deleteSeat(uint32_t seat_id)
 {
 	if (m_seat_views.find(seat_id) != m_seat_views.end())
 	{
@@ -123,7 +228,7 @@ cocos2d::Vec2 PaiGowViewController::seatPos(PaiGowPlayer * player)
 {
 
 	int s_id = m_data->getSeatIndex(player->seat_id);
-	CCLOG("seatid:%d   s_id:%d", player->seat_id,s_id);
+	CCLOG("seatid:%d   s_id:%d", player->seat_id, s_id);
 
 	switch (s_id)
 	{
@@ -132,14 +237,42 @@ cocos2d::Vec2 PaiGowViewController::seatPos(PaiGowPlayer * player)
 		case 1:
 			return Vec2(g_win_size.width - 70, g_win_size.height / 2);
 		case 2:
-			return Vec2(g_win_size.width/2 - 90, g_win_size.height -  140);
+			return Vec2(g_win_size.width / 2 - 90, g_win_size.height - 140);
 		case 3:
 			return Vec2(70, g_win_size.height / 2);
-	default:
-		break;
+		default:
+			break;
 	}
 
 	return cocos2d::Vec2(0, 0);
 }
+
+cocos2d::Vec2 PaiGowViewController::betPos(PaiGowPlayer * player)
+{
+	int s_id = m_data->getSeatIndex(player->seat_id);
+	CCLOG("seatid:%d   s_id:%d", player->seat_id, s_id);
+
+	switch (s_id)
+	{
+		case 0:
+			return Vec2(110, -45);
+		case 1:
+			return Vec2(0, -90);
+		case 2:
+			return Vec2(0, -90);
+		case 3:
+			return Vec2(0, -90);
+		default:
+			break;
+	}
+
+	return cocos2d::Vec2(0, 0);
+}
+
+cocos2d::Vec2 PaiGowViewController::betPos(int seat_id)
+{
+	return betPos(m_data->players[seat_id]);
+}
+
 
 NS_PAIGOW_END

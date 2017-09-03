@@ -11,9 +11,15 @@ public:
 	static PaiGowSeatView* create();
 	PaiGowSeatView() :IBaseUI() {};
 	bool initWithFile(const std::string fileName) override;
-	void update();
 	void initView(PaiGowPlayer* player);
+	void reset();
+	void showBanker();
+	void showReady();
+	void showResult(int result);
+	void showBet(uint32_t bet1, uint32_t bet2,cocos2d::Vec2 pos);
+	void showOffline(bool b);
 private:
+	static const  cocos2d::Vec2 bet_positions[];
 	PaiGowPlayer* m_player;
 };
 

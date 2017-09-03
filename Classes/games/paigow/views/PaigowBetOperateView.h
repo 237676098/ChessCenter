@@ -11,8 +11,11 @@ public:
 	PaigowBetOperateView() :IBaseUI() {};
 	bool initWithFile(const std::string fileName) override;
 	void update();
-private:
+	void onClickChip(Ref* ref);
 
+private:
+	std::vector<uint32_t> m_chips;
+	static const uint32_t m_chips_level[5];
 };
 
 NS_PAIGOW_END

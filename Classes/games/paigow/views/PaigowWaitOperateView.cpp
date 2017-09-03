@@ -31,7 +31,8 @@ bool PaiGowWaitOperateView::initWithFile(const std::string fileName)
 	});
 
 	m_csb->getChildByName<Button*>("m_btn_quit")->addClickEventListener([this](Ref*) {
-
+		proto3_proto::C2S_LeaveMatch msg;
+		core::SocketManager::getInstance()->sendMessage(core::ID_C2S_LeaveMatch, msg);
 	});
 
 	m_csb->getChildByName<Button*>("m_btn_invite")->addClickEventListener([this](Ref*) {

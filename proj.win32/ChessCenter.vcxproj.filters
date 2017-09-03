@@ -213,6 +213,12 @@
     <ClCompile Include="..\Classes\games\paigow\views\PaIGowHandCardsPanel.cpp">
       <Filter>src\games\paigow\views</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\games\paigow\views\PaigowGrabOperateView.cpp">
+      <Filter>src\games\paigow\views</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\games\paigow\views\PaigowCollocationOperateView.cpp">
+      <Filter>src\games\paigow\views</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -384,6 +390,27 @@
       <Filter>src\games\paigow\views</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\games\paigow\events\EventAddPlayer.h">
+      <Filter>src\games\paigow\events</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\games\paigow\events\EventDeletePlayer.h">
+      <Filter>src\games\paigow\events</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\games\paigow\events\EventStartGame.h">
+      <Filter>src\games\paigow\events</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\games\paigow\views\PaigowGrabOperateView.h">
+      <Filter>src\games\paigow\views</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\games\paigow\events\EventBankerConfirm.h">
+      <Filter>src\games\paigow\events</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\games\paigow\events\EventBet.h">
+      <Filter>src\games\paigow\events</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\games\paigow\views\PaigowCollocationOperateView.h">
+      <Filter>src\games\paigow\views</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\games\paigow\events\EventOffLine.h">
       <Filter>src\games\paigow\events</Filter>
     </ClInclude>
   </ItemGroup>

@@ -8,6 +8,11 @@ NS_CORE_BEGIN
 enum EventId
 {
 	EVT_PG_AddPlayer = 0,
+	EVT_PG_DeletePlayer = 1,
+	EVT_PG_StartGame = 2,
+	EVT_PG_BankerConfirm = 3,
+	EVT_PG_Bet = 4,
+	EVT_PG_OffLine = 5
 };
 
 struct Event

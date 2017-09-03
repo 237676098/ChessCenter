@@ -7,4 +7,7 @@
     <string name="cancel">取消</string>
     <string name="exit">结束</string>
     <string name="score">得分：</string>
+	<string name="room_id">房间号</string>
+	<string name="paigow_first_bet">第一道下注</string>
+	<string name="paigow_second_bet">第二道下注</string>
 </resources>

@@ -32,6 +32,8 @@ void PaigowManager::dispose()
 		//core::SceneManager::getInstance()->remove(core::LayerMainUI, m_view);
 	//}
 	//m_view = nullptr;
+	m_data->clear();
+	m_controller->dispose();
 }
 
 NS_PAIGOW_END

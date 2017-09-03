@@ -12,6 +12,7 @@ public:
 	MatchSnaptShot();
 	virtual ~MatchSnaptShot();
 	void initByMatch(const proto3_proto::Match& match);
+	virtual void clear();
 
 public:
 	int room_id;

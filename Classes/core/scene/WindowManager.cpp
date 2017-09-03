@@ -30,6 +30,21 @@ IBaseWindow * WindowManager::getWindow(WindowId windowId)
 	return nullptr;
 }
 
+void WindowManager::clear()
+{
+	WindowMap::iterator iter;
+
+	for (iter = m_windows.begin(); iter != m_windows.end(); iter++)
+	{
+		if ((*iter).second.window)
+		{
+			core::SceneManager::getInstance()->remove(core::LayerPopWindow, (*iter).second.window);
+			(*iter).second.window = nullptr;
+			(*iter).second.state = WindowClose;
+		}
+	}
+}
+
 void WindowManager::close(WindowId id)
 {
 	if (m_windows.find(id) == m_windows.end())

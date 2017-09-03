@@ -2,6 +2,7 @@
 #include "LoginState.h"
 #include "LobbyState.h"
 #include "TableState.h"
+#include "core/scene/WindowManager.h"
 
 NS_CORE_BEGIN
 SINGLETON_C_D(GameStateMachine)
@@ -18,6 +19,10 @@ void GameStateMachine::dispatchEvent(const GameEvent* event)
 	{
 		this->m_state->exit(event);
 		delete this->m_state;
+
+		//¹Ø±Õ½çÃæ
+		WindowManager::getInstance()->clear();
+
 		this->m_state = _createStateByType(state_type);
 		this->m_state->enter(event);
 	}
