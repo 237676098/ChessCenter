@@ -99,6 +99,9 @@ extern S2C_MatchSnapshotDefaultTypeInternal _S2C_MatchSnapshot_default_instance_
 class S2C_OffLine;
 class S2C_OffLineDefaultTypeInternal;
 extern S2C_OffLineDefaultTypeInternal _S2C_OffLine_default_instance_;
+class S2C_OnLine;
+class S2C_OnLineDefaultTypeInternal;
+extern S2C_OnLineDefaultTypeInternal _S2C_OnLine_default_instance_;
 class S2C_PG_AddPlayer;
 class S2C_PG_AddPlayerDefaultTypeInternal;
 extern S2C_PG_AddPlayerDefaultTypeInternal _S2C_PG_AddPlayer_default_instance_;
@@ -802,6 +805,86 @@ class S2C_OffLine : public ::google::protobuf::Message /* @@protoc_insertion_poi
 };
 // -------------------------------------------------------------------
 
+class S2C_OnLine : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:proto3_proto.S2C_OnLine) */ {
+ public:
+  S2C_OnLine();
+  virtual ~S2C_OnLine();
+
+  S2C_OnLine(const S2C_OnLine& from);
+
+  inline S2C_OnLine& operator=(const S2C_OnLine& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const S2C_OnLine& default_instance();
+
+  static inline const S2C_OnLine* internal_default_instance() {
+    return reinterpret_cast<const S2C_OnLine*>(
+               &_S2C_OnLine_default_instance_);
+  }
+  static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
+    7;
+
+  void Swap(S2C_OnLine* other);
+
+  // implements Message ----------------------------------------------
+
+  inline S2C_OnLine* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  S2C_OnLine* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const S2C_OnLine& from);
+  void MergeFrom(const S2C_OnLine& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(S2C_OnLine* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // uint32 seat_id = 1;
+  void clear_seat_id();
+  static const int kSeatIdFieldNumber = 1;
+  ::google::protobuf::uint32 seat_id() const;
+  void set_seat_id(::google::protobuf::uint32 value);
+
+  // @@protoc_insertion_point(class_scope:proto3_proto.S2C_OnLine)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::uint32 seat_id_;
+  mutable int _cached_size_;
+  friend struct protobuf_game_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
 class S2C_MatchSnapshot : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:proto3_proto.S2C_MatchSnapshot) */ {
  public:
   S2C_MatchSnapshot();
@@ -822,7 +905,7 @@ class S2C_MatchSnapshot : public ::google::protobuf::Message /* @@protoc_inserti
                &_S2C_MatchSnapshot_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    7;
+    8;
 
   void Swap(S2C_MatchSnapshot* other);
 
@@ -1284,6 +1367,24 @@ inline void S2C_OffLine::set_seat_id(::google::protobuf::uint32 value) {
 
 // -------------------------------------------------------------------
 
+// S2C_OnLine
+
+// uint32 seat_id = 1;
+inline void S2C_OnLine::clear_seat_id() {
+  seat_id_ = 0u;
+}
+inline ::google::protobuf::uint32 S2C_OnLine::seat_id() const {
+  // @@protoc_insertion_point(field_get:proto3_proto.S2C_OnLine.seat_id)
+  return seat_id_;
+}
+inline void S2C_OnLine::set_seat_id(::google::protobuf::uint32 value) {
+  
+  seat_id_ = value;
+  // @@protoc_insertion_point(field_set:proto3_proto.S2C_OnLine.seat_id)
+}
+
+// -------------------------------------------------------------------
+
 // S2C_MatchSnapshot
 
 // .proto3_proto.Match match = 1;
@@ -1365,6 +1466,8 @@ inline void S2C_MatchSnapshot::set_allocated_paigow(::proto3_proto::PaiGowSnapsh
 }
 
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

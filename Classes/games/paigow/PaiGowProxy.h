@@ -21,6 +21,7 @@ private:
 	MSG_FUNCTION_DEFINE(S2C_PG_AddPlayer)
 	MSG_FUNCTION_DEFINE(S2C_LeaveMatch)
 	MSG_FUNCTION_DEFINE(S2C_OffLine)
+	MSG_FUNCTION_DEFINE(S2C_OnLine)
 
 private:
 	PaiGowSnaptShot* m_data;

@@ -60,15 +60,12 @@ void PaigowBetOperateView::onClickChip(Ref * ref)
 	{
 		m_chips.push_back(chip);
 		setVisible(false);
-
 		proto3_proto::C2S_PG_Bet msg;
-		for each (uint32_t cp in m_chips)
+		for (size_t i = 0; i < m_chips.size(); i++)
 		{
-			msg.add_chips(cp);
+			msg.add_chips(m_chips[i]);
 		}
-
 		core::SocketManager::getInstance()->sendMessage(core::ID_C2S_PG_Bet,msg);
-
 	}
 }
 

@@ -3,6 +3,7 @@
 #include "user/user.h"
 #include "core/network/socket/SocketManager.h"
 #include "user/UserManager.h"
+#include "games/game.h"
 
 
 USING_NS_CHESS;
@@ -58,6 +59,7 @@ void LoginManager::onSocketConnected()
 	CCLOG("socket connected!");
 	//Ä£¿é³õÊ¼»¯ ×¢²áÍøÂç¼àÌýÊÂ¼þ
 	user::UserManager::getInstance()->init();
+	game::GameManager::getInstance();
 
 
 	proto3_proto::C2S_Login c2s_login;

@@ -22,7 +22,7 @@ void SceneManager::add(LayerType layerType, Node* node, int zorder)
 	m_scene->getChildByTag(layerType)->addChild(node);
 	if (zorder != -1)
 	{
-		node->setZOrder(zorder);
+		node->setLocalZOrder(zorder);
 	}
 }
 

@@ -61,4 +61,4 @@ void onRev##_MSG_(google::protobuf::Message* messgae);
 
 //消息注册宏定义
 #define MSG_FUNCTION_REGISTER(_MSG_,_CLS_)			\
-core::SocketManager::getInstance()->registerHandler(core::ID_##_MSG_, std::bind(&##_CLS_::onRev##_MSG_, this, std::placeholders::_1));
+core::SocketManager::getInstance()->registerHandler(core::ID_##_MSG_, std::bind(&_CLS_::onRev##_MSG_, this, std::placeholders::_1));

@@ -32,6 +32,8 @@ class S2C_LeaveMatchDefaultTypeInternal : public ::google::protobuf::internal::E
 } _S2C_LeaveMatch_default_instance_;
 class S2C_OffLineDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<S2C_OffLine> {
 } _S2C_OffLine_default_instance_;
+class S2C_OnLineDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<S2C_OnLine> {
+} _S2C_OnLine_default_instance_;
 class S2C_MatchSnapshotDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<S2C_MatchSnapshot> {
 } _S2C_MatchSnapshot_default_instance_;
 
@@ -40,7 +42,7 @@ namespace protobuf_game_2eproto {
 
 namespace {
 
-::google::protobuf::Metadata file_level_metadata[8];
+::google::protobuf::Metadata file_level_metadata[9];
 
 }  // namespace
 
@@ -55,6 +57,7 @@ PROTOBUF_CONSTEXPR_VAR ::google::protobuf::internal::AuxillaryParseTableField
 };
 PROTOBUF_CONSTEXPR_VAR ::google::protobuf::internal::ParseTable const
     TableStruct::schema[] = {
+  { NULL, NULL, 0, -1, -1, false },
   { NULL, NULL, 0, -1, -1, false },
   { NULL, NULL, 0, -1, -1, false },
   { NULL, NULL, 0, -1, -1, false },
@@ -121,6 +124,12 @@ const ::google::protobuf::uint32 TableStruct::offsets[] = {
   ~0u,  // no _weak_field_map_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(S2C_OffLine, seat_id_),
   ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(S2C_OnLine, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(S2C_OnLine, seat_id_),
+  ~0u,  // no _has_bits_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(S2C_MatchSnapshot, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
@@ -137,7 +146,8 @@ static const ::google::protobuf::internal::MigrationSchema schemas[] = {
   { 37, -1, sizeof(C2S_LeaveMatch)},
   { 42, -1, sizeof(S2C_LeaveMatch)},
   { 48, -1, sizeof(S2C_OffLine)},
-  { 54, -1, sizeof(S2C_MatchSnapshot)},
+  { 54, -1, sizeof(S2C_OnLine)},
+  { 60, -1, sizeof(S2C_MatchSnapshot)},
 };
 
 static ::google::protobuf::Message const * const file_default_instances[] = {
@@ -148,6 +158,7 @@ static ::google::protobuf::Message const * const file_default_instances[] = {
   reinterpret_cast<const ::google::protobuf::Message*>(&_C2S_LeaveMatch_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&_S2C_LeaveMatch_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&_S2C_OffLine_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&_S2C_OnLine_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&_S2C_MatchSnapshot_default_instance_),
 };
 
@@ -169,7 +180,7 @@ void protobuf_AssignDescriptorsOnce() {
 void protobuf_RegisterTypes(const ::std::string&) GOOGLE_ATTRIBUTE_COLD;
 void protobuf_RegisterTypes(const ::std::string&) {
   protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 8);
+  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 9);
 }
 
 }  // namespace
@@ -189,8 +200,10 @@ void TableStruct::Shutdown() {
   delete file_level_metadata[5].reflection;
   _S2C_OffLine_default_instance_.Shutdown();
   delete file_level_metadata[6].reflection;
-  _S2C_MatchSnapshot_default_instance_.Shutdown();
+  _S2C_OnLine_default_instance_.Shutdown();
   delete file_level_metadata[7].reflection;
+  _S2C_MatchSnapshot_default_instance_.Shutdown();
+  delete file_level_metadata[8].reflection;
 }
 
 void TableStruct::InitDefaultsImpl() {
@@ -206,6 +219,7 @@ void TableStruct::InitDefaultsImpl() {
   _C2S_LeaveMatch_default_instance_.DefaultConstruct();
   _S2C_LeaveMatch_default_instance_.DefaultConstruct();
   _S2C_OffLine_default_instance_.DefaultConstruct();
+  _S2C_OnLine_default_instance_.DefaultConstruct();
   _S2C_MatchSnapshot_default_instance_.DefaultConstruct();
   _Match_default_instance_.get_mutable()->paigow_ = const_cast< ::proto3_proto::PaiGowConfig*>(
       ::proto3_proto::PaiGowConfig::internal_default_instance());
@@ -240,13 +254,14 @@ void AddDescriptorsImpl() {
       "match\030\003 \001(\0132\023.proto3_proto.Match\" \n\rC2S_"
       "JoinMatch\022\017\n\007room_id\030\001 \001(\005\"\020\n\016C2S_LeaveM"
       "atch\"!\n\016S2C_LeaveMatch\022\017\n\007seat_id\030\001 \001(\r\""
-      "\036\n\013S2C_OffLine\022\017\n\007seat_id\030\001 \001(\r\"e\n\021S2C_M"
-      "atchSnapshot\022\"\n\005match\030\001 \001(\0132\023.proto3_pro"
-      "to.Match\022,\n\006paigow\030\002 \001(\0132\034.proto3_proto."
-      "PaiGowSnapshotb\006proto3"
+      "\036\n\013S2C_OffLine\022\017\n\007seat_id\030\001 \001(\r\"\035\n\nS2C_O"
+      "nLine\022\017\n\007seat_id\030\001 \001(\r\"e\n\021S2C_MatchSnaps"
+      "hot\022\"\n\005match\030\001 \001(\0132\023.proto3_proto.Match\022"
+      ",\n\006paigow\030\002 \001(\0132\034.proto3_proto.PaiGowSna"
+      "pshotb\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 702);
+      descriptor, 733);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "game.proto", &protobuf_RegisterTypes);
   ::proto3_proto::protobuf_paigow_2eproto::AddDescriptors();
@@ -2637,6 +2652,240 @@ void S2C_OffLine::set_seat_id(::google::protobuf::uint32 value) {
   
   seat_id_ = value;
   // @@protoc_insertion_point(field_set:proto3_proto.S2C_OffLine.seat_id)
+}
+
+#endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
+
+// ===================================================================
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int S2C_OnLine::kSeatIdFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+S2C_OnLine::S2C_OnLine()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_game_2eproto::InitDefaults();
+  }
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:proto3_proto.S2C_OnLine)
+}
+S2C_OnLine::S2C_OnLine(const S2C_OnLine& from)
+  : ::google::protobuf::Message(),
+      _internal_metadata_(NULL),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  seat_id_ = from.seat_id_;
+  // @@protoc_insertion_point(copy_constructor:proto3_proto.S2C_OnLine)
+}
+
+void S2C_OnLine::SharedCtor() {
+  seat_id_ = 0u;
+  _cached_size_ = 0;
+}
+
+S2C_OnLine::~S2C_OnLine() {
+  // @@protoc_insertion_point(destructor:proto3_proto.S2C_OnLine)
+  SharedDtor();
+}
+
+void S2C_OnLine::SharedDtor() {
+}
+
+void S2C_OnLine::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* S2C_OnLine::descriptor() {
+  protobuf_game_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_game_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
+}
+
+const S2C_OnLine& S2C_OnLine::default_instance() {
+  protobuf_game_2eproto::InitDefaults();
+  return *internal_default_instance();
+}
+
+S2C_OnLine* S2C_OnLine::New(::google::protobuf::Arena* arena) const {
+  S2C_OnLine* n = new S2C_OnLine;
+  if (arena != NULL) {
+    arena->Own(n);
+  }
+  return n;
+}
+
+void S2C_OnLine::Clear() {
+// @@protoc_insertion_point(message_clear_start:proto3_proto.S2C_OnLine)
+  seat_id_ = 0u;
+}
+
+bool S2C_OnLine::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:proto3_proto.S2C_OnLine)
+  for (;;) {
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // uint32 seat_id = 1;
+      case 1: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(8u)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+                 input, &seat_id_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0 ||
+            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormatLite::SkipField(input, tag));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:proto3_proto.S2C_OnLine)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:proto3_proto.S2C_OnLine)
+  return false;
+#undef DO_
+}
+
+void S2C_OnLine::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:proto3_proto.S2C_OnLine)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // uint32 seat_id = 1;
+  if (this->seat_id() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(1, this->seat_id(), output);
+  }
+
+  // @@protoc_insertion_point(serialize_end:proto3_proto.S2C_OnLine)
+}
+
+::google::protobuf::uint8* S2C_OnLine::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  // @@protoc_insertion_point(serialize_to_array_start:proto3_proto.S2C_OnLine)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // uint32 seat_id = 1;
+  if (this->seat_id() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(1, this->seat_id(), target);
+  }
+
+  // @@protoc_insertion_point(serialize_to_array_end:proto3_proto.S2C_OnLine)
+  return target;
+}
+
+size_t S2C_OnLine::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:proto3_proto.S2C_OnLine)
+  size_t total_size = 0;
+
+  // uint32 seat_id = 1;
+  if (this->seat_id() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::UInt32Size(
+        this->seat_id());
+  }
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = cached_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void S2C_OnLine::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:proto3_proto.S2C_OnLine)
+  GOOGLE_DCHECK_NE(&from, this);
+  const S2C_OnLine* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const S2C_OnLine>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:proto3_proto.S2C_OnLine)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:proto3_proto.S2C_OnLine)
+    MergeFrom(*source);
+  }
+}
+
+void S2C_OnLine::MergeFrom(const S2C_OnLine& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:proto3_proto.S2C_OnLine)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.seat_id() != 0) {
+    set_seat_id(from.seat_id());
+  }
+}
+
+void S2C_OnLine::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:proto3_proto.S2C_OnLine)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void S2C_OnLine::CopyFrom(const S2C_OnLine& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:proto3_proto.S2C_OnLine)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool S2C_OnLine::IsInitialized() const {
+  return true;
+}
+
+void S2C_OnLine::Swap(S2C_OnLine* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void S2C_OnLine::InternalSwap(S2C_OnLine* other) {
+  std::swap(seat_id_, other->seat_id_);
+  std::swap(_cached_size_, other->_cached_size_);
+}
+
+::google::protobuf::Metadata S2C_OnLine::GetMetadata() const {
+  protobuf_game_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_game_2eproto::file_level_metadata[kIndexInFileMessages];
+}
+
+#if PROTOBUF_INLINE_NOT_IN_HEADERS
+// S2C_OnLine
+
+// uint32 seat_id = 1;
+void S2C_OnLine::clear_seat_id() {
+  seat_id_ = 0u;
+}
+::google::protobuf::uint32 S2C_OnLine::seat_id() const {
+  // @@protoc_insertion_point(field_get:proto3_proto.S2C_OnLine.seat_id)
+  return seat_id_;
+}
+void S2C_OnLine::set_seat_id(::google::protobuf::uint32 value) {
+  
+  seat_id_ = value;
+  // @@protoc_insertion_point(field_set:proto3_proto.S2C_OnLine.seat_id)
 }
 
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS

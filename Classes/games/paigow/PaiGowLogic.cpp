@@ -72,7 +72,7 @@ int PaiGowLogic::compare(const Card * card1, const Card * card2)
 		}
 
 	}
-
+	return 0;
 }
 
 void PaiGowLogic::parseGroup(const Card * card, CardGroup & group)

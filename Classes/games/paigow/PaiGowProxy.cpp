@@ -23,6 +23,7 @@ PaiGowProxy::PaiGowProxy(PaiGowSnaptShot* data)
 	MSG_FUNCTION_REGISTER(S2C_PG_AddPlayer, PaiGowProxy)
 	MSG_FUNCTION_REGISTER(S2C_LeaveMatch, PaiGowProxy)
 	MSG_FUNCTION_REGISTER(S2C_OffLine, PaiGowProxy)
+	MSG_FUNCTION_REGISTER(S2C_OnLine, PaiGowProxy)
 }
 
 PaiGowProxy::~PaiGowProxy()
@@ -113,6 +114,14 @@ void PaiGowProxy::onRevS2C_OffLine(google::protobuf::Message* msg)
 	proto3_proto::S2C_OffLine* s2c_msg = dynamic_cast<proto3_proto::S2C_OffLine*> (msg);
 	CCLOG("offline %u", s2c_msg ->seat_id());
 	EventOffline event(s2c_msg->seat_id(), true);
+	core::EventManager::Instance().DispatchEvent(&event);
+}
+
+void  PaiGowProxy::onRevS2C_OnLine(google::protobuf::Message* msg)
+{
+	proto3_proto::S2C_OnLine* s2c_msg = dynamic_cast<proto3_proto::S2C_OnLine*> (msg);
+	CCLOG("online %u", s2c_msg->seat_id());
+	EventOffline event(s2c_msg->seat_id(), false);
 	core::EventManager::Instance().DispatchEvent(&event);
 }
 

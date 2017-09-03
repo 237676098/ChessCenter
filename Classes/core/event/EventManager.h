@@ -1,5 +1,6 @@
 #ifndef __EVENTMANAGER_H__
 #define __EVENTMANAGER_H__
+#include<algorithm>
 #include "utils/CommonMacros.h"
 #include <list>
 #include <map>

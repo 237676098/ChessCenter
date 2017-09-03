@@ -90,6 +90,7 @@ void PaiGowSeatView::reset()
 	m_csb->getChildByName<Sprite*>("img_is_banker")->setVisible(false);
 	m_csb->getChildByName<Sprite*>("img_result")->setVisible(false);
 	m_csb->getChildByName<Sprite*>("img_is_ready")->setVisible(false);
+	m_csb->getChildByName("node_offline")->setVisible(false);
 }
 
 NS_PAIGOW_END

@@ -31,6 +31,7 @@ MESSAGE_GETTER(C2S_JoinMatch);
 MESSAGE_GETTER(C2S_LeaveMatch);
 MESSAGE_GETTER(S2C_LeaveMatch);
 MESSAGE_GETTER(S2C_OffLine);
+MESSAGE_GETTER(S2C_OnLine);
 MESSAGE_GETTER(S2C_MatchSnapshot);
 
 
@@ -65,6 +66,7 @@ MsgGetterMap::value_type init_value[] =
     MsgGetterMap::value_type(ID_C2S_LeaveMatch,GetProtoC2S_LeaveMatch),
     MsgGetterMap::value_type(ID_S2C_LeaveMatch,GetProtoS2C_LeaveMatch),
     MsgGetterMap::value_type(ID_S2C_OffLine,GetProtoS2C_OffLine),
+    MsgGetterMap::value_type(ID_S2C_OnLine,GetProtoS2C_OnLine),
     MsgGetterMap::value_type(ID_S2C_MatchSnapshot,GetProtoS2C_MatchSnapshot),
 
 };

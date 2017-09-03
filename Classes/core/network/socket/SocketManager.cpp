@@ -199,7 +199,7 @@ void SocketManager::Connect(std::string ip, uint16 port)
 	if ((h = gethostbyname(host.c_str())) == NULL)
 	{
 		CCLog("不能得到IP\n");
-		return false;
+		return;
 	}
 	CCLog("HostName :%s\n", h->h_name);
 	CCLog("IP Address :%s\n", inet_ntoa(*((struct in_addr *)h->h_addr)));
