@@ -10,10 +10,14 @@ class PaiGowHandCardsPanel:cocos2d::Node
 public:
 	PaiGowHandCardsPanel();
 	~PaiGowHandCardsPanel();
+	static PaiGowHandCardsPanel* create();
+	void clear();
 
-	void push(int index);
-	void pull(int index);
-	///void other
+	void push(uint32_t index);										//将某一张牌推上去
+	void pull(uint32_t index);										//将某一张牌拉下来
+	void setCards(const std::vector<Card>& cards);				//初始化牌
+	void playCollocation();										//其他人亮牌
+	void playCollocation(const std::vector<Card>& cards);		//我自己亮牌
 
 private:
 	static const cocos2d::Vec2 key_points[6];

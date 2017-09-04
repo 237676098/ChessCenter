@@ -14,6 +14,7 @@ public:
 	void setCard(const Card& card);
 	void turnBack(bool isAnimation);
 	void turnFront(bool isAnimation);
+	Card getCard() const { return m_card; };
 private:
 	Card m_card;
 };

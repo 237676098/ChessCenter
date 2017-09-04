@@ -17,6 +17,7 @@ public:
 	std::vector<Card> hand_cards;
 	std::vector<uint32_t> chips;
 	int score;
+	bool is_grab;
 };
 
 

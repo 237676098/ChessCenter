@@ -43,6 +43,7 @@ const MessageId ID_C2S_PG_StartGame = 3567813292;
 const MessageId ID_S2C_PG_StartGame = 94932318;
 const MessageId ID_C2S_PG_GrabBanker = 3468914758;
 const MessageId ID_S2C_PG_GrabBanker = 1311290926;
+const MessageId ID_S2C_PG_GrabBanker_RES = 2736567944;
 const MessageId ID_C2S_PG_Bet = 1738246803;
 const MessageId ID_S2C_PG_Bet = 3204728445;
 const MessageId ID_S2C_PG_Deal = 4186617870;
@@ -63,7 +64,7 @@ const MessageId ID_S2C_MatchSnapshot = 1194346942;
 
 extern MsgGetterMap::value_type init_value[]; 
 
-const static MsgGetterMap message_getter_maps(init_value, init_value + 31);
+const static MsgGetterMap message_getter_maps(init_value, init_value + 32);
 
 
 NS_CORE_END

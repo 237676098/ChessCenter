@@ -1,12 +1,7 @@
 #include "PaiGowViewController.h"
 #include "PaigowManager.h"
 #include "core/scene/scene.h"
-#include "games/paigow/events/EventAddPlayer.h"
-#include "games/paigow/events/EventDeletePlayer.h"
-#include "games/paigow/events/EventStartGame.h"
-#include "games/paigow/events/EventBankerConfirm.h"
-#include "games/paigow/events/EventBet.h"
-#include "games/paigow/events/EventOffLine.h"
+#include "games/paigow/events/paigow_events.h"
 
 USING_NS_CC;
 
@@ -86,6 +81,8 @@ void PaiGowViewController::init()
 	core::EventManager::Instance().AddEventHandler(core::EVT_PG_BankerConfirm,this);
 	core::EventManager::Instance().AddEventHandler(core::EVT_PG_Bet, this);
 	core::EventManager::Instance().AddEventHandler(core::EVT_PG_OffLine, this);
+	core::EventManager::Instance().AddEventHandler(core::EVT_PG_DealCard, this);
+	core::EventManager::Instance().AddEventHandler(core::EVT_PG_GrabStatus, this);
 }
 
 void PaiGowViewController::dispose()
@@ -154,6 +151,18 @@ int PaiGowViewController::HandleEvent(core::Event * evt)
 		m_grab_operate_view->setPosition(Vec2(g_win_size.width / 2,100));
 		core::SceneManager::getInstance()->add(core::LayerMainUIUp, m_grab_operate_view);
 	}
+	else if (evt->id_ == core::EVT_PG_GrabStatus)
+	{
+		EventGrabStatus* event = (EventGrabStatus*)(evt);
+		if (event->is_grab)
+		{
+			m_seat_views[event->seat_id]->setStatus("status_qiang");
+		}
+		else
+		{
+			m_seat_views[event->seat_id]->setStatus("status_buqiang");
+		}
+	}
 	else if(evt->id_ == core::EVT_PG_BankerConfirm)
 	{
 		EventBankerConfirm* event = (EventBankerConfirm*)(evt);
@@ -167,17 +176,18 @@ int PaiGowViewController::HandleEvent(core::Event * evt)
 			m_grab_operate_view = nullptr;
 		}
 
+
+		m_bet_operate_view = PaigowBetOperateView::create();
+		m_bet_operate_view->setPosition(Vec2(g_win_size.width / 2, 100));
+		core::SceneManager::getInstance()->add(core::LayerMainUIUp, m_bet_operate_view);
 		//我是庄
 		if (m_data->isMainPlayer(event->seat_id))
 		{
-
+			m_bet_operate_view->show(true);
 		}
 		else
 		{
-			//我不是庄 显示下注面板
-			m_bet_operate_view = PaigowBetOperateView::create();
-			m_bet_operate_view->setPosition(Vec2(g_win_size.width / 2, 100));
-			core::SceneManager::getInstance()->add(core::LayerMainUIUp, m_bet_operate_view);
+			m_bet_operate_view->show(false);
 		}
 	}
 	else if (evt->id_ == core::EVT_PG_Bet)
@@ -191,6 +201,18 @@ int PaiGowViewController::HandleEvent(core::Event * evt)
 	{
 		EventOffline* event = (EventOffline*)(evt);
 		m_seat_views[event->seat_id]->showOffline(event->offline);
+
+	}
+	else if(evt->id_ == core::EVT_PG_DealCard)
+	{
+		//给每个玩家发牌
+		std::map<uint32_t, PaiGowPlayer*>::const_iterator iter;
+		for (iter = m_data->players.begin(); iter != m_data->players.end(); iter++)
+		{
+			m_handcards_views[iter->first] = PaiGowHandCardsPanel::create();
+			m_handcards_views[iter->first]->setCards(iter->second->hand_cards);
+		}
+
 
 	}
 

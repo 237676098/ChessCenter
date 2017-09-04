@@ -413,6 +413,15 @@
     <ClInclude Include="..\Classes\games\paigow\events\EventOffLine.h">
       <Filter>src\games\paigow\events</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\games\paigow\events\EventDealCard.h">
+      <Filter>src\games\paigow\events</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\games\paigow\events\paigow_events.h">
+      <Filter>src\games\paigow\events</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\games\paigow\events\EventGrabStatus.h">
+      <Filter>src\games\paigow\events</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">

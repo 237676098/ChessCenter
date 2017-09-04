@@ -36,6 +36,8 @@ class C2S_PG_GrabBankerDefaultTypeInternal : public ::google::protobuf::internal
 } _C2S_PG_GrabBanker_default_instance_;
 class S2C_PG_GrabBankerDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<S2C_PG_GrabBanker> {
 } _S2C_PG_GrabBanker_default_instance_;
+class S2C_PG_GrabBanker_RESDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<S2C_PG_GrabBanker_RES> {
+} _S2C_PG_GrabBanker_RES_default_instance_;
 class C2S_PG_BetDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<C2S_PG_Bet> {
 } _C2S_PG_Bet_default_instance_;
 class S2C_PG_BetDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<S2C_PG_Bet> {
@@ -56,7 +58,7 @@ namespace protobuf_paigow_2eproto {
 
 namespace {
 
-::google::protobuf::Metadata file_level_metadata[16];
+::google::protobuf::Metadata file_level_metadata[17];
 
 }  // namespace
 
@@ -71,6 +73,7 @@ PROTOBUF_CONSTEXPR_VAR ::google::protobuf::internal::AuxillaryParseTableField
 };
 PROTOBUF_CONSTEXPR_VAR ::google::protobuf::internal::ParseTable const
     TableStruct::schema[] = {
+  { NULL, NULL, 0, -1, -1, false },
   { NULL, NULL, 0, -1, -1, false },
   { NULL, NULL, 0, -1, -1, false },
   { NULL, NULL, 0, -1, -1, false },
@@ -110,6 +113,7 @@ const ::google::protobuf::uint32 TableStruct::offsets[] = {
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PaiGowPlayer, player_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PaiGowPlayer, hand_cards_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PaiGowPlayer, status_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PaiGowPlayer, has_banker_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PaiGowPlayer, chips_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PaiGowPlayer, score_),
   ~0u,  // no _has_bits_
@@ -160,6 +164,13 @@ const ::google::protobuf::uint32 TableStruct::offsets[] = {
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(S2C_PG_GrabBanker, seat_id_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(S2C_PG_GrabBanker, is_grab_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(S2C_PG_GrabBanker_RES, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(S2C_PG_GrabBanker_RES, seat_id_),
   ~0u,  // no _has_bits_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(C2S_PG_Bet, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -210,20 +221,21 @@ const ::google::protobuf::uint32 TableStruct::offsets[] = {
 static const ::google::protobuf::internal::MigrationSchema schemas[] = {
   { 0, -1, sizeof(PaiGowConfig)},
   { 12, -1, sizeof(PaiGowPlayer)},
-  { 22, -1, sizeof(PaiGowResult)},
-  { 30, -1, sizeof(PaiGowSnapshot)},
-  { 41, -1, sizeof(S2C_PG_AddPlayer)},
-  { 47, -1, sizeof(C2S_PG_StartGame)},
-  { 52, -1, sizeof(S2C_PG_StartGame)},
-  { 58, -1, sizeof(C2S_PG_GrabBanker)},
-  { 64, -1, sizeof(S2C_PG_GrabBanker)},
-  { 70, -1, sizeof(C2S_PG_Bet)},
-  { 76, -1, sizeof(S2C_PG_Bet)},
-  { 83, -1, sizeof(S2C_PG_Deal)},
-  { 89, -1, sizeof(C2S_PG_Collocation)},
-  { 96, -1, sizeof(S2C_PG_Collocation)},
-  { 103, -1, sizeof(S2C_PG_Result)},
-  { 110, -1, sizeof(C2S_PG_Sure)},
+  { 23, -1, sizeof(PaiGowResult)},
+  { 31, -1, sizeof(PaiGowSnapshot)},
+  { 42, -1, sizeof(S2C_PG_AddPlayer)},
+  { 48, -1, sizeof(C2S_PG_StartGame)},
+  { 53, -1, sizeof(S2C_PG_StartGame)},
+  { 59, -1, sizeof(C2S_PG_GrabBanker)},
+  { 65, -1, sizeof(S2C_PG_GrabBanker)},
+  { 72, -1, sizeof(S2C_PG_GrabBanker_RES)},
+  { 78, -1, sizeof(C2S_PG_Bet)},
+  { 84, -1, sizeof(S2C_PG_Bet)},
+  { 91, -1, sizeof(S2C_PG_Deal)},
+  { 97, -1, sizeof(C2S_PG_Collocation)},
+  { 104, -1, sizeof(S2C_PG_Collocation)},
+  { 111, -1, sizeof(S2C_PG_Result)},
+  { 118, -1, sizeof(C2S_PG_Sure)},
 };
 
 static ::google::protobuf::Message const * const file_default_instances[] = {
@@ -236,6 +248,7 @@ static ::google::protobuf::Message const * const file_default_instances[] = {
   reinterpret_cast<const ::google::protobuf::Message*>(&_S2C_PG_StartGame_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&_C2S_PG_GrabBanker_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&_S2C_PG_GrabBanker_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&_S2C_PG_GrabBanker_RES_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&_C2S_PG_Bet_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&_S2C_PG_Bet_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&_S2C_PG_Deal_default_instance_),
@@ -263,7 +276,7 @@ void protobuf_AssignDescriptorsOnce() {
 void protobuf_RegisterTypes(const ::std::string&) GOOGLE_ATTRIBUTE_COLD;
 void protobuf_RegisterTypes(const ::std::string&) {
   protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 16);
+  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 17);
 }
 
 }  // namespace
@@ -287,20 +300,22 @@ void TableStruct::Shutdown() {
   delete file_level_metadata[7].reflection;
   _S2C_PG_GrabBanker_default_instance_.Shutdown();
   delete file_level_metadata[8].reflection;
-  _C2S_PG_Bet_default_instance_.Shutdown();
+  _S2C_PG_GrabBanker_RES_default_instance_.Shutdown();
   delete file_level_metadata[9].reflection;
-  _S2C_PG_Bet_default_instance_.Shutdown();
+  _C2S_PG_Bet_default_instance_.Shutdown();
   delete file_level_metadata[10].reflection;
-  _S2C_PG_Deal_default_instance_.Shutdown();
+  _S2C_PG_Bet_default_instance_.Shutdown();
   delete file_level_metadata[11].reflection;
-  _C2S_PG_Collocation_default_instance_.Shutdown();
+  _S2C_PG_Deal_default_instance_.Shutdown();
   delete file_level_metadata[12].reflection;
-  _S2C_PG_Collocation_default_instance_.Shutdown();
+  _C2S_PG_Collocation_default_instance_.Shutdown();
   delete file_level_metadata[13].reflection;
-  _S2C_PG_Result_default_instance_.Shutdown();
+  _S2C_PG_Collocation_default_instance_.Shutdown();
   delete file_level_metadata[14].reflection;
-  _C2S_PG_Sure_default_instance_.Shutdown();
+  _S2C_PG_Result_default_instance_.Shutdown();
   delete file_level_metadata[15].reflection;
+  _C2S_PG_Sure_default_instance_.Shutdown();
+  delete file_level_metadata[16].reflection;
 }
 
 void TableStruct::InitDefaultsImpl() {
@@ -317,6 +332,7 @@ void TableStruct::InitDefaultsImpl() {
   _S2C_PG_StartGame_default_instance_.DefaultConstruct();
   _C2S_PG_GrabBanker_default_instance_.DefaultConstruct();
   _S2C_PG_GrabBanker_default_instance_.DefaultConstruct();
+  _S2C_PG_GrabBanker_RES_default_instance_.DefaultConstruct();
   _C2S_PG_Bet_default_instance_.DefaultConstruct();
   _S2C_PG_Bet_default_instance_.DefaultConstruct();
   _S2C_PG_Deal_default_instance_.DefaultConstruct();
@@ -341,21 +357,23 @@ void AddDescriptorsImpl() {
       "to\"\227\001\n\014PaiGowConfig\022\013\n\003pot\030\001 \001(\r\022\023\n\013bank"
       "er_type\030\002 \001(\r\022\025\n\ris_bet_always\030\003 \001(\010\022\024\n\014"
       "lock_bet_num\030\004 \001(\r\022\014\n\004type\030\005 \001(\r\022\021\n\thas_"
-      "ghost\030\006 \001(\010\022\027\n\017has_heaven_nine\030\007 \001(\010\"z\n\014"
-      "PaiGowPlayer\022(\n\006player\030\001 \001(\0132\030.proto3_pr"
-      "oto.PlayerInfo\022\022\n\nhand_cards\030\002 \003(\r\022\016\n\006st"
-      "atus\030\003 \001(\r\022\r\n\005chips\030\004 \003(\r\022\r\n\005score\030\005 \001(\005"
-      "\"C\n\014PaiGowResult\022\017\n\007seat_id\030\001 \001(\r\022\016\n\006res"
-      "ult\030\002 \001(\005\022\022\n\nhand_cards\030\003 \003(\r\"\273\001\n\016PaiGow"
-      "Snapshot\022\r\n\005state\030\001 \001(\r\022\022\n\nroom_owner\030\002 "
-      "\001(\003\022\024\n\014public_cards\030\003 \003(\r\022+\n\007players\030\004 \003"
-      "(\0132\032.proto3_proto.PaiGowPlayer\022+\n\007result"
-      "s\030\005 \003(\0132\032.proto3_proto.PaiGowResult\022\026\n\016b"
-      "anker_seat_id\030\006 \001(\r\">\n\020S2C_PG_AddPlayer\022"
-      "*\n\006player\030\001 \001(\0132\032.proto3_proto.PaiGowPla"
-      "yer\"\022\n\020C2S_PG_StartGame\"#\n\020S2C_PG_StartG"
-      "ame\022\017\n\007is_grab\030\001 \001(\010\"$\n\021C2S_PG_GrabBanke"
-      "r\022\017\n\007is_grab\030\001 \001(\010\"$\n\021S2C_PG_GrabBanker\022"
+      "ghost\030\006 \001(\010\022\027\n\017has_heaven_nine\030\007 \001(\010\"\216\001\n"
+      "\014PaiGowPlayer\022(\n\006player\030\001 \001(\0132\030.proto3_p"
+      "roto.PlayerInfo\022\022\n\nhand_cards\030\002 \003(\r\022\016\n\006s"
+      "tatus\030\003 \001(\r\022\022\n\nhas_banker\030\004 \001(\010\022\r\n\005chips"
+      "\030\005 \003(\r\022\r\n\005score\030\006 \001(\005\"C\n\014PaiGowResult\022\017\n"
+      "\007seat_id\030\001 \001(\r\022\016\n\006result\030\002 \001(\005\022\022\n\nhand_c"
+      "ards\030\003 \003(\r\"\273\001\n\016PaiGowSnapshot\022\r\n\005state\030\001"
+      " \001(\r\022\022\n\nroom_owner\030\002 \001(\003\022\024\n\014public_cards"
+      "\030\003 \003(\r\022+\n\007players\030\004 \003(\0132\032.proto3_proto.P"
+      "aiGowPlayer\022+\n\007results\030\005 \003(\0132\032.proto3_pr"
+      "oto.PaiGowResult\022\026\n\016banker_seat_id\030\006 \001(\r"
+      "\">\n\020S2C_PG_AddPlayer\022*\n\006player\030\001 \001(\0132\032.p"
+      "roto3_proto.PaiGowPlayer\"\022\n\020C2S_PG_Start"
+      "Game\"#\n\020S2C_PG_StartGame\022\017\n\007is_grab\030\001 \001("
+      "\010\"$\n\021C2S_PG_GrabBanker\022\017\n\007is_grab\030\001 \001(\010\""
+      "5\n\021S2C_PG_GrabBanker\022\017\n\007seat_id\030\001 \001(\r\022\017\n"
+      "\007is_grab\030\002 \001(\010\"(\n\025S2C_PG_GrabBanker_RES\022"
       "\017\n\007seat_id\030\001 \001(\r\"\033\n\nC2S_PG_Bet\022\r\n\005chips\030"
       "\001 \003(\r\",\n\nS2C_PG_Bet\022\017\n\007seat_id\030\001 \001(\r\022\r\n\005"
       "chips\030\002 \003(\r\"\036\n\013S2C_PG_Deal\022\017\n\007my_card\030\001 "
@@ -367,7 +385,7 @@ void AddDescriptorsImpl() {
       "_Sureb\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 1093);
+      descriptor, 1173);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "paigow.proto", &protobuf_RegisterTypes);
   ::proto3_proto::protobuf_common_2eproto::AddDescriptors();
@@ -926,6 +944,7 @@ void PaiGowConfig::set_has_heaven_nine(bool value) {
 const int PaiGowPlayer::kPlayerFieldNumber;
 const int PaiGowPlayer::kHandCardsFieldNumber;
 const int PaiGowPlayer::kStatusFieldNumber;
+const int PaiGowPlayer::kHasBankerFieldNumber;
 const int PaiGowPlayer::kChipsFieldNumber;
 const int PaiGowPlayer::kScoreFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
@@ -1062,28 +1081,42 @@ bool PaiGowPlayer::MergePartialFromCodedStream(
         break;
       }
 
-      // repeated uint32 chips = 4;
+      // bool has_banker = 4;
       case 4: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(34u)) {
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPackedPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, this->mutable_chips())));
-        } else if (static_cast< ::google::protobuf::uint8>(tag) ==
-                   static_cast< ::google::protobuf::uint8>(32u)) {
-          DO_((::google::protobuf::internal::WireFormatLite::ReadRepeatedPrimitiveNoInline<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 1, 34u, input, this->mutable_chips())));
+            static_cast< ::google::protobuf::uint8>(32u)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
+                 input, &has_banker_)));
         } else {
           goto handle_unusual;
         }
         break;
       }
 
-      // int32 score = 5;
+      // repeated uint32 chips = 5;
       case 5: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(40u)) {
+            static_cast< ::google::protobuf::uint8>(42u)) {
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPackedPrimitive<
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+                 input, this->mutable_chips())));
+        } else if (static_cast< ::google::protobuf::uint8>(tag) ==
+                   static_cast< ::google::protobuf::uint8>(40u)) {
+          DO_((::google::protobuf::internal::WireFormatLite::ReadRepeatedPrimitiveNoInline<
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+                 1, 42u, input, this->mutable_chips())));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // int32 score = 6;
+      case 6: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(48u)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
@@ -1142,9 +1175,14 @@ void PaiGowPlayer::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(3, this->status(), output);
   }
 
-  // repeated uint32 chips = 4;
+  // bool has_banker = 4;
+  if (this->has_banker() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteBool(4, this->has_banker(), output);
+  }
+
+  // repeated uint32 chips = 5;
   if (this->chips_size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteTag(4, ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED, output);
+    ::google::protobuf::internal::WireFormatLite::WriteTag(5, ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED, output);
     output->WriteVarint32(_chips_cached_byte_size_);
   }
   for (int i = 0, n = this->chips_size(); i < n; i++) {
@@ -1152,9 +1190,9 @@ void PaiGowPlayer::SerializeWithCachedSizes(
       this->chips(i), output);
   }
 
-  // int32 score = 5;
+  // int32 score = 6;
   if (this->score() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(5, this->score(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(6, this->score(), output);
   }
 
   // @@protoc_insertion_point(serialize_end:proto3_proto.PaiGowPlayer)
@@ -1190,10 +1228,15 @@ void PaiGowPlayer::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(3, this->status(), target);
   }
 
-  // repeated uint32 chips = 4;
+  // bool has_banker = 4;
+  if (this->has_banker() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(4, this->has_banker(), target);
+  }
+
+  // repeated uint32 chips = 5;
   if (this->chips_size() > 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteTagToArray(
-      4,
+      5,
       ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED,
       target);
     target = ::google::protobuf::io::CodedOutputStream::WriteVarint32ToArray(
@@ -1202,9 +1245,9 @@ void PaiGowPlayer::SerializeWithCachedSizes(
       WriteUInt32NoTagToArray(this->chips_, target);
   }
 
-  // int32 score = 5;
+  // int32 score = 6;
   if (this->score() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(5, this->score(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(6, this->score(), target);
   }
 
   // @@protoc_insertion_point(serialize_to_array_end:proto3_proto.PaiGowPlayer)
@@ -1230,7 +1273,7 @@ size_t PaiGowPlayer::ByteSizeLong() const {
     total_size += data_size;
   }
 
-  // repeated uint32 chips = 4;
+  // repeated uint32 chips = 5;
   {
     size_t data_size = ::google::protobuf::internal::WireFormatLite::
       UInt32Size(this->chips_);
@@ -1259,7 +1302,12 @@ size_t PaiGowPlayer::ByteSizeLong() const {
         this->status());
   }
 
-  // int32 score = 5;
+  // bool has_banker = 4;
+  if (this->has_banker() != 0) {
+    total_size += 1 + 1;
+  }
+
+  // int32 score = 6;
   if (this->score() != 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::Int32Size(
@@ -1303,6 +1351,9 @@ void PaiGowPlayer::MergeFrom(const PaiGowPlayer& from) {
   if (from.status() != 0) {
     set_status(from.status());
   }
+  if (from.has_banker() != 0) {
+    set_has_banker(from.has_banker());
+  }
   if (from.score() != 0) {
     set_score(from.score());
   }
@@ -1335,6 +1386,7 @@ void PaiGowPlayer::InternalSwap(PaiGowPlayer* other) {
   chips_.InternalSwap(&other->chips_);
   std::swap(player_, other->player_);
   std::swap(status_, other->status_);
+  std::swap(has_banker_, other->has_banker_);
   std::swap(score_, other->score_);
   std::swap(_cached_size_, other->_cached_size_);
 }
@@ -1430,7 +1482,21 @@ void PaiGowPlayer::set_status(::google::protobuf::uint32 value) {
   // @@protoc_insertion_point(field_set:proto3_proto.PaiGowPlayer.status)
 }
 
-// repeated uint32 chips = 4;
+// bool has_banker = 4;
+void PaiGowPlayer::clear_has_banker() {
+  has_banker_ = false;
+}
+bool PaiGowPlayer::has_banker() const {
+  // @@protoc_insertion_point(field_get:proto3_proto.PaiGowPlayer.has_banker)
+  return has_banker_;
+}
+void PaiGowPlayer::set_has_banker(bool value) {
+  
+  has_banker_ = value;
+  // @@protoc_insertion_point(field_set:proto3_proto.PaiGowPlayer.has_banker)
+}
+
+// repeated uint32 chips = 5;
 int PaiGowPlayer::chips_size() const {
   return chips_.size();
 }
@@ -1460,7 +1526,7 @@ PaiGowPlayer::mutable_chips() {
   return &chips_;
 }
 
-// int32 score = 5;
+// int32 score = 6;
 void PaiGowPlayer::clear_score() {
   score_ = 0;
 }
@@ -3338,6 +3404,7 @@ void C2S_PG_GrabBanker::set_is_grab(bool value) {
 
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int S2C_PG_GrabBanker::kSeatIdFieldNumber;
+const int S2C_PG_GrabBanker::kIsGrabFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 S2C_PG_GrabBanker::S2C_PG_GrabBanker()
@@ -3353,12 +3420,15 @@ S2C_PG_GrabBanker::S2C_PG_GrabBanker(const S2C_PG_GrabBanker& from)
       _internal_metadata_(NULL),
       _cached_size_(0) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
-  seat_id_ = from.seat_id_;
+  ::memcpy(&seat_id_, &from.seat_id_,
+    reinterpret_cast<char*>(&is_grab_) -
+    reinterpret_cast<char*>(&seat_id_) + sizeof(is_grab_));
   // @@protoc_insertion_point(copy_constructor:proto3_proto.S2C_PG_GrabBanker)
 }
 
 void S2C_PG_GrabBanker::SharedCtor() {
-  seat_id_ = 0u;
+  ::memset(&seat_id_, 0, reinterpret_cast<char*>(&is_grab_) -
+    reinterpret_cast<char*>(&seat_id_) + sizeof(is_grab_));
   _cached_size_ = 0;
 }
 
@@ -3395,7 +3465,8 @@ S2C_PG_GrabBanker* S2C_PG_GrabBanker::New(::google::protobuf::Arena* arena) cons
 
 void S2C_PG_GrabBanker::Clear() {
 // @@protoc_insertion_point(message_clear_start:proto3_proto.S2C_PG_GrabBanker)
-  seat_id_ = 0u;
+  ::memset(&seat_id_, 0, reinterpret_cast<char*>(&is_grab_) -
+    reinterpret_cast<char*>(&seat_id_) + sizeof(is_grab_));
 }
 
 bool S2C_PG_GrabBanker::MergePartialFromCodedStream(
@@ -3416,6 +3487,20 @@ bool S2C_PG_GrabBanker::MergePartialFromCodedStream(
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
                  input, &seat_id_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // bool is_grab = 2;
+      case 2: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(16u)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
+                 input, &is_grab_)));
         } else {
           goto handle_unusual;
         }
@@ -3454,6 +3539,11 @@ void S2C_PG_GrabBanker::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(1, this->seat_id(), output);
   }
 
+  // bool is_grab = 2;
+  if (this->is_grab() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteBool(2, this->is_grab(), output);
+  }
+
   // @@protoc_insertion_point(serialize_end:proto3_proto.S2C_PG_GrabBanker)
 }
 
@@ -3466,6 +3556,11 @@ void S2C_PG_GrabBanker::SerializeWithCachedSizes(
   // uint32 seat_id = 1;
   if (this->seat_id() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(1, this->seat_id(), target);
+  }
+
+  // bool is_grab = 2;
+  if (this->is_grab() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(2, this->is_grab(), target);
   }
 
   // @@protoc_insertion_point(serialize_to_array_end:proto3_proto.S2C_PG_GrabBanker)
@@ -3481,6 +3576,11 @@ size_t S2C_PG_GrabBanker::ByteSizeLong() const {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::UInt32Size(
         this->seat_id());
+  }
+
+  // bool is_grab = 2;
+  if (this->is_grab() != 0) {
+    total_size += 1 + 1;
   }
 
   int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
@@ -3515,6 +3615,9 @@ void S2C_PG_GrabBanker::MergeFrom(const S2C_PG_GrabBanker& from) {
   if (from.seat_id() != 0) {
     set_seat_id(from.seat_id());
   }
+  if (from.is_grab() != 0) {
+    set_is_grab(from.is_grab());
+  }
 }
 
 void S2C_PG_GrabBanker::CopyFrom(const ::google::protobuf::Message& from) {
@@ -3541,6 +3644,7 @@ void S2C_PG_GrabBanker::Swap(S2C_PG_GrabBanker* other) {
 }
 void S2C_PG_GrabBanker::InternalSwap(S2C_PG_GrabBanker* other) {
   std::swap(seat_id_, other->seat_id_);
+  std::swap(is_grab_, other->is_grab_);
   std::swap(_cached_size_, other->_cached_size_);
 }
 
@@ -3564,6 +3668,254 @@ void S2C_PG_GrabBanker::set_seat_id(::google::protobuf::uint32 value) {
   
   seat_id_ = value;
   // @@protoc_insertion_point(field_set:proto3_proto.S2C_PG_GrabBanker.seat_id)
+}
+
+// bool is_grab = 2;
+void S2C_PG_GrabBanker::clear_is_grab() {
+  is_grab_ = false;
+}
+bool S2C_PG_GrabBanker::is_grab() const {
+  // @@protoc_insertion_point(field_get:proto3_proto.S2C_PG_GrabBanker.is_grab)
+  return is_grab_;
+}
+void S2C_PG_GrabBanker::set_is_grab(bool value) {
+  
+  is_grab_ = value;
+  // @@protoc_insertion_point(field_set:proto3_proto.S2C_PG_GrabBanker.is_grab)
+}
+
+#endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
+
+// ===================================================================
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int S2C_PG_GrabBanker_RES::kSeatIdFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+S2C_PG_GrabBanker_RES::S2C_PG_GrabBanker_RES()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_paigow_2eproto::InitDefaults();
+  }
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:proto3_proto.S2C_PG_GrabBanker_RES)
+}
+S2C_PG_GrabBanker_RES::S2C_PG_GrabBanker_RES(const S2C_PG_GrabBanker_RES& from)
+  : ::google::protobuf::Message(),
+      _internal_metadata_(NULL),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  seat_id_ = from.seat_id_;
+  // @@protoc_insertion_point(copy_constructor:proto3_proto.S2C_PG_GrabBanker_RES)
+}
+
+void S2C_PG_GrabBanker_RES::SharedCtor() {
+  seat_id_ = 0u;
+  _cached_size_ = 0;
+}
+
+S2C_PG_GrabBanker_RES::~S2C_PG_GrabBanker_RES() {
+  // @@protoc_insertion_point(destructor:proto3_proto.S2C_PG_GrabBanker_RES)
+  SharedDtor();
+}
+
+void S2C_PG_GrabBanker_RES::SharedDtor() {
+}
+
+void S2C_PG_GrabBanker_RES::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* S2C_PG_GrabBanker_RES::descriptor() {
+  protobuf_paigow_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_paigow_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
+}
+
+const S2C_PG_GrabBanker_RES& S2C_PG_GrabBanker_RES::default_instance() {
+  protobuf_paigow_2eproto::InitDefaults();
+  return *internal_default_instance();
+}
+
+S2C_PG_GrabBanker_RES* S2C_PG_GrabBanker_RES::New(::google::protobuf::Arena* arena) const {
+  S2C_PG_GrabBanker_RES* n = new S2C_PG_GrabBanker_RES;
+  if (arena != NULL) {
+    arena->Own(n);
+  }
+  return n;
+}
+
+void S2C_PG_GrabBanker_RES::Clear() {
+// @@protoc_insertion_point(message_clear_start:proto3_proto.S2C_PG_GrabBanker_RES)
+  seat_id_ = 0u;
+}
+
+bool S2C_PG_GrabBanker_RES::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:proto3_proto.S2C_PG_GrabBanker_RES)
+  for (;;) {
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // uint32 seat_id = 1;
+      case 1: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(8u)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+                 input, &seat_id_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0 ||
+            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormatLite::SkipField(input, tag));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:proto3_proto.S2C_PG_GrabBanker_RES)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:proto3_proto.S2C_PG_GrabBanker_RES)
+  return false;
+#undef DO_
+}
+
+void S2C_PG_GrabBanker_RES::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:proto3_proto.S2C_PG_GrabBanker_RES)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // uint32 seat_id = 1;
+  if (this->seat_id() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(1, this->seat_id(), output);
+  }
+
+  // @@protoc_insertion_point(serialize_end:proto3_proto.S2C_PG_GrabBanker_RES)
+}
+
+::google::protobuf::uint8* S2C_PG_GrabBanker_RES::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  // @@protoc_insertion_point(serialize_to_array_start:proto3_proto.S2C_PG_GrabBanker_RES)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // uint32 seat_id = 1;
+  if (this->seat_id() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(1, this->seat_id(), target);
+  }
+
+  // @@protoc_insertion_point(serialize_to_array_end:proto3_proto.S2C_PG_GrabBanker_RES)
+  return target;
+}
+
+size_t S2C_PG_GrabBanker_RES::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:proto3_proto.S2C_PG_GrabBanker_RES)
+  size_t total_size = 0;
+
+  // uint32 seat_id = 1;
+  if (this->seat_id() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::UInt32Size(
+        this->seat_id());
+  }
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = cached_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void S2C_PG_GrabBanker_RES::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:proto3_proto.S2C_PG_GrabBanker_RES)
+  GOOGLE_DCHECK_NE(&from, this);
+  const S2C_PG_GrabBanker_RES* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const S2C_PG_GrabBanker_RES>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:proto3_proto.S2C_PG_GrabBanker_RES)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:proto3_proto.S2C_PG_GrabBanker_RES)
+    MergeFrom(*source);
+  }
+}
+
+void S2C_PG_GrabBanker_RES::MergeFrom(const S2C_PG_GrabBanker_RES& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:proto3_proto.S2C_PG_GrabBanker_RES)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.seat_id() != 0) {
+    set_seat_id(from.seat_id());
+  }
+}
+
+void S2C_PG_GrabBanker_RES::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:proto3_proto.S2C_PG_GrabBanker_RES)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void S2C_PG_GrabBanker_RES::CopyFrom(const S2C_PG_GrabBanker_RES& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:proto3_proto.S2C_PG_GrabBanker_RES)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool S2C_PG_GrabBanker_RES::IsInitialized() const {
+  return true;
+}
+
+void S2C_PG_GrabBanker_RES::Swap(S2C_PG_GrabBanker_RES* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void S2C_PG_GrabBanker_RES::InternalSwap(S2C_PG_GrabBanker_RES* other) {
+  std::swap(seat_id_, other->seat_id_);
+  std::swap(_cached_size_, other->_cached_size_);
+}
+
+::google::protobuf::Metadata S2C_PG_GrabBanker_RES::GetMetadata() const {
+  protobuf_paigow_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_paigow_2eproto::file_level_metadata[kIndexInFileMessages];
+}
+
+#if PROTOBUF_INLINE_NOT_IN_HEADERS
+// S2C_PG_GrabBanker_RES
+
+// uint32 seat_id = 1;
+void S2C_PG_GrabBanker_RES::clear_seat_id() {
+  seat_id_ = 0u;
+}
+::google::protobuf::uint32 S2C_PG_GrabBanker_RES::seat_id() const {
+  // @@protoc_insertion_point(field_get:proto3_proto.S2C_PG_GrabBanker_RES.seat_id)
+  return seat_id_;
+}
+void S2C_PG_GrabBanker_RES::set_seat_id(::google::protobuf::uint32 value) {
+  
+  seat_id_ = value;
+  // @@protoc_insertion_point(field_set:proto3_proto.S2C_PG_GrabBanker_RES.seat_id)
 }
 
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS

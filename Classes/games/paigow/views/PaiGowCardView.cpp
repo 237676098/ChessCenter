@@ -31,6 +31,13 @@ bool PaiGowCardView::initWithFile(const std::string fileName)
 void PaiGowCardView::setCard(const Card& card)
 {
 	m_card = card;
+
+	if (card == 0x0000)
+	{
+		m_csb->getChildByName<Sprite*>("card_num")->setVisible(false);
+		return;
+	}
+	m_csb->getChildByName<Sprite*>("card_num")->setVisible(true);
 	std::string filename = std::string("card_").append(std::to_string(card)).append(".png");
 	//m_csb.getChildByName<Sprite>("card_num")->getTag();
 	m_csb->getChildByName<Sprite*>("card_num")->setSpriteFrame(filename);

@@ -10,4 +10,7 @@
 	<string name="room_id">房间号</string>
 	<string name="paigow_first_bet">第一道下注</string>
 	<string name="paigow_second_bet">第二道下注</string>
+	<string name="status_buqiang">不 抢</string>
+	<string name="status_qiang">抢</string>
+	<string name="status_zhunbei">准 备</string>
 </resources>

@@ -32,12 +32,12 @@ bool PaigowBetOperateView::initWithFile(const std::string fileName)
 
 	for (size_t i = 0; i < 5; i++)
 	{
-		auto btn = m_csb->getChildByName("Node_1")->getChildByName<Button*>("btn" + std::to_string(i + 1));
+		auto btn = m_csb->getChildByName("node_not_banker")->getChildByName("Node_1")->getChildByName<Button*>("btn" + std::to_string(i + 1));
 		btn->setTag(i);
 		btn->addClickEventListener(std::bind(&PaigowBetOperateView::onClickChip,this,std::placeholders::_1));
 	}
 
-	m_csb->getChildByName<Text*>("txt_title")->setString(core::LanguageManager::getInstance()->get("paigow_first_bet"));
+	m_csb->getChildByName("node_not_banker")->getChildByName<Text*>("txt_title")->setString(core::LanguageManager::getInstance()->get("paigow_first_bet"));
 
 	return true;
 }
@@ -54,7 +54,7 @@ void PaigowBetOperateView::onClickChip(Ref * ref)
 	if (m_chips.size() == 0)
 	{
 		m_chips.push_back(chip);
-		m_csb->getChildByName<Text*>("txt_title")->setString(core::LanguageManager::getInstance()->get("paigow_second_bet"));
+		m_csb->getChildByName("node_not_banker")->getChildByName<Text*>("txt_title")->setString(core::LanguageManager::getInstance()->get("paigow_second_bet"));
 	}
 	else if(m_chips.size() == 1)
 	{
@@ -66,6 +66,20 @@ void PaigowBetOperateView::onClickChip(Ref * ref)
 			msg.add_chips(m_chips[i]);
 		}
 		core::SocketManager::getInstance()->sendMessage(core::ID_C2S_PG_Bet,msg);
+	}
+}
+
+void PaigowBetOperateView::show(bool is_banker)
+{
+	if (is_banker)
+	{
+		m_csb->getChildByName("node_banker")->setVisible(true);
+		m_csb->getChildByName("node_not_banker")->setVisible(false);
+	}
+	else
+	{
+		m_csb->getChildByName("node_banker")->setVisible(false);
+		m_csb->getChildByName("node_not_banker")->setVisible(true);
 	}
 }
 

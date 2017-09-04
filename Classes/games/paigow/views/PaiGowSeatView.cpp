@@ -1,5 +1,6 @@
 #include "PaiGowSeatView.h"
 #include "cocos2d.h"
+#include "utils/LanguageManager.h"
 
 USING_NS_CC;
 NS_PAIGOW_BEGIN
@@ -38,10 +39,20 @@ void PaiGowSeatView::showBanker()
 	m_csb->getChildByName("img_is_banker")->setVisible(true);
 }
 
-void PaiGowSeatView::showReady()
+void PaiGowSeatView::setStatus(const std::string status, bool isHide)
 {
-	m_csb->getChildByName<Sprite*>("img_is_ready")->setVisible(true);
+	auto txt_status = m_csb->getChildByName<Text*>("txt_status");
+	if (isHide)
+	{
+		txt_status->setVisible(false);
+	}
+	else
+	{
+		txt_status->setVisible(true);
+		txt_status->setString(core::LanguageManager::getInstance()->get(status));
+	}
 }
+
 
 void PaiGowSeatView::showResult(int result)
 {
@@ -89,7 +100,7 @@ void PaiGowSeatView::reset()
 {
 	m_csb->getChildByName<Sprite*>("img_is_banker")->setVisible(false);
 	m_csb->getChildByName<Sprite*>("img_result")->setVisible(false);
-	m_csb->getChildByName<Sprite*>("img_is_ready")->setVisible(false);
+	m_csb->getChildByName<Text*>("txt_status")->setVisible(false);
 	m_csb->getChildByName("node_offline")->setVisible(false);
 }
 

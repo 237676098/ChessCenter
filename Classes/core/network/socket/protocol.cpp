@@ -17,6 +17,7 @@ MESSAGE_GETTER(C2S_PG_StartGame);
 MESSAGE_GETTER(S2C_PG_StartGame);
 MESSAGE_GETTER(C2S_PG_GrabBanker);
 MESSAGE_GETTER(S2C_PG_GrabBanker);
+MESSAGE_GETTER(S2C_PG_GrabBanker_RES);
 MESSAGE_GETTER(C2S_PG_Bet);
 MESSAGE_GETTER(S2C_PG_Bet);
 MESSAGE_GETTER(S2C_PG_Deal);
@@ -52,6 +53,7 @@ MsgGetterMap::value_type init_value[] =
     MsgGetterMap::value_type(ID_S2C_PG_StartGame,GetProtoS2C_PG_StartGame),
     MsgGetterMap::value_type(ID_C2S_PG_GrabBanker,GetProtoC2S_PG_GrabBanker),
     MsgGetterMap::value_type(ID_S2C_PG_GrabBanker,GetProtoS2C_PG_GrabBanker),
+    MsgGetterMap::value_type(ID_S2C_PG_GrabBanker_RES,GetProtoS2C_PG_GrabBanker_RES),
     MsgGetterMap::value_type(ID_C2S_PG_Bet,GetProtoC2S_PG_Bet),
     MsgGetterMap::value_type(ID_S2C_PG_Bet,GetProtoS2C_PG_Bet),
     MsgGetterMap::value_type(ID_S2C_PG_Deal,GetProtoS2C_PG_Deal),

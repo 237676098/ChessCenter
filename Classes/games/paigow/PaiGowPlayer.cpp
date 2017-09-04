@@ -36,6 +36,7 @@ void PaiGowPlayer::initByPaiGowPlayer(const proto3_proto::PaiGowPlayer & player)
 	}
 
 	score = player.score();
+	is_grab = player.has_banker();
 }
 
 NS_PAIGOW_END

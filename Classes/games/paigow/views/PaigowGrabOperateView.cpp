@@ -34,7 +34,7 @@ bool PaigowGrabOperateView::initWithFile(const std::string fileName)
 		}
 	);
 
-	m_csb->getChildByName<Button*>("btn_grab")->addClickEventListener(
+	m_csb->getChildByName<Button*>("btn_not_grab")->addClickEventListener(
 		[this](Ref* ref) {
 			this->setVisible(false);
 			proto3_proto::C2S_PG_GrabBanker msg;

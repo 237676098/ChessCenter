@@ -7,6 +7,7 @@
 #include "views/PaiGowSeatView.h"
 #include "views/PaigowBetOperateView.h"
 #include "views/PaigowGrabOperateView.h"
+#include "views/PaiGowHandCardsPanel.h"
 
 NS_PAIGOW_BEGIN
 
@@ -40,6 +41,7 @@ private:
 	PaiGowWaitOperateView* m_wait_operate_view;
 	PaigowGrabOperateView* m_grab_operate_view;
 	std::map<uint32_t,PaiGowSeatView*> m_seat_views;
+	std::map<uint32_t, PaiGowHandCardsPanel*> m_handcards_views;
 	PaigowBetOperateView* m_bet_operate_view;
 };
 

@@ -1,11 +1,6 @@
 #include "PaiGowProxy.h"
 #include "core/event/EventManager.h"
-#include "games/paigow/events/EventAddPlayer.h"
-#include "games/paigow/events/EventDeletePlayer.h"
-#include "games/paigow/events/EventStartGame.h"
-#include "games/paigow/events/EventBankerConfirm.h"
-#include "games/paigow/events/EventBet.h"
-#include "games/paigow/events/EventOffLine.h"
+#include "games/paigow/events/paigow_events.h"
 #include "core/fsm/game_machine.h"
 
 NS_PAIGOW_BEGIN
@@ -16,6 +11,7 @@ PaiGowProxy::PaiGowProxy(PaiGowSnaptShot* data)
 	//×¢²áÊÂ¼þ¼àÌý
 	MSG_FUNCTION_REGISTER(S2C_PG_StartGame, PaiGowProxy)
 	MSG_FUNCTION_REGISTER(S2C_PG_GrabBanker, PaiGowProxy)
+	MSG_FUNCTION_REGISTER(S2C_PG_GrabBanker_RES, PaiGowProxy)
 	MSG_FUNCTION_REGISTER(S2C_PG_Bet, PaiGowProxy)
 	MSG_FUNCTION_REGISTER(S2C_PG_Deal, PaiGowProxy)
 	MSG_FUNCTION_REGISTER(S2C_PG_Collocation, PaiGowProxy)
@@ -24,6 +20,7 @@ PaiGowProxy::PaiGowProxy(PaiGowSnaptShot* data)
 	MSG_FUNCTION_REGISTER(S2C_LeaveMatch, PaiGowProxy)
 	MSG_FUNCTION_REGISTER(S2C_OffLine, PaiGowProxy)
 	MSG_FUNCTION_REGISTER(S2C_OnLine, PaiGowProxy)
+
 }
 
 PaiGowProxy::~PaiGowProxy()
@@ -51,6 +48,14 @@ void PaiGowProxy::onRevS2C_PG_StartGame(google::protobuf::Message* msg)
 void PaiGowProxy::onRevS2C_PG_GrabBanker(google::protobuf::Message* msg)
 {
 	proto3_proto::S2C_PG_GrabBanker* s2c_msg = dynamic_cast<proto3_proto::S2C_PG_GrabBanker*>(msg);
+	m_data->players[s2c_msg->seat_id()]->is_grab = s2c_msg->is_grab();
+	EventGrabStatus event(s2c_msg->seat_id(), s2c_msg->is_grab());
+	core::EventManager::Instance().DispatchEvent(&event);
+}
+
+void PaiGowProxy::onRevS2C_PG_GrabBanker_RES(google::protobuf::Message* msg)
+{
+	proto3_proto::S2C_PG_GrabBanker_RES* s2c_msg = dynamic_cast<proto3_proto::S2C_PG_GrabBanker_RES*>(msg);
 	m_data->banker_seat_id = s2c_msg->seat_id();
 	m_data->table_state = TableState::Bet;
 	EventBankerConfirm event(s2c_msg->seat_id());
@@ -72,8 +77,31 @@ void PaiGowProxy::onRevS2C_PG_Bet(google::protobuf::Message* msg)
 
 void PaiGowProxy::onRevS2C_PG_Deal(google::protobuf::Message* msg)
 {
+	proto3_proto::S2C_PG_Deal* s2c_msg = dynamic_cast<proto3_proto::S2C_PG_Deal*>(msg);
 	m_data->table_state = TableState::Collocation;
 
+	std::map<uint32_t, PaiGowPlayer*>::iterator iter;
+	for (iter = m_data->players.begin(); iter != m_data->players.end(); iter++)
+	{
+		if (iter->second->isMainChar())
+		{
+			for (int i = 0; i < s2c_msg->my_card_size(); i++)
+			{
+				iter->second->hand_cards.push_back(s2c_msg->my_card(i));
+			}
+		}
+		else
+		{
+			for (int i = 0; i < s2c_msg->my_card_size(); i++)
+			{
+				iter->second->hand_cards.push_back(0x0000);
+			}
+		}
+	}
+
+
+	EventDealCard event;
+	core::EventManager::Instance().DispatchEvent(&event);
 }
 
 void PaiGowProxy::onRevS2C_PG_Collocation(google::protobuf::Message* msg)
@@ -104,7 +132,6 @@ void PaiGowProxy::onRevS2C_LeaveMatch(google::protobuf::Message* msg)
 		EventDeletePlayer event(leavematch->seat_id());
 		core::EventManager::Instance().DispatchEvent(&event);
 	}
-
 
 
 }

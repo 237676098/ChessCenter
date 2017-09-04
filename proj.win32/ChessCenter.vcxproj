@@ -229,9 +229,12 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\games\paigow\events\EventAddPlayer.h" />
     <ClInclude Include="..\Classes\games\paigow\events\EventBankerConfirm.h" />
     <ClInclude Include="..\Classes\games\paigow\events\EventBet.h" />
+    <ClInclude Include="..\Classes\games\paigow\events\EventDealCard.h" />
     <ClInclude Include="..\Classes\games\paigow\events\EventDeletePlayer.h" />
+    <ClInclude Include="..\Classes\games\paigow\events\EventGrabStatus.h" />
     <ClInclude Include="..\Classes\games\paigow\events\EventOffLine.h" />
     <ClInclude Include="..\Classes\games\paigow\events\EventStartGame.h" />
+    <ClInclude Include="..\Classes\games\paigow\events\paigow_events.h" />
     <ClInclude Include="..\Classes\games\paigow\PaiGowData.h" />
     <ClInclude Include="..\Classes\games\paigow\PaiGowLogic.h" />
     <ClInclude Include="..\Classes\games\paigow\PaigowManager.h" />

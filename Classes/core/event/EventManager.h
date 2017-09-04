@@ -8,12 +8,14 @@
 NS_CORE_BEGIN
 enum EventId
 {
-	EVT_PG_AddPlayer = 0,
-	EVT_PG_DeletePlayer = 1,
-	EVT_PG_StartGame = 2,
-	EVT_PG_BankerConfirm = 3,
-	EVT_PG_Bet = 4,
-	EVT_PG_OffLine = 5
+	EVT_PG_AddPlayer = 0,					//牌桌加入玩家 
+	EVT_PG_DeletePlayer,					//牌桌离开玩家
+	EVT_PG_StartGame,						//开始游戏
+	EVT_PG_GrabStatus,						//设置抢庄状态
+	EVT_PG_BankerConfirm,					//庄家确定
+	EVT_PG_Bet,								//玩家下注
+	EVT_PG_OffLine,							//玩家下线
+	EVT_PG_DealCard,						//发牌
 };
 
 struct Event

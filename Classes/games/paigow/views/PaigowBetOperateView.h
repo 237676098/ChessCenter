@@ -12,6 +12,7 @@ public:
 	bool initWithFile(const std::string fileName) override;
 	void update();
 	void onClickChip(Ref* ref);
+	void show(bool is_banker);
 
 private:
 	std::vector<uint32_t> m_chips;
