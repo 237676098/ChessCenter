@@ -183,6 +183,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\games\paigow\views\PaigowCollocationOperateView.cpp" />
     <ClCompile Include="..\Classes\games\paigow\views\PaigowGrabOperateView.cpp" />
     <ClCompile Include="..\Classes\games\paigow\views\PaIGowHandCardsPanel.cpp" />
+    <ClCompile Include="..\Classes\games\paigow\views\PaiGowResultWindow.cpp" />
     <ClCompile Include="..\Classes\games\paigow\views\PaiGowSeatView.cpp" />
     <ClCompile Include="..\Classes\games\paigow\views\PaigowTableView.cpp" />
     <ClCompile Include="..\Classes\games\paigow\views\PaigowWaitOperateView.cpp" />
@@ -229,6 +230,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\games\paigow\events\EventAddPlayer.h" />
     <ClInclude Include="..\Classes\games\paigow\events\EventBankerConfirm.h" />
     <ClInclude Include="..\Classes\games\paigow\events\EventBet.h" />
+    <ClInclude Include="..\Classes\games\paigow\events\EventCollocation.h" />
     <ClInclude Include="..\Classes\games\paigow\events\EventDealCard.h" />
     <ClInclude Include="..\Classes\games\paigow\events\EventDeletePlayer.h" />
     <ClInclude Include="..\Classes\games\paigow\events\EventGrabStatus.h" />
@@ -248,6 +250,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\games\paigow\views\PaigowCollocationOperateView.h" />
     <ClInclude Include="..\Classes\games\paigow\views\PaigowGrabOperateView.h" />
     <ClInclude Include="..\Classes\games\paigow\views\PaiGowHandCardsPanel.h" />
+    <ClInclude Include="..\Classes\games\paigow\views\PaiGowResultWindow.h" />
     <ClInclude Include="..\Classes\games\paigow\views\PaiGowSeatView.h" />
     <ClInclude Include="..\Classes\games\paigow\views\PaigowTableView.h" />
     <ClInclude Include="..\Classes\games\paigow\views\PaigowWaitOperateView.h" />

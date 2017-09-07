@@ -26,7 +26,7 @@ void PlayerInfo::initByPlayerInfo(const proto3_proto::PlayerInfo& info)
 
 bool PlayerInfo::isMainChar()
 {
-	return uid == user::UserManager::getInstance()->getId();
+	return uid == user::UserManager::getInstance()->getId(); 
 }
 
 NS_GAME_END

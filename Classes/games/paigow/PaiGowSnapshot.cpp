@@ -63,7 +63,7 @@ void PaiGowSnaptShot::addPlayer(const proto3_proto::PaiGowPlayer& p)
 	players[seatid]->initByPaiGowPlayer(p);
 }
 
-void PaiGowSnaptShot::deletePlayer(int seatid)
+void PaiGowSnaptShot::deletePlayer(uint32_t seatid)
 {
 	CCASSERT(players[seatid] != nullptr, "delete player failed");
 	delete players[seatid];

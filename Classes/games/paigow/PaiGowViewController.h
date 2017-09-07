@@ -8,6 +8,7 @@
 #include "views/PaigowBetOperateView.h"
 #include "views/PaigowGrabOperateView.h"
 #include "views/PaiGowHandCardsPanel.h"
+#include "views/PaigowCollocationOperateView.h"
 
 NS_PAIGOW_BEGIN
 
@@ -25,6 +26,11 @@ public:
 	int HandleEvent(core::Event* evt) override;
 
 
+//界面间的交互接口
+public:
+	void onClickCollcationTips();
+	void onClickCollcationSure();
+
 private:
 	void addSeat(PaiGowPlayer* seat);
 	void deleteSeat(uint32_t seat_id);
@@ -34,6 +40,7 @@ private:
 	cocos2d::Vec2 seatPos(int seat_id);
 	cocos2d::Vec2 betPos(PaiGowPlayer * player);
 	cocos2d::Vec2 betPos(int seat_id);
+	cocos2d::Vec2 handCardsPos(int seat_index);
 
 private:
 	PaiGowSnaptShot* m_data;
@@ -43,6 +50,7 @@ private:
 	std::map<uint32_t,PaiGowSeatView*> m_seat_views;
 	std::map<uint32_t, PaiGowHandCardsPanel*> m_handcards_views;
 	PaigowBetOperateView* m_bet_operate_view;
+	PaigowCollocationOperateView* m_collocation_operate_view;
 };
 
 NS_PAIGOW_END

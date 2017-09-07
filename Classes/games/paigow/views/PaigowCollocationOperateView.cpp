@@ -1,13 +1,14 @@
 #include "PaigowCollocationOperateView.h"
 #include "cocos2d.h"
 #include "core/network/socket/SocketManager.h"
+#include "games/paigow/PaiGowViewController.h"
 
 USING_NS_CC;
 NS_PAIGOW_BEGIN
 
-PaigowCollocationOperateView * PaigowCollocationOperateView::create()
+PaigowCollocationOperateView * PaigowCollocationOperateView::create(PaiGowViewController* controller)
 {
-	PaigowCollocationOperateView* view = new (std::nothrow) PaigowCollocationOperateView();
+	PaigowCollocationOperateView* view = new (std::nothrow) PaigowCollocationOperateView(controller);
 	if (view && view->init())
 	{
 		view->autorelease();
@@ -38,10 +39,12 @@ bool PaigowCollocationOperateView::initWithFile(const std::string fileName)
 
 void PaigowCollocationOperateView::onClickTip(Ref * ref)
 {
+	m_controller->onClickCollcationTips();
 }
 
 void PaigowCollocationOperateView::onClickSure(Ref * ref)
 {
+	m_controller->onClickCollcationSure();
 }
 
 

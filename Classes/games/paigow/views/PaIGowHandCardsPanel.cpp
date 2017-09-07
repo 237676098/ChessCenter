@@ -47,6 +47,8 @@ void PaiGowHandCardsPanel::push(uint32_t index)
 	{
 		return;
 	}
+
+	push(m_cards[index]);
 }
 
 void PaiGowHandCardsPanel::pull(uint32_t index)
@@ -55,22 +57,21 @@ void PaiGowHandCardsPanel::pull(uint32_t index)
 	{
 		return;
 	}
+	pull(m_cards[index]);
 }
 
 void PaiGowHandCardsPanel::setCards(const std::vector<Card>& cards)
 {
-	if (m_cards.size() == 0)
-	{
-		for (size_t i = 0; i < 4; i++)
-		{
-			m_cards.push_back(PaiGowCardView::create());
-			this->addChild(m_cards[i]);
-			m_cards[i]->setPosition(PaiGowHandCardsPanel::key_points[i]);
-		}
-	}
-
 	for (size_t i = 0; i < cards.size(); i++)
 	{
+		if (!m_cards[i])
+		{
+			m_cards[i] = PaiGowCardView::create();
+			this->addChild(m_cards[i]);
+			m_cards[i]->setPosition(PaiGowHandCardsPanel::key_points[i]);
+			m_cards[i]->setCallBack(std::bind(&PaiGowHandCardsPanel::onClickCard, this, std::placeholders::_1));
+		}
+
 		m_cards[i]->setCard(cards[i]);
 	}
 }
@@ -95,6 +96,44 @@ void PaiGowHandCardsPanel::playCollocation(const std::vector<Card>& cards)
 		}
 	}
 }
+
+void PaiGowHandCardsPanel::getResultCards(std::vector<Card>& result1, std::vector<Card>& result2) const
+{
+	for (size_t i = 0; i < m_cards.size(); i++)
+	{
+		if (m_cards[i]->getPositionY() > 0)
+		{
+			result2.push_back(m_cards[i]->getCard());
+		}
+		else
+		{
+			result1.push_back(m_cards[i]->getCard());
+		}
+	}
+}
+
+void PaiGowHandCardsPanel::onClickCard(PaiGowCardView * view)
+{
+	if (view->getPositionY() > 0)
+	{
+		pull(view);
+	}
+	else 
+	{
+		push(view);
+	}
+}
+
+void PaiGowHandCardsPanel::push(PaiGowCardView * view)
+{
+	view->setPositionY(25);
+}
+
+void PaiGowHandCardsPanel::pull(PaiGowCardView * view)
+{
+	view->setPositionY(0);
+}
+
 
 
 NS_PAIGOW_END

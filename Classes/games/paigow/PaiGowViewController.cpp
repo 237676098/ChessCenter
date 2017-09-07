@@ -83,6 +83,7 @@ void PaiGowViewController::init()
 	core::EventManager::Instance().AddEventHandler(core::EVT_PG_OffLine, this);
 	core::EventManager::Instance().AddEventHandler(core::EVT_PG_DealCard, this);
 	core::EventManager::Instance().AddEventHandler(core::EVT_PG_GrabStatus, this);
+	core::EventManager::Instance().AddEventHandler(core::EVT_PG_Collocation, this);
 }
 
 void PaiGowViewController::dispose()
@@ -205,18 +206,77 @@ int PaiGowViewController::HandleEvent(core::Event * evt)
 	}
 	else if(evt->id_ == core::EVT_PG_DealCard)
 	{
-		//给每个玩家发牌
-		std::map<uint32_t, PaiGowPlayer*>::const_iterator iter;
-		for (iter = m_data->players.begin(); iter != m_data->players.end(); iter++)
+		EventDealCard* event = (EventDealCard*)(evt);
+
+
+		if (m_bet_operate_view)
 		{
-			m_handcards_views[iter->first] = PaiGowHandCardsPanel::create();
-			m_handcards_views[iter->first]->setCards(iter->second->hand_cards);
+			core::SceneManager::getInstance()->remove(core::LayerMainUIUp, m_bet_operate_view);
+			m_bet_operate_view = nullptr;
 		}
 
+		//给每个玩家发牌
+		std::map<uint32_t, std::vector<Card>>::const_iterator iter;
+		for (iter = event->hand_cards.begin(); iter != event->hand_cards.end(); iter++)
+		{
+			m_handcards_views[iter->first] = PaiGowHandCardsPanel::create();
+			m_handcards_views[iter->first]->setCards(iter->second);
+			uint32_t seat_index = m_data->getSeatIndex(iter->first);
+			Vec2 pos = handCardsPos(seat_index);
+			m_handcards_views[iter->first]->setPosition(pos);
+			core::SceneManager::getInstance()->add(core::LayerMainUIUp, m_handcards_views[iter->first]);
+		}
 
+		
+		m_collocation_operate_view = PaigowCollocationOperateView::create(this);
+		m_collocation_operate_view->setPosition(Vec2(g_win_size.width - 300, 100));
+		core::SceneManager::getInstance()->add(core::LayerMainUIUp, m_collocation_operate_view);
+	}
+	else if(evt->id_ == core::EVT_PG_Collocation)
+	{
+		EventCollocation* event = (EventCollocation*)(evt);
+		if (event->cards.size()  > 0)
+		{
+			m_handcards_views[event->seat_id]->playCollocation(event->cards);
+		} 
+		else
+		{
+			m_handcards_views[event->seat_id]->playCollocation();
+		}
 	}
 
 	return 0;
+}
+
+void PaiGowViewController::onClickCollcationTips()
+{
+}
+
+void PaiGowViewController::onClickCollcationSure()
+{
+	std::vector<Card> first;
+	std::vector<Card> second;
+	PaiGowPlayer* mainPlayer = m_data->getMainPlayer();
+	m_handcards_views[mainPlayer->seat_id]->getResultCards(first,second);
+	if (first.size() == 2)
+	{
+		proto3_proto::C2S_PG_Collocation msg;
+		for (size_t i = 0; i < first.size(); i++)
+		{
+			msg.add_first(first[i]);
+		}
+
+		for (size_t i = 0; i < second.size(); i++)
+		{
+			msg.add_first(second[i]);
+		}
+		
+		core::SocketManager::getInstance()->sendMessage(core::ID_C2S_PG_Collocation, msg);
+	}
+	else
+	{
+		core::SceneManager::getInstance()->showMsg("error number of cards");
+	}
 }
 
 void PaiGowViewController::addSeat(PaiGowPlayer * player)
@@ -294,6 +354,25 @@ cocos2d::Vec2 PaiGowViewController::betPos(PaiGowPlayer * player)
 cocos2d::Vec2 PaiGowViewController::betPos(int seat_id)
 {
 	return betPos(m_data->players[seat_id]);
+}
+
+cocos2d::Vec2 PaiGowViewController::handCardsPos(int seat_index)
+{
+	switch (seat_index)
+	{
+	case 0:
+		return Vec2(g_win_size.width / 2, 100);
+	case 1:
+		return Vec2(280,g_win_size.height / 2);
+	case 2:
+		return Vec2(g_win_size.width / 2 - 90, g_win_size.height - 140);
+	case 3:
+		return Vec2(g_win_size.width - 280, g_win_size.height / 2 );
+	default:
+		break;
+	}
+
+	return cocos2d::Vec2(0, 0);
 }
 
 

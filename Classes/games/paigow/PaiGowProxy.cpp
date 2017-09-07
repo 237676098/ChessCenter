@@ -81,32 +81,45 @@ void PaiGowProxy::onRevS2C_PG_Deal(google::protobuf::Message* msg)
 	m_data->table_state = TableState::Collocation;
 
 	std::map<uint32_t, PaiGowPlayer*>::iterator iter;
+	std::map<uint32_t, std::vector<Card>> handcards;
+	EventDealCard event;
 	for (iter = m_data->players.begin(); iter != m_data->players.end(); iter++)
 	{
-		if (iter->second->isMainChar())
+		std::vector<Card> handcard;
+		if (!(iter->second) || !(iter->second->isMainChar()))
 		{
-			for (int i = 0; i < s2c_msg->my_card_size(); i++)
+			for (size_t i = 0; i < 4; i++)
 			{
-				iter->second->hand_cards.push_back(s2c_msg->my_card(i));
+				handcard.push_back(0x0000);
 			}
 		}
 		else
 		{
 			for (int i = 0; i < s2c_msg->my_card_size(); i++)
 			{
-				iter->second->hand_cards.push_back(0x0000);
+				iter->second->hand_cards.push_back(s2c_msg->my_card(i));
+				handcard.push_back(s2c_msg->my_card(i));
 			}
 		}
+
+		handcards.insert(std::make_pair(iter->first,handcard));
+
 	}
-
-
-	EventDealCard event;
+	event.hand_cards = handcards;
 	core::EventManager::Instance().DispatchEvent(&event);
 }
 
 void PaiGowProxy::onRevS2C_PG_Collocation(google::protobuf::Message* msg)
 {
+	proto3_proto::S2C_PG_Collocation* s2c_msg = dynamic_cast<proto3_proto::S2C_PG_Collocation*>(msg);
+	EventCollocation event;
+	event.seat_id = s2c_msg->seat_id();
+	for (int i = 0; i < s2c_msg->cards_size(); i++)
+	{
+		event.cards.push_back(s2c_msg->cards(i));
+	}
 
+	core::EventManager::Instance().DispatchEvent(&event);
 }
 
 void PaiGowProxy::onRevS2C_PG_Result(google::protobuf::Message* msg)

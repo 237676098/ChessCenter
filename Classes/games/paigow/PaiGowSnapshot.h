@@ -19,7 +19,7 @@ public:
 	void init(const proto3_proto::S2C_MatchSnapshot& mc_st);
 	void clear();
 	void addPlayer(const proto3_proto::PaiGowPlayer& p);
-	void deletePlayer(int seatid);
+	void deletePlayer(uint32_t seatid);
 	int getSeatIndex(int seatid) const;
 	PaiGowPlayer* getMainPlayer() const;
 	bool isMainPlayer(uint32_t seat_id) const;

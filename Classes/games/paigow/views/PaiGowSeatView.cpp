@@ -78,6 +78,11 @@ void PaiGowSeatView::showBet(uint32_t bet1, uint32_t bet2,Vec2 pos)
 	m_csb->getChildByName("node_bet")->getChildByName("node_bet2")->getChildByName<Text*>("txt_bet")->setString(std::to_string(bet2));
 }
 
+void PaiGowSeatView::hideBet()
+{
+	m_csb->getChildByName("node_bet")->setVisible(false);
+}
+
 void PaiGowSeatView::showOffline(bool b)
 {
 	m_csb->getChildByName("node_offline")->setVisible(b);
@@ -102,6 +107,7 @@ void PaiGowSeatView::reset()
 	m_csb->getChildByName<Sprite*>("img_result")->setVisible(false);
 	m_csb->getChildByName<Text*>("txt_status")->setVisible(false);
 	m_csb->getChildByName("node_offline")->setVisible(false);
+	hideBet();
 }
 
 NS_PAIGOW_END

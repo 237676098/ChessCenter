@@ -4,6 +4,7 @@
 #include "games/paigow/PaiGowLogic.h"
 
 NS_PAIGOW_BEGIN
+//typedef  std::function<void(PaiGowCardView*)> CardClickFunc;
 
 class PaiGowCardView:public core::IBaseUI
 {
@@ -15,7 +16,11 @@ public:
 	void turnBack(bool isAnimation);
 	void turnFront(bool isAnimation);
 	Card getCard() const { return m_card; };
+	void setCallBack(std::function<void(PaiGowCardView*)> func) { m_callBack = func; };
+	void onClickCard(Ref* ref);
+
 private:
+	std::function<void(PaiGowCardView*)> m_callBack;
 	Card m_card;
 };
 

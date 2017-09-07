@@ -8,6 +8,7 @@
 #include "EventOffLine.h"
 #include "EventStartGame.h"
 #include "EventGrabStatus.h"
+#include "EventCollocation.h"
 
 
 #endif // !__PAIGOW_EVENTS_H__

@@ -5,7 +5,7 @@
 
 NS_PAIGOW_BEGIN
 
-class PaiGowHandCardsPanel:cocos2d::Node
+class PaiGowHandCardsPanel:public cocos2d::Node
 {
 public:
 	PaiGowHandCardsPanel();
@@ -18,7 +18,12 @@ public:
 	void setCards(const std::vector<Card>& cards);				//初始化牌
 	void playCollocation();										//其他人亮牌
 	void playCollocation(const std::vector<Card>& cards);		//我自己亮牌
+	void getResultCards(std::vector<Card>& first, std::vector<Card>& second) const;
 
+private:
+	void onClickCard(PaiGowCardView* view);
+	void push(PaiGowCardView* view);
+	void pull(PaiGowCardView* view);
 private:
 	static const cocos2d::Vec2 key_points[6];
 	std::vector<PaiGowCardView*> m_cards;

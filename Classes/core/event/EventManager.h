@@ -16,6 +16,7 @@ enum EventId
 	EVT_PG_Bet,								//玩家下注
 	EVT_PG_OffLine,							//玩家下线
 	EVT_PG_DealCard,						//发牌
+	EVT_PG_Collocation						//玩家配牌返回
 };
 
 struct Event

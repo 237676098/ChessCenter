@@ -10,7 +10,7 @@ public:
 	EventDealCard() : Event(core::EVT_PG_DealCard) {};
 
 public:
-	
+	std::map<uint32_t, std::vector<Card>> hand_cards;
 };
 
 

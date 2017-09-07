@@ -5,6 +5,7 @@ typedef enum _WindowId
 	ID_AgreementTips,
 	ID_RoomCreate,
 	ID_RoomJoin,
+	ID_PAI_GOW_RESULT,
 }WindowId;
 
 #endif

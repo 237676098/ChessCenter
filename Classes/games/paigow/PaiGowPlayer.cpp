@@ -32,7 +32,7 @@ void PaiGowPlayer::initByPaiGowPlayer(const proto3_proto::PaiGowPlayer & player)
 	length = player.chips_size();
 	for (size_t i = 0; i < length; i++)
 	{
-		chips[i] = player.chips(i);
+		chips.push_back(player.chips(i));
 	}
 
 	score = player.score();
