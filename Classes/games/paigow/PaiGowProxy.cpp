@@ -124,7 +124,10 @@ void PaiGowProxy::onRevS2C_PG_Collocation(google::protobuf::Message* msg)
 
 void PaiGowProxy::onRevS2C_PG_Result(google::protobuf::Message* msg)
 {
-
+	proto3_proto::S2C_PG_Result* s2c_msg = dynamic_cast<proto3_proto::S2C_PG_Result*>(msg);
+	EventResult event;
+	event.result = s2c_msg;
+	core::EventManager::Instance().DispatchEvent(&event);
 }
 
 void PaiGowProxy::onRevS2C_LeaveMatch(google::protobuf::Message* msg)

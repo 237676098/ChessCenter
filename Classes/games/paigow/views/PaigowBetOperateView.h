@@ -12,7 +12,9 @@ public:
 	bool initWithFile(const std::string fileName) override;
 	void update();
 	void onClickChip(Ref* ref);
-	void show(bool is_banker);
+
+	//1为庄家等待其他玩家抢庄  2:还未抢庄 3:已经抢庄了
+	void show(int status);
 
 private:
 	std::vector<uint32_t> m_chips;

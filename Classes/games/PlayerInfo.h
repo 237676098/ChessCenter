@@ -20,6 +20,7 @@ public:
 	std::string name;
 	std::string head;
 	std::string ip;
+	bool is_online;
 };
 
 

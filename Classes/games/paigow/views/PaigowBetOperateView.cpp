@@ -69,17 +69,22 @@ void PaigowBetOperateView::onClickChip(Ref * ref)
 	}
 }
 
-void PaigowBetOperateView::show(bool is_banker)
+void PaigowBetOperateView::show(int status)
 {
-	if (is_banker)
+	if (status == 1)
 	{
 		m_csb->getChildByName("node_banker")->setVisible(true);
 		m_csb->getChildByName("node_not_banker")->setVisible(false);
 	}
-	else
+	else if (status == 2)
 	{
 		m_csb->getChildByName("node_banker")->setVisible(false);
 		m_csb->getChildByName("node_not_banker")->setVisible(true);
+	}
+	else if (status == 3)
+	{
+		m_csb->getChildByName("node_banker")->setVisible(false);
+		m_csb->getChildByName("node_not_banker")->setVisible(false);
 	}
 }
 

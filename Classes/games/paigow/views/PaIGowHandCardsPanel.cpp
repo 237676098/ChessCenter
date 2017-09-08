@@ -79,7 +79,9 @@ void PaiGowHandCardsPanel::setCards(const std::vector<Card>& cards)
 void PaiGowHandCardsPanel::playCollocation()
 {
 	m_cards[2]->setPosition(PaiGowHandCardsPanel::key_points[4]);
+	m_cards[2]->setRotation(90);
 	m_cards[3]->setPosition(PaiGowHandCardsPanel::key_points[5]);
+	m_cards[3]->setRotation(90);
 }
 
 void PaiGowHandCardsPanel::playCollocation(const std::vector<Card>& cards)
@@ -112,8 +114,15 @@ void PaiGowHandCardsPanel::getResultCards(std::vector<Card>& result1, std::vecto
 	}
 }
 
+
 void PaiGowHandCardsPanel::onClickCard(PaiGowCardView * view)
 {
+
+	if (!m_interactive)
+	{
+		return;
+	}
+
 	if (view->getPositionY() > 0)
 	{
 		pull(view);

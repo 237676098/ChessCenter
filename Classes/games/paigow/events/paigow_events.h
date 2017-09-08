@@ -9,6 +9,7 @@
 #include "EventStartGame.h"
 #include "EventGrabStatus.h"
 #include "EventCollocation.h"
+#include "EventResult.h"
 
 
 #endif // !__PAIGOW_EVENTS_H__

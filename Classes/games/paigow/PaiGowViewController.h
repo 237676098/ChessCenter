@@ -32,7 +32,7 @@ public:
 	void onClickCollcationSure();
 
 private:
-	void addSeat(PaiGowPlayer* seat);
+	PaiGowSeatView* addSeat(PaiGowPlayer* seat);
 	void deleteSeat(uint32_t seat_id);
 
 private:

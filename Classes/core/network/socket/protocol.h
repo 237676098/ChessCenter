@@ -51,6 +51,7 @@ const MessageId ID_C2S_PG_Collocation = 1821223880;
 const MessageId ID_S2C_PG_Collocation = 3869272865;
 const MessageId ID_S2C_PG_Result = 2359624198;
 const MessageId ID_C2S_PG_Sure = 2671625794;
+const MessageId ID_S2C_PG_Sure = 1724047357;
 const MessageId ID_Match = 590988333;
 const MessageId ID_C2S_CreateMatch = 2795803258;
 const MessageId ID_S2C_CreateMatch = 3744486407;
@@ -64,7 +65,7 @@ const MessageId ID_S2C_MatchSnapshot = 1194346942;
 
 extern MsgGetterMap::value_type init_value[]; 
 
-const static MsgGetterMap message_getter_maps(init_value, init_value + 32);
+const static MsgGetterMap message_getter_maps(init_value, init_value + 33);
 
 
 NS_CORE_END

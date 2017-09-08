@@ -117,4 +117,9 @@ bool PaiGowSnaptShot::isMainPlayer(uint32_t seat_id) const
 	return false;
 }
 
+bool PaiGowSnaptShot::isBanker(uint32_t seat_id) const
+{
+	return banker_seat_id == seat_id;
+}
+
 NS_PAIGOW_END

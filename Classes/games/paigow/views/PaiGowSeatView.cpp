@@ -39,6 +39,11 @@ void PaiGowSeatView::showBanker()
 	m_csb->getChildByName("img_is_banker")->setVisible(true);
 }
 
+void PaiGowSeatView::hideBanker()
+{
+	m_csb->getChildByName("img_is_banker")->setVisible(false);
+}
+
 void PaiGowSeatView::setStatus(const std::string status, bool isHide)
 {
 	auto txt_status = m_csb->getChildByName<Text*>("txt_status");
@@ -86,6 +91,11 @@ void PaiGowSeatView::hideBet()
 void PaiGowSeatView::showOffline(bool b)
 {
 	m_csb->getChildByName("node_offline")->setVisible(b);
+}
+
+void PaiGowSeatView::setScore(int score)
+{
+	m_csb->getChildByName<Text*>("tf_score")->setString(std::to_string(score));
 }
 
 void PaiGowSeatView::initView(PaiGowPlayer * player)

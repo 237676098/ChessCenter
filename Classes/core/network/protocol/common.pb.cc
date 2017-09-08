@@ -105,6 +105,7 @@ const ::google::protobuf::uint32 TableStruct::offsets[] = {
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PlayerInfo, name_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PlayerInfo, head_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PlayerInfo, ip_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PlayerInfo, is_online_),
 };
 
 static const ::google::protobuf::internal::MigrationSchema schemas[] = {
@@ -190,12 +191,13 @@ void AddDescriptorsImpl() {
       "\004sign\030\002 \001(\t\"A\n\010UserInfo\022\013\n\003uid\030\001 \001(\003\022\014\n\004"
       "name\030\002 \001(\t\022\014\n\004head\030\003 \001(\t\022\014\n\004card\030\004 \001(\005\"8"
       "\n\020S2C_InitUserInfo\022$\n\004user\030\001 \001(\0132\026.proto"
-      "3_proto.UserInfo\"V\n\nPlayerInfo\022\017\n\007seat_i"
+      "3_proto.UserInfo\"i\n\nPlayerInfo\022\017\n\007seat_i"
       "d\030\001 \001(\r\022\017\n\007user_id\030\002 \001(\003\022\014\n\004name\030\003 \001(\t\022\014"
-      "\n\004head\030\004 \001(\t\022\n\n\002ip\030\005 \001(\tb\006proto3"
+      "\n\004head\030\004 \001(\t\022\n\n\002ip\030\005 \001(\t\022\021\n\tis_online\030\006 "
+      "\001(\010b\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 352);
+      descriptor, 371);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "common.proto", &protobuf_RegisterTypes);
   ::google::protobuf::internal::OnShutdown(&TableStruct::Shutdown);
@@ -1923,6 +1925,7 @@ const int PlayerInfo::kUserIdFieldNumber;
 const int PlayerInfo::kNameFieldNumber;
 const int PlayerInfo::kHeadFieldNumber;
 const int PlayerInfo::kIpFieldNumber;
+const int PlayerInfo::kIsOnlineFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 PlayerInfo::PlayerInfo()
@@ -1951,8 +1954,8 @@ PlayerInfo::PlayerInfo(const PlayerInfo& from)
     ip_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.ip_);
   }
   ::memcpy(&user_id_, &from.user_id_,
-    reinterpret_cast<char*>(&seat_id_) -
-    reinterpret_cast<char*>(&user_id_) + sizeof(seat_id_));
+    reinterpret_cast<char*>(&is_online_) -
+    reinterpret_cast<char*>(&user_id_) + sizeof(is_online_));
   // @@protoc_insertion_point(copy_constructor:proto3_proto.PlayerInfo)
 }
 
@@ -1960,8 +1963,8 @@ void PlayerInfo::SharedCtor() {
   name_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   head_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   ip_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  ::memset(&user_id_, 0, reinterpret_cast<char*>(&seat_id_) -
-    reinterpret_cast<char*>(&user_id_) + sizeof(seat_id_));
+  ::memset(&user_id_, 0, reinterpret_cast<char*>(&is_online_) -
+    reinterpret_cast<char*>(&user_id_) + sizeof(is_online_));
   _cached_size_ = 0;
 }
 
@@ -2004,8 +2007,8 @@ void PlayerInfo::Clear() {
   name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   head_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   ip_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  ::memset(&user_id_, 0, reinterpret_cast<char*>(&seat_id_) -
-    reinterpret_cast<char*>(&user_id_) + sizeof(seat_id_));
+  ::memset(&user_id_, 0, reinterpret_cast<char*>(&is_online_) -
+    reinterpret_cast<char*>(&user_id_) + sizeof(is_online_));
 }
 
 bool PlayerInfo::MergePartialFromCodedStream(
@@ -2094,6 +2097,20 @@ bool PlayerInfo::MergePartialFromCodedStream(
         break;
       }
 
+      // bool is_online = 6;
+      case 6: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(48u)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
+                 input, &is_online_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
       default: {
       handle_unusual:
         if (tag == 0 ||
@@ -2161,6 +2178,11 @@ void PlayerInfo::SerializeWithCachedSizes(
       5, this->ip(), output);
   }
 
+  // bool is_online = 6;
+  if (this->is_online() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteBool(6, this->is_online(), output);
+  }
+
   // @@protoc_insertion_point(serialize_end:proto3_proto.PlayerInfo)
 }
 
@@ -2213,6 +2235,11 @@ void PlayerInfo::SerializeWithCachedSizes(
         5, this->ip(), target);
   }
 
+  // bool is_online = 6;
+  if (this->is_online() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(6, this->is_online(), target);
+  }
+
   // @@protoc_insertion_point(serialize_to_array_end:proto3_proto.PlayerInfo)
   return target;
 }
@@ -2254,6 +2281,11 @@ size_t PlayerInfo::ByteSizeLong() const {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::UInt32Size(
         this->seat_id());
+  }
+
+  // bool is_online = 6;
+  if (this->is_online() != 0) {
+    total_size += 1 + 1;
   }
 
   int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
@@ -2303,6 +2335,9 @@ void PlayerInfo::MergeFrom(const PlayerInfo& from) {
   if (from.seat_id() != 0) {
     set_seat_id(from.seat_id());
   }
+  if (from.is_online() != 0) {
+    set_is_online(from.is_online());
+  }
 }
 
 void PlayerInfo::CopyFrom(const ::google::protobuf::Message& from) {
@@ -2333,6 +2368,7 @@ void PlayerInfo::InternalSwap(PlayerInfo* other) {
   ip_.Swap(&other->ip_);
   std::swap(user_id_, other->user_id_);
   std::swap(seat_id_, other->seat_id_);
+  std::swap(is_online_, other->is_online_);
   std::swap(_cached_size_, other->_cached_size_);
 }
 
@@ -2529,6 +2565,20 @@ void PlayerInfo::set_allocated_ip(::std::string* ip) {
   }
   ip_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ip);
   // @@protoc_insertion_point(field_set_allocated:proto3_proto.PlayerInfo.ip)
+}
+
+// bool is_online = 6;
+void PlayerInfo::clear_is_online() {
+  is_online_ = false;
+}
+bool PlayerInfo::is_online() const {
+  // @@protoc_insertion_point(field_get:proto3_proto.PlayerInfo.is_online)
+  return is_online_;
+}
+void PlayerInfo::set_is_online(bool value) {
+  
+  is_online_ = value;
+  // @@protoc_insertion_point(field_set:proto3_proto.PlayerInfo.is_online)
 }
 
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS

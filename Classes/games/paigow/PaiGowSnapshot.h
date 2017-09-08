@@ -23,6 +23,7 @@ public:
 	int getSeatIndex(int seatid) const;
 	PaiGowPlayer* getMainPlayer() const;
 	bool isMainPlayer(uint32_t seat_id) const;
+	bool isBanker(uint32_t seat_id) const;
 
 public:
 	TableState table_state;

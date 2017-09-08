@@ -22,6 +22,7 @@ void PlayerInfo::initByPlayerInfo(const proto3_proto::PlayerInfo& info)
 	name = info.name();
 	head = info.head();
 	ip = info.ip();
+	is_online = info.is_online();
 }
 
 bool PlayerInfo::isMainChar()

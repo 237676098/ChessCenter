@@ -14,11 +14,13 @@ public:
 	void initView(PaiGowPlayer* player);
 	void reset();
 	void showBanker();
+	void hideBanker();
 	void setStatus(const std::string status,bool isHide = false);
 	void showResult(int result);
 	void showBet(uint32_t bet1, uint32_t bet2,cocos2d::Vec2 pos);
 	void hideBet();
 	void showOffline(bool b);
+	void setScore(int score);
 private:
 	static const  cocos2d::Vec2 bet_positions[];
 	PaiGowPlayer* m_player;

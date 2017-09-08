@@ -21,10 +21,11 @@ void PaiGowPlayer::initByPaiGowPlayer(const proto3_proto::PaiGowPlayer & player)
 	initByPlayerInfo(player.player());
 
 	//≥ı ºªØ ÷≈∆
+	hand_cards.clear();
 	size_t length = player.hand_cards_size();
 	for (size_t i = 0; i < length; i++)
 	{
-		hand_cards[i] = player.hand_cards(i);
+		hand_cards.push_back(player.hand_cards(i));
 	}
 
 	status = player.status();
@@ -36,7 +37,7 @@ void PaiGowPlayer::initByPaiGowPlayer(const proto3_proto::PaiGowPlayer & player)
 	}
 
 	score = player.score();
-	is_grab = player.has_banker();
+	is_grab = player.is_grab();
 }
 
 NS_PAIGOW_END

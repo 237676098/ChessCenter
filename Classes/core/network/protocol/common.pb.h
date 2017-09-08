@@ -657,6 +657,12 @@ class PlayerInfo : public ::google::protobuf::Message /* @@protoc_insertion_poin
   ::google::protobuf::uint32 seat_id() const;
   void set_seat_id(::google::protobuf::uint32 value);
 
+  // bool is_online = 6;
+  void clear_is_online();
+  static const int kIsOnlineFieldNumber = 6;
+  bool is_online() const;
+  void set_is_online(bool value);
+
   // @@protoc_insertion_point(class_scope:proto3_proto.PlayerInfo)
  private:
 
@@ -666,6 +672,7 @@ class PlayerInfo : public ::google::protobuf::Message /* @@protoc_insertion_poin
   ::google::protobuf::internal::ArenaStringPtr ip_;
   ::google::protobuf::int64 user_id_;
   ::google::protobuf::uint32 seat_id_;
+  bool is_online_;
   mutable int _cached_size_;
   friend struct protobuf_common_2eproto::TableStruct;
 };
@@ -1203,6 +1210,20 @@ inline void PlayerInfo::set_allocated_ip(::std::string* ip) {
   }
   ip_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ip);
   // @@protoc_insertion_point(field_set_allocated:proto3_proto.PlayerInfo.ip)
+}
+
+// bool is_online = 6;
+inline void PlayerInfo::clear_is_online() {
+  is_online_ = false;
+}
+inline bool PlayerInfo::is_online() const {
+  // @@protoc_insertion_point(field_get:proto3_proto.PlayerInfo.is_online)
+  return is_online_;
+}
+inline void PlayerInfo::set_is_online(bool value) {
+  
+  is_online_ = value;
+  // @@protoc_insertion_point(field_set:proto3_proto.PlayerInfo.is_online)
 }
 
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS
