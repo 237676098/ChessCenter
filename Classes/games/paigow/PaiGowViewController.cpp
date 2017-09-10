@@ -356,9 +356,6 @@ int PaiGowViewController::HandleEvent(core::Event * evt)
 		EventCollocation* event = (EventCollocation*)(evt);
 		if (event->cards.size()  > 0)
 		{
-			m_handcards_views[event->seat_id]->setInteractive(false);
-			m_handcards_views[event->seat_id]->playCollocation(event->cards);
-			
 			if (m_data->isMainPlayer(event->seat_id))
 			{
 				if (m_collocation_operate_view)
@@ -367,6 +364,12 @@ int PaiGowViewController::HandleEvent(core::Event * evt)
 					m_collocation_operate_view = nullptr;
 				}
 			}
+			else
+			{
+				m_handcards_views[event->seat_id]->setCards(event->cards);
+			}
+			m_handcards_views[event->seat_id]->setInteractive(false);
+			m_handcards_views[event->seat_id]->playCollocation(event->cards);
 		} 
 		else
 		{

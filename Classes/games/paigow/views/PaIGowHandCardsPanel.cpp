@@ -79,9 +79,9 @@ void PaiGowHandCardsPanel::setCards(const std::vector<Card>& cards)
 void PaiGowHandCardsPanel::playCollocation()
 {
 	m_cards[2]->setPosition(PaiGowHandCardsPanel::key_points[4]);
-	m_cards[2]->setRotation(90);
+	m_cards[2]->setRotation(-90);
 	m_cards[3]->setPosition(PaiGowHandCardsPanel::key_points[5]);
-	m_cards[3]->setRotation(90);
+	m_cards[3]->setRotation(-90);
 }
 
 void PaiGowHandCardsPanel::playCollocation(const std::vector<Card>& cards)
@@ -92,7 +92,16 @@ void PaiGowHandCardsPanel::playCollocation(const std::vector<Card>& cards)
 		{
 			if (cards[i]== m_cards[j]->getCard())
 			{
-				m_cards[j]->setPosition(PaiGowHandCardsPanel::key_points[i]);
+				if (i > 1)
+				{
+					m_cards[j]->setPosition(PaiGowHandCardsPanel::key_points[i+2]);
+					m_cards[j]->setRotation(-90);
+				}
+				else
+				{
+					m_cards[j]->setPosition(PaiGowHandCardsPanel::key_points[i]);
+					m_cards[j]->setRotation(0);
+				}
 				break;
 			}
 		}
