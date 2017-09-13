@@ -67,6 +67,15 @@ void IBaseWindow::initCSB()
 		closeBtn->addClickEventListener(std::bind(&IBaseWindow::onClickCloseBtn, this, std::placeholders::_1));
 	}
 
+	if (m_node_csb->getChildByName("center_node"))
+	{
+		auto btn = m_node_csb->getChildByName("center_node")->getChildByName<Button*>("btn_close");
+		if (btn)
+		{
+			btn->addClickEventListener(std::bind(&IBaseWindow::onClickCloseBtn, this, std::placeholders::_1));
+		}
+	}
+
 	Node* center = m_node_csb->getChildByName<Node*>("center");
 	if (center)
 	{

@@ -10,6 +10,7 @@
 #include "EventGrabStatus.h"
 #include "EventCollocation.h"
 #include "EventResult.h"
+#include "EventSure.h"
 
 
 #endif // !__PAIGOW_EVENTS_H__

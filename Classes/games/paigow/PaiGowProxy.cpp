@@ -20,7 +20,8 @@ PaiGowProxy::PaiGowProxy(PaiGowSnaptShot* data)
 	MSG_FUNCTION_REGISTER(S2C_LeaveMatch, PaiGowProxy)
 	MSG_FUNCTION_REGISTER(S2C_OffLine, PaiGowProxy)
 	MSG_FUNCTION_REGISTER(S2C_OnLine, PaiGowProxy)
-
+	MSG_FUNCTION_REGISTER(S2C_PG_Sure, PaiGowProxy)
+		
 }
 
 PaiGowProxy::~PaiGowProxy()
@@ -86,7 +87,7 @@ void PaiGowProxy::onRevS2C_PG_Deal(google::protobuf::Message* msg)
 	for (iter = m_data->players.begin(); iter != m_data->players.end(); iter++)
 	{
 		std::vector<Card> handcard;
-		if (!(iter->second) || !(iter->second->isMainChar()))
+		if (!(iter->second->isMainChar()))
 		{
 			for (size_t i = 0; i < 4; i++)
 			{
@@ -125,6 +126,13 @@ void PaiGowProxy::onRevS2C_PG_Collocation(google::protobuf::Message* msg)
 void PaiGowProxy::onRevS2C_PG_Result(google::protobuf::Message* msg)
 {
 	proto3_proto::S2C_PG_Result* s2c_msg = dynamic_cast<proto3_proto::S2C_PG_Result*>(msg);
+
+	for (int i = 0; i < s2c_msg->scores_size(); i++)
+	{
+		m_data->players[i]->score = s2c_msg->scores(i).total_result();
+		m_data->players[i]->cur_score = s2c_msg->scores(i).result();
+	}
+
 	EventResult event;
 	event.result = s2c_msg;
 	core::EventManager::Instance().DispatchEvent(&event);
@@ -165,6 +173,15 @@ void  PaiGowProxy::onRevS2C_OnLine(google::protobuf::Message* msg)
 	proto3_proto::S2C_OnLine* s2c_msg = dynamic_cast<proto3_proto::S2C_OnLine*> (msg);
 	CCLOG("online %u", s2c_msg->seat_id());
 	EventOffline event(s2c_msg->seat_id(), false);
+	core::EventManager::Instance().DispatchEvent(&event);
+}
+
+void PaiGowProxy::onRevS2C_PG_Sure(google::protobuf::Message* msg)
+{
+	proto3_proto::S2C_PG_Sure*  s2c_msg = dynamic_cast<proto3_proto::S2C_PG_Sure*> (msg);
+	m_data->players[s2c_msg->seat_id()]->reset();
+	EventSure event;
+	event.seat_id = s2c_msg->seat_id();
 	core::EventManager::Instance().DispatchEvent(&event);
 }
 

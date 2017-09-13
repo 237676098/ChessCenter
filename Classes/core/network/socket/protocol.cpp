@@ -26,6 +26,8 @@ MESSAGE_GETTER(S2C_PG_Collocation);
 MESSAGE_GETTER(S2C_PG_Result);
 MESSAGE_GETTER(C2S_PG_Sure);
 MESSAGE_GETTER(S2C_PG_Sure);
+MESSAGE_GETTER(C2S_PG_Kick);
+MESSAGE_GETTER(S2C_PG_Kick);
 MESSAGE_GETTER(Match);
 MESSAGE_GETTER(C2S_CreateMatch);
 MESSAGE_GETTER(S2C_CreateMatch);
@@ -63,6 +65,8 @@ MsgGetterMap::value_type init_value[] =
     MsgGetterMap::value_type(ID_S2C_PG_Result,GetProtoS2C_PG_Result),
     MsgGetterMap::value_type(ID_C2S_PG_Sure,GetProtoC2S_PG_Sure),
     MsgGetterMap::value_type(ID_S2C_PG_Sure,GetProtoS2C_PG_Sure),
+    MsgGetterMap::value_type(ID_C2S_PG_Kick,GetProtoC2S_PG_Kick),
+    MsgGetterMap::value_type(ID_S2C_PG_Kick,GetProtoS2C_PG_Kick),
     MsgGetterMap::value_type(ID_Match,GetProtoMatch),
     MsgGetterMap::value_type(ID_C2S_CreateMatch,GetProtoC2S_CreateMatch),
     MsgGetterMap::value_type(ID_S2C_CreateMatch,GetProtoS2C_CreateMatch),

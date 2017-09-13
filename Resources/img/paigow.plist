@@ -186,7 +186,7 @@
                 <key>sourceSize</key>
                 <string>{198,80}</string>
             </dict>
-            <key>btn_ok1.png</key>
+            <key>btn_ok_queding.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{1126,2},{156,63}}</string>
@@ -820,7 +820,7 @@
             <key>size</key>
             <string>{2036,1950}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:9e88063cfee048ee00b6a65a6181bc78:b8f411c04c26b6e2897d2f75a5aefd82:3021e15373635a18c264a4117c6093b0$</string>
+            <string>$TexturePacker:SmartUpdate:a20fa63e1d0e488bec94264fee85d1ad:b8f411c04c26b6e2897d2f75a5aefd82:3021e15373635a18c264a4117c6093b0$</string>
             <key>textureFileName</key>
             <string>paigow.png</string>
         </dict>

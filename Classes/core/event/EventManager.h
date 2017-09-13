@@ -18,6 +18,7 @@ enum EventId
 	EVT_PG_DealCard,						//发牌
 	EVT_PG_Collocation,						//玩家配牌返回
 	EVT_PG_Result,							//结果结算
+	EVT_PG_Sure,							//玩家准备
 };
 
 struct Event

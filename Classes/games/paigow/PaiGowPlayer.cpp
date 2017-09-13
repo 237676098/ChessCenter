@@ -2,10 +2,20 @@
 
 NS_PAIGOW_BEGIN
 
-
-PaiGowPlayer::PaiGowPlayer():
-	status(false),
-	score(0)
+uint32_t status;
+std::vector<Card> hand_cards;
+std::vector<uint32_t> chips;
+int score;
+int cur_score;
+bool is_grab;
+bool has_people;
+PaiGowPlayer::PaiGowPlayer() :
+	status(0),
+	score(0),
+	cur_score(0),
+	is_grab(false),
+	has_people(false),
+	PlayerInfo::PlayerInfo()
 {
 
 }
@@ -38,6 +48,12 @@ void PaiGowPlayer::initByPaiGowPlayer(const proto3_proto::PaiGowPlayer & player)
 
 	score = player.score();
 	is_grab = player.is_grab();
+	has_people = true;
+}
+
+void PaiGowPlayer::reset()
+{
+	status = PLAYER_STATUS_READY;
 }
 
 NS_PAIGOW_END

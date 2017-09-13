@@ -23,6 +23,8 @@ private:
 	MSG_FUNCTION_DEFINE(S2C_LeaveMatch)
 	MSG_FUNCTION_DEFINE(S2C_OffLine)
 	MSG_FUNCTION_DEFINE(S2C_OnLine)
+	MSG_FUNCTION_DEFINE(S2C_PG_Sure)
+		
 
 private:
 	PaiGowSnaptShot* m_data;

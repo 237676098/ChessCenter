@@ -57,6 +57,9 @@ extern C2S_PG_CollocationDefaultTypeInternal _C2S_PG_Collocation_default_instanc
 class C2S_PG_GrabBanker;
 class C2S_PG_GrabBankerDefaultTypeInternal;
 extern C2S_PG_GrabBankerDefaultTypeInternal _C2S_PG_GrabBanker_default_instance_;
+class C2S_PG_Kick;
+class C2S_PG_KickDefaultTypeInternal;
+extern C2S_PG_KickDefaultTypeInternal _C2S_PG_Kick_default_instance_;
 class C2S_PG_StartGame;
 class C2S_PG_StartGameDefaultTypeInternal;
 extern C2S_PG_StartGameDefaultTypeInternal _C2S_PG_StartGame_default_instance_;
@@ -120,6 +123,9 @@ extern S2C_PG_GrabBankerDefaultTypeInternal _S2C_PG_GrabBanker_default_instance_
 class S2C_PG_GrabBanker_RES;
 class S2C_PG_GrabBanker_RESDefaultTypeInternal;
 extern S2C_PG_GrabBanker_RESDefaultTypeInternal _S2C_PG_GrabBanker_RES_default_instance_;
+class S2C_PG_Kick;
+class S2C_PG_KickDefaultTypeInternal;
+extern S2C_PG_KickDefaultTypeInternal _S2C_PG_Kick_default_instance_;
 class S2C_PG_Result;
 class S2C_PG_ResultDefaultTypeInternal;
 extern S2C_PG_ResultDefaultTypeInternal _S2C_PG_Result_default_instance_;

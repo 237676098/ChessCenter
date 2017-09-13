@@ -86,12 +86,20 @@ void PaiGowHandCardsPanel::playCollocation()
 
 void PaiGowHandCardsPanel::playCollocation(const std::vector<Card>& cards)
 {
+
+	std::map<int,int> index_pos;
+	std::map<int,bool> indexed;
+	std::map<int,bool> indexed1;
+
+
 	for (size_t i = 0; i < cards.size(); i++)
 	{
 		for (size_t j = 0; j < m_cards.size(); j++)
 		{
-			if (cards[i]== m_cards[j]->getCard())
+			if (cards[i]== m_cards[j]->getCard() && indexed.find(i) == indexed.end() && indexed1.find(j) == indexed1.end())
 			{
+				indexed.insert(std::make_pair(i,true));
+				indexed1.insert(std::make_pair(j, true));
 				if (i > 1)
 				{
 					m_cards[j]->setPosition(PaiGowHandCardsPanel::key_points[i+2]);

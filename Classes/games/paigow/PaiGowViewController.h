@@ -31,6 +31,11 @@ public:
 	void onClickCollcationTips();
 	void onClickCollcationSure();
 
+public:
+	const PaiGowPlayer* getPlayerBySeatId(uint32_t seat_id);
+	bool isMySeat(uint32_t seat_id) const;
+	const PaiGowPlayer* getMyPlayer() const;
+
 private:
 	PaiGowSeatView* addSeat(PaiGowPlayer* seat);
 	void deleteSeat(uint32_t seat_id);

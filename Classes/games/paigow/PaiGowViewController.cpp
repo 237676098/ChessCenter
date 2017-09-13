@@ -2,6 +2,7 @@
 #include "PaigowManager.h"
 #include "core/scene/scene.h"
 #include "games/paigow/events/paigow_events.h"
+#include "games/paigow/views/PaiGowResultWindow.h"
 
 USING_NS_CC;
 
@@ -39,7 +40,7 @@ void PaiGowViewController::init()
 
 	for (iter = m_data->players.begin() ; iter != m_data->players.end(); iter++)
 	{
-		if (iter->second)
+		if (iter->second->has_people)
 		{
 			PaiGowSeatView* view = addSeat(iter->second);
 			//在线状态
@@ -165,6 +166,7 @@ void PaiGowViewController::init()
 	core::EventManager::Instance().AddEventHandler(core::EVT_PG_GrabStatus, this);
 	core::EventManager::Instance().AddEventHandler(core::EVT_PG_Collocation, this);
 	core::EventManager::Instance().AddEventHandler(core::EVT_PG_Result, this);
+	core::EventManager::Instance().AddEventHandler(core::EVT_PG_Sure, this);
 }
 
 void PaiGowViewController::dispose()
@@ -381,19 +383,34 @@ int PaiGowViewController::HandleEvent(core::Event * evt)
 		EventResult* event = (EventResult*)(evt);
 		for (int i = 0; i < event->result->scores_size(); i++)
 		{
+			uint32_t seatid = event->result->scores(i).seat_id();
+
 			//播放非自己玩家的亮牌动画
-			//if (!m_data->isMainPlayer(event->result->scores(i).seat_id))
+			if (!(m_data->isMainPlayer(seatid)))
 			{
-				std::vector<uint32_t> cards;
+				std::vector<Card> cards;
 				for (int j = 0; j < event->result->scores(i).hand_cards_size(); j++)
 				{
-					//cards.push_back(event->result->scores(i).hand_cards(j));
+					cards.push_back(event->result->scores(i).hand_cards(j));
 				}
 
-
-				//m_handcards_views[event->result->scores(i).seat_id]->playCollocation(cards);
+				m_handcards_views[event->result->scores(i).seat_id()]->setCards(cards);
+				m_handcards_views[event->result->scores(i).seat_id()]->playCollocation(cards);
 			}
+
+			//更新分数
+			m_seat_views[seatid]->setScore(m_data->players[seatid]->score);
 		}
+
+		core::WindowManager::getInstance()->open_2<paigow::PaiGowResultWindow,PaiGowViewController*, const proto3_proto::S2C_PG_Result&>(this, *(event->result));
+	}
+	else if (evt->id_ == core::EVT_PG_Sure)
+	{
+		EventSure* event = (EventSure*)(evt); 
+		core::SceneManager::getInstance()->remove(core::LayerMainUIUp, m_handcards_views[event->seat_id]);
+		m_handcards_views.erase(event->seat_id);
+		m_seat_views[event->seat_id]->hideBet();
+		m_seat_views[event->seat_id]->setStatus("status_zhunbei");
 	}
 
 	return 0;
@@ -428,6 +445,28 @@ void PaiGowViewController::onClickCollcationSure()
 	{
 		core::SceneManager::getInstance()->showMsg("error number of cards");
 	}
+}
+
+const PaiGowPlayer * PaiGowViewController::getPlayerBySeatId(uint32_t seat_id)
+{
+	if (m_data->players.find(seat_id) != m_data->players.end())
+	{
+		return m_data->players[seat_id];
+	}
+	else
+	{
+		return nullptr;
+	}
+}
+
+bool PaiGowViewController::isMySeat(uint32_t seat_id) const
+{
+	return m_data->isMainPlayer(seat_id);
+}
+
+const PaiGowPlayer * PaiGowViewController::getMyPlayer() const
+{
+	return m_data->getMainPlayer();
 }
 
 PaiGowSeatView* PaiGowViewController::addSeat(PaiGowPlayer * player)

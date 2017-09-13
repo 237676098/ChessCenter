@@ -9,7 +9,7 @@ PaiGowSnaptShot::PaiGowSnaptShot()
 {
 	for (size_t i = 0; i < 4; i++)
 	{
-		players.insert(std::make_pair(i,nullptr));
+		players.insert(std::make_pair(i,new PaiGowPlayer));
 	}
 }
 
@@ -58,16 +58,12 @@ void PaiGowSnaptShot::clear()
 void PaiGowSnaptShot::addPlayer(const proto3_proto::PaiGowPlayer& p)
 {
 	uint32_t seatid = p.player().seat_id();
-	CCASSERT(players[seatid] == nullptr, "add player faield ");
-	players[seatid] = new PaiGowPlayer;
 	players[seatid]->initByPaiGowPlayer(p);
 }
 
 void PaiGowSnaptShot::deletePlayer(uint32_t seatid)
 {
-	CCASSERT(players[seatid] != nullptr, "delete player failed");
-	delete players[seatid];
-	players[seatid] = nullptr;
+	players[seatid]->has_people = false;
 }
 
 int PaiGowSnaptShot::getSeatIndex(int seatid) const
@@ -78,7 +74,7 @@ int PaiGowSnaptShot::getSeatIndex(int seatid) const
 
 	for (iter = players.begin(); iter != players.end(); iter++)
 	{
-		if ((*iter).second && (*iter).second->isMainChar())
+		if ((*iter).second->isMainChar())
 		{
 			my_seat_id = (*iter).second->seat_id - 1;
 		}
@@ -95,7 +91,7 @@ PaiGowPlayer * PaiGowSnaptShot::getMainPlayer() const
 	std::map<uint32_t, PaiGowPlayer*>::const_iterator iter;
 	for (iter = players.begin();iter != players.end();iter ++)
 	{
-		if (iter->second && iter->second->isMainChar())
+		if (iter->second->isMainChar())
 		{
 			return iter->second;
 		}
@@ -108,7 +104,7 @@ bool PaiGowSnaptShot::isMainPlayer(uint32_t seat_id) const
 	std::map<uint32_t, PaiGowPlayer*>::const_iterator iter;
 	for (iter = players.begin(); iter != players.end(); iter++)
 	{
-		if (iter->first == seat_id && iter->second && iter->second->isMainChar())
+		if (iter->first == seat_id  && iter->second->isMainChar())
 		{
 			return true;
 		}

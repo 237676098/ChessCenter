@@ -24,12 +24,15 @@ public:
 	PaiGowPlayer();
 	virtual  ~PaiGowPlayer();
 	void initByPaiGowPlayer(const proto3_proto::PaiGowPlayer& player);
+	void reset();
 public:
 	uint32_t status;
 	std::vector<Card> hand_cards;
 	std::vector<uint32_t> chips;
 	int score;
+	int cur_score;
 	bool is_grab;
+	bool has_people;
 };
 
 

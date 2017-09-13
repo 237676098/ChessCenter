@@ -4,8 +4,19 @@
 
 NS_GAME_BEGIN
 
-
-PlayerInfo::PlayerInfo()
+uint64_t uid;
+uint32_t seat_id;
+std::string name;
+std::string head;
+std::string ip;
+bool is_online;
+PlayerInfo::PlayerInfo():
+	uid(0),
+	seat_id(0),
+	name(""),
+	head(""),
+	ip(""),
+	is_online(false)
 {
 
 }
