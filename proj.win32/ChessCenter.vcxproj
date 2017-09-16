@@ -175,6 +175,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\games\paigow\PaigowManager.cpp" />
     <ClCompile Include="..\Classes\games\paigow\PaiGowPlayer.cpp" />
     <ClCompile Include="..\Classes\games\paigow\PaiGowProxy.cpp" />
+    <ClCompile Include="..\Classes\games\paigow\PaiGowResult.cpp" />
     <ClCompile Include="..\Classes\games\paigow\PaiGowSnapshot.cpp" />
     <ClCompile Include="..\Classes\games\paigow\PaiGowViewController.cpp" />
     <ClCompile Include="..\Classes\games\paigow\views\PaigowBetOperateView.cpp" />
@@ -244,6 +245,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\games\paigow\PaigowManager.h" />
     <ClInclude Include="..\Classes\games\paigow\PaiGowPlayer.h" />
     <ClInclude Include="..\Classes\games\paigow\PaiGowProxy.h" />
+    <ClInclude Include="..\Classes\games\paigow\PaiGowResult.h" />
     <ClInclude Include="..\Classes\games\paigow\PaiGowSnapshot.h" />
     <ClInclude Include="..\Classes\games\paigow\PaiGowViewController.h" />
     <ClInclude Include="..\Classes\games\paigow\views\PaigowBetOperateView.h" />
@@ -270,6 +272,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\user\UserManager.h" />
     <ClInclude Include="..\Classes\utils\CommonMacros.h" />
     <ClInclude Include="..\Classes\utils\LanguageManager.h" />
+    <ClInclude Include="..\Classes\utils\stdtostring.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>
   <ItemGroup>

@@ -222,6 +222,9 @@
     <ClCompile Include="..\Classes\games\paigow\views\PaiGowResultWindow.cpp">
       <Filter>src\games\paigow\views</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\games\paigow\PaiGowResult.cpp">
+      <Filter>src\games\paigow</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -436,6 +439,12 @@
     </ClInclude>
     <ClInclude Include="..\Classes\games\paigow\events\EventSure.h">
       <Filter>src\games\paigow\events</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\games\paigow\PaiGowResult.h">
+      <Filter>src\games\paigow</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\utils\stdtostring.h">
+      <Filter>src\utils</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

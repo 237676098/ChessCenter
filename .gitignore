@@ -1,2 +1,14 @@
 *Debug.win32
 .vs
+/cocos2d/cocos/platform/android/libcocos2dx/build
+/cocos2d/cocos/platform/android/libcocos2dx/*.iml
+/proj.android-studio/proj.android-studio.iml
+/proj.android-studio/.idea
+/proj.android-studio/app/local.properties
+/proj.android-studio/app/proguard-project.txt
+/proj.android-studio/app/assets
+/proj.android-studio/app/build
+/proj.android-studio/app/libs
+/proj.android-studio/app/obj
+/proj.android-studio/app/build.xml
+/proj.android-studio/app/ChessCenter.iml
