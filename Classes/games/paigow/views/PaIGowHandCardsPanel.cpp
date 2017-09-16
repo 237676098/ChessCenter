@@ -1,4 +1,5 @@
 #include "PaiGowHandCardsPanel.h"
+#include <math.h>
 NS_PAIGOW_BEGIN
 
 
@@ -60,7 +61,7 @@ void PaiGowHandCardsPanel::pull(uint32_t index)
 	pull(m_cards[index]);
 }
 
-void PaiGowHandCardsPanel::setCards(const std::vector<Card>& cards)
+void PaiGowHandCardsPanel::setCards(const std::vector<Card>& cards, bool isShow)
 {
 	for (size_t i = 0; i < cards.size(); i++)
 	{
@@ -68,9 +69,19 @@ void PaiGowHandCardsPanel::setCards(const std::vector<Card>& cards)
 		{
 			m_cards[i] = PaiGowCardView::create();
 			this->addChild(m_cards[i]);
-			m_cards[i]->setPosition(PaiGowHandCardsPanel::key_points[i]);
 			m_cards[i]->setCallBack(std::bind(&PaiGowHandCardsPanel::onClickCard, this, std::placeholders::_1));
 		}
+
+		if (isShow && i > 1)
+		{
+			m_cards[i]->setPosition(PaiGowHandCardsPanel::key_points[i + 2]);
+			m_cards[i]->setRotation(-90);
+		}
+		else
+		{
+			m_cards[i]->setPosition(PaiGowHandCardsPanel::key_points[i]);
+		}
+
 
 		m_cards[i]->setCard(cards[i]);
 	}

@@ -102,7 +102,7 @@ void PaiGowProxy::onRevS2C_PG_Deal(google::protobuf::Message* msg)
 				handcard.push_back(s2c_msg->my_card(i));
 			}
 		}
-
+		CCLOG("seat_id:%d",iter->first);
 		handcards.insert(std::make_pair(iter->first,handcard));
 
 	}
@@ -127,10 +127,12 @@ void PaiGowProxy::onRevS2C_PG_Result(google::protobuf::Message* msg)
 {
 	proto3_proto::S2C_PG_Result* s2c_msg = dynamic_cast<proto3_proto::S2C_PG_Result*>(msg);
 
+	m_data->clearResult();
 	for (int i = 0; i < s2c_msg->scores_size(); i++)
 	{
-		m_data->players[i]->score = s2c_msg->scores(i).total_result();
-		m_data->players[i]->cur_score = s2c_msg->scores(i).result();
+		m_data->players[s2c_msg->scores(i).seat_id()]->score = s2c_msg->scores(i).total_result();
+	
+		m_data->addResult(s2c_msg->scores(i));
 	}
 
 	EventResult event;
@@ -141,7 +143,6 @@ void PaiGowProxy::onRevS2C_PG_Result(google::protobuf::Message* msg)
 void PaiGowProxy::onRevS2C_LeaveMatch(google::protobuf::Message* msg)
 {
 	proto3_proto::S2C_LeaveMatch* leavematch = dynamic_cast<proto3_proto::S2C_LeaveMatch*> (msg);
-	CCASSERT(m_data->players[leavematch->seat_id()] != nullptr,"seat id bu cun zai");
 
 	//如果是主角色离开 清理牌桌 回到大厅
 	if (m_data->players[leavematch->seat_id()]->isMainChar())

@@ -6,13 +6,11 @@ uint32_t status;
 std::vector<Card> hand_cards;
 std::vector<uint32_t> chips;
 int score;
-int cur_score;
 bool is_grab;
 bool has_people;
 PaiGowPlayer::PaiGowPlayer() :
 	status(0),
 	score(0),
-	cur_score(0),
 	is_grab(false),
 	has_people(false),
 	PlayerInfo::PlayerInfo()

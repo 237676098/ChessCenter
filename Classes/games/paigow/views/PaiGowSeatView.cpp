@@ -103,7 +103,7 @@ void PaiGowSeatView::initView(PaiGowPlayer * player)
 	m_player = player;
 	
 	//player name
-	m_csb->getChildByName<Text*>("tf_name")->setString(player->name);
+	m_csb->getChildByName<Text*>("tf_name")->setString(player->name + ":" + std::to_string(player->seat_id));
 	//player score
 	m_csb->getChildByName<Text*>("tf_score")->setString(std::to_string(player->score));
 

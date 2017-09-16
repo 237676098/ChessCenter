@@ -56,6 +56,8 @@ void PaiGowWaitOperateView::initView(PaiGowSnaptShot * data)
 	}
 
 	bool isFull = true;
+
+	/*
 	for (size_t i = 0; i < 4; i++)
 	{
 		if (!m_data->players[i])
@@ -64,6 +66,7 @@ void PaiGowWaitOperateView::initView(PaiGowSnaptShot * data)
 			break;
 		}
 	}
+	*/
 
 	if (isFull)
 	{

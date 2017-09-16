@@ -1,7 +1,7 @@
 #ifndef __PAI_GOW_RESULT_WINDOW_H__
 #define __PAI_GOW_RESULT_WINDOW_H__
 #include "core/scene/scene.h"
-#include "core/network/socket/SocketManager.h"
+#include "games/paigow/PaiGowResult.h"
 
 
 NS_PAIGOW_BEGIN
@@ -11,15 +11,15 @@ class PaiGowResultWindow :public core::IBaseWindow
 {
 public:
 	const static WindowId s_id = ID_PAI_GOW_RESULT;
-	PaiGowResultWindow(PaiGowViewController* controller, const proto3_proto::S2C_PG_Result& result)
+	PaiGowResultWindow(PaiGowViewController* controller, const std::vector<PaiGowResult*>& result)
 		:m_controller(controller),
-		m_result(result),
+		m_results(result),
 		core::IBaseWindow("paigow/paigow_result_view") {};
 	void onLoadCompleted() override;
 	void onClickCloseBtn(Ref* btn) override;
 	void onClickSure(Ref * btn) const;
 private:
-	proto3_proto::S2C_PG_Result m_result;
+	std::vector<PaiGowResult*> m_results;
 	PaiGowViewController* m_controller;
 };
 

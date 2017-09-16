@@ -5,6 +5,7 @@
 #include "games/paigow/PaiGowPlayer.h"
 #include <map>
 #include <vector>
+#include "PaiGowResult.h"
 
 
 
@@ -26,13 +27,17 @@ public:
 	bool isBanker(uint32_t seat_id) const;
 
 public:
+	void clearResult();
+	void addResult(const proto3_proto::PaiGowResult& result);
+
+public:
 	TableState table_state;
 	//TableState table_state;					//牌桌状态
 	uint32_t room_owner; 					//牌桌拥有者
 	uint32_t banker_seat_id;				//庄家位
 	std::vector<Card> public_cards;							//公牌
 	std::map<uint32_t,PaiGowPlayer*> players;						//牌九玩家
-	//repeated PaiGowResult results = 5; 			//本局当前比赛结果
+	std::vector<PaiGowResult*> results;
 };
 
 

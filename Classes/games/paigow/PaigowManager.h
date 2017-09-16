@@ -16,7 +16,7 @@ enum class TableState
 	Wait = 1,
 	GrabBanker,
 	Bet,
-	Collocation,
+	Collocation = 5,
 	Result,
 	Unkown
 };
