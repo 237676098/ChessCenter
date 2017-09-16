@@ -32,17 +32,14 @@ void IBaseWindow::initCSB()
 		//CCLOG("touch window bg");
 		return true;
 	};
-	listener->onTouchCancelled = [](Touch *touch, Event *event)->bool {
+	listener->onTouchCancelled = [](Touch *touch, Event *event)->void {
 		//CCLOG("touch window bg");
-		return true;
 	};
-	listener->onTouchMoved = [](Touch *touch, Event *event)->bool {
+	listener->onTouchMoved = [](Touch *touch, Event *event)->void {
 		//CCLOG("touch window bg");
-		return true;
 	};
-	listener->onTouchEnded = [](Touch *touch, Event *event)->bool {
+	listener->onTouchEnded = [](Touch *touch, Event *event)->void {
 		CCLOG("touch window bg");
-		return true;
 	};
 	listener->setSwallowTouches(true);
 	m_layer_bg->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, m_layer_bg);

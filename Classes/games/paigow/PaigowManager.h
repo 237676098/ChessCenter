@@ -9,7 +9,7 @@
 
 NS_PAIGOW_BEGIN
 
-//class  PaiGowProxy;
+class  PaiGowProxy;
 
 enum class TableState
 {
@@ -30,7 +30,6 @@ public:
 	void dispose();
 
 private:
-	friend class PaiGowProxy;
 	PaiGowProxy* m_proxy;
 	PaiGowSnaptShot* m_data;
 	PaiGowViewController* m_controller;

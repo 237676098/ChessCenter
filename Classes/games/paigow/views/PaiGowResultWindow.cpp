@@ -2,6 +2,10 @@
 #include "games/paigow/PaiGowLogic.h"
 #include "games/paigow/PaiGowViewController.h"
 
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+#include "utils/stdtostring.h"
+#endif
+
 NS_PAIGOW_BEGIN
 
 void PaiGowResultWindow::onLoadCompleted()

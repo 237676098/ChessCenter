@@ -2,6 +2,10 @@
 #include "cocos2d.h"
 #include "utils/LanguageManager.h"
 
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+#include "utils/stdtostring.h"
+#endif
+
 USING_NS_CC;
 NS_PAIGOW_BEGIN
 

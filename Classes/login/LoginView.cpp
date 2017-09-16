@@ -61,7 +61,7 @@ void LoginView::onLoginBtnClick(Ref* btn)
 		for (size_t i = 0; i < 21; i++)
 		{
 			game::paigow::Card card = game::paigow::cards[i];
-			CCLOG("%04X %d",card,card);
+			//CCLOG("%04X %d",card,card);
 		};
 
 		//game::paigow::PaiGowCardView* view = game::paigow::PaiGowCardView::create(0x010c);
@@ -96,7 +96,7 @@ void LoginView::onLoginBtnClick(Ref* btn)
 			load_str += (*data)[i];
 		}
 		load_str += '\0';
-		CCLOG(load_str.c_str());
+		//CCLOG(load_str.c_str());
 
 		//*** ¶ÁÈ¡ json ÎÄ¼þ ***  
 		rapidjson::Document readdoc;
@@ -107,7 +107,7 @@ void LoginView::onLoginBtnClick(Ref* btn)
 		readdoc.Parse<0>(load_str.c_str());
 		if (readdoc.HasParseError())
 		{
-			CCLOG("GetParseError%s\n", readdoc.GetParseError());
+			//CCLOG("GetParseError:%d\n", readdoc.GetParseError());
 		}
 
 		if (!readdoc.IsObject())

@@ -2,6 +2,10 @@
 #include "utils/LanguageManager.h"
 #include "games/paigow/PaiGowSnapshot.h"
 
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+#include "utils/stdtostring.h"
+#endif
+
 NS_PAIGOW_BEGIN
 
 PaigowTableView * PaigowTableView::create()

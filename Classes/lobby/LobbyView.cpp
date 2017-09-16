@@ -7,6 +7,10 @@
 #include "games/GameManager.h"
 #include "user/UserManager.h"
 
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+#include "utils/stdtostring.h"
+#endif
+
 using namespace cocos2d::ui;
 NS_LOBBY_BEGIN
 

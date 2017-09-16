@@ -194,16 +194,16 @@ void SocketManager::Connect(std::string ip, uint16 port)
 	struct sockaddr_in addrServ;
 	addrServ.sin_family = AF_INET;
 	addrServ.sin_port = htons(port);
-
+	
 	struct hostent *h;
-	if ((h = gethostbyname(host.c_str())) == NULL)
+	if ((h = gethostbyname(ip.c_str())) == NULL)
 	{
 		CCLog("不能得到IP\n");
 		return;
 	}
 	CCLog("HostName :%s\n", h->h_name);
 	CCLog("IP Address :%s\n", inet_ntoa(*((struct in_addr *)h->h_addr)));
-
+	
 	addrServ.sin_addr.s_addr = inet_addr(inet_ntoa(*((struct in_addr *)h->h_addr)));
 
 	int retVal = connect(sClient, (struct sockaddr *)&addrServ, sizeof(addrServ));

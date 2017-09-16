@@ -1,5 +1,10 @@
 #include "RoomJoinWindow.h"
 #include "games/game.h"
+
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+#include "utils/stdtostring.h"
+#endif
+
 NS_LOBBY_BEGIN
 void RoomJoinWindow::onLoadCompleted()
 {
@@ -60,7 +65,8 @@ void RoomJoinWindow::onClickNumber(Ref * ref)
 			s.append(std::to_string(m_numbers[i]));
 		}
 
-		game::GameManager::getInstance()->joinMatch(std::stoi(s));
+		int roomid = cocos2d::String::createWithFormat("%s",s.c_str())->intValue();
+		game::GameManager::getInstance()->joinMatch(roomid);
 	}
 
 }

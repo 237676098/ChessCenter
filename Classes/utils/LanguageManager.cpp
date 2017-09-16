@@ -1,6 +1,6 @@
 #include "LanguageManager.h"
-#include"cocos2d/external/tinyxml2/tinyxml2.h"
-#include"cocos2d.h"
+#include "tinyxml2/tinyxml2.h"
+#include "cocos2d.h"
 USING_NS_CC;
 NS_CORE_BEGIN
 
