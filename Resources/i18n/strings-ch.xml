@@ -13,4 +13,5 @@
 	<string name="status_buqiang">不 抢</string>
 	<string name="status_qiang">抢</string>
 	<string name="status_zhunbei">准 备</string>
+	<string name="current_round">第 %d/%d 局</string>
 </resources>

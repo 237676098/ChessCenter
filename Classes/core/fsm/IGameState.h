@@ -7,6 +7,7 @@ typedef enum _GAME_EVENT {
 	EVENT_USER_INFO_INITED_SUCCESS,
 	EVENT_TABLE_SNAPTSHOT,
 	EVENT_LEAVE_MATCH,
+	EVENT_MATCH_END
 } GAME_EVENT;
 
 typedef enum _GAME_STATE {
@@ -29,6 +30,15 @@ class UserInfoInitedEvent:public GameEvent
 {
 public:
 	UserInfoInitedEvent() :GameEvent(EVENT_USER_INFO_INITED_SUCCESS) {};
+
+private:
+
+};
+
+class MatchEndEvent :public GameEvent
+{
+public:
+	MatchEndEvent() :GameEvent(EVENT_MATCH_END) {};
 
 private:
 

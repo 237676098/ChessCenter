@@ -10,6 +10,10 @@ GAME_STATE TableState::handleEvent(const GameEvent * event)
 	{
 		return STATE_LOBBY;
 	}
+	else if (event->getType() == EVENT_MATCH_END)
+	{
+		return STATE_LOBBY;
+	}
 	else 
 	{
 		return STATE_TABLE;

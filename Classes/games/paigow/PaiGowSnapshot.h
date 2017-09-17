@@ -32,7 +32,6 @@ public:
 
 public:
 	TableState table_state;
-	//TableState table_state;					//ÅÆ×À×´Ì¬
 	uint32_t room_owner; 					//ÅÆ×ÀÓµÓĞÕß
 	uint32_t banker_seat_id;				//×¯¼ÒÎ»
 	std::vector<Card> public_cards;							//¹«ÅÆ

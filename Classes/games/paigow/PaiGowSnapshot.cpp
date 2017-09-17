@@ -5,12 +5,10 @@ NS_PAIGOW_BEGIN
 
 PaiGowSnaptShot::PaiGowSnaptShot()
 	:table_state(TableState::Unkown),
-	room_owner(0)
+	room_owner(0),
+	banker_seat_id(0)
 {
-	for (size_t i = 0; i < 4; i++)
-	{
-		players.insert(std::make_pair(i + 1,new PaiGowPlayer));
-	}
+	
 }
 
 PaiGowSnaptShot::~PaiGowSnaptShot()
@@ -20,17 +18,25 @@ PaiGowSnaptShot::~PaiGowSnaptShot()
 
 void PaiGowSnaptShot::init(const proto3_proto::S2C_MatchSnapshot & mc_st)
 {
+
+	for (size_t i = 0; i < 4; i++)
+	{
+		players.insert(std::make_pair(i + 1, new PaiGowPlayer));
+	}
+
 	initByMatch(mc_st.match());
 	table_state = (TableState)mc_st.paigow().state();
 	room_owner = mc_st.paigow().room_owner();
 	banker_seat_id = mc_st.paigow().banker_seat_id();
-	size_t length = mc_st.paigow().public_cards_size();
-	for (size_t i = 0; i < length; i++)
+
+	size_t server_public_cards_count = mc_st.paigow().public_cards_size();
+
+	for (size_t i = 0; i < server_public_cards_count; i++)
 	{
 		public_cards.push_back(mc_st.paigow().public_cards(i));
 	}
 
-	length = mc_st.paigow().players_size();
+	size_t length = mc_st.paigow().players_size();
 
 	for (size_t i = 0; i < length; i++)
 	{
@@ -49,7 +55,17 @@ void PaiGowSnaptShot::clear()
 	MatchSnaptShot::clear();
 	table_state = TableState::Unkown;
 	room_owner = 0;
+	banker_seat_id = 0;
 	public_cards.clear();
+	clearResult();
+
+	std::map<uint32_t, PaiGowPlayer*>::iterator iter;
+	for (iter = players.begin(); iter != players.end(); iter++)
+	{
+		delete iter->second;
+	}
+
+	players.clear();
 }
 
 void PaiGowSnaptShot::addPlayer(const proto3_proto::PaiGowPlayer& p)

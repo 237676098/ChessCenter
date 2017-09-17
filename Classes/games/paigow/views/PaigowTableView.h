@@ -12,7 +12,7 @@ public:
 	PaigowTableView():m_data(nullptr),IBaseUI() {};
 	bool initWithFile(const std::string fileName) override;
 	void initView(PaiGowSnaptShot* data);
-private:
+public:
 	void updateDesc();
 
 private:

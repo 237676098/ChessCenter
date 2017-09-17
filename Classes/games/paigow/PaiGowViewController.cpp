@@ -14,16 +14,20 @@ PaiGowViewController::PaiGowViewController(PaiGowSnaptShot* data)
 	m_wait_operate_view(nullptr),
 	m_grab_operate_view(nullptr),
 	m_bet_operate_view(nullptr),
-	m_collocation_operate_view(nullptr)
+	m_collocation_operate_view(nullptr),
+	m_public_view(nullptr)
 {
-	for (size_t i = 0; i < 4; i++)
-	{
-		m_seat_views.insert(std::make_pair(i+1,nullptr));
-	}
+	
 }
 
 void PaiGowViewController::init()
 {
+
+	for (size_t i = 0; i < 4; i++)
+	{
+		m_seat_views.insert(std::make_pair(i + 1, nullptr));
+	}
+
 	if (!m_view)
 	{
 		m_view = PaigowTableView::create();
@@ -60,6 +64,10 @@ void PaiGowViewController::init()
 		}
 	}
 
+	//添加公牌
+	initPublicCardsView();
+	
+
 	if (m_data->table_state == TableState::Wait)
 	{
 		m_wait_operate_view = PaiGowWaitOperateView::create();
@@ -82,7 +90,7 @@ void PaiGowViewController::init()
 					}
 					else
 					{
-						m_seat_views[iter->first]->setStatus("status_qiang");
+						m_seat_views[iter->first]->setStatus("status_buqiang");
 					}
 				}
 				else
@@ -90,9 +98,7 @@ void PaiGowViewController::init()
 					m_seat_views[iter->first]->setStatus("", true);
 					if (iter->second->isMainChar())
 					{
-						m_grab_operate_view = PaigowGrabOperateView::create();
-						m_grab_operate_view->setPosition(Vec2(g_win_size.width / 2, 100));
-						core::SceneManager::getInstance()->add(core::LayerMainUIUp, m_grab_operate_view);
+						addGrabView();
 					}
 				}
 			}
@@ -152,12 +158,9 @@ void PaiGowViewController::init()
 		std::map<uint32_t, PaiGowPlayer*>::const_iterator iter;
 		for (iter = m_data->players.begin(); iter != m_data->players.end(); iter++)
 		{
-			CCLOG("EVT_PG_DealCard seatid:%d", iter->first);
-			m_handcards_views[iter->first] = PaiGowHandCardsPanel::create();
-			
 			if (iter->second->hand_cards.size() > 0)
 			{
-				m_handcards_views[iter->first]->setCards(iter->second->hand_cards, iter->second->status == PLAYER_STATUS_AFTCOMPARE);
+				addHandCardsPanel(iter->first, iter->second->hand_cards);
 			}
 			else 
 			{
@@ -166,31 +169,11 @@ void PaiGowViewController::init()
 				{
 					cards.push_back(0x0000);
 				}
-				m_handcards_views[iter->first]->setCards(cards, iter->second->status == PLAYER_STATUS_AFTCOMPARE);
+				addHandCardsPanel(iter->first, cards);
 			}
-
-			
-			Vec2 pos = handCardsPos(iter->first);
-			m_handcards_views[iter->first]->setPosition(pos);
-			core::SceneManager::getInstance()->add(core::LayerMainUIUp, m_handcards_views[iter->first]);
-			if (m_data->isMainPlayer(iter->first))
+			if (m_data->isMainPlayer(iter->first) && iter->second->status < PLAYER_STATUS_AFTCOMPARE)
 			{
-				if (iter->second->status == PLAYER_STATUS_AFTCOMPARE)
-				{
-					m_handcards_views[iter->first]->setInteractive(false);
-				}
-				else
-				{
-					m_handcards_views[iter->first]->setInteractive(true);
-					m_collocation_operate_view = PaigowCollocationOperateView::create(this);
-					m_collocation_operate_view->setPosition(Vec2(g_win_size.width - 300, 100));
-					core::SceneManager::getInstance()->add(core::LayerMainUIUp, m_collocation_operate_view);
-				}
-				
-			}
-			else
-			{
-				m_handcards_views[iter->first]->setInteractive(false);
+				addCollocationView();
 			}
 
 		}
@@ -206,12 +189,8 @@ void PaiGowViewController::init()
 				if (iter->second->status == PLAYER_STATUS_PRESURE)
 				{
 					m_seat_views[iter->first]->setStatus("", true);
-					m_handcards_views[iter->first] = PaiGowHandCardsPanel::create();
-					m_handcards_views[iter->first]->setCards(iter->second->hand_cards, true);
-					Vec2 pos = handCardsPos(iter->first);
-					m_handcards_views[iter->first]->setPosition(pos);
-					m_handcards_views[iter->first]->setInteractive(false);
-					core::SceneManager::getInstance()->add(core::LayerMainUIUp, m_handcards_views[iter->first]);
+
+					addHandCardsPanel(iter->first, iter->second->hand_cards);
 				}
 				else if (iter->second->status == PLAYER_STATUS_AFTERSURE)
 				{
@@ -220,6 +199,7 @@ void PaiGowViewController::init()
 			}
 		}
 
+		initPublicCardsView();
 
 		//如果还没点击确定 需要显示窗口
 		PaiGowPlayer* player = m_data->getMainPlayer();
@@ -260,19 +240,10 @@ void PaiGowViewController::dispose()
 			iter->second = nullptr;
 		}
 	}
+	m_seat_views.clear();
 
-	std::map<uint32_t, PaiGowHandCardsPanel*>::iterator iter1;
 
-	for (iter1 = m_handcards_views.begin(); iter1 != m_handcards_views.end(); iter1++)
-	{
-		if (iter1->second)
-		{
-			core::SceneManager::getInstance()->remove(core::LayerMainUI, iter1->second);
-			iter1->second = nullptr;
-		}
-	}
-
-	m_handcards_views.clear();
+	clearHandCardsPanels();
 
 
 	if (m_view)
@@ -287,11 +258,7 @@ void PaiGowViewController::dispose()
 		m_wait_operate_view = nullptr;
 	}
 
-	if (m_grab_operate_view)
-	{
-		core::SceneManager::getInstance()->remove(core::LayerMainUIUp, m_grab_operate_view);
-		m_grab_operate_view = nullptr;
-	}
+	deleteGrabView();
 
 	if (m_bet_operate_view)
 	{
@@ -299,12 +266,13 @@ void PaiGowViewController::dispose()
 		m_bet_operate_view = nullptr;
 	}
 
-	if (m_collocation_operate_view)
-	{
-		core::SceneManager::getInstance()->remove(core::LayerMainUIUp, m_collocation_operate_view);
-		m_collocation_operate_view = nullptr;
-	}
+	deleteColocationView();
 
+	if (m_public_view)
+	{
+		core::SceneManager::getInstance()->remove(core::LayerMainUI, m_public_view);
+		m_public_view = nullptr;
+	}
 }
 
 int PaiGowViewController::HandleEvent(core::Event * evt)
@@ -327,6 +295,8 @@ int PaiGowViewController::HandleEvent(core::Event * evt)
 	}
 	else if (evt->id_ == core::EVT_PG_StartGame)
 	{
+		m_view->updateDesc();
+		initPublicCardsView();
 		EventStartGame* event = (EventStartGame*)(evt);
 		//清除 
 		if (m_wait_operate_view)
@@ -335,20 +305,10 @@ int PaiGowViewController::HandleEvent(core::Event * evt)
 			m_wait_operate_view = nullptr;
 		}
 
-		std::map<uint32_t, PaiGowHandCardsPanel*>::iterator iter;
-		for (iter = m_handcards_views.begin(); iter != m_handcards_views.end(); iter++)
-		{
-			if (iter->second)
-			{
-				core::SceneManager::getInstance()->remove(core::LayerMainUIUp, iter->second);
-			}
-		}
-		m_handcards_views.clear();
+		clearHandCardsPanels();
 
 
-		m_grab_operate_view = PaigowGrabOperateView::create();
-		m_grab_operate_view->setPosition(Vec2(g_win_size.width / 2,100));
-		core::SceneManager::getInstance()->add(core::LayerMainUIUp, m_grab_operate_view);
+		addGrabView();
 	}
 	else if (evt->id_ == core::EVT_PG_GrabStatus)
 	{
@@ -378,12 +338,7 @@ int PaiGowViewController::HandleEvent(core::Event * evt)
 		}
 
 
-		//销毁上一阶段的ui
-		if (m_grab_operate_view)
-		{
-			core::SceneManager::getInstance()->remove(core::LayerMainUIUp, m_grab_operate_view);
-			m_grab_operate_view = nullptr;
-		}
+		deleteGrabView();
 
 
 		m_bet_operate_view = PaigowBetOperateView::create();
@@ -417,16 +372,17 @@ int PaiGowViewController::HandleEvent(core::Event * evt)
 			m_bet_operate_view = nullptr;
 		}
 
+		//更新公牌
+		initPublicCardsView();
+
 		//给每个玩家发牌
 		std::map<uint32_t, std::vector<Card>>::const_iterator iter;
 		for (iter = event->hand_cards.begin(); iter != event->hand_cards.end(); iter++)
 		{
 			CCLOG("EVT_PG_DealCard seatid:%d", iter->first);
-			m_handcards_views[iter->first] = PaiGowHandCardsPanel::create();
-			m_handcards_views[iter->first]->setCards(iter->second);
-			Vec2 pos = handCardsPos(iter->first);
-			m_handcards_views[iter->first]->setPosition(pos);
-			core::SceneManager::getInstance()->add(core::LayerMainUIUp, m_handcards_views[iter->first]);
+			
+			addHandCardsPanel(iter->first,iter->second);
+
 			if (m_data->isMainPlayer(iter->first))
 			{
 				m_handcards_views[iter->first]->setInteractive(true);
@@ -438,9 +394,7 @@ int PaiGowViewController::HandleEvent(core::Event * evt)
 		}
 
 		
-		m_collocation_operate_view = PaigowCollocationOperateView::create(this);
-		m_collocation_operate_view->setPosition(Vec2(g_win_size.width - 300, 100));
-		core::SceneManager::getInstance()->add(core::LayerMainUIUp, m_collocation_operate_view);
+		addCollocationView();
 	}
 	else if(evt->id_ == core::EVT_PG_Collocation)
 	{
@@ -449,11 +403,7 @@ int PaiGowViewController::HandleEvent(core::Event * evt)
 		{
 			if (m_data->isMainPlayer(event->seat_id))
 			{
-				if (m_collocation_operate_view)
-				{
-					core::SceneManager::getInstance()->remove(core::LayerMainUIUp, m_collocation_operate_view);
-					m_collocation_operate_view = nullptr;
-				}
+				deleteColocationView();
 			}
 			else
 			{
@@ -496,8 +446,7 @@ int PaiGowViewController::HandleEvent(core::Event * evt)
 	else if (evt->id_ == core::EVT_PG_Sure)
 	{
 		EventSure* event = (EventSure*)(evt); 
-		core::SceneManager::getInstance()->remove(core::LayerMainUIUp, m_handcards_views[event->seat_id]);
-		m_handcards_views.erase(event->seat_id);
+		deleteHandCardsPanel(event->seat_id);
 		m_seat_views[event->seat_id]->hideBet();
 		m_seat_views[event->seat_id]->setStatus("status_zhunbei");
 	}
@@ -579,6 +528,133 @@ void PaiGowViewController::deleteSeat(uint32_t seat_id)
 	}
 }
 
+void PaiGowViewController::initPublicCardsView()
+{
+
+	std::vector<Card> pc;
+	size_t pc_count = m_data->table_state < TableState::Collocation ? 32 : 16;
+	for (size_t i = 0; i < pc_count; i++)
+	{
+		if (i < m_data->public_cards.size())
+		{
+			pc.push_back(m_data->public_cards[i]);
+		}
+		else
+		{
+			pc.push_back(0x0000);
+		}
+	}
+
+	if (!m_public_view)
+	{
+		m_public_view = PaiGowPublicCardsView::create();
+		m_public_view->setPosition(Vec2(g_win_size.width / 2, g_win_size.height / 2));
+		core::SceneManager::getInstance()->add(core::LayerMainUI, m_public_view);
+	}
+	m_public_view->initWithCard(pc);
+}
+
+void PaiGowViewController::addHandCardsPanel(uint32_t seat_id, const std::vector<Card>& cards)
+{
+	CCASSERT(m_handcards_views.find(seat_id) == m_handcards_views.end(),"yi cun zai");
+
+	m_handcards_views[seat_id] = PaiGowHandCardsPanel::create();
+	Vec2 pos = handCardsPos(seat_id);
+	m_handcards_views[seat_id]->setPosition(pos);
+
+	PaiGowPlayer* player = m_data->players[seat_id];
+	if (player->isMainChar() && player->status < PLAYER_STATUS_AFTCOMPARE)
+	{
+		m_handcards_views[seat_id]->setInteractive(true);
+	}
+	else 
+	{
+		m_handcards_views[seat_id]->setInteractive(false);
+	}
+
+	if (player->status < PLAYER_STATUS_AFTCOMPARE)
+	{
+		m_handcards_views[seat_id]->setCards(cards, false);
+	}
+	else 
+	{
+		m_handcards_views[seat_id]->setCards(cards,true);
+	}
+
+
+	core::SceneManager::getInstance()->add(core::LayerMainUIUp, m_handcards_views[seat_id]);
+}
+
+void PaiGowViewController::deleteHandCardsPanel(uint32_t seat_id)
+{
+	CCASSERT(m_handcards_views.find(seat_id) != m_handcards_views.end(), "yao shan chu de handcardspanel bu cun zai");
+	core::SceneManager::getInstance()->remove(core::LayerMainUIUp, m_handcards_views[seat_id]);
+	std::map<uint32_t, PaiGowHandCardsPanel*>::iterator iter;
+	for (iter = m_handcards_views.begin(); iter != m_handcards_views.end(); iter++)
+	{
+		if (iter->first == seat_id)
+		{
+			m_handcards_views.erase(iter);
+			break;
+		}
+	}
+}
+
+void PaiGowViewController::clearHandCardsPanels()
+{
+	std::map<uint32_t, PaiGowHandCardsPanel*>::iterator iter1;
+
+	for (iter1 = m_handcards_views.begin(); iter1 != m_handcards_views.end(); iter1++)
+	{
+		core::SceneManager::getInstance()->remove(core::LayerMainUIUp, iter1->second);
+		iter1->second = nullptr;
+	}
+
+	m_handcards_views.clear();
+}
+
+void PaiGowViewController::addGrabView()
+{
+	CCASSERT(m_grab_operate_view == nullptr, "m_grab_operate_view has added!");
+	m_grab_operate_view = PaigowGrabOperateView::create();
+	m_grab_operate_view->setPosition(Vec2(g_win_size.width / 2, 100));
+	core::SceneManager::getInstance()->add(core::LayerMainUIUp, m_grab_operate_view);
+}
+
+void PaiGowViewController::deleteGrabView()
+{
+	if (m_grab_operate_view)
+	{
+		core::SceneManager::getInstance()->remove(core::LayerMainUIUp, m_grab_operate_view);
+		m_grab_operate_view = nullptr;
+	}
+}
+
+void PaiGowViewController::addCollocationView()
+{
+	CCASSERT(m_collocation_operate_view == nullptr,"m_collocation_operate_view has added!");
+	m_collocation_operate_view = PaigowCollocationOperateView::create(this);
+	m_collocation_operate_view->setPosition(Vec2(g_win_size.width - 300, 100));
+	core::SceneManager::getInstance()->add(core::LayerMainUIUp, m_collocation_operate_view);
+}
+
+void PaiGowViewController::deleteColocationView()
+{
+	if (m_collocation_operate_view)
+	{
+		core::SceneManager::getInstance()->remove(core::LayerMainUIUp, m_collocation_operate_view);
+		m_collocation_operate_view = nullptr;
+	}
+}
+
+void PaiGowViewController::addWaitView()
+{
+}
+
+void PaiGowViewController::deleteWaitView()
+{
+}
+
 
 
 cocos2d::Vec2 PaiGowViewController::seatPos(int seat_id)
@@ -599,7 +675,7 @@ cocos2d::Vec2 PaiGowViewController::seatPos(PaiGowPlayer * player)
 		case 1:
 			return Vec2(g_win_size.width - 70, g_win_size.height / 2);
 		case 2:
-			return Vec2(g_win_size.width / 2 - 90, g_win_size.height - 140);
+			return Vec2(g_win_size.width / 2 + 30, g_win_size.height - 140);
 		case 3:
 			return Vec2(70, g_win_size.height / 2);
 		default:

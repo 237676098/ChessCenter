@@ -43,6 +43,9 @@ void PaigowTableView::updateDesc()
 	std::string desc = "";
 	desc.append(core::LanguageManager::getInstance()->get("room_id"));
 	desc.append(std::to_string(m_data->room_id));
+	desc.append(" ");
+	desc.append(cocos2d::String::createWithFormat(core::LanguageManager::getInstance()->get("current_round").c_str(), m_data->round, m_data->total_round)->getCString());
+
 	m_csb->getChildByName<Text*>("text_des")->setString(desc);
 }
 

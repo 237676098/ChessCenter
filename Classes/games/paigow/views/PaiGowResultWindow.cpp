@@ -23,7 +23,7 @@ void PaiGowResultWindow::onLoadCompleted()
 	
 	*/
 	auto center_node = m_node_csb->getChildByName("center_node");
-	for (int i = 0; i < 4; i++)
+	for (size_t i = 0; i < 4; i++)
 	{
 		auto score_node = center_node->getChildByName("item" + std::to_string(i + 1));
 		if (i < m_results.size())

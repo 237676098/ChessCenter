@@ -42,6 +42,13 @@ void PaiGowProxy::onRevS2C_PG_StartGame(google::protobuf::Message* msg)
 {
 	proto3_proto::S2C_PG_StartGame* s2c_msg = dynamic_cast<proto3_proto::S2C_PG_StartGame*>(msg);
 	m_data->table_state = TableState::GrabBanker;
+	m_data->round++;
+
+	if (m_data->round % 2 == 1)
+	{
+		m_data->public_cards.clear();
+	}
+
 	EventStartGame event;
 	core::EventManager::Instance().DispatchEvent(&event);
 }
@@ -128,6 +135,8 @@ void PaiGowProxy::onRevS2C_PG_Result(google::protobuf::Message* msg)
 	proto3_proto::S2C_PG_Result* s2c_msg = dynamic_cast<proto3_proto::S2C_PG_Result*>(msg);
 
 	m_data->clearResult();
+	
+
 	for (int i = 0; i < s2c_msg->scores_size(); i++)
 	{
 		m_data->players[s2c_msg->scores(i).seat_id()]->score = s2c_msg->scores(i).total_result();
@@ -135,9 +144,24 @@ void PaiGowProxy::onRevS2C_PG_Result(google::protobuf::Message* msg)
 		m_data->addResult(s2c_msg->scores(i));
 	}
 
+	m_data->public_cards.clear();
+	if (m_data->round % 2 == 1)
+	{
+		for (int i = 0; i < s2c_msg->public_cards_size(); i++)
+		{
+			m_data->public_cards.push_back(s2c_msg->public_cards(i));
+		}
+	}
+
 	EventResult event;
 	event.result = s2c_msg;
 	core::EventManager::Instance().DispatchEvent(&event);
+
+	if (s2c_msg->is_end())
+	{
+		core::MatchEndEvent event;
+		core::GameStateMachine::getInstance()->dispatchEvent(&event);
+	}
 }
 
 void PaiGowProxy::onRevS2C_LeaveMatch(google::protobuf::Message* msg)

@@ -29,7 +29,7 @@ void GameManager::createMatch()
 {
 	proto3_proto::C2S_CreateMatch  cmc;
 	cmc.set_for_other(false);
-	cmc.set_type(1);
+	cmc.set_type(4);
 
 
 	proto3_proto::PaiGowConfig* pconfig = cmc.mutable_paigow();
@@ -38,7 +38,7 @@ void GameManager::createMatch()
 	pconfig->set_banker_type(1);
 	pconfig->set_is_bet_always(true);
 	pconfig->set_lock_bet_num(0);
-	pconfig->set_type(2);
+	pconfig->set_type(1);
 	pconfig->set_has_ghost(false);
 	pconfig->set_has_heaven_nine(false);
 
@@ -65,7 +65,7 @@ void GameManager::onRevS2C_MatchSnapshot(google::protobuf::Message* msg)
 
 void GameManager::onRevS2C_CreateMatch(google::protobuf::Message* msg)
 {
-	CCLOG("WQEWQWEQWEQWE");
+	CCLOG("onRevS2C_CreateMatch");
 }
 
 NS_GAME_END

@@ -9,6 +9,7 @@
 #include "views/PaigowGrabOperateView.h"
 #include "views/PaiGowHandCardsPanel.h"
 #include "views/PaigowCollocationOperateView.h"
+#include "views/PaiGowPublicCardsView.h"
 
 NS_PAIGOW_BEGIN
 
@@ -39,6 +40,18 @@ public:
 private:
 	PaiGowSeatView* addSeat(PaiGowPlayer* seat);
 	void deleteSeat(uint32_t seat_id);
+	void initPublicCardsView();
+	void addHandCardsPanel(uint32_t seat_id,const std::vector<Card>& cards);
+	void deleteHandCardsPanel(uint32_t seat_id);
+	void clearHandCardsPanels();
+	void addGrabView();
+	void deleteGrabView();
+	void addCollocationView();
+	void deleteColocationView();
+	void addWaitView();
+	void deleteWaitView();
+
+
 
 private:
 	cocos2d::Vec2 seatPos(PaiGowPlayer * player);
@@ -56,6 +69,7 @@ private:
 	std::map<uint32_t, PaiGowHandCardsPanel*> m_handcards_views;
 	PaigowBetOperateView* m_bet_operate_view;
 	PaigowCollocationOperateView* m_collocation_operate_view;
+	PaiGowPublicCardsView* m_public_view;
 };
 
 NS_PAIGOW_END
