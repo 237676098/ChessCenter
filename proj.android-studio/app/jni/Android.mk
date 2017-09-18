@@ -52,6 +52,7 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
 				../../../Classes\games\paigow\views\PaigowCollocationOperateView.cpp \
 				../../../Classes\games\paigow\views\PaigowGrabOperateView.cpp \
 				../../../Classes\games\paigow\views\PaIGowHandCardsPanel.cpp \
+				../../../Classes\games\paigow\views\PaiGowPublicCardsView.cpp \
 				../../../Classes\games\paigow\views\PaiGowResultWindow.cpp \
 				../../../Classes\games\paigow\views\PaiGowSeatView.cpp \
 				../../../Classes\games\paigow\views\PaigowTableView.cpp \

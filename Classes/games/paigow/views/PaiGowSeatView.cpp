@@ -65,18 +65,25 @@ void PaiGowSeatView::setStatus(const std::string status, bool isHide)
 
 void PaiGowSeatView::showResult(int result)
 {
+	auto img_result = m_csb->getChildByName<Sprite*>("img_result");
+	img_result->setVisible(true);
 	if (result == -1)
 	{
-		 
+		img_result->setSpriteFrame("result_1.png");
 	}
 	else if (result == 0)
 	{
-
+		img_result->setSpriteFrame("result_3.png");
 	}
 	else if (result == 1)
 	{
-		 
+		img_result->setSpriteFrame("result_2.png");
 	}
+}
+
+void PaiGowSeatView::hideResult()
+{
+	m_csb->getChildByName<Sprite*>("img_result")->setVisible(false);
 }
 
 void PaiGowSeatView::showBet(uint32_t bet1, uint32_t bet2,Vec2 pos)

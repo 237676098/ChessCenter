@@ -50,6 +50,8 @@ private:
 	void deleteColocationView();
 	void addWaitView();
 	void deleteWaitView();
+	void addBetView();
+	void deleteBetView();
 
 
 

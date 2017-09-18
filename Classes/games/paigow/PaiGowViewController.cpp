@@ -70,9 +70,7 @@ void PaiGowViewController::init()
 
 	if (m_data->table_state == TableState::Wait)
 	{
-		m_wait_operate_view = PaiGowWaitOperateView::create();
-		m_wait_operate_view->setPosition(Vec2(g_win_size.width / 2,110));
-		core::SceneManager::getInstance()->add(core::LayerMainUIUp,m_wait_operate_view);
+		addWaitView();
 		m_wait_operate_view->initView(m_data);
 	}
 	else if (m_data->table_state == TableState::GrabBanker)
@@ -106,12 +104,9 @@ void PaiGowViewController::init()
 	}
 	else if (m_data->table_state == TableState::Bet)
 	{
-		m_bet_operate_view = PaigowBetOperateView::create();
-		m_bet_operate_view->setPosition(Vec2(g_win_size.width / 2, 100));
-		core::SceneManager::getInstance()->add(core::LayerMainUIUp, m_bet_operate_view);
+		addBetView();
 		for (iter = m_data->players.begin(); iter != m_data->players.end(); iter++)
 		{
-
 			if (iter->second->has_people)
 			{
 				//显示座位上的banker图标
@@ -230,6 +225,18 @@ void PaiGowViewController::init()
 void PaiGowViewController::dispose()
 {
 
+	core::EventManager::Instance().RemoveEventHandler(core::EVT_PG_AddPlayer, this);
+	core::EventManager::Instance().RemoveEventHandler(core::EVT_PG_DeletePlayer, this);
+	core::EventManager::Instance().RemoveEventHandler(core::EVT_PG_StartGame, this);
+	core::EventManager::Instance().RemoveEventHandler(core::EVT_PG_BankerConfirm, this);
+	core::EventManager::Instance().RemoveEventHandler(core::EVT_PG_Bet, this);
+	core::EventManager::Instance().RemoveEventHandler(core::EVT_PG_OffLine, this);
+	core::EventManager::Instance().RemoveEventHandler(core::EVT_PG_DealCard, this);
+	core::EventManager::Instance().RemoveEventHandler(core::EVT_PG_GrabStatus, this);
+	core::EventManager::Instance().RemoveEventHandler(core::EVT_PG_Collocation, this);
+	core::EventManager::Instance().RemoveEventHandler(core::EVT_PG_Result, this);
+	core::EventManager::Instance().RemoveEventHandler(core::EVT_PG_Sure, this);
+
 	std::map<uint32_t, PaiGowSeatView*>::iterator iter;
 
 	for (iter = m_seat_views.begin(); iter != m_seat_views.end(); iter++)
@@ -252,19 +259,11 @@ void PaiGowViewController::dispose()
 		m_view = nullptr;
 	}
 
-	if (m_wait_operate_view)
-	{
-		core::SceneManager::getInstance()->remove(core::LayerMainUIUp, m_wait_operate_view);
-		m_wait_operate_view = nullptr;
-	}
+	deleteWaitView();
 
 	deleteGrabView();
 
-	if (m_bet_operate_view)
-	{
-		core::SceneManager::getInstance()->remove(core::LayerMainUIUp, m_bet_operate_view);
-		m_bet_operate_view = nullptr;
-	}
+	deleteBetView();
 
 	deleteColocationView();
 
@@ -299,16 +298,21 @@ int PaiGowViewController::HandleEvent(core::Event * evt)
 		initPublicCardsView();
 		EventStartGame* event = (EventStartGame*)(evt);
 		//清除 
-		if (m_wait_operate_view)
+		deleteWaitView();
+		clearHandCardsPanels();
+		addGrabView();
+
+		std::map<uint32_t, PaiGowSeatView*>::iterator iter;
+		for (iter = m_seat_views.begin(); iter != m_seat_views.end(); iter++)
 		{
-			core::SceneManager::getInstance()->remove(core::LayerMainUIUp, m_wait_operate_view);
-			m_wait_operate_view = nullptr;
+			if (iter->second)
+			{
+				iter->second->hideBanker();
+				iter->second->hideResult();
+				iter->second->hideBet();
+			}
 		}
 
-		clearHandCardsPanels();
-
-
-		addGrabView();
 	}
 	else if (evt->id_ == core::EVT_PG_GrabStatus)
 	{
@@ -341,9 +345,7 @@ int PaiGowViewController::HandleEvent(core::Event * evt)
 		deleteGrabView();
 
 
-		m_bet_operate_view = PaigowBetOperateView::create();
-		m_bet_operate_view->setPosition(Vec2(g_win_size.width / 2, 100));
-		core::SceneManager::getInstance()->add(core::LayerMainUIUp, m_bet_operate_view);
+		addBetView();
 		//我是庄
 		if (m_data->isMainPlayer(event->seat_id))
 		{
@@ -366,11 +368,7 @@ int PaiGowViewController::HandleEvent(core::Event * evt)
 		EventDealCard* event = (EventDealCard*)(evt);
 
 
-		if (m_bet_operate_view)
-		{
-			core::SceneManager::getInstance()->remove(core::LayerMainUIUp, m_bet_operate_view);
-			m_bet_operate_view = nullptr;
-		}
+		deleteBetView();
 
 		//更新公牌
 		initPublicCardsView();
@@ -419,26 +417,32 @@ int PaiGowViewController::HandleEvent(core::Event * evt)
 	}
 	else if (evt->id_ == core::EVT_PG_Result)
 	{
-		EventResult* event = (EventResult*)(evt);
-		for (int i = 0; i < event->result->scores_size(); i++)
+		//EventResult* event = (EventResult*)(evt);
+		for (size_t i = 0; i < m_data->results.size(); i++)
 		{
-			uint32_t seatid = event->result->scores(i).seat_id();
+			uint32_t seatid = m_data->results[i]->seat_id;
 
 			//播放非自己玩家的亮牌动画
 			if (!(m_data->isMainPlayer(seatid)))
 			{
-				std::vector<Card> cards;
-				for (int j = 0; j < event->result->scores(i).hand_cards_size(); j++)
-				{
-					cards.push_back(event->result->scores(i).hand_cards(j));
-				}
-
-				m_handcards_views[event->result->scores(i).seat_id()]->setCards(cards);
-				m_handcards_views[event->result->scores(i).seat_id()]->playCollocation(cards);
+				m_handcards_views[seatid]->setCards(m_data->results[i]->cards);
+				m_handcards_views[seatid]->playCollocation(m_data->results[i]->cards);
 			}
 
 			//更新分数
 			m_seat_views[seatid]->setScore(m_data->players[seatid]->score);
+			if (m_data->results[i]->result > 0)
+			{
+				m_seat_views[seatid]->showResult(1);
+			}
+			else if (m_data->results[i]->result < 0)
+			{
+				m_seat_views[seatid]->showResult(-1);
+			}
+			else if(m_data->results[i]->result == 0)
+			{
+				m_seat_views[seatid]->showResult(0);
+			}
 		}
 
 		core::WindowManager::getInstance()->open_2<paigow::PaiGowResultWindow, PaiGowViewController*, const std::vector<PaiGowResult*>&>(this, m_data->results);
@@ -449,6 +453,7 @@ int PaiGowViewController::HandleEvent(core::Event * evt)
 		deleteHandCardsPanel(event->seat_id);
 		m_seat_views[event->seat_id]->hideBet();
 		m_seat_views[event->seat_id]->setStatus("status_zhunbei");
+		m_seat_views[event->seat_id]->hideResult();
 	}
 
 	return 0;
@@ -649,10 +654,36 @@ void PaiGowViewController::deleteColocationView()
 
 void PaiGowViewController::addWaitView()
 {
+	CCASSERT(m_wait_operate_view == nullptr,"m_wait_operate_view has added!");
+	m_wait_operate_view = PaiGowWaitOperateView::create();
+	m_wait_operate_view->setPosition(Vec2(g_win_size.width / 2, 110));
+	core::SceneManager::getInstance()->add(core::LayerMainUIUp, m_wait_operate_view);
 }
 
 void PaiGowViewController::deleteWaitView()
 {
+	if (m_wait_operate_view)
+	{
+		core::SceneManager::getInstance()->remove(core::LayerMainUIUp, m_wait_operate_view);
+		m_wait_operate_view = nullptr;
+	}
+}
+
+void PaiGowViewController::addBetView()
+{
+	CCASSERT(m_bet_operate_view == nullptr,"m_bet_operate_view not null!");
+	m_bet_operate_view = PaigowBetOperateView::create();
+	m_bet_operate_view->setPosition(Vec2(g_win_size.width / 2, 100));
+	core::SceneManager::getInstance()->add(core::LayerMainUIUp, m_bet_operate_view);
+}
+
+void PaiGowViewController::deleteBetView()
+{
+	if (m_bet_operate_view)
+	{
+		core::SceneManager::getInstance()->remove(core::LayerMainUIUp, m_bet_operate_view);
+		m_bet_operate_view = nullptr;
+	}
 }
 
 
