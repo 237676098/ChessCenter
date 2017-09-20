@@ -61,9 +61,9 @@ bool PaiGowCardView::initWithFile(const std::string fileName)
 		this->onClickCard(this);
 	};
 
-	auto sp = m_csb->getChildByName("bg");
-
-	Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, sp);
+	m_sp_bg = m_csb->getChildByName<cocos2d::Sprite*>("bg");
+	m_sp_num = m_sp_bg->getChildByName<cocos2d::Sprite*>("card_num");
+	Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, m_sp_bg);
 
 	//->getEventDispatcher()->addEventListenerWithFixedPriority(listener,0);
 	turnBack(false);
@@ -76,23 +76,32 @@ void PaiGowCardView::setCard(const Card& card)
 
 	if (card == 0x0000)
 	{
-		m_csb->getChildByName<Sprite*>("card_num")->setVisible(false);
+		m_sp_num->setVisible(false);
 		return;
 	}
-	m_csb->getChildByName<Sprite*>("card_num")->setVisible(true);
+	m_sp_num->setVisible(true);
 	std::string filename = std::string("card_").append(std::to_string(card)).append(".png");
-	//m_csb.getChildByName<Sprite>("card_num")->getTag();
-	m_csb->getChildByName<Sprite*>("card_num")->setSpriteFrame(filename);
+	m_sp_num->setSpriteFrame(filename);
 }
 
 void PaiGowCardView::turnBack(bool isAnimation)
 {
-	m_csb->getChildByName<Sprite*>("card_num")->setVisible(false);
+	m_sp_num->setVisible(false);
 }
 
-void PaiGowCardView::turnFront(bool isAnimation)
+void PaiGowCardView::turnFront()
 {
-	m_csb->getChildByName<Sprite*>("card_num")->setVisible(true);
+	m_sp_num->setVisible(false);
+
+	this->setScaleX(1);
+
+	cocos2d::ScaleTo* scale1 = cocos2d::ScaleTo::create(0.3, 0,1);
+	cocos2d::CallFunc* call1 = cocos2d::CallFunc::create([this]() {
+		m_sp_num->setVisible(true);
+	});
+	cocos2d::ScaleTo* scale2 = cocos2d::ScaleTo::create(0.3, 1,1);
+	cocos2d::Sequence* seq = cocos2d::Sequence::create(scale1,call1,scale2,NULL);
+	m_sp_bg->runAction(seq);
 }
 
 void PaiGowCardView::onClickCard(Ref * ref)

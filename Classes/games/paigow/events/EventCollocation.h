@@ -13,7 +13,8 @@ public:
 
 public:
 	uint32_t seat_id;
-	std::vector<Card> cards;
+	std::vector<Card> first_cards;
+	std::vector<Card> end_cards;
 };
 
 

@@ -1549,17 +1549,29 @@ class S2C_PG_Collocation : public ::google::protobuf::Message /* @@protoc_insert
 
   // accessors -------------------------------------------------------
 
-  // repeated uint32 cards = 2;
-  int cards_size() const;
-  void clear_cards();
-  static const int kCardsFieldNumber = 2;
-  ::google::protobuf::uint32 cards(int index) const;
-  void set_cards(int index, ::google::protobuf::uint32 value);
-  void add_cards(::google::protobuf::uint32 value);
+  // repeated uint32 first_cards = 2;
+  int first_cards_size() const;
+  void clear_first_cards();
+  static const int kFirstCardsFieldNumber = 2;
+  ::google::protobuf::uint32 first_cards(int index) const;
+  void set_first_cards(int index, ::google::protobuf::uint32 value);
+  void add_first_cards(::google::protobuf::uint32 value);
   const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
-      cards() const;
+      first_cards() const;
   ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
-      mutable_cards();
+      mutable_first_cards();
+
+  // repeated uint32 end_cards = 3;
+  int end_cards_size() const;
+  void clear_end_cards();
+  static const int kEndCardsFieldNumber = 3;
+  ::google::protobuf::uint32 end_cards(int index) const;
+  void set_end_cards(int index, ::google::protobuf::uint32 value);
+  void add_end_cards(::google::protobuf::uint32 value);
+  const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
+      end_cards() const;
+  ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
+      mutable_end_cards();
 
   // uint32 seat_id = 1;
   void clear_seat_id();
@@ -1567,13 +1579,22 @@ class S2C_PG_Collocation : public ::google::protobuf::Message /* @@protoc_insert
   ::google::protobuf::uint32 seat_id() const;
   void set_seat_id(::google::protobuf::uint32 value);
 
+  // uint32 test = 4;
+  void clear_test();
+  static const int kTestFieldNumber = 4;
+  ::google::protobuf::uint32 test() const;
+  void set_test(::google::protobuf::uint32 value);
+
   // @@protoc_insertion_point(class_scope:proto3_proto.S2C_PG_Collocation)
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
-  ::google::protobuf::RepeatedField< ::google::protobuf::uint32 > cards_;
-  mutable int _cards_cached_byte_size_;
+  ::google::protobuf::RepeatedField< ::google::protobuf::uint32 > first_cards_;
+  mutable int _first_cards_cached_byte_size_;
+  ::google::protobuf::RepeatedField< ::google::protobuf::uint32 > end_cards_;
+  mutable int _end_cards_cached_byte_size_;
   ::google::protobuf::uint32 seat_id_;
+  ::google::protobuf::uint32 test_;
   mutable int _cached_size_;
   friend struct protobuf_paigow_2eproto::TableStruct;
 };
@@ -2805,34 +2826,78 @@ inline void S2C_PG_Collocation::set_seat_id(::google::protobuf::uint32 value) {
   // @@protoc_insertion_point(field_set:proto3_proto.S2C_PG_Collocation.seat_id)
 }
 
-// repeated uint32 cards = 2;
-inline int S2C_PG_Collocation::cards_size() const {
-  return cards_.size();
+// repeated uint32 first_cards = 2;
+inline int S2C_PG_Collocation::first_cards_size() const {
+  return first_cards_.size();
 }
-inline void S2C_PG_Collocation::clear_cards() {
-  cards_.Clear();
+inline void S2C_PG_Collocation::clear_first_cards() {
+  first_cards_.Clear();
 }
-inline ::google::protobuf::uint32 S2C_PG_Collocation::cards(int index) const {
-  // @@protoc_insertion_point(field_get:proto3_proto.S2C_PG_Collocation.cards)
-  return cards_.Get(index);
+inline ::google::protobuf::uint32 S2C_PG_Collocation::first_cards(int index) const {
+  // @@protoc_insertion_point(field_get:proto3_proto.S2C_PG_Collocation.first_cards)
+  return first_cards_.Get(index);
 }
-inline void S2C_PG_Collocation::set_cards(int index, ::google::protobuf::uint32 value) {
-  cards_.Set(index, value);
-  // @@protoc_insertion_point(field_set:proto3_proto.S2C_PG_Collocation.cards)
+inline void S2C_PG_Collocation::set_first_cards(int index, ::google::protobuf::uint32 value) {
+  first_cards_.Set(index, value);
+  // @@protoc_insertion_point(field_set:proto3_proto.S2C_PG_Collocation.first_cards)
 }
-inline void S2C_PG_Collocation::add_cards(::google::protobuf::uint32 value) {
-  cards_.Add(value);
-  // @@protoc_insertion_point(field_add:proto3_proto.S2C_PG_Collocation.cards)
+inline void S2C_PG_Collocation::add_first_cards(::google::protobuf::uint32 value) {
+  first_cards_.Add(value);
+  // @@protoc_insertion_point(field_add:proto3_proto.S2C_PG_Collocation.first_cards)
 }
 inline const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
-S2C_PG_Collocation::cards() const {
-  // @@protoc_insertion_point(field_list:proto3_proto.S2C_PG_Collocation.cards)
-  return cards_;
+S2C_PG_Collocation::first_cards() const {
+  // @@protoc_insertion_point(field_list:proto3_proto.S2C_PG_Collocation.first_cards)
+  return first_cards_;
 }
 inline ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
-S2C_PG_Collocation::mutable_cards() {
-  // @@protoc_insertion_point(field_mutable_list:proto3_proto.S2C_PG_Collocation.cards)
-  return &cards_;
+S2C_PG_Collocation::mutable_first_cards() {
+  // @@protoc_insertion_point(field_mutable_list:proto3_proto.S2C_PG_Collocation.first_cards)
+  return &first_cards_;
+}
+
+// repeated uint32 end_cards = 3;
+inline int S2C_PG_Collocation::end_cards_size() const {
+  return end_cards_.size();
+}
+inline void S2C_PG_Collocation::clear_end_cards() {
+  end_cards_.Clear();
+}
+inline ::google::protobuf::uint32 S2C_PG_Collocation::end_cards(int index) const {
+  // @@protoc_insertion_point(field_get:proto3_proto.S2C_PG_Collocation.end_cards)
+  return end_cards_.Get(index);
+}
+inline void S2C_PG_Collocation::set_end_cards(int index, ::google::protobuf::uint32 value) {
+  end_cards_.Set(index, value);
+  // @@protoc_insertion_point(field_set:proto3_proto.S2C_PG_Collocation.end_cards)
+}
+inline void S2C_PG_Collocation::add_end_cards(::google::protobuf::uint32 value) {
+  end_cards_.Add(value);
+  // @@protoc_insertion_point(field_add:proto3_proto.S2C_PG_Collocation.end_cards)
+}
+inline const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
+S2C_PG_Collocation::end_cards() const {
+  // @@protoc_insertion_point(field_list:proto3_proto.S2C_PG_Collocation.end_cards)
+  return end_cards_;
+}
+inline ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
+S2C_PG_Collocation::mutable_end_cards() {
+  // @@protoc_insertion_point(field_mutable_list:proto3_proto.S2C_PG_Collocation.end_cards)
+  return &end_cards_;
+}
+
+// uint32 test = 4;
+inline void S2C_PG_Collocation::clear_test() {
+  test_ = 0u;
+}
+inline ::google::protobuf::uint32 S2C_PG_Collocation::test() const {
+  // @@protoc_insertion_point(field_get:proto3_proto.S2C_PG_Collocation.test)
+  return test_;
+}
+inline void S2C_PG_Collocation::set_test(::google::protobuf::uint32 value) {
+  
+  test_ = value;
+  // @@protoc_insertion_point(field_set:proto3_proto.S2C_PG_Collocation.test)
 }
 
 // -------------------------------------------------------------------

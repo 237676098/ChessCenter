@@ -131,6 +131,24 @@ bool PaiGowSnaptShot::isBanker(uint32_t seat_id) const
 	return banker_seat_id == seat_id;
 }
 
+void PaiGowSnaptShot::updatePlayerState(uint32_t seat_id, PlayerStatus status)
+{
+	CCASSERT(players[seat_id]->has_people, "no people!");
+	players[seat_id]->status = status;
+}
+
+void PaiGowSnaptShot::updatePlayerState(PlayerStatus status)
+{
+	std::map<uint32_t, PaiGowPlayer*>::iterator iter;
+	for (iter = players.begin(); iter != players.end(); iter++)
+	{
+		if (iter->second->has_people)
+		{
+			iter->second->status = status;
+		}
+	}
+}
+
 void PaiGowSnaptShot::clearResult()
 {
 	std::vector<PaiGowResult*>::iterator iter;

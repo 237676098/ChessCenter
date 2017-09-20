@@ -397,23 +397,16 @@ int PaiGowViewController::HandleEvent(core::Event * evt)
 	else if(evt->id_ == core::EVT_PG_Collocation)
 	{
 		EventCollocation* event = (EventCollocation*)(evt);
-		if (event->cards.size()  > 0)
+
+		if (m_data->isMainPlayer(event->seat_id))
 		{
-			if (m_data->isMainPlayer(event->seat_id))
-			{
-				deleteColocationView();
-			}
-			else
-			{
-				m_handcards_views[event->seat_id]->setCards(event->cards);
-			}
+			deleteColocationView();
 			m_handcards_views[event->seat_id]->setInteractive(false);
-			m_handcards_views[event->seat_id]->playCollocation(event->cards);
-		} 
-		else
-		{
-			m_handcards_views[event->seat_id]->playCollocation();
 		}
+
+
+		m_handcards_views[event->seat_id]->playCollocation(event->first_cards,event->end_cards);
+
 	}
 	else if (evt->id_ == core::EVT_PG_Result)
 	{
@@ -426,7 +419,7 @@ int PaiGowViewController::HandleEvent(core::Event * evt)
 			if (!(m_data->isMainPlayer(seatid)))
 			{
 				m_handcards_views[seatid]->setCards(m_data->results[i]->cards);
-				m_handcards_views[seatid]->playCollocation(m_data->results[i]->cards);
+				m_handcards_views[seatid]->lightCards();
 			}
 
 			//更新分数
@@ -445,7 +438,10 @@ int PaiGowViewController::HandleEvent(core::Event * evt)
 			}
 		}
 
-		core::WindowManager::getInstance()->open_2<paigow::PaiGowResultWindow, PaiGowViewController*, const std::vector<PaiGowResult*>&>(this, m_data->results);
+		performToDo(1.0f, [this]() {
+			core::WindowManager::getInstance()->open_2<paigow::PaiGowResultWindow, PaiGowViewController*, const std::vector<PaiGowResult*>&>(this, m_data->results);
+		});
+
 	}
 	else if (evt->id_ == core::EVT_PG_Sure)
 	{
@@ -483,6 +479,28 @@ void PaiGowViewController::onClickCollcationSure()
 		}
 		
 		core::SocketManager::getInstance()->sendMessage(core::ID_C2S_PG_Collocation, msg);
+	
+
+		proto3_proto::S2C_PG_Collocation test;
+		test.set_seat_id(1);
+		test.add_first_cards(first[0]);
+		test.add_first_cards(first[1]);
+		test.add_end_cards(second[0]);
+		test.add_end_cards(second[1]);
+		test.set_test(100);
+		std::string tmpStr;
+		test.SerializeToString(&tmpStr);
+		const char* s1 = tmpStr.c_str();
+		for (size_t i = 0; i < 12; i++)
+		{
+			CCLOG("%02x ", (unsigned char)s1[i]);
+		}
+
+		proto3_proto::S2C_PG_Collocation test1;
+		std::string strData(s1, tmpStr.size());
+		test1.ParseFromString(strData);
+		CCLOG("test:%u", test1.test());
+	
 	}
 	else
 	{
@@ -579,11 +597,11 @@ void PaiGowViewController::addHandCardsPanel(uint32_t seat_id, const std::vector
 
 	if (player->status < PLAYER_STATUS_AFTCOMPARE)
 	{
-		m_handcards_views[seat_id]->setCards(cards, false);
+		m_handcards_views[seat_id]->initCards(cards, false);
 	}
 	else 
 	{
-		m_handcards_views[seat_id]->setCards(cards,true);
+		m_handcards_views[seat_id]->initCards(cards,true);
 	}
 
 
@@ -684,6 +702,15 @@ void PaiGowViewController::deleteBetView()
 		core::SceneManager::getInstance()->remove(core::LayerMainUIUp, m_bet_operate_view);
 		m_bet_operate_view = nullptr;
 	}
+}
+
+void PaiGowViewController::performToDo(float time, std::function<void(void)> func)
+{
+	CCASSERT(m_view != nullptr, "m_view is null!");
+	cocos2d::DelayTime* delay = cocos2d::DelayTime::create(time);
+	cocos2d::CallFunc* call = cocos2d::CallFunc::create(func);
+	cocos2d::Sequence* seq = cocos2d::Sequence::create(delay, call, NULL);
+	m_view->runAction(seq);
 }
 
 

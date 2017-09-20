@@ -25,6 +25,8 @@ public:
 	PaiGowPlayer* getMainPlayer() const;
 	bool isMainPlayer(uint32_t seat_id) const;
 	bool isBanker(uint32_t seat_id) const;
+	void updatePlayerState(uint32_t seat_id, PlayerStatus status);
+	void updatePlayerState(PlayerStatus status);
 
 public:
 	void clearResult();

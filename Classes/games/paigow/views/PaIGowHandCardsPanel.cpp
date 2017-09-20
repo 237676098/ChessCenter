@@ -1,5 +1,6 @@
 #include "PaiGowHandCardsPanel.h"
 #include <math.h>
+#include "cocos2d/cocos/2d/CCActionInterval.h"
 NS_PAIGOW_BEGIN
 
 
@@ -10,6 +11,15 @@ const cocos2d::Vec2 PaiGowHandCardsPanel::key_points[6] = {
 	cocos2d::Vec2(100,0),
 	cocos2d::Vec2(72,35),
 	cocos2d::Vec2(72,-35),
+};
+
+const float PaiGowHandCardsPanel::key_rotations[6] = {
+	0,
+	0,
+	0,
+	0,
+	-90,
+	-90
 };
 
 PaiGowHandCardsPanel::PaiGowHandCardsPanel()
@@ -61,7 +71,15 @@ void PaiGowHandCardsPanel::pull(uint32_t index)
 	pull(m_cards[index]);
 }
 
-void PaiGowHandCardsPanel::setCards(const std::vector<Card>& cards, bool isShow)
+void PaiGowHandCardsPanel::setCards(const std::vector<Card>& cards)
+{
+	for (size_t i = 0; i < cards.size(); i++)
+	{
+		m_cards[i]->setCard(cards[i]);
+	}
+}
+
+void PaiGowHandCardsPanel::initCards(const std::vector<Card>& cards, bool isShow)
 {
 	for (size_t i = 0; i < cards.size(); i++)
 	{
@@ -133,12 +151,72 @@ void PaiGowHandCardsPanel::getResultCards(std::vector<Card>& result1, std::vecto
 	{
 		if (m_cards[i]->getPositionY() > 0)
 		{
-			result2.push_back(m_cards[i]->getCard());
+			result2.push_back(i);
 		}
 		else
 		{
-			result1.push_back(m_cards[i]->getCard());
+			result1.push_back(i);
 		}
+	}
+}
+
+void PaiGowHandCardsPanel::playCollocation(const std::vector<Card>& first, const std::vector<Card>& end)
+{
+	std::map<PaiGowCardView*, size_t> animation_map;
+	std::map<PaiGowCardView*, size_t>::const_iterator iter;
+	for (size_t j = 0; j  < first.size(); j++)
+	{
+		for (size_t i = 0; i < m_cards.size(); i++)
+		{
+			if (i == first[j])
+			{
+				animation_map.insert(std::make_pair(m_cards[i],j));
+				break;
+			}
+		}
+	}
+
+	for (size_t j = 0; j < end.size(); j++)
+	{
+		for (size_t i = 0; i < m_cards.size(); i++)
+		{
+			if (i == end[j])
+			{
+				animation_map.insert(std::make_pair(m_cards[i], j + 4));
+				break;
+			}
+		}
+	}
+
+	for (iter = animation_map.begin(); iter != animation_map.end(); iter++)
+	{
+		cocos2d::MoveTo* move = cocos2d::MoveTo::create(0.5f, key_points[iter->second]);
+		cocos2d::RotateTo* rotation = cocos2d::RotateTo::create(0.3f, key_rotations[iter->second]);
+		cocos2d::Sequence* seq = cocos2d::Sequence::create(move,rotation, NULL);
+		iter->first->runAction(seq);
+	}
+}
+
+void PaiGowHandCardsPanel::lightCards()
+{
+	for (size_t i = 0; i < m_cards.size(); i++)
+	{
+		//先停止动画 复原位置
+		m_cards[i]->stopAllActions();
+		int key = 0;
+		if (i <  2)
+		{
+			key = i;
+		}
+		else
+		{
+			key = i + 2;
+		}
+		m_cards[i]->setPosition(key_points[key]);
+		m_cards[i]->setRotation(key_rotations[key]);
+
+		//播放翻牌动画
+		m_cards[i]->turnFront();
 	}
 }
 

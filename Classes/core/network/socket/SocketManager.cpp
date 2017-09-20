@@ -279,11 +279,20 @@ void SocketManager::dispatch()
 
 		p->readBytes(msg_length, tmpBody);
 		
+		/*
 		CCLOG("recieve msg %u",msg_id);
+
+		for (size_t i = 0; i < msg_length; i++)
+		{
+			CCLOG("%02x ", (unsigned char)tmpBody[i]);
+		}
+		*/
+
+		CCLOG("recieve msg %u  size:%u",msg_id,msg_length);
 
 		if (message_getter_maps.find(msg_id) != message_getter_maps.end())
 		{
-			google::protobuf::Message* ack = message_getter_maps.at(msg_id)(tmpBody);
+			google::protobuf::Message* ack = message_getter_maps.at(msg_id)(std::string(tmpBody, msg_length));
 
 			if (m_handlers.find(msg_id) != m_handlers.end())
 			{

@@ -12,6 +12,11 @@ class PaiGowData
 public:
 	PaiGowData();
 	~PaiGowData();
+
+public:
+	void updatePlayerState(uint32_t seat_id, PlayerStatus status);
+	void updatePlayerState(PlayerStatus status);
+
 private:
 	friend class PaiGowProxy;
 	PaiGowSnaptShot* pg_st;

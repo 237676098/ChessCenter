@@ -44,6 +44,10 @@ void PaiGowProxy::onRevS2C_PG_StartGame(google::protobuf::Message* msg)
 	m_data->table_state = TableState::GrabBanker;
 	m_data->round++;
 
+	//¸üÐÂÍæ¼Ò×´Ì¬
+	m_data->updatePlayerState(PLAYER_STATUS_PREBANKER);
+
+
 	if (m_data->round % 2 == 1)
 	{
 		m_data->public_cards.clear();
@@ -57,6 +61,8 @@ void PaiGowProxy::onRevS2C_PG_GrabBanker(google::protobuf::Message* msg)
 {
 	proto3_proto::S2C_PG_GrabBanker* s2c_msg = dynamic_cast<proto3_proto::S2C_PG_GrabBanker*>(msg);
 	m_data->players[s2c_msg->seat_id()]->is_grab = s2c_msg->is_grab();
+
+	m_data->updatePlayerState(s2c_msg->seat_id(),PLAYER_STATUS_AFTBANKER);
 	EventGrabStatus event(s2c_msg->seat_id(), s2c_msg->is_grab());
 	core::EventManager::Instance().DispatchEvent(&event);
 }
@@ -66,6 +72,7 @@ void PaiGowProxy::onRevS2C_PG_GrabBanker_RES(google::protobuf::Message* msg)
 	proto3_proto::S2C_PG_GrabBanker_RES* s2c_msg = dynamic_cast<proto3_proto::S2C_PG_GrabBanker_RES*>(msg);
 	m_data->banker_seat_id = s2c_msg->seat_id();
 	m_data->table_state = TableState::Bet;
+	m_data->updatePlayerState(PLAYER_STATUS_PREBET);
 	EventBankerConfirm event(s2c_msg->seat_id());
 	core::EventManager::Instance().DispatchEvent(&event);
 }
@@ -75,6 +82,7 @@ void PaiGowProxy::onRevS2C_PG_Bet(google::protobuf::Message* msg)
 	proto3_proto::S2C_PG_Bet* s2c_msg = dynamic_cast<proto3_proto::S2C_PG_Bet*>(msg);
 	//s2c_msg->set_user_id
 	m_data->players[s2c_msg->seat_id()]->chips.clear();
+	m_data->updatePlayerState(s2c_msg->seat_id(), PLAYER_STATUS_AFTBET);
 	for (int i = 0; i < s2c_msg->chips_size(); i++)
 	{
 		m_data->players[s2c_msg->seat_id()]->chips.push_back(s2c_msg->chips(i));
@@ -87,7 +95,7 @@ void PaiGowProxy::onRevS2C_PG_Deal(google::protobuf::Message* msg)
 {
 	proto3_proto::S2C_PG_Deal* s2c_msg = dynamic_cast<proto3_proto::S2C_PG_Deal*>(msg);
 	m_data->table_state = TableState::Collocation;
-
+	m_data->updatePlayerState(PLAYER_STATUS_PRECOMPARE);
 	std::map<uint32_t, PaiGowPlayer*>::iterator iter;
 	std::map<uint32_t, std::vector<Card>> handcards;
 	EventDealCard event;
@@ -120,12 +128,38 @@ void PaiGowProxy::onRevS2C_PG_Deal(google::protobuf::Message* msg)
 void PaiGowProxy::onRevS2C_PG_Collocation(google::protobuf::Message* msg)
 {
 	proto3_proto::S2C_PG_Collocation* s2c_msg = dynamic_cast<proto3_proto::S2C_PG_Collocation*>(msg);
+	m_data->updatePlayerState(s2c_msg->seat_id(), PLAYER_STATUS_AFTCOMPARE);
 	EventCollocation event;
 	event.seat_id = s2c_msg->seat_id();
-	for (int i = 0; i < s2c_msg->cards_size(); i++)
+	for (int i = 0; i < s2c_msg->first_cards_size(); i++)
 	{
-		event.cards.push_back(s2c_msg->cards(i));
+		event.first_cards.push_back(s2c_msg->first_cards(i));
 	}
+
+	for (int i = 0; i < s2c_msg->end_cards_size(); i++)
+	{
+		event.end_cards.push_back(s2c_msg->end_cards(i));
+	}
+	uint32_t test1 = s2c_msg->test();
+	proto3_proto::S2C_PG_Collocation test;
+	test.set_seat_id(1);
+	test.add_first_cards(0);
+	test.add_first_cards(1);
+	test.add_end_cards(2);
+	test.add_end_cards(3);
+	test.set_test(100);
+	std::string tmpStr;
+	test.SerializeToString(&tmpStr);
+	const char* s1 = tmpStr.c_str();
+	for (size_t i = 0; i < 12; i++)
+	{
+		//CCLOG("%02x", (unsigned char)s1[i]);
+	}
+
+	
+
+	uint32_t length = tmpStr.length();
+	//CCLOG("length:%u",length);
 
 	core::EventManager::Instance().DispatchEvent(&event);
 }
@@ -133,7 +167,7 @@ void PaiGowProxy::onRevS2C_PG_Collocation(google::protobuf::Message* msg)
 void PaiGowProxy::onRevS2C_PG_Result(google::protobuf::Message* msg)
 {
 	proto3_proto::S2C_PG_Result* s2c_msg = dynamic_cast<proto3_proto::S2C_PG_Result*>(msg);
-
+	m_data->updatePlayerState(PLAYER_STATUS_PRESURE);
 	m_data->clearResult();
 	
 
@@ -205,6 +239,7 @@ void PaiGowProxy::onRevS2C_PG_Sure(google::protobuf::Message* msg)
 {
 	proto3_proto::S2C_PG_Sure*  s2c_msg = dynamic_cast<proto3_proto::S2C_PG_Sure*> (msg);
 	m_data->players[s2c_msg->seat_id()]->reset();
+	m_data->updatePlayerState(s2c_msg->seat_id(), PLAYER_STATUS_AFTERSURE);
 	EventSure event;
 	event.seat_id = s2c_msg->seat_id();
 	core::EventManager::Instance().DispatchEvent(&event);

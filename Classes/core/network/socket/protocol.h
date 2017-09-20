@@ -15,16 +15,15 @@ typedef std::uint32_t 		uint32;
 typedef std::uint64_t 		uint64;
 typedef std::int64_t 		int64;
 typedef uint32 MessageId;
-typedef std::function<google::protobuf::Message*(char*)> MsgGetter;
+typedef std::function<google::protobuf::Message*(const std::string)> MsgGetter;
 typedef std::map<const MessageId, MsgGetter> MsgGetterMap;
 
 //get Packet from Message
 #define MESSAGE_GETTER(_MESSAGE_)			\
-google::protobuf::Message* GetProto##_MESSAGE_(char* packet)		\
+google::protobuf::Message* GetProto##_MESSAGE_(const std::string packet)		\
 {																	\
-std::string msg_str = std::string(packet);		\
 proto3_proto::_MESSAGE_* msg = new proto3_proto::_MESSAGE_();						\
-msg->ParseFromString(msg_str);\
+msg->ParseFromString(packet);\
 return (google::protobuf::Message*)msg;\
 }
 

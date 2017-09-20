@@ -52,7 +52,7 @@ private:
 	void deleteWaitView();
 	void addBetView();
 	void deleteBetView();
-
+	void performToDo(float time,std::function<void(void)> func);
 
 
 private:

@@ -214,7 +214,9 @@ const ::google::protobuf::uint32 TableStruct::offsets[] = {
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(S2C_PG_Collocation, seat_id_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(S2C_PG_Collocation, cards_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(S2C_PG_Collocation, first_cards_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(S2C_PG_Collocation, end_cards_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(S2C_PG_Collocation, test_),
   ~0u,  // no _has_bits_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(S2C_PG_Result, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -264,11 +266,11 @@ static const ::google::protobuf::internal::MigrationSchema schemas[] = {
   { 93, -1, sizeof(S2C_PG_Deal)},
   { 99, -1, sizeof(C2S_PG_Collocation)},
   { 106, -1, sizeof(S2C_PG_Collocation)},
-  { 113, -1, sizeof(S2C_PG_Result)},
-  { 121, -1, sizeof(C2S_PG_Sure)},
-  { 126, -1, sizeof(S2C_PG_Sure)},
-  { 132, -1, sizeof(C2S_PG_Kick)},
-  { 138, -1, sizeof(S2C_PG_Kick)},
+  { 115, -1, sizeof(S2C_PG_Result)},
+  { 123, -1, sizeof(C2S_PG_Sure)},
+  { 128, -1, sizeof(S2C_PG_Sure)},
+  { 134, -1, sizeof(C2S_PG_Kick)},
+  { 140, -1, sizeof(S2C_PG_Kick)},
 };
 
 static ::google::protobuf::Message const * const file_default_instances[] = {
@@ -424,16 +426,17 @@ void AddDescriptorsImpl() {
       "\",\n\nS2C_PG_Bet\022\017\n\007seat_id\030\001 \001(\r\022\r\n\005chips"
       "\030\002 \003(\r\"\036\n\013S2C_PG_Deal\022\017\n\007my_card\030\001 \003(\r\"0"
       "\n\022C2S_PG_Collocation\022\r\n\005first\030\001 \003(\r\022\013\n\003e"
-      "nd\030\002 \003(\r\"4\n\022S2C_PG_Collocation\022\017\n\007seat_i"
-      "d\030\001 \001(\r\022\r\n\005cards\030\002 \003(\r\"a\n\rS2C_PG_Result\022"
-      "*\n\006scores\030\001 \003(\0132\032.proto3_proto.PaiGowRes"
-      "ult\022\024\n\014public_cards\030\002 \003(\r\022\016\n\006is_end\030\003 \001("
-      "\010\"\r\n\013C2S_PG_Sure\"\036\n\013S2C_PG_Sure\022\017\n\007seat_"
-      "id\030\001 \001(\r\"\036\n\013C2S_PG_Kick\022\017\n\007seat_id\030\001 \001(\r"
-      "\"\036\n\013S2C_PG_Kick\022\017\n\007seat_id\030\001 \001(\rb\006proto3"
+      "nd\030\002 \003(\r\"[\n\022S2C_PG_Collocation\022\017\n\007seat_i"
+      "d\030\001 \001(\r\022\023\n\013first_cards\030\002 \003(\r\022\021\n\tend_card"
+      "s\030\003 \003(\r\022\014\n\004test\030\004 \001(\r\"a\n\rS2C_PG_Result\022*"
+      "\n\006scores\030\001 \003(\0132\032.proto3_proto.PaiGowResu"
+      "lt\022\024\n\014public_cards\030\002 \003(\r\022\016\n\006is_end\030\003 \001(\010"
+      "\"\r\n\013C2S_PG_Sure\"\036\n\013S2C_PG_Sure\022\017\n\007seat_i"
+      "d\030\001 \001(\r\"\036\n\013C2S_PG_Kick\022\017\n\007seat_id\030\001 \001(\r\""
+      "\036\n\013S2C_PG_Kick\022\017\n\007seat_id\030\001 \001(\rb\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 1320);
+      descriptor, 1359);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "paigow.proto", &protobuf_RegisterTypes);
   ::proto3_proto::protobuf_common_2eproto::AddDescriptors();
@@ -5301,7 +5304,9 @@ C2S_PG_Collocation::mutable_end() {
 
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int S2C_PG_Collocation::kSeatIdFieldNumber;
-const int S2C_PG_Collocation::kCardsFieldNumber;
+const int S2C_PG_Collocation::kFirstCardsFieldNumber;
+const int S2C_PG_Collocation::kEndCardsFieldNumber;
+const int S2C_PG_Collocation::kTestFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 S2C_PG_Collocation::S2C_PG_Collocation()
@@ -5315,15 +5320,19 @@ S2C_PG_Collocation::S2C_PG_Collocation()
 S2C_PG_Collocation::S2C_PG_Collocation(const S2C_PG_Collocation& from)
   : ::google::protobuf::Message(),
       _internal_metadata_(NULL),
-      cards_(from.cards_),
+      first_cards_(from.first_cards_),
+      end_cards_(from.end_cards_),
       _cached_size_(0) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
-  seat_id_ = from.seat_id_;
+  ::memcpy(&seat_id_, &from.seat_id_,
+    reinterpret_cast<char*>(&test_) -
+    reinterpret_cast<char*>(&seat_id_) + sizeof(test_));
   // @@protoc_insertion_point(copy_constructor:proto3_proto.S2C_PG_Collocation)
 }
 
 void S2C_PG_Collocation::SharedCtor() {
-  seat_id_ = 0u;
+  ::memset(&seat_id_, 0, reinterpret_cast<char*>(&test_) -
+    reinterpret_cast<char*>(&seat_id_) + sizeof(test_));
   _cached_size_ = 0;
 }
 
@@ -5360,8 +5369,10 @@ S2C_PG_Collocation* S2C_PG_Collocation::New(::google::protobuf::Arena* arena) co
 
 void S2C_PG_Collocation::Clear() {
 // @@protoc_insertion_point(message_clear_start:proto3_proto.S2C_PG_Collocation)
-  cards_.Clear();
-  seat_id_ = 0u;
+  first_cards_.Clear();
+  end_cards_.Clear();
+  ::memset(&seat_id_, 0, reinterpret_cast<char*>(&test_) -
+    reinterpret_cast<char*>(&seat_id_) + sizeof(test_));
 }
 
 bool S2C_PG_Collocation::MergePartialFromCodedStream(
@@ -5388,18 +5399,50 @@ bool S2C_PG_Collocation::MergePartialFromCodedStream(
         break;
       }
 
-      // repeated uint32 cards = 2;
+      // repeated uint32 first_cards = 2;
       case 2: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(18u)) {
           DO_((::google::protobuf::internal::WireFormatLite::ReadPackedPrimitive<
                    ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, this->mutable_cards())));
+                 input, this->mutable_first_cards())));
         } else if (static_cast< ::google::protobuf::uint8>(tag) ==
                    static_cast< ::google::protobuf::uint8>(16u)) {
           DO_((::google::protobuf::internal::WireFormatLite::ReadRepeatedPrimitiveNoInline<
                    ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 1, 18u, input, this->mutable_cards())));
+                 1, 18u, input, this->mutable_first_cards())));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // repeated uint32 end_cards = 3;
+      case 3: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(26u)) {
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPackedPrimitive<
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+                 input, this->mutable_end_cards())));
+        } else if (static_cast< ::google::protobuf::uint8>(tag) ==
+                   static_cast< ::google::protobuf::uint8>(24u)) {
+          DO_((::google::protobuf::internal::WireFormatLite::ReadRepeatedPrimitiveNoInline<
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+                 1, 26u, input, this->mutable_end_cards())));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // uint32 test = 4;
+      case 4: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(32u)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+                 input, &test_)));
         } else {
           goto handle_unusual;
         }
@@ -5438,14 +5481,29 @@ void S2C_PG_Collocation::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(1, this->seat_id(), output);
   }
 
-  // repeated uint32 cards = 2;
-  if (this->cards_size() > 0) {
+  // repeated uint32 first_cards = 2;
+  if (this->first_cards_size() > 0) {
     ::google::protobuf::internal::WireFormatLite::WriteTag(2, ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED, output);
-    output->WriteVarint32(_cards_cached_byte_size_);
+    output->WriteVarint32(_first_cards_cached_byte_size_);
   }
-  for (int i = 0, n = this->cards_size(); i < n; i++) {
+  for (int i = 0, n = this->first_cards_size(); i < n; i++) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt32NoTag(
-      this->cards(i), output);
+      this->first_cards(i), output);
+  }
+
+  // repeated uint32 end_cards = 3;
+  if (this->end_cards_size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteTag(3, ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED, output);
+    output->WriteVarint32(_end_cards_cached_byte_size_);
+  }
+  for (int i = 0, n = this->end_cards_size(); i < n; i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32NoTag(
+      this->end_cards(i), output);
+  }
+
+  // uint32 test = 4;
+  if (this->test() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(4, this->test(), output);
   }
 
   // @@protoc_insertion_point(serialize_end:proto3_proto.S2C_PG_Collocation)
@@ -5462,16 +5520,33 @@ void S2C_PG_Collocation::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(1, this->seat_id(), target);
   }
 
-  // repeated uint32 cards = 2;
-  if (this->cards_size() > 0) {
+  // repeated uint32 first_cards = 2;
+  if (this->first_cards_size() > 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteTagToArray(
       2,
       ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED,
       target);
     target = ::google::protobuf::io::CodedOutputStream::WriteVarint32ToArray(
-      _cards_cached_byte_size_, target);
+      _first_cards_cached_byte_size_, target);
     target = ::google::protobuf::internal::WireFormatLite::
-      WriteUInt32NoTagToArray(this->cards_, target);
+      WriteUInt32NoTagToArray(this->first_cards_, target);
+  }
+
+  // repeated uint32 end_cards = 3;
+  if (this->end_cards_size() > 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteTagToArray(
+      3,
+      ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED,
+      target);
+    target = ::google::protobuf::io::CodedOutputStream::WriteVarint32ToArray(
+      _end_cards_cached_byte_size_, target);
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteUInt32NoTagToArray(this->end_cards_, target);
+  }
+
+  // uint32 test = 4;
+  if (this->test() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(4, this->test(), target);
   }
 
   // @@protoc_insertion_point(serialize_to_array_end:proto3_proto.S2C_PG_Collocation)
@@ -5482,17 +5557,32 @@ size_t S2C_PG_Collocation::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:proto3_proto.S2C_PG_Collocation)
   size_t total_size = 0;
 
-  // repeated uint32 cards = 2;
+  // repeated uint32 first_cards = 2;
   {
     size_t data_size = ::google::protobuf::internal::WireFormatLite::
-      UInt32Size(this->cards_);
+      UInt32Size(this->first_cards_);
     if (data_size > 0) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::Int32Size(data_size);
     }
     int cached_size = ::google::protobuf::internal::ToCachedSize(data_size);
     GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-    _cards_cached_byte_size_ = cached_size;
+    _first_cards_cached_byte_size_ = cached_size;
+    GOOGLE_SAFE_CONCURRENT_WRITES_END();
+    total_size += data_size;
+  }
+
+  // repeated uint32 end_cards = 3;
+  {
+    size_t data_size = ::google::protobuf::internal::WireFormatLite::
+      UInt32Size(this->end_cards_);
+    if (data_size > 0) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(data_size);
+    }
+    int cached_size = ::google::protobuf::internal::ToCachedSize(data_size);
+    GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+    _end_cards_cached_byte_size_ = cached_size;
     GOOGLE_SAFE_CONCURRENT_WRITES_END();
     total_size += data_size;
   }
@@ -5502,6 +5592,13 @@ size_t S2C_PG_Collocation::ByteSizeLong() const {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::UInt32Size(
         this->seat_id());
+  }
+
+  // uint32 test = 4;
+  if (this->test() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::UInt32Size(
+        this->test());
   }
 
   int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
@@ -5533,9 +5630,13 @@ void S2C_PG_Collocation::MergeFrom(const S2C_PG_Collocation& from) {
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  cards_.MergeFrom(from.cards_);
+  first_cards_.MergeFrom(from.first_cards_);
+  end_cards_.MergeFrom(from.end_cards_);
   if (from.seat_id() != 0) {
     set_seat_id(from.seat_id());
+  }
+  if (from.test() != 0) {
+    set_test(from.test());
   }
 }
 
@@ -5562,8 +5663,10 @@ void S2C_PG_Collocation::Swap(S2C_PG_Collocation* other) {
   InternalSwap(other);
 }
 void S2C_PG_Collocation::InternalSwap(S2C_PG_Collocation* other) {
-  cards_.InternalSwap(&other->cards_);
+  first_cards_.InternalSwap(&other->first_cards_);
+  end_cards_.InternalSwap(&other->end_cards_);
   std::swap(seat_id_, other->seat_id_);
+  std::swap(test_, other->test_);
   std::swap(_cached_size_, other->_cached_size_);
 }
 
@@ -5589,34 +5692,78 @@ void S2C_PG_Collocation::set_seat_id(::google::protobuf::uint32 value) {
   // @@protoc_insertion_point(field_set:proto3_proto.S2C_PG_Collocation.seat_id)
 }
 
-// repeated uint32 cards = 2;
-int S2C_PG_Collocation::cards_size() const {
-  return cards_.size();
+// repeated uint32 first_cards = 2;
+int S2C_PG_Collocation::first_cards_size() const {
+  return first_cards_.size();
 }
-void S2C_PG_Collocation::clear_cards() {
-  cards_.Clear();
+void S2C_PG_Collocation::clear_first_cards() {
+  first_cards_.Clear();
 }
-::google::protobuf::uint32 S2C_PG_Collocation::cards(int index) const {
-  // @@protoc_insertion_point(field_get:proto3_proto.S2C_PG_Collocation.cards)
-  return cards_.Get(index);
+::google::protobuf::uint32 S2C_PG_Collocation::first_cards(int index) const {
+  // @@protoc_insertion_point(field_get:proto3_proto.S2C_PG_Collocation.first_cards)
+  return first_cards_.Get(index);
 }
-void S2C_PG_Collocation::set_cards(int index, ::google::protobuf::uint32 value) {
-  cards_.Set(index, value);
-  // @@protoc_insertion_point(field_set:proto3_proto.S2C_PG_Collocation.cards)
+void S2C_PG_Collocation::set_first_cards(int index, ::google::protobuf::uint32 value) {
+  first_cards_.Set(index, value);
+  // @@protoc_insertion_point(field_set:proto3_proto.S2C_PG_Collocation.first_cards)
 }
-void S2C_PG_Collocation::add_cards(::google::protobuf::uint32 value) {
-  cards_.Add(value);
-  // @@protoc_insertion_point(field_add:proto3_proto.S2C_PG_Collocation.cards)
+void S2C_PG_Collocation::add_first_cards(::google::protobuf::uint32 value) {
+  first_cards_.Add(value);
+  // @@protoc_insertion_point(field_add:proto3_proto.S2C_PG_Collocation.first_cards)
 }
 const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
-S2C_PG_Collocation::cards() const {
-  // @@protoc_insertion_point(field_list:proto3_proto.S2C_PG_Collocation.cards)
-  return cards_;
+S2C_PG_Collocation::first_cards() const {
+  // @@protoc_insertion_point(field_list:proto3_proto.S2C_PG_Collocation.first_cards)
+  return first_cards_;
 }
 ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
-S2C_PG_Collocation::mutable_cards() {
-  // @@protoc_insertion_point(field_mutable_list:proto3_proto.S2C_PG_Collocation.cards)
-  return &cards_;
+S2C_PG_Collocation::mutable_first_cards() {
+  // @@protoc_insertion_point(field_mutable_list:proto3_proto.S2C_PG_Collocation.first_cards)
+  return &first_cards_;
+}
+
+// repeated uint32 end_cards = 3;
+int S2C_PG_Collocation::end_cards_size() const {
+  return end_cards_.size();
+}
+void S2C_PG_Collocation::clear_end_cards() {
+  end_cards_.Clear();
+}
+::google::protobuf::uint32 S2C_PG_Collocation::end_cards(int index) const {
+  // @@protoc_insertion_point(field_get:proto3_proto.S2C_PG_Collocation.end_cards)
+  return end_cards_.Get(index);
+}
+void S2C_PG_Collocation::set_end_cards(int index, ::google::protobuf::uint32 value) {
+  end_cards_.Set(index, value);
+  // @@protoc_insertion_point(field_set:proto3_proto.S2C_PG_Collocation.end_cards)
+}
+void S2C_PG_Collocation::add_end_cards(::google::protobuf::uint32 value) {
+  end_cards_.Add(value);
+  // @@protoc_insertion_point(field_add:proto3_proto.S2C_PG_Collocation.end_cards)
+}
+const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
+S2C_PG_Collocation::end_cards() const {
+  // @@protoc_insertion_point(field_list:proto3_proto.S2C_PG_Collocation.end_cards)
+  return end_cards_;
+}
+::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
+S2C_PG_Collocation::mutable_end_cards() {
+  // @@protoc_insertion_point(field_mutable_list:proto3_proto.S2C_PG_Collocation.end_cards)
+  return &end_cards_;
+}
+
+// uint32 test = 4;
+void S2C_PG_Collocation::clear_test() {
+  test_ = 0u;
+}
+::google::protobuf::uint32 S2C_PG_Collocation::test() const {
+  // @@protoc_insertion_point(field_get:proto3_proto.S2C_PG_Collocation.test)
+  return test_;
+}
+void S2C_PG_Collocation::set_test(::google::protobuf::uint32 value) {
+  
+  test_ = value;
+  // @@protoc_insertion_point(field_set:proto3_proto.S2C_PG_Collocation.test)
 }
 
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
