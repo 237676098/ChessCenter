@@ -1,6 +1,6 @@
 #include "PaiGowHandCardsPanel.h"
 #include <math.h>
-#include "cocos2d/cocos/2d/CCActionInterval.h"
+#include "cocos2d.h"
 NS_PAIGOW_BEGIN
 
 
