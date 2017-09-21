@@ -2,6 +2,8 @@
 #define __PAI_GOW_LOGIC_H__
 #include <stdint.h>
 #include "utils/CommonMacros.h"
+#include <string>
+#include <map>
 
 
 NS_PAIGOW_BEGIN
@@ -57,11 +59,36 @@ public:
 	static void sortGroup(const Card* card, Card* sortedCard);
 	inline static CardValue getValue(const Card& card) { return card&MASK_VALUE; };
 	inline static CardNumber getNumber(const Card& card) { return card&MASK_NUMBER; };
-	
-private:
+	static std::string getCardGroupName(const Card* card);
 
+
+public:
+	static std::map<Card, std::string> CreateCardStringMap()
+	{
+		std::map<Card, std::string> cardString;
+		cardString[0x010c] = "card_group_name_tian";
+		cardString[0x0202] = "card_group_name_di";
+		cardString[0x0308] = "card_group_name_ren";
+		cardString[0x0404] = "card_group_name_e";
+		cardString[0x050a] = "card_group_name_chang";
+		cardString[0x0606] = "card_group_name_chang";
+		cardString[0x0704] = "card_group_name_chang";
+		cardString[0x080b] = "card_group_name_duan";
+		cardString[0x090a] = "card_group_name_duan";
+		cardString[0x0a07] = "card_group_name_duan";
+		cardString[0x0b06] = "card_group_name_duan";
+		cardString[0x0d09] = "card_group_name_za";
+		cardString[0x0c09] = "card_group_name_za";
+		cardString[0x0e08] = "card_group_name_za";
+		cardString[0x0f08] = "card_group_name_za";
+		cardString[0x1007] = "card_group_name_za";
+		cardString[0x1107] = "card_group_name_za";
+		cardString[0x1205] = "card_group_name_za";
+		cardString[0x1305] = "card_group_name_za";
+		return cardString;
+	}
+	const static std::map<Card, std::string> card_str;
 };
-
 NS_PAIGOW_END
 #endif // !PaiGowLogic
 

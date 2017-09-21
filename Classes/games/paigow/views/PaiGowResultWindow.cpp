@@ -1,6 +1,7 @@
 #include "PaiGowResultWindow.h"
 #include "games/paigow/PaiGowLogic.h"
 #include "games/paigow/PaiGowViewController.h"
+#include "PaiGowHandCardsPanel.h"
 
 #if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
 #include "utils/stdtostring.h"
@@ -32,7 +33,24 @@ void PaiGowResultWindow::onLoadCompleted()
 			score_node->setVisible(true);
 			score_node->getChildByName<Text*>("txt_name")->setString(player->name);
 			score_node->getChildByName < Text* > ("txt_score")->setString(std::to_string(m_results[i]->result));
+			
 
+			PaiGowHandCardsPanel* hand_cards_panel = PaiGowHandCardsPanel::create();
+			hand_cards_panel->initCards(m_results[i]->cards, true);
+			hand_cards_panel->setScale(0.5);
+			hand_cards_panel->setInteractive(false);
+			score_node->getChildByName("node_cards")->addChild(hand_cards_panel);
+
+			Card first_cards[2];
+			Card second_cards[2];
+			first_cards[0] = m_results[i]->cards[0];
+			first_cards[1] = m_results[i]->cards[1];
+			second_cards[0] = m_results[i]->cards[2];
+			second_cards[1] = m_results[i]->cards[3];
+			std::string name1 = PaiGowLogic::getCardGroupName(first_cards);
+			std::string name2 = PaiGowLogic::getCardGroupName(second_cards);
+			score_node->getChildByName < Text* >("txt_card_name")->setString(name1 + " "  + name2);
+	
 			if (m_controller->isMySeat(m_results[i]->seat_id))
 			{
 				if (m_results[i]->result > 0)
