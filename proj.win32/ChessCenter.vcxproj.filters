@@ -452,6 +452,9 @@
     <ClInclude Include="..\Classes\games\paigow\views\PaiGowPublicCardsView.h">
       <Filter>src\games\paigow\views</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\games\paigow\events\EventDealActionComplete.h">
+      <Filter>src\games\paigow\events</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">

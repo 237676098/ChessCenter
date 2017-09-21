@@ -31,6 +31,7 @@ public:
 public:
 	void onClickCollcationTips();
 	void onClickCollcationSure();
+	cocos2d::Vec2 cardPos(uint32_t seat_id, uint32_t index);
 
 public:
 	const PaiGowPlayer* getPlayerBySeatId(uint32_t seat_id);
@@ -53,7 +54,6 @@ private:
 	void addBetView();
 	void deleteBetView();
 	void performToDo(float time,std::function<void(void)> func);
-
 
 private:
 	cocos2d::Vec2 seatPos(PaiGowPlayer * player);

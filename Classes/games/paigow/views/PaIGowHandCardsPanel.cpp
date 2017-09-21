@@ -202,6 +202,7 @@ void PaiGowHandCardsPanel::lightCards()
 	for (size_t i = 0; i < m_cards.size(); i++)
 	{
 		//先停止动画 复原位置
+		/*
 		m_cards[i]->stopAllActions();
 		int key = 0;
 		if (i <  2)
@@ -214,6 +215,7 @@ void PaiGowHandCardsPanel::lightCards()
 		}
 		m_cards[i]->setPosition(key_points[key]);
 		m_cards[i]->setRotation(key_rotations[key]);
+		*/
 
 		//播放翻牌动画
 		m_cards[i]->turnFront();

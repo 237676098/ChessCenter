@@ -51,7 +51,8 @@ void PaiGowPlayer::initByPaiGowPlayer(const proto3_proto::PaiGowPlayer & player)
 
 void PaiGowPlayer::reset()
 {
-	status = PLAYER_STATUS_READY;
+	hand_cards.clear();
+	chips.clear();
 }
 
 NS_PAIGOW_END

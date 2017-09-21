@@ -220,6 +220,7 @@ void PaiGowViewController::init()
 	core::EventManager::Instance().AddEventHandler(core::EVT_PG_Collocation, this);
 	core::EventManager::Instance().AddEventHandler(core::EVT_PG_Result, this);
 	core::EventManager::Instance().AddEventHandler(core::EVT_PG_Sure, this);
+	core::EventManager::Instance().AddEventHandler(core::EVT_PG_DealActionComplete, this);
 }
 
 void PaiGowViewController::dispose()
@@ -236,6 +237,9 @@ void PaiGowViewController::dispose()
 	core::EventManager::Instance().RemoveEventHandler(core::EVT_PG_Collocation, this);
 	core::EventManager::Instance().RemoveEventHandler(core::EVT_PG_Result, this);
 	core::EventManager::Instance().RemoveEventHandler(core::EVT_PG_Sure, this);
+	core::EventManager::Instance().RemoveEventHandler(core::EVT_PG_DealActionComplete, this);
+
+
 
 	std::map<uint32_t, PaiGowSeatView*>::iterator iter;
 
@@ -370,29 +374,35 @@ int PaiGowViewController::HandleEvent(core::Event * evt)
 
 		deleteBetView();
 
+		m_public_view->playDeal();
+
+	}
+	else if(evt->id_ == core::EVT_PG_DealActionComplete)
+	{
 		//更新公牌
 		initPublicCardsView();
-
+		
 		//给每个玩家发牌
-		std::map<uint32_t, std::vector<Card>>::const_iterator iter;
-		for (iter = event->hand_cards.begin(); iter != event->hand_cards.end(); iter++)
+		for (size_t i = 1; i <= 4; i++)
 		{
-			CCLOG("EVT_PG_DealCard seatid:%d", iter->first);
-			
-			addHandCardsPanel(iter->first,iter->second);
-
-			if (m_data->isMainPlayer(iter->first))
+			if (m_data->isMainPlayer(i))
 			{
-				m_handcards_views[iter->first]->setInteractive(true);
+				addHandCardsPanel(i, m_data->getMainPlayer()->hand_cards);
+				m_handcards_views[i]->lightCards();
 			}
 			else
 			{
-				m_handcards_views[iter->first]->setInteractive(false);
+				std::vector<Card> tmp;
+				for (size_t i = 0; i < 4; i++)
+				{
+					tmp.push_back(0x0000);
+				}
+				addHandCardsPanel(i, tmp);
 			}
-		}
 
-		
+		}
 		addCollocationView();
+
 	}
 	else if(evt->id_ == core::EVT_PG_Collocation)
 	{
@@ -570,7 +580,7 @@ void PaiGowViewController::initPublicCardsView()
 
 	if (!m_public_view)
 	{
-		m_public_view = PaiGowPublicCardsView::create();
+		m_public_view = PaiGowPublicCardsView::create(this);
 		m_public_view->setPosition(Vec2(g_win_size.width / 2, g_win_size.height / 2));
 		core::SceneManager::getInstance()->add(core::LayerMainUI, m_public_view);
 	}
@@ -711,6 +721,30 @@ void PaiGowViewController::performToDo(float time, std::function<void(void)> fun
 	cocos2d::CallFunc* call = cocos2d::CallFunc::create(func);
 	cocos2d::Sequence* seq = cocos2d::Sequence::create(delay, call, NULL);
 	m_view->runAction(seq);
+}
+
+cocos2d::Vec2 PaiGowViewController::cardPos(uint32_t seat_id, uint32_t index)
+{
+	cocos2d::Vec2 pos = handCardsPos(seat_id);
+	int offsetx = 0;
+	if (index == 0)
+	{
+		offsetx = -100;
+	}
+	else if(index == 1)
+	{
+		offsetx = -35;
+	}
+	else if (index == 2)
+	{
+		offsetx = 35;
+	}
+	else if (index == 3)
+	{
+		offsetx = 100;
+	}
+
+	return cocos2d::Vec2(pos.x + offsetx, pos.y);
 }
 
 

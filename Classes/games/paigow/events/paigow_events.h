@@ -11,6 +11,7 @@
 #include "EventCollocation.h"
 #include "EventResult.h"
 #include "EventSure.h"
+#include "EventDealActionComplete.h"
 
 
 #endif // !__PAIGOW_EVENTS_H__

@@ -5,13 +5,14 @@
 #include <vector>
 
 NS_PAIGOW_BEGIN
+class PaiGowViewController;
 
 class PaiGowPublicCardsView :public cocos2d::Node
 {
 public:
-	PaiGowPublicCardsView();
+	PaiGowPublicCardsView(PaiGowViewController* controller);
 	~PaiGowPublicCardsView();
-	static PaiGowPublicCardsView* create();
+	static PaiGowPublicCardsView* create(PaiGowViewController* controller);
 
 	void initWithCard(const std::vector<Card>& cards);
 	void playDeal();
@@ -24,6 +25,7 @@ private:
 
 private:
 	std::vector<PaiGowCardView*> card_views;
+	PaiGowViewController* m_controller;
 };
 
 NS_PAIGOW_END

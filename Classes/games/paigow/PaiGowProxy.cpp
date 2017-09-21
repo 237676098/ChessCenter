@@ -97,31 +97,19 @@ void PaiGowProxy::onRevS2C_PG_Deal(google::protobuf::Message* msg)
 	m_data->table_state = TableState::Collocation;
 	m_data->updatePlayerState(PLAYER_STATUS_PRECOMPARE);
 	std::map<uint32_t, PaiGowPlayer*>::iterator iter;
-	std::map<uint32_t, std::vector<Card>> handcards;
-	EventDealCard event;
 	for (iter = m_data->players.begin(); iter != m_data->players.end(); iter++)
 	{
-		std::vector<Card> handcard;
-		if (!(iter->second->isMainChar()))
-		{
-			for (size_t i = 0; i < 4; i++)
-			{
-				handcard.push_back(0x0000);
-			}
-		}
-		else
+		if (iter->second->isMainChar())
 		{
 			for (int i = 0; i < s2c_msg->my_card_size(); i++)
 			{
 				iter->second->hand_cards.push_back(s2c_msg->my_card(i));
-				handcard.push_back(s2c_msg->my_card(i));
 			}
+			break;
 		}
-		CCLOG("seat_id:%d",iter->first);
-		handcards.insert(std::make_pair(iter->first,handcard));
-
 	}
-	event.hand_cards = handcards;
+	EventDealCard event;
+	//event.hand_cards = handcards;
 	core::EventManager::Instance().DispatchEvent(&event);
 }
 
