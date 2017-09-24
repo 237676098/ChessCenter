@@ -56,6 +56,9 @@ extern C2S_PG_StartGameDefaultTypeInternal _C2S_PG_StartGame_default_instance_;
 class C2S_PG_Sure;
 class C2S_PG_SureDefaultTypeInternal;
 extern C2S_PG_SureDefaultTypeInternal _C2S_PG_Sure_default_instance_;
+class MatchResultPlayer;
+class MatchResultPlayerDefaultTypeInternal;
+extern MatchResultPlayerDefaultTypeInternal _MatchResultPlayer_default_instance_;
 class PaiGowConfig;
 class PaiGowConfigDefaultTypeInternal;
 extern PaiGowConfigDefaultTypeInternal _PaiGowConfig_default_instance_;
@@ -98,6 +101,9 @@ extern S2C_PG_GrabBanker_RESDefaultTypeInternal _S2C_PG_GrabBanker_RES_default_i
 class S2C_PG_Kick;
 class S2C_PG_KickDefaultTypeInternal;
 extern S2C_PG_KickDefaultTypeInternal _S2C_PG_Kick_default_instance_;
+class S2C_PG_MatchResult;
+class S2C_PG_MatchResultDefaultTypeInternal;
+extern S2C_PG_MatchResultDefaultTypeInternal _S2C_PG_MatchResult_default_instance_;
 class S2C_PG_Result;
 class S2C_PG_ResultDefaultTypeInternal;
 extern S2C_PG_ResultDefaultTypeInternal _S2C_PG_Result_default_instance_;
@@ -1860,6 +1866,228 @@ class S2C_PG_Sure : public ::google::protobuf::Message /* @@protoc_insertion_poi
 };
 // -------------------------------------------------------------------
 
+class MatchResultPlayer : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:proto3_proto.MatchResultPlayer) */ {
+ public:
+  MatchResultPlayer();
+  virtual ~MatchResultPlayer();
+
+  MatchResultPlayer(const MatchResultPlayer& from);
+
+  inline MatchResultPlayer& operator=(const MatchResultPlayer& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const MatchResultPlayer& default_instance();
+
+  static inline const MatchResultPlayer* internal_default_instance() {
+    return reinterpret_cast<const MatchResultPlayer*>(
+               &_MatchResultPlayer_default_instance_);
+  }
+  static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
+    18;
+
+  void Swap(MatchResultPlayer* other);
+
+  // implements Message ----------------------------------------------
+
+  inline MatchResultPlayer* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  MatchResultPlayer* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const MatchResultPlayer& from);
+  void MergeFrom(const MatchResultPlayer& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(MatchResultPlayer* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // repeated uint32 max_cards = 2;
+  int max_cards_size() const;
+  void clear_max_cards();
+  static const int kMaxCardsFieldNumber = 2;
+  ::google::protobuf::uint32 max_cards(int index) const;
+  void set_max_cards(int index, ::google::protobuf::uint32 value);
+  void add_max_cards(::google::protobuf::uint32 value);
+  const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
+      max_cards() const;
+  ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
+      mutable_max_cards();
+
+  // uint32 seat_id = 1;
+  void clear_seat_id();
+  static const int kSeatIdFieldNumber = 1;
+  ::google::protobuf::uint32 seat_id() const;
+  void set_seat_id(::google::protobuf::uint32 value);
+
+  // uint32 win_rounds = 3;
+  void clear_win_rounds();
+  static const int kWinRoundsFieldNumber = 3;
+  ::google::protobuf::uint32 win_rounds() const;
+  void set_win_rounds(::google::protobuf::uint32 value);
+
+  // uint32 fail_rounds = 4;
+  void clear_fail_rounds();
+  static const int kFailRoundsFieldNumber = 4;
+  ::google::protobuf::uint32 fail_rounds() const;
+  void set_fail_rounds(::google::protobuf::uint32 value);
+
+  // uint32 win_all_rounds = 5;
+  void clear_win_all_rounds();
+  static const int kWinAllRoundsFieldNumber = 5;
+  ::google::protobuf::uint32 win_all_rounds() const;
+  void set_win_all_rounds(::google::protobuf::uint32 value);
+
+  // uint32 fail_all_rounds = 6;
+  void clear_fail_all_rounds();
+  static const int kFailAllRoundsFieldNumber = 6;
+  ::google::protobuf::uint32 fail_all_rounds() const;
+  void set_fail_all_rounds(::google::protobuf::uint32 value);
+
+  // uint32 max_win = 7;
+  void clear_max_win();
+  static const int kMaxWinFieldNumber = 7;
+  ::google::protobuf::uint32 max_win() const;
+  void set_max_win(::google::protobuf::uint32 value);
+
+  // @@protoc_insertion_point(class_scope:proto3_proto.MatchResultPlayer)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::RepeatedField< ::google::protobuf::uint32 > max_cards_;
+  mutable int _max_cards_cached_byte_size_;
+  ::google::protobuf::uint32 seat_id_;
+  ::google::protobuf::uint32 win_rounds_;
+  ::google::protobuf::uint32 fail_rounds_;
+  ::google::protobuf::uint32 win_all_rounds_;
+  ::google::protobuf::uint32 fail_all_rounds_;
+  ::google::protobuf::uint32 max_win_;
+  mutable int _cached_size_;
+  friend struct protobuf_paigow_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class S2C_PG_MatchResult : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:proto3_proto.S2C_PG_MatchResult) */ {
+ public:
+  S2C_PG_MatchResult();
+  virtual ~S2C_PG_MatchResult();
+
+  S2C_PG_MatchResult(const S2C_PG_MatchResult& from);
+
+  inline S2C_PG_MatchResult& operator=(const S2C_PG_MatchResult& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const S2C_PG_MatchResult& default_instance();
+
+  static inline const S2C_PG_MatchResult* internal_default_instance() {
+    return reinterpret_cast<const S2C_PG_MatchResult*>(
+               &_S2C_PG_MatchResult_default_instance_);
+  }
+  static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
+    19;
+
+  void Swap(S2C_PG_MatchResult* other);
+
+  // implements Message ----------------------------------------------
+
+  inline S2C_PG_MatchResult* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  S2C_PG_MatchResult* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const S2C_PG_MatchResult& from);
+  void MergeFrom(const S2C_PG_MatchResult& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(S2C_PG_MatchResult* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // repeated .proto3_proto.MatchResultPlayer players = 2;
+  int players_size() const;
+  void clear_players();
+  static const int kPlayersFieldNumber = 2;
+  const ::proto3_proto::MatchResultPlayer& players(int index) const;
+  ::proto3_proto::MatchResultPlayer* mutable_players(int index);
+  ::proto3_proto::MatchResultPlayer* add_players();
+  ::google::protobuf::RepeatedPtrField< ::proto3_proto::MatchResultPlayer >*
+      mutable_players();
+  const ::google::protobuf::RepeatedPtrField< ::proto3_proto::MatchResultPlayer >&
+      players() const;
+
+  // uint64 finish_time = 1;
+  void clear_finish_time();
+  static const int kFinishTimeFieldNumber = 1;
+  ::google::protobuf::uint64 finish_time() const;
+  void set_finish_time(::google::protobuf::uint64 value);
+
+  // @@protoc_insertion_point(class_scope:proto3_proto.S2C_PG_MatchResult)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::RepeatedPtrField< ::proto3_proto::MatchResultPlayer > players_;
+  ::google::protobuf::uint64 finish_time_;
+  mutable int _cached_size_;
+  friend struct protobuf_paigow_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
 class C2S_PG_Kick : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:proto3_proto.C2S_PG_Kick) */ {
  public:
   C2S_PG_Kick();
@@ -1880,7 +2108,7 @@ class C2S_PG_Kick : public ::google::protobuf::Message /* @@protoc_insertion_poi
                &_C2S_PG_Kick_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    18;
+    20;
 
   void Swap(C2S_PG_Kick* other);
 
@@ -1960,7 +2188,7 @@ class S2C_PG_Kick : public ::google::protobuf::Message /* @@protoc_insertion_poi
                &_S2C_PG_Kick_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    19;
+    21;
 
   void Swap(S2C_PG_Kick* other);
 
@@ -3002,6 +3230,172 @@ inline void S2C_PG_Sure::set_seat_id(::google::protobuf::uint32 value) {
 
 // -------------------------------------------------------------------
 
+// MatchResultPlayer
+
+// uint32 seat_id = 1;
+inline void MatchResultPlayer::clear_seat_id() {
+  seat_id_ = 0u;
+}
+inline ::google::protobuf::uint32 MatchResultPlayer::seat_id() const {
+  // @@protoc_insertion_point(field_get:proto3_proto.MatchResultPlayer.seat_id)
+  return seat_id_;
+}
+inline void MatchResultPlayer::set_seat_id(::google::protobuf::uint32 value) {
+  
+  seat_id_ = value;
+  // @@protoc_insertion_point(field_set:proto3_proto.MatchResultPlayer.seat_id)
+}
+
+// repeated uint32 max_cards = 2;
+inline int MatchResultPlayer::max_cards_size() const {
+  return max_cards_.size();
+}
+inline void MatchResultPlayer::clear_max_cards() {
+  max_cards_.Clear();
+}
+inline ::google::protobuf::uint32 MatchResultPlayer::max_cards(int index) const {
+  // @@protoc_insertion_point(field_get:proto3_proto.MatchResultPlayer.max_cards)
+  return max_cards_.Get(index);
+}
+inline void MatchResultPlayer::set_max_cards(int index, ::google::protobuf::uint32 value) {
+  max_cards_.Set(index, value);
+  // @@protoc_insertion_point(field_set:proto3_proto.MatchResultPlayer.max_cards)
+}
+inline void MatchResultPlayer::add_max_cards(::google::protobuf::uint32 value) {
+  max_cards_.Add(value);
+  // @@protoc_insertion_point(field_add:proto3_proto.MatchResultPlayer.max_cards)
+}
+inline const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
+MatchResultPlayer::max_cards() const {
+  // @@protoc_insertion_point(field_list:proto3_proto.MatchResultPlayer.max_cards)
+  return max_cards_;
+}
+inline ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
+MatchResultPlayer::mutable_max_cards() {
+  // @@protoc_insertion_point(field_mutable_list:proto3_proto.MatchResultPlayer.max_cards)
+  return &max_cards_;
+}
+
+// uint32 win_rounds = 3;
+inline void MatchResultPlayer::clear_win_rounds() {
+  win_rounds_ = 0u;
+}
+inline ::google::protobuf::uint32 MatchResultPlayer::win_rounds() const {
+  // @@protoc_insertion_point(field_get:proto3_proto.MatchResultPlayer.win_rounds)
+  return win_rounds_;
+}
+inline void MatchResultPlayer::set_win_rounds(::google::protobuf::uint32 value) {
+  
+  win_rounds_ = value;
+  // @@protoc_insertion_point(field_set:proto3_proto.MatchResultPlayer.win_rounds)
+}
+
+// uint32 fail_rounds = 4;
+inline void MatchResultPlayer::clear_fail_rounds() {
+  fail_rounds_ = 0u;
+}
+inline ::google::protobuf::uint32 MatchResultPlayer::fail_rounds() const {
+  // @@protoc_insertion_point(field_get:proto3_proto.MatchResultPlayer.fail_rounds)
+  return fail_rounds_;
+}
+inline void MatchResultPlayer::set_fail_rounds(::google::protobuf::uint32 value) {
+  
+  fail_rounds_ = value;
+  // @@protoc_insertion_point(field_set:proto3_proto.MatchResultPlayer.fail_rounds)
+}
+
+// uint32 win_all_rounds = 5;
+inline void MatchResultPlayer::clear_win_all_rounds() {
+  win_all_rounds_ = 0u;
+}
+inline ::google::protobuf::uint32 MatchResultPlayer::win_all_rounds() const {
+  // @@protoc_insertion_point(field_get:proto3_proto.MatchResultPlayer.win_all_rounds)
+  return win_all_rounds_;
+}
+inline void MatchResultPlayer::set_win_all_rounds(::google::protobuf::uint32 value) {
+  
+  win_all_rounds_ = value;
+  // @@protoc_insertion_point(field_set:proto3_proto.MatchResultPlayer.win_all_rounds)
+}
+
+// uint32 fail_all_rounds = 6;
+inline void MatchResultPlayer::clear_fail_all_rounds() {
+  fail_all_rounds_ = 0u;
+}
+inline ::google::protobuf::uint32 MatchResultPlayer::fail_all_rounds() const {
+  // @@protoc_insertion_point(field_get:proto3_proto.MatchResultPlayer.fail_all_rounds)
+  return fail_all_rounds_;
+}
+inline void MatchResultPlayer::set_fail_all_rounds(::google::protobuf::uint32 value) {
+  
+  fail_all_rounds_ = value;
+  // @@protoc_insertion_point(field_set:proto3_proto.MatchResultPlayer.fail_all_rounds)
+}
+
+// uint32 max_win = 7;
+inline void MatchResultPlayer::clear_max_win() {
+  max_win_ = 0u;
+}
+inline ::google::protobuf::uint32 MatchResultPlayer::max_win() const {
+  // @@protoc_insertion_point(field_get:proto3_proto.MatchResultPlayer.max_win)
+  return max_win_;
+}
+inline void MatchResultPlayer::set_max_win(::google::protobuf::uint32 value) {
+  
+  max_win_ = value;
+  // @@protoc_insertion_point(field_set:proto3_proto.MatchResultPlayer.max_win)
+}
+
+// -------------------------------------------------------------------
+
+// S2C_PG_MatchResult
+
+// uint64 finish_time = 1;
+inline void S2C_PG_MatchResult::clear_finish_time() {
+  finish_time_ = GOOGLE_ULONGLONG(0);
+}
+inline ::google::protobuf::uint64 S2C_PG_MatchResult::finish_time() const {
+  // @@protoc_insertion_point(field_get:proto3_proto.S2C_PG_MatchResult.finish_time)
+  return finish_time_;
+}
+inline void S2C_PG_MatchResult::set_finish_time(::google::protobuf::uint64 value) {
+  
+  finish_time_ = value;
+  // @@protoc_insertion_point(field_set:proto3_proto.S2C_PG_MatchResult.finish_time)
+}
+
+// repeated .proto3_proto.MatchResultPlayer players = 2;
+inline int S2C_PG_MatchResult::players_size() const {
+  return players_.size();
+}
+inline void S2C_PG_MatchResult::clear_players() {
+  players_.Clear();
+}
+inline const ::proto3_proto::MatchResultPlayer& S2C_PG_MatchResult::players(int index) const {
+  // @@protoc_insertion_point(field_get:proto3_proto.S2C_PG_MatchResult.players)
+  return players_.Get(index);
+}
+inline ::proto3_proto::MatchResultPlayer* S2C_PG_MatchResult::mutable_players(int index) {
+  // @@protoc_insertion_point(field_mutable:proto3_proto.S2C_PG_MatchResult.players)
+  return players_.Mutable(index);
+}
+inline ::proto3_proto::MatchResultPlayer* S2C_PG_MatchResult::add_players() {
+  // @@protoc_insertion_point(field_add:proto3_proto.S2C_PG_MatchResult.players)
+  return players_.Add();
+}
+inline ::google::protobuf::RepeatedPtrField< ::proto3_proto::MatchResultPlayer >*
+S2C_PG_MatchResult::mutable_players() {
+  // @@protoc_insertion_point(field_mutable_list:proto3_proto.S2C_PG_MatchResult.players)
+  return &players_;
+}
+inline const ::google::protobuf::RepeatedPtrField< ::proto3_proto::MatchResultPlayer >&
+S2C_PG_MatchResult::players() const {
+  // @@protoc_insertion_point(field_list:proto3_proto.S2C_PG_MatchResult.players)
+  return players_;
+}
+
+// -------------------------------------------------------------------
+
 // C2S_PG_Kick
 
 // uint32 seat_id = 1;
@@ -3037,6 +3431,10 @@ inline void S2C_PG_Kick::set_seat_id(::google::protobuf::uint32 value) {
 }
 
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

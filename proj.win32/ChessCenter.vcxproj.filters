@@ -228,6 +228,12 @@
     <ClCompile Include="..\Classes\games\paigow\views\PaiGowPublicCardsView.cpp">
       <Filter>src\games\paigow\views</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\games\paigow\PaiGowMatchResultPlayer.cpp">
+      <Filter>src\games\paigow</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\games\paigow\views\PaiGowMatchResultWindow.cpp">
+      <Filter>src\games\paigow\views</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -454,6 +460,12 @@
     </ClInclude>
     <ClInclude Include="..\Classes\games\paigow\events\EventDealActionComplete.h">
       <Filter>src\games\paigow\events</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\games\paigow\PaiGowMatchResultPlayer.h">
+      <Filter>src\games\paigow</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\games\paigow\views\PaiGowMatchResultWindow.h">
+      <Filter>src\games\paigow\views</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

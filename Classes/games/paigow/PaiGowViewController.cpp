@@ -3,6 +3,7 @@
 #include "core/scene/scene.h"
 #include "games/paigow/events/paigow_events.h"
 #include "games/paigow/views/PaiGowResultWindow.h"
+#include "games/paigow/views/PaiGowMatchResultWindow.h"
 
 USING_NS_CC;
 
@@ -515,6 +516,19 @@ void PaiGowViewController::onClickCollcationSure()
 	else
 	{
 		core::SceneManager::getInstance()->showMsg("error number of cards");
+	}
+}
+
+void PaiGowViewController::onClickResultViewSure()
+{
+	if (!m_data->is_match_end)
+	{
+		proto3_proto::C2S_PG_Sure msg;
+		core::SocketManager::getInstance()->sendMessage(core::ID_C2S_PG_Sure, msg);
+	}
+	else 
+	{
+		core::WindowManager::getInstance()->open_1<paigow::PaiGowMatchResultWindow, PaiGowViewController*>(this);
 	}
 }
 

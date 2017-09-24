@@ -31,12 +31,14 @@ public:
 public:
 	void onClickCollcationTips();
 	void onClickCollcationSure();
+	void onClickResultViewSure();
 	cocos2d::Vec2 cardPos(uint32_t seat_id, uint32_t index);
 
 public:
 	const PaiGowPlayer* getPlayerBySeatId(uint32_t seat_id);
 	bool isMySeat(uint32_t seat_id) const;
 	const PaiGowPlayer* getMyPlayer() const;
+	const PaiGowSnaptShot* getData() const { return m_data; };
 
 private:
 	PaiGowSeatView* addSeat(PaiGowPlayer* seat);

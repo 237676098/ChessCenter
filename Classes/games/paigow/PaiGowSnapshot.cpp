@@ -66,6 +66,7 @@ void PaiGowSnaptShot::clear()
 	}
 
 	players.clear();
+	clearMatchResults();
 }
 
 void PaiGowSnaptShot::addPlayer(const proto3_proto::PaiGowPlayer& p)
@@ -166,6 +167,48 @@ void PaiGowSnaptShot::addResult(const proto3_proto::PaiGowResult & result_s)
 	PaiGowResult* result = new PaiGowResult;
 	result->initByPaiGowResult(result_s);
 	results.push_back(result);
+}
+
+void PaiGowSnaptShot::clearMatchResults()
+{
+	for (size_t i = 0; i < match_results.size(); i++)
+	{
+		delete match_results[i];
+		match_results[i] = nullptr;
+	}
+	match_results.clear();
+}
+
+void PaiGowSnaptShot::addMatchResult(const proto3_proto::MatchResultPlayer & match_result)
+{
+	PaiGowMatchResultPlayer* result = new PaiGowMatchResultPlayer;
+	result->name = players[match_result.seat_id()]->name;
+	result->uid = players[match_result.seat_id()]->uid;
+	result->head = players[match_result.seat_id()]->head;
+	result->score = players[match_result.seat_id()]->score;
+	result->max_cards[0] = match_result.max_cards(0);
+	result->max_cards[1] = match_result.max_cards(1);
+	result->max_score = match_result.max_win();
+	result->fail_all_rounds = match_result.fail_all_rounds();
+	result->win_all_rounds = match_result.win_all_rounds();
+	result->fail_rounds = match_result.fail_rounds();
+	result->win_rounds = match_result.win_rounds();
+	result->fail_all_rounds = match_result.fail_all_rounds();
+
+	//判断是不是分数最高的
+	bool is_big_winner = true;
+	std::map<uint32_t, PaiGowPlayer*>::const_iterator iter;
+	for (iter = players.begin(); iter != players.end(); iter++)
+	{
+		if (iter ->second->score > result->score)
+		{
+			is_big_winner = false;
+			break;
+		}
+	}
+
+	result->is_big_winner = is_big_winner;
+	match_results.push_back(result);
 }
 
 NS_PAIGOW_END

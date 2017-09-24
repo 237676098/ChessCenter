@@ -41,6 +41,7 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
 				../../../Classes\games\paigow\PaiGowData.cpp \
 				../../../Classes\games\paigow\PaiGowLogic.cpp \
 				../../../Classes\games\paigow\PaigowManager.cpp \
+				../../../Classes\games\paigow\PaiGowMatchResultPlayer.cpp \
 				../../../Classes\games\paigow\PaiGowPlayer.cpp \
 				../../../Classes\games\paigow\PaiGowProxy.cpp \
 				../../../Classes\games\paigow\PaiGowResult.cpp \
@@ -52,6 +53,7 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
 				../../../Classes\games\paigow\views\PaigowCollocationOperateView.cpp \
 				../../../Classes\games\paigow\views\PaigowGrabOperateView.cpp \
 				../../../Classes\games\paigow\views\PaIGowHandCardsPanel.cpp \
+				../../../Classes\games\paigow\views\PaiGowMatchResultWindow.cpp \
 				../../../Classes\games\paigow\views\PaiGowPublicCardsView.cpp \
 				../../../Classes\games\paigow\views\PaiGowResultWindow.cpp \
 				../../../Classes\games\paigow\views\PaiGowSeatView.cpp \

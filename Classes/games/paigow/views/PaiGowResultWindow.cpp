@@ -80,8 +80,7 @@ void PaiGowResultWindow::onLoadCompleted()
 
 void PaiGowResultWindow::onClickCloseBtn(Ref * btn)
 {
-	proto3_proto::C2S_PG_Sure msg;
-	core::SocketManager::getInstance()->sendMessage(core::ID_C2S_PG_Sure, msg);
+	m_controller->onClickResultViewSure();
 	core::WindowManager::getInstance()->close(PaiGowResultWindow::s_id);
 }
 

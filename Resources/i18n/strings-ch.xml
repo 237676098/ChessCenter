@@ -39,4 +39,11 @@
 	<string name="card_group_name_tiangangjiu">天高九</string>
 	<string name="card_group_name_digaojiu">地高九</string>
 	<string name="card_group_name_bieshi">憋十</string>
+	<string name="card_group_name_bieshi">憋十</string>
+	
+	<string name="end_des_max_score">单局最高得分:</string>
+	<string name="end_des_max_cards">最大牌型:</string>
+	<string name="end_des_max_win_rounds">胜利局数:</string>
+	<string name="end_des_max_fail_rounds">失败局数:</string>
+	
 </resources>

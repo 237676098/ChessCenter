@@ -6,6 +6,7 @@
 #include <map>
 #include <vector>
 #include "PaiGowResult.h"
+#include "PaiGowMatchResultPlayer.h"
 
 
 
@@ -31,14 +32,19 @@ public:
 public:
 	void clearResult();
 	void addResult(const proto3_proto::PaiGowResult& result);
+	void clearMatchResults();
+	void addMatchResult(const proto3_proto::MatchResultPlayer& match_result);
 
 public:
 	TableState table_state;
-	uint32_t room_owner; 					//牌桌拥有者
-	uint32_t banker_seat_id;				//庄家位
-	std::vector<Card> public_cards;							//公牌
-	std::map<uint32_t,PaiGowPlayer*> players;						//牌九玩家
-	std::vector<PaiGowResult*> results;
+	uint32_t room_owner; 												//牌桌拥有者
+	uint32_t banker_seat_id;											//庄家位
+	std::vector<Card> public_cards;										//公牌
+	std::map<uint32_t,PaiGowPlayer*> players;							//牌九玩家
+	std::vector<PaiGowResult*> results;									//本局round结果
+	std::vector<PaiGowMatchResultPlayer*> match_results;			//match结果
+	uint64_t finish_time;
+	bool is_match_end;
 };
 
 

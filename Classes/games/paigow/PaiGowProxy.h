@@ -24,7 +24,7 @@ private:
 	MSG_FUNCTION_DEFINE(S2C_OffLine)
 	MSG_FUNCTION_DEFINE(S2C_OnLine)
 	MSG_FUNCTION_DEFINE(S2C_PG_Sure)
-		
+	MSG_FUNCTION_DEFINE(S2C_PG_MatchResult)
 
 private:
 	PaiGowSnaptShot* m_data;

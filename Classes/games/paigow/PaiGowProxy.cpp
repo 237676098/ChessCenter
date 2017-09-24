@@ -21,7 +21,7 @@ PaiGowProxy::PaiGowProxy(PaiGowSnaptShot* data)
 	MSG_FUNCTION_REGISTER(S2C_OffLine, PaiGowProxy)
 	MSG_FUNCTION_REGISTER(S2C_OnLine, PaiGowProxy)
 	MSG_FUNCTION_REGISTER(S2C_PG_Sure, PaiGowProxy)
-		
+	MSG_FUNCTION_REGISTER(S2C_PG_MatchResult, PaiGowProxy)
 }
 
 PaiGowProxy::~PaiGowProxy()
@@ -179,11 +179,7 @@ void PaiGowProxy::onRevS2C_PG_Result(google::protobuf::Message* msg)
 	event.result = s2c_msg;
 	core::EventManager::Instance().DispatchEvent(&event);
 
-	if (s2c_msg->is_end())
-	{
-		core::MatchEndEvent event;
-		core::GameStateMachine::getInstance()->dispatchEvent(&event);
-	}
+	m_data->is_match_end = s2c_msg->is_end();
 }
 
 void PaiGowProxy::onRevS2C_LeaveMatch(google::protobuf::Message* msg)
@@ -231,6 +227,16 @@ void PaiGowProxy::onRevS2C_PG_Sure(google::protobuf::Message* msg)
 	EventSure event;
 	event.seat_id = s2c_msg->seat_id();
 	core::EventManager::Instance().DispatchEvent(&event);
+}
+
+void PaiGowProxy::onRevS2C_PG_MatchResult(google::protobuf::Message* msg)
+{
+	proto3_proto::S2C_PG_MatchResult*  s2c_msg = dynamic_cast<proto3_proto::S2C_PG_MatchResult*> (msg);
+	m_data->finish_time = s2c_msg->finish_time();
+	for (int i = 0; i < s2c_msg->players_size(); i++)
+	{
+		m_data->addMatchResult(s2c_msg->players(i));
+	}
 }
 
 NS_PAIGOW_END
