@@ -234,6 +234,9 @@
     <ClCompile Include="..\Classes\games\paigow\views\PaiGowMatchResultWindow.cpp">
       <Filter>src\games\paigow\views</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\games\paigow\views\PaiGowSelectParamsView.cpp">
+      <Filter>src\games\paigow\views</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -465,6 +468,9 @@
       <Filter>src\games\paigow</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\games\paigow\views\PaiGowMatchResultWindow.h">
+      <Filter>src\games\paigow\views</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\games\paigow\views\PaiGowSelectParamsView.h">
       <Filter>src\games\paigow\views</Filter>
     </ClInclude>
   </ItemGroup>

@@ -6,7 +6,8 @@ typedef enum _WindowId
 	ID_RoomCreate,
 	ID_RoomJoin,
 	ID_PAI_GOW_RESULT,
-	ID_PAI_GOW_MATCH_RESULT
+	ID_PAI_GOW_MATCH_RESULT,
+	ID_PAI_GOW_SELECT_PARAMS
 }WindowId;
 
 #endif

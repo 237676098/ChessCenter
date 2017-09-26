@@ -43,11 +43,12 @@ bool LobbyView::initWithFile(const std::string fileName)
 	
 	Button* createRoomBtn = dynamic_cast<Button*>(m_csb->getChildByName("btn_create_room"));
 	createRoomBtn->addClickEventListener([](Ref*)->void {
-		//core::WindowManager::getInstance()->open<lobby::RoomCreateWindow>();
+		core::WindowManager::getInstance()->open<lobby::RoomCreateWindow>();
 		//core::GameSnaptshotEvent event;
 		//core::UserInfoInitedEvent event;
 		//core::GameStateMachine::getInstance()->dispatchEvent(&event);
-		game::GameManager::getInstance()->createMatch();
+		//game::GameManager::getInstance()->createMatch();
+		
 	});
 
 	//刷新大厅信息

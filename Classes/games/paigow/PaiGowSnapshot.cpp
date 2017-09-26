@@ -6,7 +6,8 @@ NS_PAIGOW_BEGIN
 PaiGowSnaptShot::PaiGowSnaptShot()
 	:table_state(TableState::Unkown),
 	room_owner(0),
-	banker_seat_id(0)
+	banker_seat_id(0),
+	is_match_end(false)
 {
 	
 }

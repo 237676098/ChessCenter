@@ -189,6 +189,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\games\paigow\views\PaiGowPublicCardsView.cpp" />
     <ClCompile Include="..\Classes\games\paigow\views\PaiGowResultWindow.cpp" />
     <ClCompile Include="..\Classes\games\paigow\views\PaiGowSeatView.cpp" />
+    <ClCompile Include="..\Classes\games\paigow\views\PaiGowSelectParamsView.cpp" />
     <ClCompile Include="..\Classes\games\paigow\views\PaigowTableView.cpp" />
     <ClCompile Include="..\Classes\games\paigow\views\PaigowWaitOperateView.cpp" />
     <ClCompile Include="..\Classes\games\PlayerInfo.cpp" />
@@ -263,6 +264,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\games\paigow\views\PaiGowPublicCardsView.h" />
     <ClInclude Include="..\Classes\games\paigow\views\PaiGowResultWindow.h" />
     <ClInclude Include="..\Classes\games\paigow\views\PaiGowSeatView.h" />
+    <ClInclude Include="..\Classes\games\paigow\views\PaiGowSelectParamsView.h" />
     <ClInclude Include="..\Classes\games\paigow\views\PaigowTableView.h" />
     <ClInclude Include="..\Classes\games\paigow\views\PaigowWaitOperateView.h" />
     <ClInclude Include="..\Classes\games\PlayerInfo.h" />

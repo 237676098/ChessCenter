@@ -1,4 +1,5 @@
 #include "RoomCreateWindow.h"
+#include "games/paigow/views/PaiGowSelectParamsView.h"
 NS_LOBBY_BEGIN
 void RoomCreateWindow::onLoadCompleted()
 {
@@ -7,6 +8,7 @@ void RoomCreateWindow::onLoadCompleted()
 	Button* paigow_btn = dynamic_cast<Button*>(center->getChildByName("m_node_paigow")->getChildByName("btn"));
 	paigow_btn->addClickEventListener([this](Ref* btn)->void {
 		CCLOG("click  paigow");
+		core::WindowManager::getInstance()->open<chess::game::paigow::PaiGowSelectParamsView>();
 	});
 }
 
